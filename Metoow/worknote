@@ -1,0 +1,11 @@
+www.metoow.com:8080
+ID:     ligun123
+SEC:    5815057
+
+工作日志:
+
+4.8
+切图+构建APP界面布局   20%
+4.10
+添加启动图片3.5inch 和4.0inch
+删除旧的两个storyboard适配3.5和4.0，仅使用4.0inch+ios7.0做主storyboard同时适配3.5inch+ios6
