@@ -1,18 +1,18 @@
 //
-//  MyHelpViewController.m
+//  HelpPubViewController.m
 //  Metoow
 //
 //  Created by HalloWorld on 14-4-13.
 //  Copyright (c) 2014年 HalloWorld. All rights reserved.
 //
 
-#import "MyHelpViewController.h"
+#import "HelpPubViewController.h"
 
-@interface MyHelpViewController ()
+@interface HelpPubViewController ()
 
 @end
 
-@implementation MyHelpViewController
+@implementation HelpPubViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,7 +45,13 @@
     // Pass the selected object to the new view controller.
 }
 */
+
 - (IBAction)btnBackTap:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+- (IBAction)btnDoneTap:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 

@@ -11,3 +11,4 @@ SEC:    5815057
 删除旧的两个storyboard适配3.5和4.0，仅使用4.0inch+ios7.0做主storyboard同时适配3.5inch+ios6
 4.13
 完善登录页面
+APP整体视图流程架构50%

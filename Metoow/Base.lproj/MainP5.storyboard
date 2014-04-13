@@ -112,7 +112,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BMg-wA-amq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3377" y="1749"/>
+            <point key="canvasLocation" x="-3801" y="1577"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="oad-4t-oaP">
@@ -166,7 +166,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ns7-Ir-LLz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2849" y="1749"/>
+            <point key="canvasLocation" x="-3273" y="1577"/>
         </scene>
         <!--Select Label View Controller-->
         <scene sceneID="12b-hT-KY7">
@@ -221,7 +221,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uUD-rj-rF4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2315" y="1749"/>
+            <point key="canvasLocation" x="-2739" y="1577"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="mac-Jf-mZl">
@@ -500,6 +500,9 @@
                                 <state key="normal" image="pb_write_btn.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="W9q-D8-Ezr" kind="push" id="3nD-6L-4cV"/>
+                                </connections>
                             </button>
                             <searchBar contentMode="redraw" placeholder="搜索" id="DXP-Z1-iUi">
                                 <rect key="frame" x="0.0" y="61" width="320" height="44"/>
@@ -522,10 +525,10 @@
             </objects>
             <point key="canvasLocation" x="-1262" y="-402"/>
         </scene>
-        <!--View Controller-->
+        <!--My Help View Controller-->
         <scene sceneID="NBF-yJ-gfz">
             <objects>
-                <viewController id="H4K-ku-12b" sceneMemberID="viewController">
+                <viewController id="H4K-ku-12b" customClass="MyHelpViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Gw-30-ckj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -543,6 +546,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="btnBackTap:" destination="H4K-ku-12b" eventType="touchUpInside" id="eR0-Ex-0IH"/>
                                     <action selector="btnBackTap:" destination="4IE-4U-7u5" eventType="touchUpInside" id="lqC-0v-yRo"/>
                                     <action selector="btnBackTap:" destination="jXI-HV-9HW" eventType="touchUpInside" id="nQR-VZ-4QB"/>
                                     <action selector="btnBackTap:" destination="R3i-Ff-vSp" eventType="touchUpInside" id="sVL-cS-082"/>
@@ -563,7 +567,67 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UDr-ol-ELS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-727" y="-429"/>
+            <point key="canvasLocation" x="-723" y="-402"/>
+        </scene>
+        <!--Help Pub View Controller-->
+        <scene sceneID="Xve-5u-cCc">
+            <objects>
+                <viewController id="W9q-D8-Ezr" customClass="HelpPubViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mvF-UA-w4l">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pb_mainColor_bkg.png" id="xOF-3Y-tIJ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="0.0" maxX="0.0" maxY="-20"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mLt-MZ-fhG">
+                                <rect key="frame" x="0.0" y="26" width="27" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
+                                <state key="normal" image="pb_back_btn.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnBackTap:" destination="W9q-D8-Ezr" eventType="touchUpInside" id="13x-h7-ROO"/>
+                                    <action selector="btnBackTap:" destination="jXI-HV-9HW" eventType="touchUpInside" id="esm-4x-2Su"/>
+                                    <action selector="btnBackTap:" destination="4IE-4U-7u5" eventType="touchUpInside" id="hEH-Gn-pYc"/>
+                                    <action selector="btnBackTap:" destination="R3i-Ff-vSp" eventType="touchUpInside" id="oKH-bs-I4Z"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发布互助" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="s8S-xj-1do">
+                                <rect key="frame" x="88" y="29" width="144" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rLR-4X-2YG">
+                                <rect key="frame" x="268" y="26" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="完成">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnDoneTap:" destination="W9q-D8-Ezr" eventType="touchUpInside" id="MdK-to-DoV"/>
+                                    <action selector="btnDoneTap:" destination="4IE-4U-7u5" eventType="touchUpInside" id="aCw-uJ-IPW"/>
+                                    <action selector="btnDoneTap:" destination="jXI-HV-9HW" eventType="touchUpInside" id="r9I-s2-n0j"/>
+                                    <action selector="btnDoneTap:" destination="fTx-zD-JNH" eventType="touchUpInside" id="y5P-jF-Qrf"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="VFG-YB-0vj"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uQz-Ob-o62" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-267" y="-806"/>
         </scene>
         <!--Navigation Controller - Item-->
         <scene sceneID="Xef-ec-zHE">
@@ -708,6 +772,21 @@
                     <view key="view" contentMode="scaleToFill" id="ZZT-oe-n8f">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pb_mainColor_bkg.png" id="dyf-yj-wzN">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="0.0" maxX="0.0" maxY="-20"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="个人资料" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EfN-ap-rfZ">
+                                <rect key="frame" x="88" y="29" width="144" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="0.94736013100000005" green="0.95258946570000003" blue="0.96629284270000004" alpha="1" colorSpace="deviceRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="dqI-Qr-dZO"/>

@@ -72,6 +72,7 @@
 		02F4A2B818FA64A3006EDB25 /* FootPubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F4A2B718FA64A3006EDB25 /* FootPubViewController.m */; };
 		02F4A2BD18FA66BA006EDB25 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F4A2BC18FA66BA006EDB25 /* HelpViewController.m */; };
 		02F4A2C118FA6706006EDB25 /* MyHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F4A2C018FA6706006EDB25 /* MyHelpViewController.m */; };
+		02F4A2C418FA6BD7006EDB25 /* HelpPubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F4A2C318FA6BD7006EDB25 /* HelpPubViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,6 +170,8 @@
 		02F4A2BC18FA66BA006EDB25 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
 		02F4A2BF18FA6706006EDB25 /* MyHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyHelpViewController.h; sourceTree = "<group>"; };
 		02F4A2C018FA6706006EDB25 /* MyHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyHelpViewController.m; sourceTree = "<group>"; };
+		02F4A2C218FA6BD7006EDB25 /* HelpPubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpPubViewController.h; sourceTree = "<group>"; };
+		02F4A2C318FA6BD7006EDB25 /* HelpPubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpPubViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -409,6 +412,8 @@
 				02F4A2BC18FA66BA006EDB25 /* HelpViewController.m */,
 				02F4A2BF18FA6706006EDB25 /* MyHelpViewController.h */,
 				02F4A2C018FA6706006EDB25 /* MyHelpViewController.m */,
+				02F4A2C218FA6BD7006EDB25 /* HelpPubViewController.h */,
+				02F4A2C318FA6BD7006EDB25 /* HelpPubViewController.m */,
 			);
 			name = "互助";
 			sourceTree = "<group>";
@@ -552,6 +557,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02F4A2B818FA64A3006EDB25 /* FootPubViewController.m in Sources */,
+				02F4A2C418FA6BD7006EDB25 /* HelpPubViewController.m in Sources */,
 				02F4A2A918FA51E8006EDB25 /* RegisterViewController.m in Sources */,
 				02E528AA18F0EEDC00EEAE7B /* AppDelegate.m in Sources */,
 				02E528A618F0EEDC00EEAE7B /* main.m in Sources */,
