@@ -13,6 +13,7 @@
 #import "JSONKit.h"
 #import "NSError+Alert.h"
 #import "AppDelegate.h"
+#import "QCheckBox.h"
 
 #define AppDelegateInterface	(AppDelegate*)([UIApplication sharedApplication].delegate)
 

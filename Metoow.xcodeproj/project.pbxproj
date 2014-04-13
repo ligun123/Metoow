@@ -51,6 +51,27 @@
 		02E528DB18F0F1EF00EEAE7B /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E528D718F0F1EF00EEAE7B /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		02E528DC18F0F1EF00EEAE7B /* NSError+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E528D918F0F1EF00EEAE7B /* NSError+Alert.m */; };
 		02E5292218F0FBDF00EEAE7B /* MainP5.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02E528AB18F0EEDC00EEAE7B /* MainP5.storyboard */; };
+		02F4A28818FA4335006EDB25 /* Icon60.png in Resources */ = {isa = PBXBuildFile; fileRef = 02F4A28718FA4335006EDB25 /* Icon60.png */; };
+		02F4A28B18FA43F9006EDB25 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 02F4A28918FA43F9006EDB25 /* Icon.png */; };
+		02F4A28C18FA43F9006EDB25 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02F4A28A18FA43F9006EDB25 /* Icon@2x.png */; };
+		02F4A29218FA4463006EDB25 /* IQButtonBarArrowLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02F4A28E18FA4463006EDB25 /* IQButtonBarArrowLeft@2x.png */; };
+		02F4A29318FA4463006EDB25 /* IQButtonBarArrowRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02F4A28F18FA4463006EDB25 /* IQButtonBarArrowRight@2x.png */; };
+		02F4A29418FA4463006EDB25 /* IQKeyboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F4A29118FA4463006EDB25 /* IQKeyboardManager.m */; };
+		02F4A29E18FA45AF006EDB25 /* checkbox1_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 02F4A29618FA45AF006EDB25 /* checkbox1_checked.png */; };
+		02F4A29F18FA45AF006EDB25 /* checkbox1_checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02F4A29718FA45AF006EDB25 /* checkbox1_checked@2x.png */; };
+		02F4A2A018FA45AF006EDB25 /* checkbox1_unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 02F4A29818FA45AF006EDB25 /* checkbox1_unchecked.png */; };
+		02F4A2A118FA45AF006EDB25 /* checkbox1_unchecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02F4A29918FA45AF006EDB25 /* checkbox1_unchecked@2x.png */; };
+		02F4A2A318FA45AF006EDB25 /* QCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F4A29D18FA45AF006EDB25 /* QCheckBox.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		02F4A2A618FA46BD006EDB25 /* LoginCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F4A2A518FA46BD006EDB25 /* LoginCheckBox.m */; };
+		02F4A2A918FA51E8006EDB25 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F4A2A818FA51E8006EDB25 /* RegisterViewController.m */; };
+		02F4A2AD18FA54BC006EDB25 /* pb_back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02F4A2AA18FA54BC006EDB25 /* pb_back_btn@2x.png */; };
+		02F4A2AE18FA54BC006EDB25 /* reg_cell_bkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02F4A2AB18FA54BC006EDB25 /* reg_cell_bkg@2x.png */; };
+		02F4A2AF18FA54BC006EDB25 /* reg_cellLine_bkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02F4A2AC18FA54BC006EDB25 /* reg_cellLine_bkg@2x.png */; };
+		02F4A2B218FA57CA006EDB25 /* SelectLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F4A2B118FA57CA006EDB25 /* SelectLabelViewController.m */; };
+		02F4A2B518FA6060006EDB25 /* SOSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F4A2B418FA6060006EDB25 /* SOSViewController.m */; };
+		02F4A2B818FA64A3006EDB25 /* FootPubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F4A2B718FA64A3006EDB25 /* FootPubViewController.m */; };
+		02F4A2BD18FA66BA006EDB25 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F4A2BC18FA66BA006EDB25 /* HelpViewController.m */; };
+		02F4A2C118FA6706006EDB25 /* MyHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F4A2C018FA6706006EDB25 /* MyHelpViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +139,36 @@
 		02E528D718F0F1EF00EEAE7B /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		02E528D818F0F1EF00EEAE7B /* NSError+Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Alert.h"; sourceTree = "<group>"; };
 		02E528D918F0F1EF00EEAE7B /* NSError+Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Alert.m"; sourceTree = "<group>"; };
+		02F4A28718FA4335006EDB25 /* Icon60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon60.png; sourceTree = "<group>"; };
+		02F4A28918FA43F9006EDB25 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		02F4A28A18FA43F9006EDB25 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		02F4A28E18FA4463006EDB25 /* IQButtonBarArrowLeft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IQButtonBarArrowLeft@2x.png"; sourceTree = "<group>"; };
+		02F4A28F18FA4463006EDB25 /* IQButtonBarArrowRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IQButtonBarArrowRight@2x.png"; sourceTree = "<group>"; };
+		02F4A29018FA4463006EDB25 /* IQKeyboardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQKeyboardManager.h; sourceTree = "<group>"; };
+		02F4A29118FA4463006EDB25 /* IQKeyboardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQKeyboardManager.m; sourceTree = "<group>"; };
+		02F4A29618FA45AF006EDB25 /* checkbox1_checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox1_checked.png; sourceTree = "<group>"; };
+		02F4A29718FA45AF006EDB25 /* checkbox1_checked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox1_checked@2x.png"; sourceTree = "<group>"; };
+		02F4A29818FA45AF006EDB25 /* checkbox1_unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox1_unchecked.png; sourceTree = "<group>"; };
+		02F4A29918FA45AF006EDB25 /* checkbox1_unchecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox1_unchecked@2x.png"; sourceTree = "<group>"; };
+		02F4A29C18FA45AF006EDB25 /* QCheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCheckBox.h; sourceTree = "<group>"; };
+		02F4A29D18FA45AF006EDB25 /* QCheckBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCheckBox.m; sourceTree = "<group>"; };
+		02F4A2A418FA46BD006EDB25 /* LoginCheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginCheckBox.h; sourceTree = "<group>"; };
+		02F4A2A518FA46BD006EDB25 /* LoginCheckBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginCheckBox.m; sourceTree = "<group>"; };
+		02F4A2A718FA51E8006EDB25 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		02F4A2A818FA51E8006EDB25 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		02F4A2AA18FA54BC006EDB25 /* pb_back_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pb_back_btn@2x.png"; sourceTree = "<group>"; };
+		02F4A2AB18FA54BC006EDB25 /* reg_cell_bkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reg_cell_bkg@2x.png"; sourceTree = "<group>"; };
+		02F4A2AC18FA54BC006EDB25 /* reg_cellLine_bkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reg_cellLine_bkg@2x.png"; sourceTree = "<group>"; };
+		02F4A2B018FA57CA006EDB25 /* SelectLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectLabelViewController.h; sourceTree = "<group>"; };
+		02F4A2B118FA57CA006EDB25 /* SelectLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectLabelViewController.m; sourceTree = "<group>"; };
+		02F4A2B318FA6060006EDB25 /* SOSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSViewController.h; sourceTree = "<group>"; };
+		02F4A2B418FA6060006EDB25 /* SOSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSViewController.m; sourceTree = "<group>"; };
+		02F4A2B618FA64A3006EDB25 /* FootPubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FootPubViewController.h; sourceTree = "<group>"; };
+		02F4A2B718FA64A3006EDB25 /* FootPubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FootPubViewController.m; sourceTree = "<group>"; };
+		02F4A2BB18FA66BA006EDB25 /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
+		02F4A2BC18FA66BA006EDB25 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
+		02F4A2BF18FA6706006EDB25 /* MyHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyHelpViewController.h; sourceTree = "<group>"; };
+		02F4A2C018FA6706006EDB25 /* MyHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyHelpViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,8 +198,13 @@
 		0233F50418F3A9A9004B1ED1 /* Imgs */ = {
 			isa = PBXGroup;
 			children = (
+				02F4A28918FA43F9006EDB25 /* Icon.png */,
+				02F4A28A18FA43F9006EDB25 /* Icon@2x.png */,
+				02F4A28718FA4335006EDB25 /* Icon60.png */,
 				02CB41BF18F6DE780030289C /* Default-568@2x.png */,
 				02CB41C018F6DE780030289C /* Default@2x.png */,
+				02F4A2AB18FA54BC006EDB25 /* reg_cell_bkg@2x.png */,
+				02F4A2AC18FA54BC006EDB25 /* reg_cellLine_bkg@2x.png */,
 				02CB41D918F6E8250030289C /* Login */,
 				0233F50F18F3AB52004B1ED1 /* Public */,
 			);
@@ -158,6 +214,7 @@
 		0233F50F18F3AB52004B1ED1 /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				02F4A2AA18FA54BC006EDB25 /* pb_back_btn@2x.png */,
 				024CB3A718F430CE00434AFA /* pb_downlist_btn@2x.png */,
 				024CB3A618F430CE00434AFA /* pb_downlist_bkg@2x.png */,
 				024CB3A818F430CE00434AFA /* pb_downlistTop_bkg@2x.png */,
@@ -179,10 +236,9 @@
 		02CB41C618F6E33A0030289C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				02E38B2B18F10CC600F2E31B /* FootViewController.h */,
-				02E38B2C18F10CC600F2E31B /* FootViewController.m */,
-				02CB41C318F6E1060030289C /* LoginViewController.h */,
-				02CB41C418F6E1060030289C /* LoginViewController.m */,
+				02F4A2B918FA6687006EDB25 /* 足迹 */,
+				02F4A2BA18FA669A006EDB25 /* 登录注册 */,
+				02F4A2BE18FA66BD006EDB25 /* 互助 */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -237,8 +293,11 @@
 			isa = PBXGroup;
 			children = (
 				02E528B418F0EEDC00EEAE7B /* Images.xcassets */,
+				02F4A29518FA45AF006EDB25 /* QCheckbox */,
+				02F4A28D18FA4463006EDB25 /* IQKeyBoardManager */,
 				0233F50418F3A9A9004B1ED1 /* Imgs */,
 				02E528DD18F0F3AA00EEAE7B /* HWTools */,
+				02E528D318F0F18F00EEAE7B /* Header.h */,
 				02E528A818F0EEDC00EEAE7B /* AppDelegate.h */,
 				02E528A918F0EEDC00EEAE7B /* AppDelegate.m */,
 				02E528AB18F0EEDC00EEAE7B /* MainP5.storyboard */,
@@ -281,7 +340,6 @@
 		02E528DD18F0F3AA00EEAE7B /* HWTools */ = {
 			isa = PBXGroup;
 			children = (
-				02E528D318F0F18F00EEAE7B /* Header.h */,
 				02E528D418F0F1EF00EEAE7B /* HWDevice.h */,
 				02E528D518F0F1EF00EEAE7B /* HWDevice.m */,
 				02E528D618F0F1EF00EEAE7B /* JSONKit.h */,
@@ -290,6 +348,69 @@
 				02E528D918F0F1EF00EEAE7B /* NSError+Alert.m */,
 			);
 			name = HWTools;
+			sourceTree = "<group>";
+		};
+		02F4A28D18FA4463006EDB25 /* IQKeyBoardManager */ = {
+			isa = PBXGroup;
+			children = (
+				02F4A28E18FA4463006EDB25 /* IQButtonBarArrowLeft@2x.png */,
+				02F4A28F18FA4463006EDB25 /* IQButtonBarArrowRight@2x.png */,
+				02F4A29018FA4463006EDB25 /* IQKeyboardManager.h */,
+				02F4A29118FA4463006EDB25 /* IQKeyboardManager.m */,
+			);
+			path = IQKeyBoardManager;
+			sourceTree = "<group>";
+		};
+		02F4A29518FA45AF006EDB25 /* QCheckbox */ = {
+			isa = PBXGroup;
+			children = (
+				02F4A29618FA45AF006EDB25 /* checkbox1_checked.png */,
+				02F4A29718FA45AF006EDB25 /* checkbox1_checked@2x.png */,
+				02F4A29818FA45AF006EDB25 /* checkbox1_unchecked.png */,
+				02F4A29918FA45AF006EDB25 /* checkbox1_unchecked@2x.png */,
+				02F4A29C18FA45AF006EDB25 /* QCheckBox.h */,
+				02F4A29D18FA45AF006EDB25 /* QCheckBox.m */,
+				02F4A2A418FA46BD006EDB25 /* LoginCheckBox.h */,
+				02F4A2A518FA46BD006EDB25 /* LoginCheckBox.m */,
+			);
+			path = QCheckbox;
+			sourceTree = "<group>";
+		};
+		02F4A2B918FA6687006EDB25 /* 足迹 */ = {
+			isa = PBXGroup;
+			children = (
+				02E38B2B18F10CC600F2E31B /* FootViewController.h */,
+				02E38B2C18F10CC600F2E31B /* FootViewController.m */,
+				02F4A2B618FA64A3006EDB25 /* FootPubViewController.h */,
+				02F4A2B718FA64A3006EDB25 /* FootPubViewController.m */,
+				02F4A2B318FA6060006EDB25 /* SOSViewController.h */,
+				02F4A2B418FA6060006EDB25 /* SOSViewController.m */,
+			);
+			name = "足迹";
+			sourceTree = "<group>";
+		};
+		02F4A2BA18FA669A006EDB25 /* 登录注册 */ = {
+			isa = PBXGroup;
+			children = (
+				02CB41C318F6E1060030289C /* LoginViewController.h */,
+				02CB41C418F6E1060030289C /* LoginViewController.m */,
+				02F4A2A718FA51E8006EDB25 /* RegisterViewController.h */,
+				02F4A2A818FA51E8006EDB25 /* RegisterViewController.m */,
+				02F4A2B018FA57CA006EDB25 /* SelectLabelViewController.h */,
+				02F4A2B118FA57CA006EDB25 /* SelectLabelViewController.m */,
+			);
+			name = "登录注册";
+			sourceTree = "<group>";
+		};
+		02F4A2BE18FA66BD006EDB25 /* 互助 */ = {
+			isa = PBXGroup;
+			children = (
+				02F4A2BB18FA66BA006EDB25 /* HelpViewController.h */,
+				02F4A2BC18FA66BA006EDB25 /* HelpViewController.m */,
+				02F4A2BF18FA6706006EDB25 /* MyHelpViewController.h */,
+				02F4A2C018FA6706006EDB25 /* MyHelpViewController.m */,
+			);
+			name = "互助";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -379,27 +500,39 @@
 				02CB41D618F6E8210030289C /* login_QQlogin_btn@2x.png in Resources */,
 				02E528B518F0EEDC00EEAE7B /* Images.xcassets in Resources */,
 				024CB39D18F3B22100434AFA /* pb_sos_btn@2x.png in Resources */,
+				02F4A2AD18FA54BC006EDB25 /* pb_back_btn@2x.png in Resources */,
 				024CB3AB18F430CE00434AFA /* pb_downlistTop_bkg@2x.png in Resources */,
 				024CB39F18F3B36400434AFA /* pb_write_btn@2x.png in Resources */,
+				02F4A2A118FA45AF006EDB25 /* checkbox1_unchecked@2x.png in Resources */,
 				02CB41D518F6E8210030289C /* login_login_btn@2x.png in Resources */,
 				02CB41D218F6E8210030289C /* login_inputID_bkg@2x.png in Resources */,
 				024CB39718F3B03200434AFA /* fj@2x.png in Resources */,
+				02F4A29318FA4463006EDB25 /* IQButtonBarArrowRight@2x.png in Resources */,
 				024CB3AD18F4329300434AFA /* pb_mainColor3_bkg@2x.png in Resources */,
+				02F4A28B18FA43F9006EDB25 /* Icon.png in Resources */,
 				02CB41C118F6DE780030289C /* Default-568@2x.png in Resources */,
 				02CB41C218F6DE780030289C /* Default@2x.png in Resources */,
+				02F4A28C18FA43F9006EDB25 /* Icon@2x.png in Resources */,
 				024CB3A518F40BA800434AFA /* hz_myhz_btn@2x.png in Resources */,
 				02CB41D718F6E8210030289C /* login_regist_btn@2x.png in Resources */,
 				02CB41D018F6E8210030289C /* login_checkDisel_btn@2x.png in Resources */,
+				02F4A2AE18FA54BC006EDB25 /* reg_cell_bkg@2x.png in Resources */,
 				02CB41D318F6E8210030289C /* login_inputPswd_bkg@2x.png in Resources */,
 				02CB41D818F6E8210030289C /* login_wbLogin@2x.png in Resources */,
+				02F4A2A018FA45AF006EDB25 /* checkbox1_unchecked.png in Resources */,
 				02CB41D118F6E8210030289C /* login_checkSel_btn@2x.png in Resources */,
 				02CB41D418F6E8210030289C /* login_log_bkg@2x.png in Resources */,
 				024CB3A918F430CE00434AFA /* pb_downlist_bkg@2x.png in Resources */,
 				024CB3A118F3FD7600434AFA /* pb_mainColor2_bkg@2x.png in Resources */,
 				024CB3AA18F430CE00434AFA /* pb_downlist_btn@2x.png in Resources */,
 				02E528A418F0EEDC00EEAE7B /* InfoPlist.strings in Resources */,
+				02F4A2AF18FA54BC006EDB25 /* reg_cellLine_bkg@2x.png in Resources */,
+				02F4A29218FA4463006EDB25 /* IQButtonBarArrowLeft@2x.png in Resources */,
 				0233F51118F3ACB5004B1ED1 /* pb_mainColor_bkg@2x.png in Resources */,
+				02F4A28818FA4335006EDB25 /* Icon60.png in Resources */,
+				02F4A29E18FA45AF006EDB25 /* checkbox1_checked.png in Resources */,
 				024CB3A318F4072000434AFA /* worknote in Resources */,
+				02F4A29F18FA45AF006EDB25 /* checkbox1_checked@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,13 +551,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02F4A2B818FA64A3006EDB25 /* FootPubViewController.m in Sources */,
+				02F4A2A918FA51E8006EDB25 /* RegisterViewController.m in Sources */,
 				02E528AA18F0EEDC00EEAE7B /* AppDelegate.m in Sources */,
 				02E528A618F0EEDC00EEAE7B /* main.m in Sources */,
+				02F4A2A618FA46BD006EDB25 /* LoginCheckBox.m in Sources */,
 				02E38B2D18F10CC600F2E31B /* FootViewController.m in Sources */,
+				02F4A2B218FA57CA006EDB25 /* SelectLabelViewController.m in Sources */,
+				02F4A2A318FA45AF006EDB25 /* QCheckBox.m in Sources */,
 				02E528DB18F0F1EF00EEAE7B /* JSONKit.m in Sources */,
+				02F4A29418FA4463006EDB25 /* IQKeyboardManager.m in Sources */,
+				02F4A2BD18FA66BA006EDB25 /* HelpViewController.m in Sources */,
 				02CB41C518F6E1060030289C /* LoginViewController.m in Sources */,
 				02E528DC18F0F1EF00EEAE7B /* NSError+Alert.m in Sources */,
+				02F4A2B518FA6060006EDB25 /* SOSViewController.m in Sources */,
 				02E528DA18F0F1EF00EEAE7B /* HWDevice.m in Sources */,
+				02F4A2C118FA6706006EDB25 /* MyHelpViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

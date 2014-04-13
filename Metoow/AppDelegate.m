@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "IQKeyboardManager.h"
 
 @implementation AppDelegate
 
@@ -25,6 +26,9 @@
     self.window.rootViewController = self.tabBarController;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self customTabbar];
+    [[IQKeyboardManager sharedManager] setEnable:YES];
+    [[IQKeyboardManager sharedManager] setKeyboardDistanceFromTextField:15];
+    [[IQKeyboardManager sharedManager] setShouldResignOnTouchOutside:YES];
     [self.window makeKeyAndVisible];
     return YES;
 }

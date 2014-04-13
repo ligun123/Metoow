@@ -1,18 +1,18 @@
 //
-//  FootViewController.m
+//  SelectLabelViewController.m
 //  Metoow
 //
-//  Created by HalloWorld on 14-4-6.
+//  Created by HalloWorld on 14-4-13.
 //  Copyright (c) 2014年 HalloWorld. All rights reserved.
 //
 
-#import "FootViewController.h"
+#import "SelectLabelViewController.h"
 
-@interface FootViewController ()
+@interface SelectLabelViewController ()
 
 @end
 
-@implementation FootViewController
+@implementation SelectLabelViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,10 +27,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UIViewController *login = [AppDelegateInterface awakeViewController:@"LoginViewController"];
-    UINavigationController *navLogin = [[UINavigationController alloc] initWithRootViewController:login];
-    navLogin.navigationBarHidden = YES;
-    [self presentViewController:navLogin animated:NO completion:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,5 +45,16 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - actions
+
+- (IBAction)btnBackTap:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)btnDoneTap:(id)sender {
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

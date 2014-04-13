@@ -47,4 +47,14 @@
 }
 */
 
+
+#pragma mark - Actions
+
+
+- (IBAction)btnLoginTap:(id)sender
+{
+    [self.navigationController dismissModalViewControllerAnimated:YES];
+}
+
+
 @end

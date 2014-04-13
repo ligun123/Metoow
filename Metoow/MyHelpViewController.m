@@ -1,18 +1,18 @@
 //
-//  FootViewController.m
+//  MyHelpViewController.m
 //  Metoow
 //
-//  Created by HalloWorld on 14-4-6.
+//  Created by HalloWorld on 14-4-13.
 //  Copyright (c) 2014年 HalloWorld. All rights reserved.
 //
 
-#import "FootViewController.h"
+#import "MyHelpViewController.h"
 
-@interface FootViewController ()
+@interface MyHelpViewController ()
 
 @end
 
-@implementation FootViewController
+@implementation MyHelpViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,10 +27,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UIViewController *login = [AppDelegateInterface awakeViewController:@"LoginViewController"];
-    UINavigationController *navLogin = [[UINavigationController alloc] initWithRootViewController:login];
-    navLogin.navigationBarHidden = YES;
-    [self presentViewController:navLogin animated:NO completion:nil];
 }
 
 - (void)didReceiveMemoryWarning
