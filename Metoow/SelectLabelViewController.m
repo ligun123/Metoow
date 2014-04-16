@@ -27,6 +27,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    SelectLabel *label = [SelectLabel labelWithString:@"波多野结衣"];
+    label.frame = CGRectOffset(label.frame, 20, 100);
+    [self.view addSubview:label];
 }
 
 - (void)didReceiveMemoryWarning

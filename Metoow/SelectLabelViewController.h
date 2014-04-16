@@ -7,6 +7,7 @@
 //  选择兴趣标签
 
 #import <UIKit/UIKit.h>
+#import "SelectLabel.h"
 
 @interface SelectLabelViewController : UIViewController
 
