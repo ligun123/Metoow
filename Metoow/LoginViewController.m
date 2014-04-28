@@ -59,7 +59,30 @@
 
 - (IBAction)btnLoginTap:(id)sender
 {
-    [self.navigationController dismissModalViewControllerAnimated:YES];
+    [SVProgressHUD show];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:[APIHelper url] parameters:[APIHelper OauthParasUid:@"376438624@qq.com" passwd:@"5815057"] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject isOK]) {
+            NSDictionary *dic = responseObject[@"data"];
+            [[NSUserDefaults standardUserDefaults] registerDefaults:dic];
+            [manager GET:[APIHelper url] parameters:[APIHelper packageMod:@"Login" act:@"login" Paras:@{@"uname": @"376438624@qq.com", @"upwd" : @"5815057"}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                [SVProgressHUD dismiss];
+                if ([responseObject isOK]) {
+                    [self dismissModalViewControllerAnimated:YES];
+                } else {
+                    [[responseObject error] showAlert];
+                }
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [SVProgressHUD dismiss];
+                [error showAlert];
+            }];
+        } else {
+            [[responseObject error] showAlert];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
+        [error showAlert];
+    }];
 }
 
 

@@ -21,3 +21,7 @@ APP整体视图流程架构50%
 自定义下拉列表
 自定义足迹列表cell，可重用与互助cell
 重构tabbarviewcontroller和UInavigationViewControlelr的关系，避免ios6中view得size不计算tabbar的bug
+4.26
+api接口文档第一版
+4.28
+登陆功能  100%

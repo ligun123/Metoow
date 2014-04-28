@@ -14,8 +14,12 @@
 #import "NSError+Alert.h"
 #import "AppDelegate.h"
 #import "QCheckBox.h"
+#import "AFNetworking.h"
+#import "APIHelper.h"
+#import "SVProgressHUD.h"
 
 #define AppDelegateInterface	(AppDelegate*)([UIApplication sharedApplication].delegate)
+
 
 
 #endif
