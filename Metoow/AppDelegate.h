@@ -7,13 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HWTabBar.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, HWTabBarProtocol>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) UITabBarController *tabBarController;
+@property (strong, nonatomic) UINavigationController *rootViewController;
 @property (strong, nonatomic) UIStoryboard *mainStoryBoard;
+@property (readonly, nonatomic) HWTabBar *tabBar;
 
 - (id)awakeViewController:(NSString *)identifier;
+
+- (void)setTabBarHidden:(BOOL)hid;
 
 @end

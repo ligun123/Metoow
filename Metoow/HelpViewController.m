@@ -27,12 +27,22 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.pulldownBtn setTitles:@[@"全部互助", @"顺风车", @"拼车", @"沙发客", @"结伴", @"SOS"]];
+    [self.pulldownBtn setCallbackBlock:^(NSInteger sltIndex) {
+        NSLog(@"%s -> %d", __FUNCTION__, sltIndex);
+    }];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [AppDelegateInterface setTabBarHidden:NO];
 }
 
 /*

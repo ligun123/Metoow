@@ -10,13 +10,11 @@
 
 @implementation SelectLabel
 
-- (id)initWithFrame:(CGRect)frame
+
+- (void)awakeFromNib
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+    [super awakeFromNib];
+    [self layoutStyle];
 }
 
 - (void)setTitle:(NSString *)title
@@ -40,6 +38,7 @@
     [self setImage:[UIImage imageNamed:@"login_labelSelect_bkg"] forState:UIControlStateSelected];
     int kd = rand() % 10;
     NSString *imgName = [NSString stringWithFormat:@"login_label_bkg%d", kd];
+    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self setBackgroundImage:[UIImage imageNamed:imgName] forState:UIControlStateNormal];
     [self setBackgroundImage:[UIImage imageNamed:imgName] forState:UIControlStateSelected];
     [self addTarget:self action:@selector(myselfTap:) forControlEvents:UIControlEventTouchUpInside];

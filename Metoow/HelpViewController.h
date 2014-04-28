@@ -7,7 +7,9 @@
 //  互助
 
 #import <UIKit/UIKit.h>
+#import "PulldownButton.h"
 
 @interface HelpViewController : UIViewController
+@property (weak, nonatomic) IBOutlet PulldownButton *pulldownBtn;
 
 @end

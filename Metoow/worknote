@@ -15,3 +15,9 @@ APP整体视图流程架构50%
 4.16
 完成注册界面布局
 完成兴趣标签功能  70%
+4.17
+自定义HWsegmentControl
+4.22
+自定义下拉列表
+自定义足迹列表cell，可重用与互助cell
+重构tabbarviewcontroller和UInavigationViewControlelr的关系，避免ios6中view得size不计算tabbar的bug

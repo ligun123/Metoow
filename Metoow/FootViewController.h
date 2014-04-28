@@ -7,7 +7,15 @@
 //  足迹
 
 #import <UIKit/UIKit.h>
+#import "RecordCell.h"
+#import "PulldownButton.h"
 
-@interface FootViewController : UIViewController
+@interface FootViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+{
+    BOOL isCellRegesterd;
+}
+
+@property (weak, nonatomic) IBOutlet PulldownButton *pullDownBtn;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

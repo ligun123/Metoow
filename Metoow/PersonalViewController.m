@@ -1,18 +1,18 @@
 //
-//  LoginViewController.m
+//  PersonalViewController.m
 //  Metoow
 //
-//  Created by HalloWorld on 14-4-10.
+//  Created by HalloWorld on 14-4-19.
 //  Copyright (c) 2014年 HalloWorld. All rights reserved.
 //
 
-#import "LoginViewController.h"
+#import "PersonalViewController.h"
 
-@interface LoginViewController ()
+@interface PersonalViewController ()
 
 @end
 
-@implementation LoginViewController
+@implementation PersonalViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,13 +27,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = COLOR_RGB(188, 255, 201);
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [AppDelegateInterface setTabBarHidden:YES];
+    self.btnBack.hidden = _isMe;
+    self.btnMessage.hidden = _isMe;
+    self.btnFocus.hidden = _isMe;
+    self.titleLabel.text = _isMe ? @"我的资料" : @"个人资料";
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,14 +50,7 @@
 }
 */
 
-
-#pragma mark - Actions
-
-
-- (IBAction)btnLoginTap:(id)sender
-{
-    [self.navigationController dismissModalViewControllerAnimated:YES];
+- (IBAction)btnBackTap:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
-
-
 @end

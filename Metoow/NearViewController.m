@@ -1,18 +1,18 @@
 //
-//  LoginViewController.m
+//  NearViewController.m
 //  Metoow
 //
-//  Created by HalloWorld on 14-4-10.
+//  Created by HalloWorld on 14-4-20.
 //  Copyright (c) 2014年 HalloWorld. All rights reserved.
 //
 
-#import "LoginViewController.h"
+#import "NearViewController.h"
 
-@interface LoginViewController ()
+@interface NearViewController ()
 
 @end
 
-@implementation LoginViewController
+@implementation NearViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,13 +27,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = COLOR_RGB(188, 255, 201);
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [AppDelegateInterface setTabBarHidden:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,15 +45,5 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-
-#pragma mark - Actions
-
-
-- (IBAction)btnLoginTap:(id)sender
-{
-    [self.navigationController dismissModalViewControllerAnimated:YES];
-}
-
 
 @end
