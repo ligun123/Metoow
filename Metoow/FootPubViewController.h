@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FootPubViewController : UIViewController
+@interface FootPubViewController : UIViewController <UITextViewDelegate>
+{
+    BOOL isFirstEditing;        //当textView第一次进入编辑状态时清空其内容
+}
 
 @end

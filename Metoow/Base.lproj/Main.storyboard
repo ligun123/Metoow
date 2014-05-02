@@ -112,7 +112,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BMg-wA-amq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3801" y="1577"/>
+            <point key="canvasLocation" x="-3037" y="989"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="oad-4t-oaP">
@@ -304,7 +304,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ns7-Ir-LLz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3273" y="1577"/>
+            <point key="canvasLocation" x="-2509" y="989"/>
         </scene>
         <!--Select Label View Controller-->
         <scene sceneID="12b-hT-KY7">
@@ -366,7 +366,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uUD-rj-rF4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2739" y="1577"/>
+            <point key="canvasLocation" x="-1975" y="989"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="E5t-y7-7hy">
@@ -547,6 +547,17 @@
                                     <action selector="btnDoneTap:" destination="fTx-zD-JNH" eventType="touchUpInside" id="kKc-SX-fqD"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="你想说点什么..." id="dou-Ft-VC6">
+                                <rect key="frame" x="15" y="74" width="291" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="jXI-HV-9HW" id="SMk-B9-UGp"/>
+                                </connections>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>

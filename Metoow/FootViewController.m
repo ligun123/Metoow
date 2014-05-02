@@ -33,6 +33,14 @@
     [self.pullDownBtn setCallbackBlock:^(NSInteger sltIndex) {
         NSLog(@"%s -> %d", __FUNCTION__, sltIndex);
     }];
+    
+    self.headerView = [MJRefreshHeaderView header];
+    self.headerView.scrollView = self.tableView;
+    self.headerView.delegate = self;
+    
+    self.footerView = [MJRefreshFooterView footer];
+    self.footerView.scrollView = self.tableView;
+    self.footerView.delegate = self;
 }
 
 - (void)displayLogin
@@ -68,12 +76,12 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 1;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return self.dataList.count == 0 ? 3 : self.dataList.count;
 }
 
 
@@ -84,11 +92,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [RecordCell height];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 8.f;
 }
 
 
@@ -102,5 +105,43 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - 上下拉刷新Delegate
+
+// 开始进入刷新状态就会调用
+- (void)refreshViewBeginRefreshing:(MJRefreshBaseView *)refreshView
+{
+    if (refreshView == self.headerView) {
+        //加载最新的
+        [self refreshHeader];
+    }
+    if (refreshView == self.footerView) {
+        //加载更多旧的
+        [self refreshFooter];
+    }
+}
+
+- (void)refreshHeader
+{
+    [SVProgressHUD show];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Foot act:Mod_Foot_foot_list Paras:nil] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
+        [self.headerView endRefreshing];
+        if ([responseObject isOK]) {
+            self.dataList = responseObject[@"data"];
+        } else {
+            [[responseObject error] showAlert];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
+        [self.headerView endRefreshing];
+    }];
+}
+
+- (void)refreshFooter
+{
+}
+
 
 @end

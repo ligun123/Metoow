@@ -10,12 +10,18 @@
 
 #pragma mark - 服务器预定义
 
+#define API_URL @"http://www.metoow.com/index.php?app=api"
+
 #define kOauth_Token @"oauth_token"
 #define kOauth_Token_Secret @"oauth_token_secret"
 
 #define Mod_Login @"Login"
 #define Mod_Login_login @"login"        //Login模式下的login动作
 #define Mod_Login_registe @"registe"
+
+#define Mod_Foot @"Foot"
+#define Mod_Foot_foot_list @"foot_list"
+#define Mod_Foot_add_foot @"add_foot"
 
 @interface APIHelper : NSObject
 

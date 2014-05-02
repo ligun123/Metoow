@@ -29,6 +29,11 @@
 		024CB3AA18F430CE00434AFA /* pb_downlist_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 024CB3A718F430CE00434AFA /* pb_downlist_btn@2x.png */; };
 		024CB3AB18F430CE00434AFA /* pb_downlistTop_bkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 024CB3A818F430CE00434AFA /* pb_downlistTop_bkg@2x.png */; };
 		024CB3AD18F4329300434AFA /* pb_mainColor3_bkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 024CB3AC18F4329300434AFA /* pb_mainColor3_bkg@2x.png */; };
+		02504600190FD57000852325 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 025045F6190FD57000852325 /* MJRefresh.bundle */; };
+		02504601190FD57000852325 /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 025045F9190FD57000852325 /* MJRefreshBaseView.m */; };
+		02504602190FD57000852325 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 025045FB190FD57000852325 /* MJRefreshConst.m */; };
+		02504603190FD57000852325 /* MJRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 025045FD190FD57000852325 /* MJRefreshFooterView.m */; };
+		02504604190FD57000852325 /* MJRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 025045FF190FD57000852325 /* MJRefreshHeaderView.m */; };
 		0265C123190016F100DE2441 /* HWSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 0265C122190016F100DE2441 /* HWSegment.m */; };
 		026708351903BCD8003D43F9 /* boy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 026708331903BCD8003D43F9 /* boy@2x.png */; };
 		026708361903BCD8003D43F9 /* girl@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 026708341903BCD8003D43F9 /* girl@2x.png */; };
@@ -170,6 +175,16 @@
 		024CB3A718F430CE00434AFA /* pb_downlist_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pb_downlist_btn@2x.png"; sourceTree = "<group>"; };
 		024CB3A818F430CE00434AFA /* pb_downlistTop_bkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pb_downlistTop_bkg@2x.png"; sourceTree = "<group>"; };
 		024CB3AC18F4329300434AFA /* pb_mainColor3_bkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pb_mainColor3_bkg@2x.png"; sourceTree = "<group>"; };
+		025045F6190FD57000852325 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
+		025045F7190FD57000852325 /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
+		025045F8190FD57000852325 /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
+		025045F9190FD57000852325 /* MJRefreshBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshBaseView.m; sourceTree = "<group>"; };
+		025045FA190FD57000852325 /* MJRefreshConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshConst.h; sourceTree = "<group>"; };
+		025045FB190FD57000852325 /* MJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConst.m; sourceTree = "<group>"; };
+		025045FC190FD57000852325 /* MJRefreshFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshFooterView.h; sourceTree = "<group>"; };
+		025045FD190FD57000852325 /* MJRefreshFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshFooterView.m; sourceTree = "<group>"; };
+		025045FE190FD57000852325 /* MJRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshHeaderView.h; sourceTree = "<group>"; };
+		025045FF190FD57000852325 /* MJRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshHeaderView.m; sourceTree = "<group>"; };
 		0265C121190016F100DE2441 /* HWSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWSegment.h; sourceTree = "<group>"; };
 		0265C122190016F100DE2441 /* HWSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWSegment.m; sourceTree = "<group>"; };
 		026708331903BCD8003D43F9 /* boy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "boy@2x.png"; sourceTree = "<group>"; };
@@ -403,6 +418,23 @@
 			name = Public;
 			sourceTree = "<group>";
 		};
+		025045F5190FD57000852325 /* MJRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				025045F6190FD57000852325 /* MJRefresh.bundle */,
+				025045F7190FD57000852325 /* MJRefresh.h */,
+				025045F8190FD57000852325 /* MJRefreshBaseView.h */,
+				025045F9190FD57000852325 /* MJRefreshBaseView.m */,
+				025045FA190FD57000852325 /* MJRefreshConst.h */,
+				025045FB190FD57000852325 /* MJRefreshConst.m */,
+				025045FC190FD57000852325 /* MJRefreshFooterView.h */,
+				025045FD190FD57000852325 /* MJRefreshFooterView.m */,
+				025045FE190FD57000852325 /* MJRefreshHeaderView.h */,
+				025045FF190FD57000852325 /* MJRefreshHeaderView.m */,
+			);
+			path = MJRefresh;
+			sourceTree = "<group>";
+		};
 		026708401903EB18003D43F9 /* 附近 */ = {
 			isa = PBXGroup;
 			children = (
@@ -580,6 +612,8 @@
 		02E5289F18F0EEDC00EEAE7B /* Metoow */ = {
 			isa = PBXGroup;
 			children = (
+				024CB3A218F4072000434AFA /* worknote */,
+				025045F5190FD57000852325 /* MJRefresh */,
 				02BF655E190EA20C00DCF2BD /* SVProgressHUD */,
 				02BF651A190E8A9900DCF2BD /* AFNetworking */,
 				02BF652E190E8A9900DCF2BD /* UIKit+AFNetworking */,
@@ -606,7 +640,6 @@
 				02E528A218F0EEDC00EEAE7B /* InfoPlist.strings */,
 				02E528A518F0EEDC00EEAE7B /* main.m */,
 				02E528A718F0EEDC00EEAE7B /* Metoow-Prefix.pch */,
-				024CB3A218F4072000434AFA /* worknote */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -865,6 +898,7 @@
 				02F4A29E18FA45AF006EDB25 /* checkbox1_checked.png in Resources */,
 				02BF6563190EA20C00DCF2BD /* SVProgressHUD.bundle in Resources */,
 				024CB3A318F4072000434AFA /* worknote in Resources */,
+				02504600190FD57000852325 /* MJRefresh.bundle in Resources */,
 				028ACD6718FECBF000D36AE0 /* login_label_bkg1@2x.png in Resources */,
 				02F4A29F18FA45AF006EDB25 /* checkbox1_checked@2x.png in Resources */,
 				028ACD7118FECEF500D36AE0 /* login_labelSelect_bkg@2x.png in Resources */,
@@ -908,8 +942,10 @@
 				02F2E05D1902A5C5002902DD /* PersonalViewController.m in Sources */,
 				02BF6543190E8A9900DCF2BD /* AFURLConnectionOperation.m in Sources */,
 				0265C123190016F100DE2441 /* HWSegment.m in Sources */,
+				02504603190FD57000852325 /* MJRefreshFooterView.m in Sources */,
 				02D3146919000E0B005CADB1 /* SVSegmentedThumb.m in Sources */,
 				0267084A1903FEAC003D43F9 /* HWCell.m in Sources */,
+				02504602190FD57000852325 /* MJRefreshConst.m in Sources */,
 				02E528DB18F0F1EF00EEAE7B /* JSONKit.m in Sources */,
 				02BF655D190E92A600DCF2BD /* APIHelper.m in Sources */,
 				02BF654B190E8A9900DCF2BD /* UIImageView+AFNetworking.m in Sources */,
@@ -920,6 +956,7 @@
 				02F4A2BD18FA66BA006EDB25 /* HelpViewController.m in Sources */,
 				02CB41C518F6E1060030289C /* LoginViewController.m in Sources */,
 				02BF6540190E8A9900DCF2BD /* AFHTTPSessionManager.m in Sources */,
+				02504604190FD57000852325 /* MJRefreshHeaderView.m in Sources */,
 				024724E6190547B000CA00E4 /* PulldownButton.m in Sources */,
 				02E528DC18F0F1EF00EEAE7B /* NSError+Alert.m in Sources */,
 				02BF6544190E8A9900DCF2BD /* AFURLRequestSerialization.m in Sources */,
@@ -928,6 +965,7 @@
 				02F4A2B518FA6060006EDB25 /* SOSViewController.m in Sources */,
 				02D3146C19000F61005CADB1 /* MSGCenterViewController.m in Sources */,
 				0267083F1903EB15003D43F9 /* NearViewController.m in Sources */,
+				02504601190FD57000852325 /* MJRefreshBaseView.m in Sources */,
 				02E528DA18F0F1EF00EEAE7B /* HWDevice.m in Sources */,
 				02BF6547190E8A9900DCF2BD /* AFNetworkActivityIndicatorManager.m in Sources */,
 				02D3146819000E0B005CADB1 /* SVSegmentedControl.m in Sources */,

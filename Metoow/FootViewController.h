@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "RecordCell.h"
 #import "PulldownButton.h"
+#import "MJRefresh.h"
 
-@interface FootViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface FootViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MJRefreshBaseViewDelegate>
 {
     BOOL isCellRegesterd;
 }
@@ -18,4 +19,8 @@
 @property (weak, nonatomic) IBOutlet PulldownButton *pullDownBtn;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (strong, nonatomic) MJRefreshHeaderView *headerView;
+@property (strong, nonatomic) MJRefreshFooterView *footerView;
+
+@property (strong, nonatomic) NSMutableArray *dataList;     //table数据源
 @end
