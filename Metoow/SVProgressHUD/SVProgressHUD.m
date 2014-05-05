@@ -205,9 +205,12 @@ static const CGFloat SVProgressHUDParallaxDepthPoints = 10;
         
         SVProgressHUDBackgroundColor = [UIColor whiteColor];
         SVProgressHUDForegroundColor = [UIColor blackColor];
-        SVProgressHUDFont = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
-        SVProgressHUDSuccessImage = [[UIImage imageNamed:@"SVProgressHUD.bundle/success"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        SVProgressHUDErrorImage = [[UIImage imageNamed:@"SVProgressHUD.bundle/error"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        if ([HWDevice systemVersion] >= 7.0) {
+            SVProgressHUDFont = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+            SVProgressHUDSuccessImage = [[UIImage imageNamed:@"SVProgressHUD.bundle/success"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            SVProgressHUDErrorImage = [[UIImage imageNamed:@"SVProgressHUD.bundle/error"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+
+        }
         SVProgressHUDRingThickness = 4;
     }
 	
@@ -809,8 +812,10 @@ static const CGFloat SVProgressHUDParallaxDepthPoints = 10;
         effectY.minimumRelativeValue = @(-SVProgressHUDParallaxDepthPoints);
         effectY.maximumRelativeValue = @(SVProgressHUDParallaxDepthPoints);
         
-        [_hudView addMotionEffect: effectX];
-        [_hudView addMotionEffect: effectY];
+        if ([HWDevice systemVersion] >= 7.0) {
+            [_hudView addMotionEffect: effectX];
+            [_hudView addMotionEffect: effectY];
+        }
         
         [self addSubview:_hudView];
     }

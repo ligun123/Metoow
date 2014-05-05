@@ -7,7 +7,12 @@
 //  登录
 
 #import <UIKit/UIKit.h>
+#import "LoginCheckBox.h"
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : UIViewController <UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet LoginCheckBox *autoLoginCheck;
+@property (weak, nonatomic) IBOutlet LoginCheckBox *rememberSecCheck;
+@property (weak, nonatomic) IBOutlet UITextField *userIDText;
+@property (weak, nonatomic) IBOutlet UITextField *pswdText;
 
 @end

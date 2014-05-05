@@ -28,12 +28,26 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = COLOR_RGB(188, 255, 201);
+    [self.autoLoginCheck setChecked:[[NSUserDefaults standardUserDefaults] boolForKey:kBoolAutoLogin]];
+    [self.rememberSecCheck setChecked:[[NSUserDefaults standardUserDefaults] boolForKey:kBoolRmbSec]];
+    if (self.autoLoginCheck.checked || self.rememberSecCheck.checked) {
+        self.userIDText.text = [[NSUserDefaults standardUserDefaults] objectForKey:kLoginUserID];
+        self.pswdText.text = [[NSUserDefaults standardUserDefaults] objectForKey:kLoginPswd];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [AppDelegateInterface setTabBarHidden:YES];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:kBoolAutoLogin]) {
+        [self btnLoginTap:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,9 +73,32 @@
 
 - (IBAction)btnLoginTap:(id)sender
 {
+    //如果userid和密码都为空则直接返回
+    if (!(self.userIDText.text.length > 0 && self.pswdText.text.length > 0)) {
+        [[NSError errorWithDomain:@"账号或密码为空" code:100 userInfo:nil] showAlert];
+        return ;
+    }
+    if (self.autoLoginCheck.checked) {
+        [[NSUserDefaults standardUserDefaults] setObject:self.userIDText.text forKey:kLoginUserID];
+        [[NSUserDefaults standardUserDefaults] setObject:self.pswdText.text forKey:kLoginPswd];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kBoolAutoLogin];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kBoolRmbSec];
+    } else {
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kBoolAutoLogin];
+        if (self.rememberSecCheck.checked) {
+            [[NSUserDefaults standardUserDefaults] setObject:self.userIDText.text forKey:kLoginUserID];
+            [[NSUserDefaults standardUserDefaults] setObject:self.pswdText.text forKey:kLoginPswd];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kBoolRmbSec];
+        } else {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:kLoginPswd];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:kLoginUserID];
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kBoolRmbSec];
+        }
+    }
+    [[NSUserDefaults standardUserDefaults] synchronize];
     [SVProgressHUD show];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:[APIHelper url] parameters:[APIHelper OauthParasUid:@"376438624@qq.com" passwd:@"5815057"] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:[APIHelper url] parameters:[APIHelper OauthParasUid:self.userIDText.text passwd:self.pswdText.text] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([responseObject isOK]) {
             NSDictionary *dic = responseObject[@"data"];
             [[NSUserDefaults standardUserDefaults] registerDefaults:dic];
@@ -83,6 +120,12 @@
         [SVProgressHUD dismiss];
         [error showAlert];
     }];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 

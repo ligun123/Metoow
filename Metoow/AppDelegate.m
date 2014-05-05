@@ -24,7 +24,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     [[IQKeyboardManager sharedManager] setEnable:YES];
-    [[IQKeyboardManager sharedManager] setKeyboardDistanceFromTextField:15];
+//    [[IQKeyboardManager sharedManager] setKeyboardDistanceFromTextField:15];
     [[IQKeyboardManager sharedManager] setShouldResignOnTouchOutside:YES];
     [self.window makeKeyAndVisible];
     [self customTabbar];

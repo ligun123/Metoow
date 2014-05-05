@@ -38,7 +38,7 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="reg_cellLine_bkg.png" translatesAutoresizingMaskIntoConstraints="NO" id="BX3-cc-COM">
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="reg_cellLine_bkg.png" translatesAutoresizingMaskIntoConstraints="NO" id="BX3-cc-COM">
                         <rect key="frame" x="10" y="65" width="301" height="1"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>

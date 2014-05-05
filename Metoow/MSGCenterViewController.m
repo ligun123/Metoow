@@ -10,6 +10,7 @@
 #import "SVSegmentedControl.h"
 #import "HWSegment.h"
 #import "PersonalViewController.h"
+#import "MSGSessionViewController.h"
 
 @interface MSGCenterViewController ()
 
@@ -44,7 +45,42 @@
     [seg setSelectIndex:0];
     [self.view addSubview:seg];
     [seg setCallbackBlock:^(HWSegment *vseg, int selectIndex) {
-        NSLog(@"%s -> %d", __FUNCTION__, selectIndex);
+        if (selectIndex == 0) {
+            [self requestPrivateMessage];
+        } else if (selectIndex == 1) {
+            [self requestSystemNotify];
+        }
+    }];
+    
+    [self requestPrivateMessage];
+}
+
+- (void)requestPrivateMessage
+{
+    [SVProgressHUD show];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Message act:Mod_Message_get_message_list Paras:nil] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
+        NSLog(@"%s -> 系统消息 ：%@", __FUNCTION__, responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSData *data = [operation responseData];
+        NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"%s -> %@", __FUNCTION__, str);
+        [SVProgressHUD dismiss];
+        [error showAlert];
+    }];
+}
+
+- (void)requestSystemNotify
+{
+    [SVProgressHUD show];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Notifytion act:Mod_Notifytion_get_system_notify Paras:nil] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
+        NSLog(@"%s -> %@", __FUNCTION__, responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
+        [error showAlert];
     }];
 }
 
@@ -78,7 +114,7 @@
     static NSString *identifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     UIButton *btn = (UIButton *)[cell.contentView viewWithTag:5];
-    [btn addTarget:self action:@selector(cellHeaderTap:) forControlEvents:UIControlEventTouchUpInside];
+//    [btn addTarget:self action:@selector(cellHeaderTap:) forControlEvents:UIControlEventTouchUpInside];
     UILabel *nameLabel = (UILabel *)[cell.contentView viewWithTag:2];
     UILabel *timeLabel = (UILabel *)[cell.contentView viewWithTag:3];
     UILabel *contentLabel = (UILabel *)[cell.contentView viewWithTag:4];
@@ -113,7 +149,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSLog(@"%s -> ", __FUNCTION__);
+    [AppDelegateInterface setTabBarHidden:YES];
+    MSGSessionViewController *msgSession = [[AppDelegateInterface mainStoryBoard] instantiateViewControllerWithIdentifier:@"MSGSessionViewController"];
+    [self.navigationController pushViewController:msgSession animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

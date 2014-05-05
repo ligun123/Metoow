@@ -25,8 +25,13 @@
     NSMutableDictionary *para = [NSMutableDictionary dictionaryWithDictionary:dic];
     [para setObject:mod forKey:@"mod"];
     [para setObject:act forKey:@"act"];
-    [para setObject:[[NSUserDefaults standardUserDefaults] objectForKey:kOauth_Token] forKey:kOauth_Token];
-    [para setObject:[[NSUserDefaults standardUserDefaults] objectForKey:kOauth_Token_Secret] forKey:kOauth_Token_Secret];
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:kOauth_Token]) {
+        [para setObject:[[NSUserDefaults standardUserDefaults] objectForKey:kOauth_Token] forKey:kOauth_Token];
+    }
+    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:kOauth_Token_Secret]) {
+        [para setObject:[[NSUserDefaults standardUserDefaults] objectForKey:kOauth_Token_Secret] forKey:kOauth_Token_Secret];
+    }
     
     return para;
 }

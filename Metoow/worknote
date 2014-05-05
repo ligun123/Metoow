@@ -29,3 +29,15 @@ api接口文档第一版
 我的足迹数据加载  100%
 发布我的足迹基本功能  100%
 能够成功发布足迹，但是不能获取到之前发布的足迹，貌似服务器功能还没做完
+
+
+
+
+
+
+
+API Bugs:  测试ID:376438624@qq.com  sec:5815057    uid:165
+1,私信接口，当用户没有相关私信时取数据ok，当我向某人发一条私信后，返回错误
+<b>Fatal error</b>:  Call to undefined function  dumpjson() in <b>/www/web/com_mt/public_html/addons/api/MessageApi.class.php</b> on line <b>41</b><br />
+2,系统消息，因为测试ID没收到过系统消息，无法测试，请服务器工程师给这个ID发一条系统消息以待测试
+3,注册接口的getArea返回“认证失败”信息，这个是注册时候调用的接口，用户还为拥有ID、密码，无从认证，请修改成不需认证就能正确获得数据

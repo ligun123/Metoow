@@ -27,6 +27,13 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Login act:Mod_Login_getArea Paras:nil] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%s -> %@", __FUNCTION__, responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning

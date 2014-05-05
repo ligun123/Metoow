@@ -20,6 +20,9 @@
 
 #define AppDelegateInterface	(AppDelegate*)([UIApplication sharedApplication].delegate)
 
-
+#define kLoginUserID @"kLoginUserID"
+#define kLoginPswd @"kLoginPswd"
+#define kBoolAutoLogin @"kBoolAutoLogin"        //自动登录
+#define kBoolRmbSec @"kBoolRmbSec"              //记住密码
 
 #endif

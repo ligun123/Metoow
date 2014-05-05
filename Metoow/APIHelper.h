@@ -18,10 +18,24 @@
 #define Mod_Login @"Login"
 #define Mod_Login_login @"login"        //Login模式下的login动作
 #define Mod_Login_registe @"registe"
+#define Mod_Login_getArea   @"getArea"  //注册时候
 
 #define Mod_Foot @"Foot"
 #define Mod_Foot_foot_list @"foot_list"
 #define Mod_Foot_add_foot @"add_foot"
+
+#define Mod_User @"User"
+#define Mod_User_info @"info"
+#define Mod_User_myinfo @"myinfo"
+
+#define Mod_Message @"Message"
+#define Mod_Message_get_message_list @"get_message_list"        //获取我的私信列表
+
+
+#define Mod_Notifytion @"Notifytion"                            //系统消息
+#define Mod_Notifytion_get_system_notify @"get_system_notify"
+
+
 
 @interface APIHelper : NSObject
 
