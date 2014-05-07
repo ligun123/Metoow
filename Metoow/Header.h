@@ -25,4 +25,7 @@
 #define kBoolAutoLogin @"kBoolAutoLogin"        //自动登录
 #define kBoolRmbSec @"kBoolRmbSec"              //记住密码
 
+#define kAreaLevel @"kAreaLevel"                //各级地区key值：kAreaLevel0,kAreaLevel1,kAreaLevel2
+
+
 #endif

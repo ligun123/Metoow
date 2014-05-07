@@ -11,6 +11,7 @@
 #import "HWSegment.h"
 #import "PersonalViewController.h"
 #import "MSGSessionViewController.h"
+#import "UIKit+AFNetworking.h"
 
 @interface MSGCenterViewController ()
 
@@ -61,7 +62,8 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Message act:Mod_Message_get_message_list Paras:nil] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
-        NSLog(@"%s -> 系统消息 ：%@", __FUNCTION__, responseObject);
+        self.msgList = responseObject[@"data"];
+        [self.msgTableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSData *data = [operation responseData];
         NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -113,13 +115,30 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *identifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    UIButton *btn = (UIButton *)[cell.contentView viewWithTag:5];
+    UIImageView *header = (UIImageView *)[cell.contentView viewWithTag:5];
 //    [btn addTarget:self action:@selector(cellHeaderTap:) forControlEvents:UIControlEventTouchUpInside];
     UILabel *nameLabel = (UILabel *)[cell.contentView viewWithTag:2];
     UILabel *timeLabel = (UILabel *)[cell.contentView viewWithTag:3];
     UILabel *contentLabel = (UILabel *)[cell.contentView viewWithTag:4];
     
+    NSDictionary *dic = self.msgList[indexPath.row];
+    NSString *fromFace = dic[@"from_face"];
+    [header setImageWithURL:[NSURL URLWithString:fromFace]];
+    contentLabel.text = dic[@"content"];
+    timeLabel.text = [self convertDate:dic[@"ctime"]];
+    nameLabel.text = dic[@""];
+    
     return cell;
+}
+
+- (NSString *)convertDate:(NSString *)dt
+{
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    [fmt setDateFormat:@"yyyy-MM-dd hh:mm"];
+    NSDate *date = [fmt dateFromString:dt];
+    [fmt setDateFormat:@"MM月dd日 hh:mm"];
+    NSString *ndt = [fmt stringFromDate:date];
+    return ndt;
 }
 
 - (void)cellHeaderTap:(UIButton *)sender
@@ -143,7 +162,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.msgList.count;
 }
 
 

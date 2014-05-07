@@ -11,5 +11,6 @@
 @interface MSGCenterViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *msgTableView;
+@property (strong, nonatomic) NSArray *msgList;
 
 @end

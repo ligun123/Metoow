@@ -37,7 +37,33 @@ api接口文档第一版
 
 
 API Bugs:  测试ID:376438624@qq.com  sec:5815057    uid:165
-1,私信接口，当用户没有相关私信时取数据ok，当我向某人发一条私信后，返回错误
-<b>Fatal error</b>:  Call to undefined function  dumpjson() in <b>/www/web/com_mt/public_html/addons/api/MessageApi.class.php</b> on line <b>41</b><br />
+1,Message/get_message_list接口返回的内容应该是对方用户的一些信息:对方的昵称，对方的头像等,参考weibo的私信功能，目前返回的貌似都是用户自己的一些信息
+
 2,系统消息，因为测试ID没收到过系统消息，无法测试，请服务器工程师给这个ID发一条系统消息以待测试
-3,注册接口的getArea返回“认证失败”信息，这个是注册时候调用的接口，用户还为拥有ID、密码，无从认证，请修改成不需认证就能正确获得数据
+
+4,Login/registe 还需要上传用户喜爱标签的数据，请查看官网的注册流程中添加用户喜爱标签功能.还需要上传用户紧急求救电话（非必须），请参考最新需求或咨询羊金山
+
+5,Login/registe 根据文档所述填充参数调用失败，
+调用的API URL为：http://www.metoow.com/index.php?app=api&act=registe&city_ids=520000%2C520100%2C520123&city_names=%E8%B4%B5%E5%B7%9E%E7%9C%81%20%E8%B4%B5%E9%98%B3%E5%B8%82%20%E4%BF%AE%E6%96%87%E5%8E%BF&email=ligun%40163.com&mod=Login&password=123456a&sex=1&uname=abc
+返回如下错误：
+Error Domain=AFNetworkingErrorDomain Code=-1016 "Request failed: unacceptable content-type: text/html" UserInfo=0x9470380 {NSErrorFailingURLKey=http://www.metoow.com/index.php?app=api&act=registe&city_ids=520000%2C520100%2C520123&city_names=%E8%B4%B5%E5%B7%9E%E7%9C%81%20%E8%B4%B5%E9%98%B3%E5%B8%82%20%E4%BF%AE%E6%96%87%E5%8E%BF&email=ligun%40163.com&mod=Login&password=123456a&sex=1&uname=abc, AFNetworkingOperationFailingURLResponseErrorKey=<NSHTTPURLResponse: 0x964f130> { URL: http://www.metoow.com/index.php?app=api&act=registe&city_ids=520000%2C520100%2C520123&city_names=%E8%B4%B5%E5%B7%9E%E7%9C%81%20%E8%B4%B5%E9%98%B3%E5%B8%82%20%E4%BF%AE%E6%96%87%E5%8E%BF&email=ligun%40163.com&mod=Login&password=123456a&sex=1&uname=abc } { status code: 200, headers {
+
+    "Cache-Control" = "no-store, no-cache, must-revalidate, post-check=0, pre-check=0";
+
+    Connection = "keep-alive";
+
+    "Content-Length" = 3;
+
+    "Content-Type" = "text/html";
+
+    Date = "Wed, 07 May 2014 14:42:43 GMT";
+
+    Expires = "Thu, 19 Nov 1981 08:52:00 GMT";
+
+    Pragma = "no-cache";
+
+    Server = "nginx/1.0.15";
+
+    "X-Powered-By" = "PHP/5.2.17p1";
+
+} }, NSLocalizedDescription=Request failed: unacceptable content-type: text/html}

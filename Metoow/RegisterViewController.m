@@ -7,6 +7,8 @@
 //
 
 #import "RegisterViewController.h"
+#import "SelectAreaViewController.h"
+#import "NSError+Alert.h"
 
 @interface RegisterViewController ()
 
@@ -28,11 +30,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [SVProgressHUD show];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Login act:Mod_Login_getArea Paras:nil] success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%s -> %@", __FUNCTION__, responseObject);
+        [SVProgressHUD dismiss];
+        if ([responseObject isOK]) {
+            self.areaDic = responseObject[@"data"];
+        } else {
+            [[responseObject error] showAlert];
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+        [SVProgressHUD dismiss];
+        [error showAlert];
     }];
 }
 
@@ -40,6 +49,45 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setAreaTitle
+{
+    [self.btnArea setTitle:[self cityNames] forState:UIControlStateNormal];
+}
+
+- (NSString *)cityNames
+{
+    NSDictionary *area0 = [[NSUserDefaults standardUserDefaults] objectForKey:[kAreaLevel stringByAppendingFormat:@"0"]];
+    NSDictionary *area1 = [[NSUserDefaults standardUserDefaults] objectForKey:[kAreaLevel stringByAppendingFormat:@"1"]];
+    NSDictionary *area2 = [[NSUserDefaults standardUserDefaults] objectForKey:[kAreaLevel stringByAppendingFormat:@"2"]];
+    if (!(area0 == nil || area1 == nil || area2 == nil)) {
+        NSString *names = [NSString stringWithFormat:@"%@ %@ %@", area0[@"title"], area1[@"title"], area2[@"title"]];
+        return names;
+    } else return @"";
+}
+
+- (NSString *)cityIds
+{
+    NSDictionary *area0 = [[NSUserDefaults standardUserDefaults] objectForKey:[kAreaLevel stringByAppendingFormat:@"0"]];
+    NSDictionary *area1 = [[NSUserDefaults standardUserDefaults] objectForKey:[kAreaLevel stringByAppendingFormat:@"1"]];
+    NSDictionary *area2 = [[NSUserDefaults standardUserDefaults] objectForKey:[kAreaLevel stringByAppendingFormat:@"2"]];
+    if (!(area0 == nil || area1 == nil || area2 == nil)) {
+        NSString *ids = [NSString stringWithFormat:@"%@,%@,%@", area0[@"id"], area1[@"id"], area2[@"id"]];
+        return ids;
+    } else return @"";
+}
+
+- (NSNumber *)sexNumber
+{
+    if (self.sex.selectedSegmentIndex == 0) {
+        //男1， 女2
+        return [NSNumber numberWithInt:1];
+    }
+    if (self.sex.selectedSegmentIndex == 1) {
+        return [NSNumber numberWithInt:2];
+    }
+    return nil;
 }
 
 /*
@@ -60,5 +108,34 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (IBAction)btnAreaTap:(id)sender {
+    SelectAreaViewController *area = [[AppDelegateInterface mainStoryBoard] instantiateViewControllerWithIdentifier:@"SelectAreaViewController"];
+    area.areaDic = self.areaDic;
+    [self.navigationController pushViewController:area animated:YES];
+}
+
+
+- (IBAction)btnRegisterTap:(id)sender {
+    if (![self.password.text isEqualToString:self.passwordAgain.text]) {
+        [[NSError errorWithDomain:@"两次输入的密码必须保持一致" code:100 userInfo:nil] showAlert];
+        return ;
+    }
+    NSString *strRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{1,5}";
+    NSPredicate *mailPre = [NSPredicate predicateWithFormat:@"SELF matches %@", strRegex];
+    if (self.email.text.length == 0 || ![mailPre evaluateWithObject:self.email.text]) {
+        [[NSError errorWithDomain:@"Email格式不正确" code:100 userInfo:nil] showAlert];
+        return ;
+    }
+    [SVProgressHUD show];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *para = @{@"email": self.email.text, @"password" : self.password.text, @"uname" : self.nickname.text, @"sex" : [self sexNumber], @"city_names" : [self cityNames], @"city_ids" : [self cityIds]};
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Login act:Mod_Login_registe Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
+        NSLog(@"%s -> %@", __FUNCTION__, responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
+        NSLog(@"%s -> %@", __FUNCTION__, [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding]);
+    }];
+}
 
 @end

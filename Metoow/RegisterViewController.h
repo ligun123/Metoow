@@ -10,4 +10,14 @@
 
 @interface RegisterViewController : UIViewController
 
+@property (strong, nonatomic) NSDictionary *areaDic;
+@property (weak, nonatomic) IBOutlet UIButton *btnArea;
+@property (weak, nonatomic) IBOutlet UITextField *email;
+@property (weak, nonatomic) IBOutlet UITextField *password;
+@property (weak, nonatomic) IBOutlet UITextField *passwordAgain;
+@property (weak, nonatomic) IBOutlet UITextField *nickname;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *sex;
+
+- (void)setAreaTitle;
+
 @end

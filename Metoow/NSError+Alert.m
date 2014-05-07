@@ -12,7 +12,8 @@
 
 
 - (void)showAlert {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:self.domain message:[self.userInfo description] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    NSString *msg = self.userInfo.allKeys.count > 0 ? [self.userInfo description] : nil;
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:self.domain message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
 }
 
