@@ -325,7 +325,7 @@
         <!--Select Label View Controller-->
         <scene sceneID="12b-hT-KY7">
             <objects>
-                <viewController id="fTx-zD-JNH" customClass="SelectLabelViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectLabelViewController" id="fTx-zD-JNH" customClass="SelectLabelViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Rbc-iH-Obc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

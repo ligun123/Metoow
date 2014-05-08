@@ -59,6 +59,15 @@
 		02504602190FD57000852325 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 025045FB190FD57000852325 /* MJRefreshConst.m */; };
 		02504603190FD57000852325 /* MJRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 025045FD190FD57000852325 /* MJRefreshFooterView.m */; };
 		02504604190FD57000852325 /* MJRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 025045FF190FD57000852325 /* MJRefreshHeaderView.m */; };
+		0250CD7F191BA9EF00E2E051 /* [cry].png in Resources */ = {isa = PBXBuildFile; fileRef = 0250CD70191BA9EF00E2E051 /* [cry].png */; };
+		0250CD80191BA9EF00E2E051 /* [hei].png in Resources */ = {isa = PBXBuildFile; fileRef = 0250CD71191BA9EF00E2E051 /* [hei].png */; };
+		0250CD81191BA9EF00E2E051 /* [smile].png in Resources */ = {isa = PBXBuildFile; fileRef = 0250CD72191BA9EF00E2E051 /* [smile].png */; };
+		0250CD82191BA9EF00E2E051 /* TQRichTextRun.m in Sources */ = {isa = PBXBuildFile; fileRef = 0250CD74191BA9EF00E2E051 /* TQRichTextRun.m */; };
+		0250CD83191BA9EF00E2E051 /* TQRichTextRunDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0250CD76191BA9EF00E2E051 /* TQRichTextRunDelegate.m */; };
+		0250CD84191BA9EF00E2E051 /* TQRichTextRunEmoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 0250CD78191BA9EF00E2E051 /* TQRichTextRunEmoji.m */; };
+		0250CD85191BA9EF00E2E051 /* TQRichTextRunURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 0250CD7A191BA9EF00E2E051 /* TQRichTextRunURL.m */; };
+		0250CD86191BA9EF00E2E051 /* TQRichTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0250CD7C191BA9EF00E2E051 /* TQRichTextView.m */; };
+		0250CD87191BA9EF00E2E051 /* TQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0250CD7E191BA9EF00E2E051 /* TQViewController.m */; };
 		0265C123190016F100DE2441 /* HWSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 0265C122190016F100DE2441 /* HWSegment.m */; };
 		026708351903BCD8003D43F9 /* sex1.png in Resources */ = {isa = PBXBuildFile; fileRef = 026708331903BCD8003D43F9 /* sex1.png */; };
 		026708361903BCD8003D43F9 /* sex0.png in Resources */ = {isa = PBXBuildFile; fileRef = 026708341903BCD8003D43F9 /* sex0.png */; };
@@ -244,6 +253,21 @@
 		025045FD190FD57000852325 /* MJRefreshFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshFooterView.m; sourceTree = "<group>"; };
 		025045FE190FD57000852325 /* MJRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshHeaderView.h; sourceTree = "<group>"; };
 		025045FF190FD57000852325 /* MJRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshHeaderView.m; sourceTree = "<group>"; };
+		0250CD70191BA9EF00E2E051 /* [cry].png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[cry].png"; sourceTree = "<group>"; };
+		0250CD71191BA9EF00E2E051 /* [hei].png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[hei].png"; sourceTree = "<group>"; };
+		0250CD72191BA9EF00E2E051 /* [smile].png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[smile].png"; sourceTree = "<group>"; };
+		0250CD73191BA9EF00E2E051 /* TQRichTextRun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQRichTextRun.h; sourceTree = "<group>"; };
+		0250CD74191BA9EF00E2E051 /* TQRichTextRun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQRichTextRun.m; sourceTree = "<group>"; };
+		0250CD75191BA9EF00E2E051 /* TQRichTextRunDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQRichTextRunDelegate.h; sourceTree = "<group>"; };
+		0250CD76191BA9EF00E2E051 /* TQRichTextRunDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQRichTextRunDelegate.m; sourceTree = "<group>"; };
+		0250CD77191BA9EF00E2E051 /* TQRichTextRunEmoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQRichTextRunEmoji.h; sourceTree = "<group>"; };
+		0250CD78191BA9EF00E2E051 /* TQRichTextRunEmoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQRichTextRunEmoji.m; sourceTree = "<group>"; };
+		0250CD79191BA9EF00E2E051 /* TQRichTextRunURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQRichTextRunURL.h; sourceTree = "<group>"; };
+		0250CD7A191BA9EF00E2E051 /* TQRichTextRunURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQRichTextRunURL.m; sourceTree = "<group>"; };
+		0250CD7B191BA9EF00E2E051 /* TQRichTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQRichTextView.h; sourceTree = "<group>"; };
+		0250CD7C191BA9EF00E2E051 /* TQRichTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQRichTextView.m; sourceTree = "<group>"; };
+		0250CD7D191BA9EF00E2E051 /* TQViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQViewController.h; sourceTree = "<group>"; };
+		0250CD7E191BA9EF00E2E051 /* TQViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQViewController.m; sourceTree = "<group>"; };
 		0265C121190016F100DE2441 /* HWSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWSegment.h; sourceTree = "<group>"; };
 		0265C122190016F100DE2441 /* HWSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWSegment.m; sourceTree = "<group>"; };
 		026708331903BCD8003D43F9 /* sex1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sex1.png; sourceTree = "<group>"; };
@@ -549,6 +573,36 @@
 			path = MJRefresh;
 			sourceTree = "<group>";
 		};
+		0250CD6E191BA9EE00E2E051 /* TQRichTextView */ = {
+			isa = PBXGroup;
+			children = (
+				0250CD6F191BA9EF00E2E051 /* Images */,
+				0250CD73191BA9EF00E2E051 /* TQRichTextRun.h */,
+				0250CD74191BA9EF00E2E051 /* TQRichTextRun.m */,
+				0250CD75191BA9EF00E2E051 /* TQRichTextRunDelegate.h */,
+				0250CD76191BA9EF00E2E051 /* TQRichTextRunDelegate.m */,
+				0250CD77191BA9EF00E2E051 /* TQRichTextRunEmoji.h */,
+				0250CD78191BA9EF00E2E051 /* TQRichTextRunEmoji.m */,
+				0250CD79191BA9EF00E2E051 /* TQRichTextRunURL.h */,
+				0250CD7A191BA9EF00E2E051 /* TQRichTextRunURL.m */,
+				0250CD7B191BA9EF00E2E051 /* TQRichTextView.h */,
+				0250CD7C191BA9EF00E2E051 /* TQRichTextView.m */,
+				0250CD7D191BA9EF00E2E051 /* TQViewController.h */,
+				0250CD7E191BA9EF00E2E051 /* TQViewController.m */,
+			);
+			path = TQRichTextView;
+			sourceTree = "<group>";
+		};
+		0250CD6F191BA9EF00E2E051 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				0250CD70191BA9EF00E2E051 /* [cry].png */,
+				0250CD71191BA9EF00E2E051 /* [hei].png */,
+				0250CD72191BA9EF00E2E051 /* [smile].png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		026708401903EB18003D43F9 /* 附近 */ = {
 			isa = PBXGroup;
 			children = (
@@ -734,6 +788,7 @@
 			isa = PBXGroup;
 			children = (
 				024CB3A218F4072000434AFA /* worknote */,
+				0250CD6E191BA9EE00E2E051 /* TQRichTextView */,
 				02500E321917BCC0000B7212 /* MSGSession */,
 				025045F5190FD57000852325 /* MJRefresh */,
 				02BF655E190EA20C00DCF2BD /* SVProgressHUD */,
@@ -978,6 +1033,7 @@
 				02F4A2AD18FA54BC006EDB25 /* pb_back_btn@2x.png in Resources */,
 				024CB3AB18F430CE00434AFA /* pb_downlistTop_bkg@2x.png in Resources */,
 				02500E581917BCC1000B7212 /* chat_bottom_smile_press.png in Resources */,
+				0250CD80191BA9EF00E2E051 /* [hei].png in Resources */,
 				028ACD6618FECBF000D36AE0 /* login_label_bkg0@2x.png in Resources */,
 				02500E5F1917BCC1000B7212 /* chatfrom_bg_focused.png in Resources */,
 				024CB39F18F3B36400434AFA /* pb_write_btn@2x.png in Resources */,
@@ -992,6 +1048,7 @@
 				024CB3AD18F4329300434AFA /* pb_mainColor3_bkg@2x.png in Resources */,
 				02F4A28B18FA43F9006EDB25 /* Icon.png in Resources */,
 				02500E631917BCC1000B7212 /* icon01.png in Resources */,
+				0250CD81191BA9EF00E2E051 /* [smile].png in Resources */,
 				02500E5E1917BCC1000B7212 /* chat_timeline_bg.png in Resources */,
 				02CB41C118F6DE780030289C /* Default-568h@2x.png in Resources */,
 				02CB41C218F6DE780030289C /* Default@2x.png in Resources */,
@@ -1002,6 +1059,7 @@
 				02CB41D718F6E8210030289C /* login_regist_btn@2x.png in Resources */,
 				02CB41D018F6E8210030289C /* login_checkDisel_btn@2x.png in Resources */,
 				02F4A2AE18FA54BC006EDB25 /* reg_cell_bkg@2x.png in Resources */,
+				0250CD7F191BA9EF00E2E051 /* [cry].png in Resources */,
 				02CB41D318F6E8210030289C /* login_inputPswd_bkg@2x.png in Resources */,
 				02CB41D818F6E8210030289C /* login_wbLogin@2x.png in Resources */,
 				02500E541917BCC1000B7212 /* chat_bg_default.jpg in Resources */,
@@ -1086,11 +1144,13 @@
 				028ACD5718FEC80200D36AE0 /* SelectLabel.m in Sources */,
 				02F4A2A318FA45AF006EDB25 /* QCheckBox.m in Sources */,
 				02BF653E190E8A9900DCF2BD /* AFHTTPRequestOperation.m in Sources */,
+				0250CD86191BA9EF00E2E051 /* TQRichTextView.m in Sources */,
 				02F2E05D1902A5C5002902DD /* PersonalViewController.m in Sources */,
 				02BF6543190E8A9900DCF2BD /* AFURLConnectionOperation.m in Sources */,
 				0265C123190016F100DE2441 /* HWSegment.m in Sources */,
 				02504603190FD57000852325 /* MJRefreshFooterView.m in Sources */,
 				02D3146919000E0B005CADB1 /* SVSegmentedThumb.m in Sources */,
+				0250CD82191BA9EF00E2E051 /* TQRichTextRun.m in Sources */,
 				0267084A1903FEAC003D43F9 /* HWCell.m in Sources */,
 				02500E501917BCC1000B7212 /* FLViewController.m in Sources */,
 				02504602190FD57000852325 /* MJRefreshConst.m in Sources */,
@@ -1101,6 +1161,7 @@
 				02BF654C190E8A9900DCF2BD /* UIProgressView+AFNetworking.m in Sources */,
 				02F4A29418FA4463006EDB25 /* IQKeyboardManager.m in Sources */,
 				026708471903FE7E003D43F9 /* RecordCell.m in Sources */,
+				0250CD85191BA9EF00E2E051 /* TQRichTextRunURL.m in Sources */,
 				02BF653F190E8A9900DCF2BD /* AFHTTPRequestOperationManager.m in Sources */,
 				02F4A2BD18FA66BA006EDB25 /* HelpViewController.m in Sources */,
 				02CB41C518F6E1060030289C /* LoginViewController.m in Sources */,
@@ -1108,6 +1169,7 @@
 				02BF6540190E8A9900DCF2BD /* AFHTTPSessionManager.m in Sources */,
 				02504604190FD57000852325 /* MJRefreshHeaderView.m in Sources */,
 				024724E6190547B000CA00E4 /* PulldownButton.m in Sources */,
+				0250CD83191BA9EF00E2E051 /* TQRichTextRunDelegate.m in Sources */,
 				02E528DC18F0F1EF00EEAE7B /* NSError+Alert.m in Sources */,
 				02BF6544190E8A9900DCF2BD /* AFURLRequestSerialization.m in Sources */,
 				02500E511917BCC1000B7212 /* Message.m in Sources */,
@@ -1121,7 +1183,9 @@
 				02E528DA18F0F1EF00EEAE7B /* HWDevice.m in Sources */,
 				02BF6547190E8A9900DCF2BD /* AFNetworkActivityIndicatorManager.m in Sources */,
 				02D3146819000E0B005CADB1 /* SVSegmentedControl.m in Sources */,
+				0250CD87191BA9EF00E2E051 /* TQViewController.m in Sources */,
 				02BF6541190E8A9900DCF2BD /* AFNetworkReachabilityManager.m in Sources */,
+				0250CD84191BA9EF00E2E051 /* TQRichTextRunEmoji.m in Sources */,
 				02F4A2C118FA6706006EDB25 /* MyHelpViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

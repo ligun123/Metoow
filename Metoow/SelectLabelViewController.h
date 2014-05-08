@@ -11,4 +11,6 @@
 
 @interface SelectLabelViewController : UIViewController
 
+@property (strong, nonatomic) NSDictionary *userRegister;
+
 @end

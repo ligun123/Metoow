@@ -9,6 +9,7 @@
 #import "RegisterViewController.h"
 #import "SelectAreaViewController.h"
 #import "NSError+Alert.h"
+#import "SelectLabelViewController.h"
 
 @interface RegisterViewController ()
 
@@ -129,9 +130,13 @@
     [SVProgressHUD show];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *para = @{@"email": self.email.text, @"password" : self.password.text, @"uname" : self.nickname.text, @"sex" : [self sexNumber], @"city_names" : [self cityNames], @"city_ids" : [self cityIds]};
-    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Login act:Mod_Login_registe Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Login act:Mod_Login_register Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
-        NSLog(@"%s -> %@", __FUNCTION__, responseObject);
+        NSDictionary *dic = responseObject[@"data"];
+        SelectLabelViewController *slectLabel = [[AppDelegateInterface mainStoryBoard] instantiateViewControllerWithIdentifier:@"SelectLabelViewController"];
+        slectLabel.userRegister = dic;
+        [self.navigationController pushViewController:slectLabel animated:YES];
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD dismiss];
         NSLog(@"%s -> %@", __FUNCTION__, [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding]);
