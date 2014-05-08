@@ -46,13 +46,16 @@
     [seg setSelectIndex:0];
     [self.view addSubview:seg];
     [seg setCallbackBlock:^(HWSegment *vseg, int selectIndex) {
-        if (selectIndex == 0) {
-            [self requestPrivateMessage];
-        } else if (selectIndex == 1) {
-            [self requestSystemNotify];
+        if (msgCategaryIndex != selectIndex) {
+            msgCategaryIndex = selectIndex;
+            if (selectIndex == 0) {
+                [self requestPrivateMessage];
+            } else if (selectIndex == 1) {
+                [self requestSystemNotify];
+            }
         }
     }];
-    
+    msgCategaryIndex = 0;
     [self requestPrivateMessage];
 }
 
@@ -79,7 +82,8 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Notifytion act:Mod_Notifytion_get_system_notify Paras:nil] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
-        NSLog(@"%s -> %@", __FUNCTION__, responseObject);
+        self.msgList = responseObject[@"data"];
+        [self.msgTableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD dismiss];
         [error showAlert];
@@ -113,22 +117,39 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *identifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    UIImageView *header = (UIImageView *)[cell.contentView viewWithTag:5];
+    if (msgCategaryIndex == 0) {
+        static NSString *identifier = @"Cell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        UIImageView *header = (UIImageView *)[cell.contentView viewWithTag:5];
+        //点击header跳转到个人资料页面
 //    [btn addTarget:self action:@selector(cellHeaderTap:) forControlEvents:UIControlEventTouchUpInside];
-    UILabel *nameLabel = (UILabel *)[cell.contentView viewWithTag:2];
-    UILabel *timeLabel = (UILabel *)[cell.contentView viewWithTag:3];
-    UILabel *contentLabel = (UILabel *)[cell.contentView viewWithTag:4];
-    
-    NSDictionary *dic = self.msgList[indexPath.row];
-    NSString *fromFace = dic[@"from_face"];
-    [header setImageWithURL:[NSURL URLWithString:fromFace]];
-    contentLabel.text = dic[@"content"];
-    timeLabel.text = [self convertDate:dic[@"ctime"]];
-    nameLabel.text = dic[@""];
-    
-    return cell;
+        UILabel *nameLabel = (UILabel *)[cell.contentView viewWithTag:2];
+        UILabel *timeLabel = (UILabel *)[cell.contentView viewWithTag:3];
+        UILabel *contentLabel = (UILabel *)[cell.contentView viewWithTag:4];
+        
+        NSDictionary *msgdic = self.msgList[indexPath.row];
+        contentLabel.text = msgdic[@"content"];
+        timeLabel.text = [self convertDate:msgdic[@"ctime"]];
+        
+        NSDictionary *toUser = [msgdic[@"to_user_info"] allValues][0];
+        nameLabel.text = toUser[@"uname"];
+        NSString *headerString = toUser[@"avatar_original"];
+        [header setImageWithURL:[NSURL URLWithString:headerString]];
+        return cell;
+    } else {
+        static NSString *identifier = @"Cell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        NSDictionary *dic = self.msgList[indexPath.row][@"data"];
+        UILabel *nameLabel = (UILabel *)[cell.contentView viewWithTag:2];
+        UILabel *timeLabel = (UILabel *)[cell.contentView viewWithTag:3];
+        UILabel *contentLabel = (UILabel *)[cell.contentView viewWithTag:4];
+        UIImageView *header = (UIImageView *)[cell.contentView viewWithTag:5];
+        [header setImageWithURL:[NSURL URLWithString:self.msgList[indexPath.row][@"icon"]]];
+        nameLabel.text = self.msgList[indexPath.row][@"name"];
+        contentLabel.text = dic[@"title"];
+        timeLabel.text = @"";
+        return cell;
+    }
 }
 
 - (NSString *)convertDate:(NSString *)dt

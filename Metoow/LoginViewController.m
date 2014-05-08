@@ -102,7 +102,7 @@
         if ([responseObject isOK]) {
             NSDictionary *dic = responseObject[@"data"];
             [[NSUserDefaults standardUserDefaults] registerDefaults:dic];
-            [manager GET:[APIHelper url] parameters:[APIHelper packageMod:@"Login" act:@"login" Paras:@{@"uname": @"376438624@qq.com", @"upwd" : @"5815057"}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [manager GET:[APIHelper url] parameters:[APIHelper packageMod:@"Login" act:@"login" Paras:@{@"uname": self.userIDText.text, @"upwd" : self.pswdText.text}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 [SVProgressHUD dismiss];
                 if ([responseObject isOK]) {
                     [self dismissModalViewControllerAnimated:YES];

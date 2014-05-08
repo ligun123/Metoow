@@ -19,6 +19,7 @@
 #define Mod_Login_login @"login"        //Login模式下的login动作
 #define Mod_Login_register @"register"
 #define Mod_Login_getArea   @"getArea"  //注册时候
+#define Mod_Login_set_tags @"set_tags"
 
 #define Mod_Foot @"Foot"
 #define Mod_Foot_foot_list @"foot_list"

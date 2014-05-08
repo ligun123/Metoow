@@ -10,6 +10,7 @@
 #import "SelectAreaViewController.h"
 #import "NSError+Alert.h"
 #import "SelectLabelViewController.h"
+#import "IQKeyboardManager.h"
 
 @interface RegisterViewController ()
 
@@ -91,6 +92,18 @@
     return nil;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];
+}
+
 /*
 #pragma mark - Navigation
 
@@ -135,11 +148,12 @@
         NSDictionary *dic = responseObject[@"data"];
         SelectLabelViewController *slectLabel = [[AppDelegateInterface mainStoryBoard] instantiateViewControllerWithIdentifier:@"SelectLabelViewController"];
         slectLabel.userRegister = dic;
+        slectLabel.password = self.password.text;
         [self.navigationController pushViewController:slectLabel animated:YES];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD dismiss];
-        NSLog(@"%s -> %@", __FUNCTION__, [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding]);
+        [error showAlert];
     }];
 }
 

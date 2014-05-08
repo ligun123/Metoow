@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface MSGCenterViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+{
+    int msgCategaryIndex;
+}
 
 @property (weak, nonatomic) IBOutlet UITableView *msgTableView;
 @property (strong, nonatomic) NSArray *msgList;
