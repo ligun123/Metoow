@@ -29,6 +29,9 @@
     [self.window makeKeyAndVisible];
     [self customTabbar];
     [self hwtabbar:self.tabBar selectIndex:0];
+    
+    
+    
     return YES;
 }
 

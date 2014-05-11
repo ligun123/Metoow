@@ -17,6 +17,12 @@
     return [self initWithFrame:CGRectMake(0, 0, 320, 44)];
 }
 
+- (void)dealloc
+{
+    self.delegate = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -35,8 +41,22 @@
 
 - (void)initLayout
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    isSystemBoard = YES;
+    isEmojiBtnClick = NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDidHide:)
+                                                 name:UIKeyboardDidHideNotification
+                                               object:nil];
     bgView = [[UIImageView alloc] initWithFrame:self.bounds];
     bgView.image = [UIImage imageNamed:@"pb_mainColor_bkg"];
     [self addSubview:bgView];
@@ -51,7 +71,8 @@
     btnEmoji = [UIButton buttonWithType:UIButtonTypeCustom];
     btnEmoji.frame = CGRectMake(245, 6, 34, 34);
     [btnEmoji setImage:[UIImage imageNamed:@"chat_bottom_smile_nor"] forState:UIControlStateNormal];
-    [btnEmoji addTarget:self action:@selector(btnEmojiTap) forControlEvents:UIControlEventTouchUpInside];
+    [btnEmoji addTarget:self action:@selector(btnEmojiTap:) forControlEvents:UIControlEventTouchUpInside];
+    [btnEmoji setImage:[UIImage imageNamed:@"chat_bottom_keyboard_nor"] forState:UIControlStateSelected];
     [self addSubview:btnEmoji];
     
     btnPicture = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -61,45 +82,60 @@
     [self addSubview:btnPicture];
 }
 
-- (void)btnEmojiTap
+- (void)btnEmojiTap:(UIButton *)emjBtn
 {
-    UIWindow *win = [[UIApplication sharedApplication] windows][1];
-    [win addSubview:emojiView];
+    [btnEmoji setSelected:![btnEmoji isSelected]];
+    if ([btnEmoji isSelected]) {
+        isSystemBoard = NO;
+        inputText.inputView = [self faceBoard];
+    } else {
+        isSystemBoard = YES;
+        inputText.inputView = nil;
+    }
+    
+    if ([inputText isEditing]) {
+        isEmojiBtnClick = YES;
+        [inputText resignFirstResponder];
+    } else {
+        [inputText becomeFirstResponder];
+    }
 }
 
 
 - (void)btnPictureTap
 {}
 
-- (void)keyboardWillShow:(NSNotification *)noti
-{
-    NSValue *endFrame = [noti userInfo][@"UIKeyboardFrameEndUserInfoKey"];
-    CGRect f;
-    [endFrame getValue:&f];
-    
-    emojiView = [[UIView alloc] initWithFrame:f];
-    emojiView.backgroundColor = [UIColor redColor];
-    
-    /*  找不到键盘啊，只能笨办法把emoji加到window上了
-    NSArray *winds = [[UIApplication sharedApplication] windows];
-    for (int i = 0; i < winds.count; i ++) {
-        NSLog(@"%s -> i = %d, %@", __FUNCTION__, i, winds[i]);
-        NSArray *winSubviews = [winds[i] subviews];
-        for (int j = 0; j < winSubviews.count; j ++) {
-            NSLog(@"%s -> i = %d, j = %d \n%@", __FUNCTION__, i, j, winSubviews[j]);
-        }
-    }
-     */
+- (void)keyboardWillShow:(NSNotification *)notification {
 }
 
-- (void)keyboardWillHide:(NSNotification *)noti
-{
-    [emojiView removeFromSuperview];
+- (void)keyboardWillHide:(NSNotification *)notification {
 }
+
+- (void)keyboardDidHide:(NSNotification *)notification {
+    if (isEmojiBtnClick == YES) {
+        isEmojiBtnClick = NO;
+        [inputText becomeFirstResponder];
+    }
+}
+
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    if (textField.text.length == 0) {
+        return YES;
+    }
+    if (_delegate && [_delegate respondsToSelector:@selector(inputView:didSendCotent:)]) {
+        [_delegate inputView:self didSendCotent:inputText.text];
+    }
     return YES;
+}
+
+
+- (FaceBoard *)faceBoard
+{
+    FaceBoard *face = [[FaceBoard alloc] init];
+    face.inputTextField = inputText;
+    return face;
 }
 
 /*

@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSGInputView.h"
 
-@interface MSGSessionViewController : UIViewController
+@interface MSGSessionViewController : UIViewController <InputViewProtocol>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *messageArray;
+@property (weak, nonatomic) IBOutlet MSGInputView *inputView;
 
 @end

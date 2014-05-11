@@ -71,7 +71,7 @@
     } else {
         [SVProgressHUD show];
         NSString *uid = self.userRegister[@"login"];
-        NSDictionary *para = @{@"id": uid, @"user_tags" : [tags componentsJoinedByString:@" "]};
+        NSDictionary *para = @{@"id": uid, @"user_tags" : [tags componentsJoinedByString:@","]};
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Login act:Mod_Login_set_tags Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
             [SVProgressHUD dismiss];
@@ -92,7 +92,7 @@
             NSDictionary *dic = responseObject[@"data"];
             //kOauth_Token 将token信息注册到userDefaults
             [[NSUserDefaults standardUserDefaults] registerDefaults:dic];
-            [manager GET:[APIHelper url] parameters:[APIHelper packageMod:@"Login" act:@"login" Paras:@{@"uname": self.userRegister[@"login"], @"upwd" : self.password}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [manager GET:[APIHelper url] parameters:[APIHelper packageMod:@"Login" act:@"login" Paras:@{@"uname": self.userRegister[@"uid"], @"upwd" : self.password}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 [SVProgressHUD dismiss];
                 if ([responseObject isOK]) {
                     [self.navigationController dismissViewControllerAnimated:YES completion:nil];

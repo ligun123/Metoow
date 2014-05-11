@@ -145,11 +145,15 @@
     NSDictionary *para = @{@"email": self.email.text, @"password" : self.password.text, @"uname" : self.nickname.text, @"sex" : [self sexNumber], @"city_names" : [self cityNames], @"city_ids" : [self cityIds]};
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Login act:Mod_Login_register Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
-        NSDictionary *dic = responseObject[@"data"];
-        SelectLabelViewController *slectLabel = [[AppDelegateInterface mainStoryBoard] instantiateViewControllerWithIdentifier:@"SelectLabelViewController"];
-        slectLabel.userRegister = dic;
-        slectLabel.password = self.password.text;
-        [self.navigationController pushViewController:slectLabel animated:YES];
+        if ([responseObject isOK]) {
+            NSDictionary *dic = responseObject[@"data"];
+            SelectLabelViewController *slectLabel = [[AppDelegateInterface mainStoryBoard] instantiateViewControllerWithIdentifier:@"SelectLabelViewController"];
+            slectLabel.userRegister = dic;
+            slectLabel.password = self.password.text;
+            [self.navigationController pushViewController:slectLabel animated:YES];
+        } else {
+            [[responseObject error] showAlert];
+        }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD dismiss];

@@ -1396,6 +1396,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="inputView" destination="GwJ-m9-63M" id="v08-9u-yPc"/>
                         <outlet property="tableView" destination="uSc-4L-9DM" id="k8N-ez-7GU"/>
                     </connections>
                 </viewController>

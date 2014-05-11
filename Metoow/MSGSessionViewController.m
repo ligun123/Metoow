@@ -52,10 +52,6 @@
         
         [self.messageArray addObject:messageFrame];
     }
-    
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-//    
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,27 +62,6 @@
 
 - (IBAction)btnBackTap:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
-}
-#pragma mark - 键盘处理
-#pragma mark 键盘即将显示
-
-- (void)keyBoardWillShow:(NSNotification *)note{
-    
-    CGRect rect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    CGFloat ty = - rect.size.height;
-    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
-        self.view.transform = CGAffineTransformMakeTranslation(0, ty);
-    }];
-    
-}
-
-#pragma mark 键盘即将退出
-
-- (void)keyBoardWillHide:(NSNotification *)note{
-    
-    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
-        self.view.transform = CGAffineTransformIdentity;
-    }];
 }
 
 
@@ -120,5 +95,26 @@
     [self.view endEditing:YES];
 }
 
+#pragma mark - MSGInputView Delegate
+
+/**
+ *  发文字
+ *
+ *  @param inputView MSGInputView
+ *  @param txt       文字内容包含表情的标示符字符串
+ */
+- (void)inputView:(MSGInputView *)inputView didSendCotent:(NSString *)txt
+{
+}
+
+/**
+ *  发图片
+ *
+ *  @param inputView MSGInputView
+ *  @param img       发送的图片UIImage对象
+ */
+- (void)inputView:(MSGInputView *)inputView didSendPicture:(UIImage *)img
+{
+}
 
 @end
