@@ -44,7 +44,7 @@
 }
 
 
-@property (nonatomic, assign) NSMutableArray *data;
+@property (nonatomic, retain) NSMutableArray *data;
 
 
 - (void)showMessage:(NSArray *)message;

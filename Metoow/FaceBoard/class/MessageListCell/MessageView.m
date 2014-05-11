@@ -51,10 +51,11 @@ static NSString *emojiRegular = @"\\[{1}[a-zA-Z]+\\]{1}";
 		for (int index = 0; index < [data count]; index++) {
 
 			NSString *str = [data objectAtIndex:index];
-			if ( [str hasPrefix:FACE_NAME_HEAD] ) {
-
+			if ( [str hasPrefix:@"["] && [str hasSuffix:@"]"]) {
+                NSString *imageName = [faceMap objectForKey:str];
 				//NSString *imageName = [str substringWithRange:NSMakeRange(1, str.length - 2)];
-
+                
+                /*
                 NSArray *imageNames = [faceMap allKeysForObject:str];
                 NSString *imageName = nil;
                 
@@ -62,6 +63,7 @@ static NSString *emojiRegular = @"\\[{1}[a-zA-Z]+\\]{1}";
                     
                     imageName = [imageNames objectAtIndex:0];
                 }
+                 */
 
                 UIImage *image = [UIImage imageNamed:imageName];
 
@@ -142,16 +144,36 @@ static NSString *emojiRegular = @"\\[{1}[a-zA-Z]+\\]{1}";
     NSMutableArray *arr = [[NSMutableArray alloc] init];
     [self getMessageRange:strMsg :arr];
     [self showMessage:arr];
+    [arr autorelease];
 }
 
 - (void)getMessageRange:(NSString*)message :(NSMutableArray*)array {
     NSRegularExpression *reguler = [NSRegularExpression regularExpressionWithPattern:emojiRegular options:NSRegularExpressionCaseInsensitive error:nil];
     NSArray *matchs = [reguler matchesInString:message options:0 range:NSMakeRange(0, message.length)];
     for (int i = 0; i < matchs.count; i ++) {
-        NSTextCheckingResult *res = matchs[i];
-        NSRange rang = res.range;
-        if (rang.location > 0) {
+        NSRange rang  = [(NSTextCheckingResult *)matchs[i] range];
+        if (i == 0) {
+            if (rang.location > 0) {
+                //通过rang将message拆分成表情和文字
+                NSString *str = [message substringWithRange:NSMakeRange(0, rang.location)];
+                [array addObject:str];
+                
+                NSString *emoji = [message substringWithRange:rang];
+                [array addObject:emoji];
+            }
+        } else if (i < matchs.count) {
+            NSRange lastRange = ((NSTextCheckingResult *)matchs[i-1]).range;
+            NSString *str = [message substringWithRange:NSMakeRange(lastRange.location+lastRange.length, rang.location - lastRange.location - lastRange.length)];
+            [array addObject:str];
             
+            NSString *emoj = [message substringWithRange:rang];
+            [array addObject:emoj];
+            if (i == matchs.count - 1) {
+                if (rang.location + rang.length < message.length) {
+                    NSString *str = [message substringWithRange:NSMakeRange(rang.location + rang.length, message.length - rang.location - rang.length)];
+                }
+                [array addObject:str];
+            }
         }
     }
     /*
