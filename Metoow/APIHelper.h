@@ -31,6 +31,7 @@
 
 #define Mod_Message @"Message"
 #define Mod_Message_get_message_list @"get_message_list"        //获取我的私信列表
+#define Mod_Message_get_message_detail @"get_message_detail"    //获取私信的详情
 
 
 #define Mod_Notifytion @"Notifytion"                            //系统消息
@@ -75,4 +76,5 @@
 - (BOOL)isOK;
 
 - (NSError *)error;
+
 @end

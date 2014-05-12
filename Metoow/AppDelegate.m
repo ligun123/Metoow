@@ -12,6 +12,18 @@
 
 @implementation AppDelegate
 
++ (void)initialize
+{
+    NSString *faceFolder = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"miniblog"];
+    NSArray *faceItems = [[NSFileManager defaultManager] subpathsAtPath:faceFolder];
+    NSMutableDictionary *facemap = [NSMutableDictionary dictionary];
+    for (NSString *item in faceItems) {
+        NSString *name = [item componentsSeparatedByString:@"."][0];
+        [facemap setObject:name forKey:[NSString stringWithFormat:@"[%@]", name]];
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:facemap forKey:@"FaceMap"];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.

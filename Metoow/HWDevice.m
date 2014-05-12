@@ -71,4 +71,12 @@
             theResult[12], theResult[13], theResult[14], theResult[15]] lowercaseString];
 }
 
+- (NSString *)apiDate
+{
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self integerValue]];
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    [fmt setDateFormat:@"MM-dd HH:mm"];
+    return [fmt stringFromDate:date];
+}
+
 @end

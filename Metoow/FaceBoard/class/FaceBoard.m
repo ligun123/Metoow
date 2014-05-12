@@ -29,14 +29,7 @@
 
 - (void)initFaceMap
 {
-    NSString *faceFolder = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"miniblog"];
-    NSArray *faceItems = [[NSFileManager defaultManager] subpathsAtPath:faceFolder];
-    _faceMap = [[NSMutableDictionary dictionary] retain];
-    for (NSString *item in faceItems) {
-        NSString *name = [item componentsSeparatedByString:@"."][0];
-        [_faceMap setObject:name forKey:[NSString stringWithFormat:@"[%@]", name]];
-    }
-    [[NSUserDefaults standardUserDefaults] setObject:_faceMap forKey:@"FaceMap"];
+    _faceMap = [[[NSUserDefaults standardUserDefaults] objectForKey:@"FaceMap"] retain];
 }
 
 - (id)init {

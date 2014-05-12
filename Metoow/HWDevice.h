@@ -47,4 +47,6 @@
 
 - (NSString *)md5Encode;
 
+- (NSString *)apiDate;
+
 @end

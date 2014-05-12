@@ -10,9 +10,16 @@
 #import "MSGInputView.h"
 
 @interface MSGSessionViewController : UIViewController <InputViewProtocol>
+{
+    BOOL isRegistered;
+}
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *messageArray;
 @property (weak, nonatomic) IBOutlet MSGInputView *inputView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+@property (copy, nonatomic) NSString *msgID;
+@property (copy, nonatomic) NSString *frdName;
 
 @end

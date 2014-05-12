@@ -24,6 +24,45 @@
 
 @synthesize frdIconView, ownIconView, frdNameLabel, msgBgView, messageView;
 
++ (UINib *)nib
+{
+    return [UINib nibWithNibName:@"MessageListCell" bundle:nil];
+}
+
+- (void)refreshForFrdMsg:(NSString *)message
+{
+    ownIconView.image = nil;
+    
+    CGRect frame = messageView.frame;
+    frame.origin.x = MSG_VIEW_LEFT;
+    CGSize size = [MessageView sizeForContent:message];
+    frame.size = size;
+    messageView.frame = frame;
+    
+    msgBgView.frame = messageView.frame;
+    msgBgView.image = [[UIImage imageNamed:@"chat_bg_frd"]
+                       resizableImageWithCapInsets:UIEdgeInsetsMake( 23, 23, 7, 23 )];
+    
+    [messageView showStringMessage:message];
+}
+
+- (void)refreshForOwnMsg:(NSString *)message
+{
+    frdIconView.image = nil;
+    frdNameLabel.text = nil;
+    CGSize size = [MessageView sizeForContent:message];
+    CGRect frame = messageView.frame;
+    frame.origin.x = MSG_VIEW_RIGHT - size.width;
+    frame.size = size;
+    messageView.frame = frame;
+    
+    msgBgView.frame = messageView.frame;
+    msgBgView.image = [[UIImage imageNamed:@"chat_bg_own"]
+                       resizableImageWithCapInsets:UIEdgeInsetsMake( 23, 23, 7, 23 )];
+    
+    [messageView showStringMessage:message];
+}
+
 
 - (void)refreshForOwnMsg:(NSMutableArray *)message withSize:(CGSize)size {
     

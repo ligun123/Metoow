@@ -129,7 +129,7 @@
         
         NSDictionary *msgdic = self.msgList[indexPath.row];
         contentLabel.text = msgdic[@"content"];
-        timeLabel.text = [self convertDate:msgdic[@"ctime"]];
+        timeLabel.text = [msgdic[@"ctime"] apiDate];
         
         NSDictionary *toUser = [msgdic[@"to_user_info"] allValues][0];
         nameLabel.text = toUser[@"uname"];
@@ -144,10 +144,10 @@
         UILabel *timeLabel = (UILabel *)[cell.contentView viewWithTag:3];
         UILabel *contentLabel = (UILabel *)[cell.contentView viewWithTag:4];
         UIImageView *header = (UIImageView *)[cell.contentView viewWithTag:5];
-        [header setImageWithURL:[NSURL URLWithString:self.msgList[indexPath.row][@"icon"]]];
+        [header setImage:[UIImage imageNamed:@"Icon"]];
         nameLabel.text = self.msgList[indexPath.row][@"name"];
         contentLabel.text = dic[@"title"];
-        timeLabel.text = @"";
+        timeLabel.text = [dic[@"ctime"] apiDate];
         return cell;
     }
 }
@@ -190,8 +190,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [AppDelegateInterface setTabBarHidden:YES];
-    MSGSessionViewController *msgSession = [[AppDelegateInterface mainStoryBoard] instantiateViewControllerWithIdentifier:@"MSGSessionViewController"];
-    [self.navigationController pushViewController:msgSession animated:YES];
+    if (msgCategaryIndex == 0) {
+        NSDictionary *dic = self.msgList[indexPath.row];
+        NSString *msgid = dic[@"list_id"];
+        NSString *toName = [dic[@"to_user_info"] allValues][0][@"uname"];
+        MSGSessionViewController *msgSession = [[AppDelegateInterface mainStoryBoard] instantiateViewControllerWithIdentifier:@"MSGSessionViewController"];
+        msgSession.msgID = msgid;
+        msgSession.frdName = toName;
+        [self.navigationController pushViewController:msgSession animated:YES];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

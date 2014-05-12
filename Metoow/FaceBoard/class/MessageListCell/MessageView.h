@@ -47,7 +47,9 @@
 @property (nonatomic, retain) NSMutableArray *data;
 
 
-- (void)showMessage:(NSArray *)message;
-
+- (void)showMessage:(NSArray *)message;     //废弃
+- (void)showStringMessage:(NSString *)strMsg;
+- (CGSize)contentSize;
++ (CGSize)sizeForContent:(NSString *)msg;
 
 @end

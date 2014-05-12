@@ -10,6 +10,7 @@
 #import "MessageCell.h"
 #import "Message.h"
 #import "MessageFrame.h"
+#import "MessageListCell.h"
 
 @interface MSGSessionViewController ()
 
@@ -33,26 +34,25 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.allowsSelection = NO;
     self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"chat_bg_default.jpg"]];
-    
-    NSArray *array = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"messages" ofType:@"plist"]];
-    
-    self.messageArray = [NSMutableArray array];
-    NSString *previousTime = nil;
-    for (NSDictionary *dict in array) {
-        
-        MessageFrame *messageFrame = [[MessageFrame alloc] init];
-        Message *message = [[Message alloc] init];
-        message.dict = dict;
-        
-        messageFrame.showTime = ![previousTime isEqualToString:message.time];
-        
-        messageFrame.message = message;
-        
-        previousTime = message.time;
-        
-        [self.messageArray addObject:messageFrame];
+    if (self.frdName) {
+        self.titleLabel.text = self.frdName;
+    }
+    if (self.msgID) {
+        [self requestMessageDetail];
     }
 }
+
+- (void)requestMessageDetail
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *dic = @{@"id": self.msgID};
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Message act:Mod_Message_get_message_detail Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%s -> %@", __FUNCTION__, responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%s -> %@", __FUNCTION__, error);
+    }];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -69,16 +69,22 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
-    MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (cell == nil) {
-        cell = [[MessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"MessageListCell";
+    if (!isRegistered) {
+        isRegistered = YES;
+        UINib *nib = [MessageListCell nib];
+        [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
     }
-    
+    MessageListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    cell.frdIconView.image = [UIImage imageNamed:@"test_header_bkg"];
+    cell.ownIconView.image = [UIImage imageNamed:@"test_header_bkg"];
     // 设置数据
-    cell.messageFrame = self.messageArray[indexPath.row];
-    
+    if ( indexPath.row % 2 == 0 ) {
+        [cell refreshForFrdMsg:self.messageArray[indexPath.row]];
+    }
+    else {
+        [cell refreshForOwnMsg:self.messageArray[indexPath.row]];
+    }
     return cell;
 }
 
@@ -88,7 +94,11 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [self.messageArray[indexPath.row] cellHeight];
+    CGSize size = [MessageView sizeForContent:self.messageArray[indexPath.row]];
+    
+    CGFloat span = size.height - MSG_VIEW_MIN_HEIGHT;
+    CGFloat height = MSG_CELL_MIN_HEIGHT + span;
+    return height;
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{

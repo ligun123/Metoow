@@ -7,6 +7,7 @@
 //
 
 #import "MyHelpViewController.h"
+#import "MessageView.h"
 
 @interface MyHelpViewController ()
 
@@ -27,6 +28,15 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    MessageView *msgview = [[MessageView alloc] initWithFrame:CGRectMake(20, 74, 280, 80)];
+    [self.view addSubview:msgview];
+    msgview.backgroundColor = [UIColor clearColor];
+    msgview.layer.borderWidth = 1.0;
+    msgview.layer.borderColor = [UIColor blackColor].CGColor;
+    [msgview showStringMessage:@"dal   h[aoman]daklsdjklasjdklasd[aoman][aoman]dasdakjsdakl"];
+    CGRect f = msgview.frame;
+    f.size = [msgview contentSize];
+    msgview.frame = f;
 }
 
 - (void)didReceiveMemoryWarning

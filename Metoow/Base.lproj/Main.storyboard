@@ -1370,7 +1370,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1CN-YN-Sqk">
-                                <rect key="frame" x="88" y="29" width="144" height="22"/>
+                                <rect key="frame" x="35" y="29" width="251" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
@@ -1398,6 +1398,7 @@
                     <connections>
                         <outlet property="inputView" destination="GwJ-m9-63M" id="v08-9u-yPc"/>
                         <outlet property="tableView" destination="uSc-4L-9DM" id="k8N-ez-7GU"/>
+                        <outlet property="titleLabel" destination="1CN-YN-Sqk" id="THI-Qg-sRX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Bf-el-VUv" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -30,10 +30,16 @@
 
 @property (nonatomic, retain) IBOutlet MessageView *messageView;
 
++ (UINib *)nib;
+
 
 - (void)refreshForFrdMsg:(NSMutableArray *)message withSize:(CGSize)size;
 
 - (void)refreshForOwnMsg:(NSMutableArray *)message withSize:(CGSize)size;
+
+- (void)refreshForFrdMsg:(NSString *)message;
+
+- (void)refreshForOwnMsg:(NSString *)message;
 
 
 @end
