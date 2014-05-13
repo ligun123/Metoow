@@ -11,6 +11,7 @@
 #import "Message.h"
 #import "MessageFrame.h"
 #import "MessageListCell.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface MSGSessionViewController ()
 
@@ -34,23 +35,13 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.allowsSelection = NO;
     self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"chat_bg_default.jpg"]];
+    self.inputView.delegate = self;
     if (self.frdName) {
         self.titleLabel.text = self.frdName;
     }
     if (self.msgID) {
         [self requestMessageDetail];
     }
-}
-
-- (void)requestMessageDetail
-{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *dic = @{@"id": self.msgID};
-    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Message act:Mod_Message_get_message_detail Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%s -> %@", __FUNCTION__, responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%s -> %@", __FUNCTION__, error);
-    }];
 }
 
 
@@ -76,15 +67,19 @@
         [tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
     }
     MessageListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    cell.frdIconView.image = [UIImage imageNamed:@"test_header_bkg"];
-    cell.ownIconView.image = [UIImage imageNamed:@"test_header_bkg"];
-    // 设置数据
-    if ( indexPath.row % 2 == 0 ) {
-        [cell refreshForFrdMsg:self.messageArray[indexPath.row]];
+    
+    NSDictionary *dic = self.messageArray[indexPath.row];
+    NSString *myuid = [[NSUserDefaults standardUserDefaults] objectForKey:@"uid"];
+    if ([myuid isEqualToString:dic[@"from_uid"]]) {
+        //我发的信息
+        [cell refreshForOwnMsg:dic[@"content"]];
+        [[cell ownIconView] setImageWithURL:[NSURL URLWithString:dic[@"from_face"]]];
+    } else {
+        //别人发得信息
+        [cell refreshForFrdMsg:dic[@"content"]];
+        [[cell frdIconView] setImageWithURL:[NSURL URLWithString:dic[@"from_face"]]];
     }
-    else {
-        [cell refreshForOwnMsg:self.messageArray[indexPath.row]];
-    }
+    
     return cell;
 }
 
@@ -94,7 +89,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CGSize size = [MessageView sizeForContent:self.messageArray[indexPath.row]];
+    CGSize size = [MessageView sizeForContent:self.messageArray[indexPath.row][@"content"]];
     
     CGFloat span = size.height - MSG_VIEW_MIN_HEIGHT;
     CGFloat height = MSG_CELL_MIN_HEIGHT + span;
@@ -115,6 +110,13 @@
  */
 - (void)inputView:(MSGInputView *)inputView didSendCotent:(NSString *)txt
 {
+    if (self.msgID) {
+        //回复消息
+        [self replyMessage:txt];
+    } else {
+        //创建一个新的回话
+        [self createMessage:txt];
+    }
 }
 
 /**
@@ -126,5 +128,60 @@
 - (void)inputView:(MSGInputView *)inputView didSendPicture:(UIImage *)img
 {
 }
+
+- (void)createMessage:(NSString *)ms
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *dic = @{@"content": ms, @"to_uid" : self.frdUid, @"title" : self.frdName};
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Message act:Mod_Message_create Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject isOK]) {
+            [self requestMessageDetail];
+        } else {
+            [[responseObject error] showAlert];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [error showAlert];
+    }];
+}
+
+- (void)replyMessage:(NSString *)ms
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *dic = @{@"content": ms, @"id" : self.msgID};
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Message act:Mod_Message_reply Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject isOK]) {
+            [self requestMessageDetail];
+        } else {
+            [[responseObject error] showAlert];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [error showAlert];
+    }];
+}
+
+
+- (void)requestMessageDetail
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *dic = @{@"id": self.msgID};
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Message act:Mod_Message_get_message_detail Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject isOK]) {
+            NSArray *tempArray = responseObject[@"data"];
+            //以时间先后排序
+            self.messageArray = [NSMutableArray arrayWithArray:[tempArray sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+                if ([obj1[@"ctime"] integerValue] > [obj2[@"ctime"] integerValue]) {
+                    return NSOrderedDescending;
+                } else return NSOrderedAscending;
+            }]];
+            [self.tableView reloadData];
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.messageArray.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+        } else {
+            [[responseObject error] showAlert];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [error showAlert];
+    }];
+}
+
 
 @end

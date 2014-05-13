@@ -75,6 +75,7 @@
     [btnEmoji setImage:[UIImage imageNamed:@"chat_bottom_keyboard_nor"] forState:UIControlStateSelected];
     [self addSubview:btnEmoji];
     
+    //图片按钮变身发送按钮
     btnPicture = [UIButton buttonWithType:UIButtonTypeCustom];
     btnPicture.frame = CGRectMake(280, 6, 34, 34);
     [btnPicture setImage:[UIImage imageNamed:@"chat_bottom_up_nor"] forState:UIControlStateNormal];
@@ -103,7 +104,15 @@
 
 
 - (void)btnPictureTap
-{}
+{
+    if (inputText.text.length == 0) {
+        return ;
+    }
+    if (_delegate && [_delegate respondsToSelector:@selector(inputView:didSendCotent:)]) {
+        [_delegate inputView:self didSendCotent:inputText.text];
+        inputText.text = @"";
+    }
+}
 
 - (void)keyboardWillShow:(NSNotification *)notification {
 }
@@ -121,11 +130,12 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if (textField.text.length == 0) {
+    if (inputText.text.length == 0) {
         return YES;
     }
     if (_delegate && [_delegate respondsToSelector:@selector(inputView:didSendCotent:)]) {
         [_delegate inputView:self didSendCotent:inputText.text];
+        inputText.text = @"";
     }
     return YES;
 }

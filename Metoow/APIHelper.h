@@ -29,10 +29,13 @@
 #define Mod_User_info @"info"
 #define Mod_User_myinfo @"myinfo"
 
-#define Mod_Message @"Message"
-#define Mod_Message_get_message_list @"get_message_list"        //获取我的私信列表
-#define Mod_Message_get_message_detail @"get_message_detail"    //获取私信的详情
 
+#define Mod_Message @"Message"
+#define Mod_Message_get_message_list @"get_message_list"        //获取我的私信列表  list_id和是第一条的message的id
+#define Mod_Message_get_message_detail @"get_message_detail"    //获取私信的详情
+#define Mod_Message_reply @"reply"                              //回复私信
+#define Mod_Message_create @"create"
+#define Mod_Message_get_list_to_uid @"get_list_to_uid"          //查询和某人的私信记录，to_uid对方的uid
 
 #define Mod_Notifytion @"Notifytion"                            //系统消息
 #define Mod_Notifytion_get_system_notify @"get_system_notify"

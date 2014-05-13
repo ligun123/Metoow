@@ -21,5 +21,6 @@
 
 @property (copy, nonatomic) NSString *msgID;
 @property (copy, nonatomic) NSString *frdName;
+@property (copy, nonatomic) NSString *frdUid;
 
 @end

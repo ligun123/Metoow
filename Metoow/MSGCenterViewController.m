@@ -189,8 +189,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [AppDelegateInterface setTabBarHidden:YES];
+    
     if (msgCategaryIndex == 0) {
+        [AppDelegateInterface setTabBarHidden:YES];
         NSDictionary *dic = self.msgList[indexPath.row];
         NSString *msgid = dic[@"list_id"];
         NSString *toName = [dic[@"to_user_info"] allValues][0][@"uname"];
@@ -198,6 +199,10 @@
         msgSession.msgID = msgid;
         msgSession.frdName = toName;
         [self.navigationController pushViewController:msgSession animated:YES];
+    } else {
+        NSDictionary *dic = self.msgList[indexPath.row];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:dic[@"name"] message:dic[@"data"][@"title"] delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+        [alert show];
     }
 }
 

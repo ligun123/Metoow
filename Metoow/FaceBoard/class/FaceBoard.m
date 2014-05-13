@@ -131,7 +131,6 @@
 - (void)faceButton:(id)sender {
 
     NSString *name = ((FaceButton*)sender).name;
-    NSLog(@"%s -> %@", __FUNCTION__, name);
     if (self.inputTextField) {
         NSMutableString *faceString = [[NSMutableString alloc]initWithString:self.inputTextField.text];
         [faceString appendString:[NSString stringWithFormat:@"[%@]", name]];

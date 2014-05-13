@@ -141,6 +141,10 @@ static NSString *emojiRegular = @"\\[{1}[a-zA-Z]+\\]{1}";
 + (void)getMessageRange:(NSString*)message :(NSMutableArray*)array {
     NSRegularExpression *reguler = [NSRegularExpression regularExpressionWithPattern:emojiRegular options:NSRegularExpressionCaseInsensitive error:nil];
     NSArray *matchs = [reguler matchesInString:message options:0 range:NSMakeRange(0, message.length)];
+    if (matchs.count == 0) {
+        [array addObject:message];
+        return ;
+    }
     for (int i = 0; i < matchs.count; i ++) {
         NSRange rang  = [(NSTextCheckingResult *)matchs[i] range];
         if (i == 0) {
