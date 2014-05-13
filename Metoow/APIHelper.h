@@ -22,8 +22,12 @@
 #define Mod_Login_set_tags @"set_tags"
 
 #define Mod_Foot @"Foot"
-#define Mod_Foot_foot_list @"foot_list"
-#define Mod_Foot_add_foot @"add_foot"
+#define Mod_Foot_foot_list @"foot_list"                         //足迹列表
+#define Mod_Foot_add_foot @"add_foot"                           //发布足迹
+#define Mod_Foot_get_myfoot @"get_myfoot"                       //获取我的足迹
+#define Mod_Foot_foot_collect @"foot_collect"                   //我收藏的
+#define Mod_Foot_my_attention @"my_attention"                   //我关注的人的足迹
+
 
 #define Mod_User @"User"
 #define Mod_User_info @"info"

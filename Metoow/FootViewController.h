@@ -14,6 +14,7 @@
 @interface FootViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MJRefreshBaseViewDelegate>
 {
     BOOL isCellRegesterd;
+    int selectIndex;
 }
 
 @property (weak, nonatomic) IBOutlet PulldownButton *pullDownBtn;

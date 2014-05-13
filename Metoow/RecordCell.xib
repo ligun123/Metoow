@@ -7,15 +7,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecordCell" rowHeight="150" id="SMI-Sa-Ij2" customClass="RecordCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecordCell" rowHeight="130" id="SMI-Sa-Ij2" customClass="RecordCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SMI-Sa-Ij2" id="Q2l-lL-9ur">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="129"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="test_header_bkg.png" translatesAutoresizingMaskIntoConstraints="NO" id="MUm-IY-qD9">
-                        <rect key="frame" x="10" y="10" width="50" height="50"/>
+                        <rect key="frame" x="10" y="10" width="50" height="47"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="我爱迷途网" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBN-Db-uyf">
@@ -33,7 +33,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" placeholderIntrinsicWidth="301" placeholderIntrinsicHeight="46" text="我想去西藏啊我想去西藏，可惜有了钱的时候我却没时间，我想去西藏啊我想去西藏，可惜有时间的时候我却没有钱，我想去西藏啊我想去西藏，可惜有了钱的时候我却没时间，我想去西藏啊我想去西藏，可惜有时间的时候我却没有钱，" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="301" translatesAutoresizingMaskIntoConstraints="NO" id="Boi-9J-qH7">
-                        <rect key="frame" x="10" y="68" width="301" height="54"/>
+                        <rect key="frame" x="10" y="68" width="301" height="41"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="highlightedColor"/>
@@ -43,7 +43,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d3u-KN-t3b" customClass="RecordActionButton">
-                        <rect key="frame" x="51" y="130" width="44" height="15"/>
+                        <rect key="frame" x="51" y="110" width="44" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <state key="normal" title="512" image="pb_star_btn.png">
@@ -52,7 +52,7 @@
                         </state>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yLN-hT-8Qb" customClass="RecordActionButton">
-                        <rect key="frame" x="153" y="130" width="44" height="15"/>
+                        <rect key="frame" x="153" y="110" width="44" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <state key="normal" title="512" image="pb_trans_btn.png">
@@ -61,7 +61,7 @@
                         </state>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f8g-US-UAD" customClass="RecordActionButton">
-                        <rect key="frame" x="249" y="130" width="44" height="15"/>
+                        <rect key="frame" x="249" y="110" width="44" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <state key="normal" title="512" image="pb_reply_btn.png">
@@ -75,6 +75,15 @@
                     </imageView>
                 </subviews>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="btnConnect" destination="d3u-KN-t3b" id="5hf-Io-E8J"/>
+                <outlet property="btnReply" destination="f8g-US-UAD" id="YTj-D7-ALW"/>
+                <outlet property="btnTransmit" destination="yLN-hT-8Qb" id="WWE-6N-Auy"/>
+                <outlet property="content" destination="Boi-9J-qH7" id="hgl-qR-xhq"/>
+                <outlet property="time" destination="1eY-um-Oez" id="fwW-ka-6p3"/>
+                <outlet property="userHeader" destination="MUm-IY-qD9" id="m23-J8-vG6"/>
+                <outlet property="userName" destination="nBN-Db-uyf" id="fhV-lI-XYv"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

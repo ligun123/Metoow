@@ -131,30 +131,37 @@
 
 - (void)createMessage:(NSString *)ms
 {
+    [SVProgressHUD show];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *dic = @{@"content": ms, @"to_uid" : self.frdUid, @"title" : self.frdName};
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Message act:Mod_Message_create Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
+            self.msgID = responseObject[@"data"];
             [self requestMessageDetail];
         } else {
             [[responseObject error] showAlert];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
         [error showAlert];
     }];
 }
 
 - (void)replyMessage:(NSString *)ms
 {
+    [SVProgressHUD show];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *dic = @{@"content": ms, @"id" : self.msgID};
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Message act:Mod_Message_reply Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
             [self requestMessageDetail];
         } else {
             [[responseObject error] showAlert];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
         [error showAlert];
     }];
 }
@@ -162,9 +169,11 @@
 
 - (void)requestMessageDetail
 {
+    [SVProgressHUD show];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *dic = @{@"id": self.msgID};
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Message act:Mod_Message_get_message_detail Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
             NSArray *tempArray = responseObject[@"data"];
             //以时间先后排序
@@ -179,6 +188,7 @@
             [[responseObject error] showAlert];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
         [error showAlert];
     }];
 }

@@ -7,6 +7,7 @@
 //
 
 #import "FootViewController.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface FootViewController ()
 
@@ -27,11 +28,12 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-#warning 测试显示登录界面
+    
     [self performSelector:@selector(displayLogin) withObject:nil afterDelay:0.05];
     [self.pullDownBtn setTitles:@[@"我的足迹", @"我关注的", @"我收藏的", @"我的路况"]];
     [self.pullDownBtn setCallbackBlock:^(NSInteger sltIndex) {
-        NSLog(@"%s -> %d", __FUNCTION__, sltIndex);
+        selectIndex = sltIndex;
+        [self refreshData];
     }];
     
     self.headerView = [MJRefreshHeaderView header];
@@ -42,6 +44,8 @@
     self.footerView.scrollView = self.tableView;
     self.footerView.delegate = self;
 }
+
+
 
 - (void)displayLogin
 {
@@ -72,6 +76,14 @@
         [tableView registerNib:[RecordCell nib] forCellReuseIdentifier:[RecordCell identifier]];
     }
     RecordCell *cell = [tableView dequeueReusableCellWithIdentifier:[RecordCell identifier]];
+    
+    NSDictionary *dic = self.dataList[indexPath.row];
+    NSDictionary *userInfo = dic[@"user_info"];
+    [cell.userHeader setImageWithURL:[NSURL URLWithString:userInfo[@"avatar_original"]]];
+    [cell.userName setText:userInfo[@"uname"]];
+    cell.time.text = [dic[@"time"] apiDate];
+    cell.content.text = dic[@"desc"];
+    
     return cell;
 }
 
@@ -81,7 +93,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataList.count == 0 ? 3 : self.dataList.count;
+    return self.dataList.count;
 }
 
 
@@ -130,6 +142,7 @@
         [self.headerView endRefreshing];
         if ([responseObject isOK]) {
             self.dataList = responseObject[@"data"];
+            [self.tableView reloadData];
         } else {
             [[responseObject error] showAlert];
         }
@@ -141,6 +154,83 @@
 
 - (void)refreshFooter
 {
+}
+
+
+- (void)refreshData
+{
+    if (selectIndex == 0) {
+        //我的足迹
+        [self requestMyFoot];
+    } else if (selectIndex == 1) {
+        //我关注的
+        [self requestMyAttention];
+    } else if (selectIndex == 2) {
+        //我收藏的
+        [self requestMyConnect];
+    } else {
+        //我的路况
+        [self requestMyRoad];
+    }
+}
+
+- (void)requestMyFoot
+{
+    [SVProgressHUD show];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Foot act:Mod_Foot_get_myfoot Paras:nil] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
+        if ([responseObject isOK]) {
+            self.dataList = responseObject[@"data"];
+            [self.tableView reloadData];
+        } else {
+            [[responseObject error] showAlert];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
+        [error showAlert];
+    }];
+}
+
+- (void)requestMyAttention
+{
+    [SVProgressHUD show];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Foot act:Mod_Foot_my_attention Paras:nil] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
+        if ([responseObject isOK]) {
+            self.dataList = responseObject[@"data"];
+            [self.tableView reloadData];
+        } else {
+            [[responseObject error] showAlert];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
+        [error showAlert];
+    }];
+}
+
+- (void)requestMyConnect
+{
+    [SVProgressHUD show];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Foot act:Mod_Foot_foot_collect Paras:nil] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
+        if ([responseObject isOK]) {
+            self.dataList = responseObject[@"data"];
+            [self.tableView reloadData];
+        } else {
+            [[responseObject error] showAlert];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
+        [error showAlert];
+    }];
+}
+
+- (void)requestMyRoad
+{
+    NSLog(@"%s -> ", __FUNCTION__);
 }
 
 
