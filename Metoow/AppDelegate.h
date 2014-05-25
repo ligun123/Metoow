@@ -10,11 +10,15 @@
 #import "HWTabBar.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, HWTabBarProtocol>
+{
+    BMKMapManager *mapManager;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UINavigationController *rootViewController;
 @property (strong, nonatomic) UIStoryboard *mainStoryBoard;
 @property (readonly, nonatomic) HWTabBar *tabBar;
+@property BOOL hasLogin;
 
 - (id)awakeViewController:(NSString *)identifier;
 

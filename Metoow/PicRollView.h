@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define PICROLLVIEW_HEIGHT 60.f
+#define PICROLLVIEW_HEIGHT 80.f
 #define PICROLLVIEW_WIDTH 80.f
 
 @interface PicRollView : UIScrollView

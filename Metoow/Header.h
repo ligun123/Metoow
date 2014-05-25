@@ -27,5 +27,19 @@
 
 #define kAreaLevel @"kAreaLevel"                //各级地区key值：kAreaLevel0,kAreaLevel1,kAreaLevel2
 
+//发布足迹页面同时作为回复足迹、转发足迹的页面
+typedef enum {
+    FootPubEditCategaryPublish,
+    FootPubEditCategaryReply,
+    FootPubEditCategaryTransmit,
+    FootPubEditCategaryWeather                  //发布路况
+} FootPubEditCategary;
+
+
+//足迹正文页面同时也展示路况正文，路况不回复收藏转发
+typedef enum {
+    FootDetailCategaryFoot,
+    FootDetailCategaryRoad
+} FootDetailCategary;
 
 #endif

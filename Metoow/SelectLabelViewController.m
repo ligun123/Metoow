@@ -7,7 +7,7 @@
 //
 
 #import "SelectLabelViewController.h"
-
+#import "FootViewController.h"
 
 @interface SelectLabelViewController ()
 
@@ -95,7 +95,11 @@
             [manager GET:[APIHelper url] parameters:[APIHelper packageMod:@"Login" act:@"login" Paras:@{@"uname": self.userRegister[@"uid"], @"upwd" : self.password}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 [SVProgressHUD dismiss];
                 if ([responseObject isOK]) {
-                    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+                    for (id foot in self.navigationController.viewControllers) {
+                        if ([foot isKindOfClass:[FootViewController class]]) {
+                            [self.navigationController popToViewController:foot animated:YES];
+                        }
+                    }
                 } else {
                     [[responseObject error] showAlert];
                 }

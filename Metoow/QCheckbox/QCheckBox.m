@@ -34,8 +34,8 @@
 - (void)initView
 {
     self.exclusiveTouch = YES;
-    [self setImage:[UIImage imageNamed:@"login_checkDisel_btn"] forState:UIControlStateNormal];
-    [self setImage:[UIImage imageNamed:@"login_checkSel_btn"] forState:UIControlStateSelected];
+//    [self setImage:[UIImage imageNamed:@"login_checkDisel_btn"] forState:UIControlStateNormal];
+//    [self setImage:[UIImage imageNamed:@"login_checkSel_btn"] forState:UIControlStateSelected];
     [self addTarget:self action:@selector(checkboxBtnChecked) forControlEvents:UIControlEventTouchUpInside];
 }
 

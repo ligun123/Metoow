@@ -22,7 +22,9 @@
 - (void)awakeFromNib
 {
     // Initialization code
+    [super awakeFromNib];
 }
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
@@ -30,11 +32,46 @@
     // Configure the view for the selected state
 }
 
-+ (CGFloat)height
+- (CGFloat)realHeight
 {
-    return 130.f;
+    return 0.f;
 }
 
++ (CGFloat)height
+{
+    return 140.f;
+}
+
+- (IBAction)btnConnectTap:(RecordActionButton *)sender
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(recordCell:tapedBtn:)]) {
+        [_delegate recordCell:self tapedBtn:self.btnConnect];
+    }
+}
+
+
+- (IBAction)btnTransmitTap:(RecordActionButton *)sender
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(recordCell:tapedBtn:)]) {
+        [_delegate recordCell:self tapedBtn:self.btnTransmit];
+    }
+}
+
+
+- (IBAction)btnReplyTap:(RecordActionButton *)sender
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(recordCell:tapedBtn:)]) {
+        [_delegate recordCell:self tapedBtn:self.btnReply];
+    }
+}
+
+
+- (void)setHelpStyle
+{
+    self.btnConnect.hidden = YES;
+    self.btnTransmit.frame = CGRectOffset(self.btnTransmit.frame, -30, 0);
+    self.btnReply.frame = CGRectOffset(self.btnReply.frame, -30, 0);
+}
 
 
 @end

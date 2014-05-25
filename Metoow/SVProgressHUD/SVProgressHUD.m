@@ -122,7 +122,7 @@ static const CGFloat SVProgressHUDParallaxDepthPoints = 10;
 #pragma mark - Show Methods
 
 + (void)show {
-    [[self sharedView] showProgress:-1 status:nil maskType:SVProgressHUDMaskTypeNone];
+    [[self sharedView] showProgress:-1 status:nil maskType:SVProgressHUDMaskTypeGradient];
 }
 
 + (void)showWithStatus:(NSString *)status {
@@ -209,7 +209,6 @@ static const CGFloat SVProgressHUDParallaxDepthPoints = 10;
             SVProgressHUDFont = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
             SVProgressHUDSuccessImage = [[UIImage imageNamed:@"SVProgressHUD.bundle/success"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             SVProgressHUDErrorImage = [[UIImage imageNamed:@"SVProgressHUD.bundle/error"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-
         }
         SVProgressHUDRingThickness = 4;
     }

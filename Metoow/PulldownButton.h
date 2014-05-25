@@ -8,12 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^PulldownCallback)(NSInteger sltIndex);
+@class PulldownButton;
+
+typedef void(^PulldownCallback)(PulldownButton *btn, NSInteger sltIndex);
 
 @interface PulldownButton : UIButton <UITableViewDataSource, UITableViewDelegate>
 {
     UITableView *pullListView;
     BOOL isSelect;
+    UIFont *labelFont;
 }
 
 @property (strong, nonatomic) NSArray *pullList;

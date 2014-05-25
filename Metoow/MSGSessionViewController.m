@@ -36,6 +36,7 @@
     self.tableView.allowsSelection = NO;
     self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"chat_bg_default.jpg"]];
     self.inputView.delegate = self;
+    [self.inputView setSendStyle];
     if (self.frdName) {
         self.titleLabel.text = self.frdName;
     }

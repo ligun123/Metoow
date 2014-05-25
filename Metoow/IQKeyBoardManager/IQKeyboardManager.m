@@ -208,7 +208,7 @@
             [tapGesture setDelegate:self];
             
             //  Default settings
-			[self setKeyboardDistanceFromTextField:10.0];
+			[self setKeyboardDistanceFromTextField:5.f];
             animationDuration = 0.25;
             
             _enable = NO;

@@ -38,7 +38,7 @@
     // Do any additional setup after loading the view.
     [self.pulldownBtn setTitles:@[@"伙伴", @"足迹", @"路况", @"互助"]];
     currentCategary = NearCategaryPerson;
-    [self.pulldownBtn setCallbackBlock:^(NSInteger sltIndex) {
+    [self.pulldownBtn setCallbackBlock:^(PulldownButton *btn, NSInteger sltIndex) {
         currentCategary = (NearCategaryEnum)sltIndex;
         [self requestCategary:currentCategary];
         NSLog(@"%s -> %d", __FUNCTION__, currentCategary);

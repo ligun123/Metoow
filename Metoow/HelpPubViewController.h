@@ -7,7 +7,27 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSGInputView.h"
 
-@interface HelpPubViewController : UIViewController
+
+@interface HelpPubViewController : UIViewController <BMKSearchDelegate, BMKUserLocationDelegate, UITextViewDelegate>
+{
+    BMKSearch *baiduSearch;
+    BMKUserLocation *userLocation;
+}
+
+@property (strong, nonatomic) MSGInputView *myAccessaryView;
+@property (weak, nonatomic) IBOutlet UIScrollView *contentView;
+@property (strong, nonatomic) BMKAddrInfo *addrInfo;
+@property (weak, nonatomic) IBOutlet UIButton *btnTimeSet;
+
+@property (copy, nonatomic) NSString *type;
+
+- (void)done;           //子类重写
+
+- (IBAction)btnSignleCheckTap:(QCheckBox *)sender;       //单选框选择
+
+- (IBAction)btnTimeTap:(id)sender;
+
 
 @end

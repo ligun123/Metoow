@@ -25,6 +25,8 @@
 
 - (id)initWithDelegate:(id)delegate;
 
+- (void)initView;
+
 @end
 
 @protocol QCheckBoxDelegate <NSObject>

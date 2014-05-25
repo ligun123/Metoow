@@ -15,8 +15,21 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        _hasImages = YES;
     }
     return self;
+}
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    _hasImages = YES;
+}
+
+- (void)setHasImage:(BOOL)hasImages
+{
+    self.hasImages = hasImages;
+    self.picScroll.hidden = !hasImages;
 }
 
 /*
@@ -27,5 +40,10 @@
     // Drawing code
 }
 */
+
++ (CGFloat)height
+{
+    return 180.f;
+}
 
 @end

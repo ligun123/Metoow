@@ -7,10 +7,24 @@
 //  发布足迹
 
 #import <UIKit/UIKit.h>
+#import "MSGInputView.h"
+#import "LoginCheckBox.h"
 
-@interface FootPubViewController : UIViewController <UITextViewDelegate>
+@interface FootPubViewController : UIViewController <UITextViewDelegate, InputViewProtocol, BMKSearchDelegate>
 {
-    BOOL isFirstEditing;        //当textView第一次进入编辑状态时清空其内容
+    BMKSearch *baiduSearch;
+    BMKUserLocation *userLocation;
 }
+
+@property (weak, nonatomic) IBOutlet MSGInputView *inputBar;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UILabel *addrLabel;
+@property (weak, nonatomic) IBOutlet LoginCheckBox *isPublic;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (copy, nonatomic) NSString *addrString;
+
+@property (strong, nonatomic) NSDictionary *dataDic;        //当转发和回复时需要此字典
+
+@property FootPubEditCategary editCategary;
 
 @end

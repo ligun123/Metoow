@@ -67,7 +67,9 @@
 
 - (void)initFirst
 {
-    [self setImage:[UIImage imageNamed:@"pb_pulldown_btn"] forState:UIControlStateNormal];
+    labelFont = [UIFont boldSystemFontOfSize:18.f];
+    [self.titleLabel setFont:labelFont];
+    [self setImage:[UIImage imageNamed:@"pb_downlist_btn"] forState:UIControlStateNormal];
     [self addTarget:self action:@selector(meTap) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -130,7 +132,7 @@
     [self dismisDownList];
     [self setTitle:self.pullList[indexPath.row] forState:UIControlStateNormal];
     if (self.callbackBlock) {
-        self.callbackBlock(indexPath.row);
+        self.callbackBlock(self, indexPath.row);
     }
 }
 

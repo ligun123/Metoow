@@ -10,6 +10,8 @@
 #import "IQKeyboardManager.h"
 #import "PersonalViewController.h"
 
+#define BaiduMapAppKey @"A5OMm1Qm4w1XIR6vfN0887BX"
+
 @implementation AppDelegate
 
 + (void)initialize
@@ -38,13 +40,29 @@
     [[IQKeyboardManager sharedManager] setEnable:YES];
 //    [[IQKeyboardManager sharedManager] setKeyboardDistanceFromTextField:15];
     [[IQKeyboardManager sharedManager] setShouldResignOnTouchOutside:YES];
+    
+    mapManager = [[BMKMapManager alloc]init];
+    // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
+    BOOL ret = [mapManager start:BaiduMapAppKey  generalDelegate:nil];
+    if (!ret) {
+        NSLog(@"manager start failed!");
+    }
+    
     [self.window makeKeyAndVisible];
     [self customTabbar];
     [self hwtabbar:self.tabBar selectIndex:0];
-    
-    
-    
+    if (!self.hasLogin) {
+        [self displayLogin];
+    }
     return YES;
+}
+
+- (void)displayLogin
+{
+    UIViewController *login = [AppDelegateInterface awakeViewController:@"LoginViewController"];
+    UINavigationController *navLogin = [[UINavigationController alloc] initWithRootViewController:login];
+    navLogin.navigationBarHidden = YES;
+    [self.rootViewController pushViewController:login animated:NO];
 }
 
 - (void)customTabbar
@@ -57,29 +75,6 @@
     _tabBar = [HWTabBar tabBarWithItems:@[item1,item2, item3, item4, item5]];
     self.tabBar.delegate = self;
     [self.window addSubview:self.tabBar];
-    /*
-    UITabBar *bar = self.tabBarController.tabBar;
-    NSArray *items = [bar items];
-    UITabBarItem *item0 = items[0];
-    [item0 setTitle:@"足迹"];
-    [item0 setImage:[UIImage imageNamed:@"zj"]];
-    
-    UITabBarItem *item1 = items[1];
-    [item1 setTitle:@"互助"];
-    [item1 setImage:[UIImage imageNamed:@"hz"]];
-    
-    UITabBarItem *item2 = items[2];
-    [item2 setTitle:@"消息"];
-    [item2 setImage:[UIImage imageNamed:@"xx"]];
-    
-    UITabBarItem *item3 = items[3];
-    [item3 setTitle:@"附近"];
-    [item3 setImage:[UIImage imageNamed:@"fj"]];
-    
-    UITabBarItem *item4 = items[4];
-    [item4 setTitle:@"更多"];
-    [item4 setImage:[UIImage imageNamed:@"gd"]];
-     */
 }
 
 - (void)hwtabbar:(HWTabBar *)tabbar selectIndex:(NSUInteger)index

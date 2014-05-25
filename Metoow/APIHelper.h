@@ -22,11 +22,22 @@
 #define Mod_Login_set_tags @"set_tags"
 
 #define Mod_Foot @"Foot"
+#define Mod_Foot_del @"del"
 #define Mod_Foot_foot_list @"foot_list"                         //足迹列表
 #define Mod_Foot_add_foot @"add_foot"                           //发布足迹
 #define Mod_Foot_get_myfoot @"get_myfoot"                       //获取我的足迹
-#define Mod_Foot_foot_collect @"foot_collect"                   //我收藏的
+#define Mod_Foot_foot_collect @"foot_collect"                   //获取我收藏的足迹
 #define Mod_Foot_my_attention @"my_attention"                   //我关注的人的足迹
+#define Mod_Foot_collect @"collect"                             //收藏一条足迹
+#define Mod_Foot_no_collect @"no_collect"                       //取消收藏
+#define Mod_Foot_show @"show"                                   //查看一条足迹
+
+#define Mod_Weather @"Weather"                                  //路况
+#define Mod_Weather_weather_list @"weather_list"                //所有路况列表
+#define Mod_Weather_get_myweather @"get_myweather"              //我的路况列表
+#define Mod_Weather_show @"show"                                //查看一条详情
+#define Mod_Weather_add_weather @"add_weather"                  //添加路况
+#define Mod_Weather_del @"del"
 
 
 #define Mod_User @"User"
@@ -45,6 +56,8 @@
 #define Mod_Notifytion_get_system_notify @"get_system_notify"
 
 
+#define Mod_Huzhu @"Huzhu"
+#define Mod_Huzhu_add_hz @"add_hz"                              //添加互助
 
 @interface APIHelper : NSObject
 

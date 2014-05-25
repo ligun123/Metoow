@@ -10,6 +10,9 @@
 
 @interface HelpPubViewController ()
 
+@property (nonatomic, strong) UIDatePicker *datePicker;
+@property (nonatomic, strong) UIToolbar *toolbar;
+
 @end
 
 @implementation HelpPubViewController
@@ -27,6 +30,15 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.view.backgroundColor = COLOR_RGB(244, 241, 246);
+    [self fatchMapLocation];
+    self.contentView.contentSize = CGSizeMake(320, 500);
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [AppDelegateInterface setTabBarHidden:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,13 +58,136 @@
 }
 */
 
+- (MSGInputView *)myAccessaryView
+{
+    if (_myAccessaryView == nil) {
+        _myAccessaryView = [[MSGInputView alloc] initWithFrame:CGRectMake(0, 1000, 320, 44)];
+        [_myAccessaryView setJustEmojiStyle];
+    }
+    return _myAccessaryView;
+}
+
 - (IBAction)btnBackTap:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 
 - (IBAction)btnDoneTap:(id)sender {
+    [self done];
+}
+
+
+
+
+- (void)done
+{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)btnMultiCheckTap:(QCheckBox *)sender        //复选框选择
+{
+}
+
+
+- (IBAction)btnSignleCheckTap:(QCheckBox *)sender       //单选框选择
+{
+    for (QCheckBox *box in [[sender superview] subviews]) {
+        if (box != sender) {
+            [box setChecked:NO];
+        }
+    }
+}
+
+
+- (IBAction)btnTimeTap:(id)sender
+{
+    //add picker
+    UIDatePicker *picker = [self datePicker];
+    [self.view addSubview:picker];
+    //添加ToolBar
+    UIView *toolbar = [self toolbar];
+    [self.view addSubview:toolbar];
+}
+
+- (UIDatePicker *)datePicker
+{
+    if (_datePicker == nil) {
+        _datePicker = [[UIDatePicker alloc] init];
+        [_datePicker setTimeZone:[NSTimeZone systemTimeZone]];
+        _datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+        _datePicker.frame = CGRectOffset(_datePicker.frame, 0, self.view.frame.size.height - _datePicker.frame.size.height);
+    }
+    return _datePicker;
+}
+
+- (UIToolbar *)toolbar
+{
+    if (_toolbar == nil) {
+        _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 36)];
+        UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+        UIBarButtonItem *pickerDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(btnPickerDoneTap:)];
+        [_toolbar setItems:@[space, pickerDone]];
+        _toolbar.frame = CGRectOffset(_toolbar.frame, 0, self.view.frame.size.height - self.datePicker.frame.size.height - _toolbar.frame.size.height);
+    }
+    return _toolbar;
+}
+
+
+- (void)btnPickerDoneTap:(UIBarButtonItem *)item
+{
+    NSDate *date = [self.datePicker date];
+    if ([date compare:[NSDate date]] == NSOrderedAscending) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"警告" message:@"请选择一个将来的时间" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        return ;
+    }
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    [fmt setDateFormat:@"yyyy-MM-dd HH:mm"];
+    NSString *title = [fmt stringFromDate:date];
+    [self.btnTimeSet setTitle:title forState:UIControlStateNormal];
+    [self.datePicker removeFromSuperview];
+    [self.toolbar removeFromSuperview];
+}
+
+#pragma mark - Baidu Map
+
+-(void)fatchMapLocation
+{
+    if (baiduSearch == nil)
+    {
+        userLocation = [[BMKUserLocation alloc] init];
+        userLocation.delegate = self;
+        [userLocation startUserLocationService];
+        baiduSearch = [[BMKSearch alloc] init];
+        baiduSearch.delegate = self;
+    }
+}
+
+
+/**
+ *返回地址信息搜索结果
+ *@param searcher 搜索对象
+ *@param result 搜索结果
+ *@param error 错误号，@see BMKErrorCode
+ */
+- (void)onGetAddrResult:(BMKSearch*)searcher result:(BMKAddrInfo*)result errorCode:(int)error
+{
+    self.addrInfo = result;
+}
+
+- (void)viewDidGetLocatingUser:(CLLocationCoordinate2D)userLoc
+{
+    [baiduSearch reverseGeocode:userLoc];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    char c = [text UTF8String][0];
+    if (c == '\t' || c == '\n') {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
 }
 
 @end

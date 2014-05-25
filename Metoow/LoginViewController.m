@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "FootViewController.h"
 
 @interface LoginViewController ()
 
@@ -105,7 +106,12 @@
             [manager GET:[APIHelper url] parameters:[APIHelper packageMod:@"Login" act:@"login" Paras:@{@"uname": self.userIDText.text, @"upwd" : self.pswdText.text}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 [SVProgressHUD dismiss];
                 if ([responseObject isOK]) {
-                    [self dismissModalViewControllerAnimated:YES];
+                    [AppDelegateInterface setHasLogin:YES];
+                    for (id foot in self.navigationController.viewControllers) {
+                        if ([foot isKindOfClass:[FootViewController class]]) {
+                            [self.navigationController popToViewController:foot animated:YES];
+                        }
+                    }
                 } else {
                     [[responseObject error] showAlert];
                 }

@@ -38,6 +38,7 @@
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
             self.areaDic = responseObject[@"data"];
+            [[NSUserDefaults standardUserDefaults] setObject:self.areaDic forKey:Mod_Login_getArea];
         } else {
             [[responseObject error] showAlert];
         }

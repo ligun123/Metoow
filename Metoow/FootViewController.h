@@ -11,10 +11,11 @@
 #import "PulldownButton.h"
 #import "MJRefresh.h"
 
-@interface FootViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MJRefreshBaseViewDelegate>
+@interface FootViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MJRefreshBaseViewDelegate, RecordCellProtocol, UIActionSheetDelegate, UITextFieldDelegate>
 {
     BOOL isCellRegesterd;
     int selectIndex;
+    BOOL isSearching;
 }
 
 @property (weak, nonatomic) IBOutlet PulldownButton *pullDownBtn;
@@ -23,5 +24,12 @@
 @property (strong, nonatomic) MJRefreshHeaderView *headerView;
 @property (strong, nonatomic) MJRefreshFooterView *footerView;
 
+@property (weak, nonatomic) IBOutlet UITextField *searchText;
+
 @property (strong, nonatomic) NSMutableArray *dataList;     //table数据源
+
+@property (strong, nonatomic) NSMutableArray *searchList;
+
+- (IBAction)btnPublishTap:(id)sender;
+
 @end
