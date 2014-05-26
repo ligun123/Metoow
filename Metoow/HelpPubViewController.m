@@ -101,6 +101,7 @@
 
 - (IBAction)btnTimeTap:(id)sender
 {
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
     //add picker
     UIDatePicker *picker = [self datePicker];
     [self.view addSubview:picker];

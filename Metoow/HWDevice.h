@@ -49,4 +49,6 @@
 
 - (NSString *)apiDate;
 
+- (NSString *)apiDateCn;
+
 @end

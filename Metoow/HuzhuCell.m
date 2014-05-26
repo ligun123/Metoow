@@ -28,4 +28,9 @@
 }
 */
 
++ (CGFloat)height
+{
+    return 150.f;
+}
+
 @end

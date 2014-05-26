@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "PulldownButton.h"
-#import "RecordCell.h"
+#import "HuzhuCell.h"
 
 
 @interface HelpViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 {
     BOOL hasRegister;
+    int selectIndex;
 }
 
 @property (weak, nonatomic) IBOutlet PulldownButton *pulldownBtn;
@@ -24,6 +25,6 @@
 
 - (IBAction)btnPublishTap:(id)sender;
 
-
+- (void)refresh;
 
 @end

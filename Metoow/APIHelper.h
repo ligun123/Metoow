@@ -58,6 +58,9 @@
 
 #define Mod_Huzhu @"Huzhu"
 #define Mod_Huzhu_add_hz @"add_hz"                              //添加互助
+#define Mod_Huzhu_get_hzlist @"get_hzlist"
+
+
 
 @interface APIHelper : NSObject
 

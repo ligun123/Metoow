@@ -10,4 +10,6 @@
 
 @interface NSDictionary (Huzhu)
 
+- (NSString *)huzhuTitle;
+
 @end

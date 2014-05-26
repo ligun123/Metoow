@@ -79,4 +79,12 @@
     return [fmt stringFromDate:date];
 }
 
+- (NSString *)apiDateCn
+{
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self integerValue]];
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    [fmt setDateFormat:@"yyyy年MM月dd号 HH点mm分"];
+    return [fmt stringFromDate:date];
+}
+
 @end

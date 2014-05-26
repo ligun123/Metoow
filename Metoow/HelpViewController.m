@@ -11,6 +11,8 @@
 #import "HPjbViewController.h"
 #import "HPpcViewController.h"
 #import "HPsfkViewController.h"
+#import "NSDictionary+Huzhu.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface HelpViewController ()
 
@@ -32,9 +34,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.pulldownBtn setTitles:@[@"全部互助", @"结伴", @"顺风车", @"拼车", @"沙发客",  @"SOS"]];
+    selectIndex = 0;
     [self.pulldownBtn setCallbackBlock:^(PulldownButton *btn, NSInteger sltIndex) {
-        NSLog(@"%s -> %d", __FUNCTION__, sltIndex);
+        selectIndex = sltIndex;
+        [self refresh];
     }];
+    [self refresh];
 }
 
 - (void)didReceiveMemoryWarning
@@ -61,15 +66,57 @@
 */
 
 
+#pragma mark - Actions
+
+- (void)refresh
+{
+    if (selectIndex == 5) {
+        //SOS
+    } else {
+        [SVProgressHUD show];
+        NSDictionary *dic = nil;
+        if (selectIndex != 0) {
+            dic = @{@"type": [NSNumber numberWithInt:selectIndex]};
+        }
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Huzhu act:Mod_Huzhu_get_hzlist Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [SVProgressHUD dismiss];
+            if ([responseObject isOK]) {
+                self.dataList = [NSMutableArray arrayWithArray:responseObject[@"data"]];
+                [self.tableview reloadData];
+            } else {
+                [[responseObject error] showAlert];
+            }
+            NSLog(@"%s -> %@", __FUNCTION__, operation.responseString);
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [SVProgressHUD dismiss];
+            [error showAlert];
+        }];
+    }
+}
+
+
 #pragma mark - UITableView Delegate & Datasource
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (!hasRegister) {
         hasRegister = YES;
-        [tableView registerNib:[RecordCell nib] forCellReuseIdentifier:[RecordCell identifier]];
+        [tableView registerNib:[HuzhuCell nib] forCellReuseIdentifier:[HuzhuCell identifier]];
     }
-    RecordCell *cell = [tableView dequeueReusableCellWithIdentifier:[RecordCell identifier]];
+    HuzhuCell *cell = [tableView dequeueReusableCellWithIdentifier:[HuzhuCell identifier]];
+    
+    NSDictionary *dic = self.dataList[indexPath.row];
+    
+    [cell.title setText:[dic huzhuTitle]];
+    [cell.content showStringMessage:dic[@"explain"]];
+    cell.time.text= [dic[@"ctime"] apiDate];
+    [cell.btnTransmit setTitle:dic[@"attentionCount"] forState:UIControlStateNormal];
+    [cell.btnReply setTitle:dic[@"commentCount"] forState:UIControlStateNormal];
+    NSDictionary *userInfo = dic[@"user_info"];
+    [cell.userHeader setImageWithURL:[NSURL URLWithString:userInfo[@"avatar_original"]]];
+    cell.userName.text = userInfo[@"uname"];
+    
     return cell;
 }
 
@@ -90,7 +137,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [RecordCell height];
+    return [HuzhuCell height];
 }
 
 

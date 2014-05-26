@@ -106,6 +106,9 @@
 		025946AE191FC07B00114BF4 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 025946AD191FC07B00114BF4 /* ImageIO.framework */; };
 		025B50C2192B870900657405 /* pb_bottomBar_bkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 025B50C0192B870900657405 /* pb_bottomBar_bkg@2x.png */; };
 		025B50C3192B870900657405 /* pb_bottomBar_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 025B50C1192B870900657405 /* pb_bottomBar_btn@2x.png */; };
+		0260B2E219338248000F9846 /* NSDictionary+Huzhu.m in Sources */ = {isa = PBXBuildFile; fileRef = 0260B2E119338248000F9846 /* NSDictionary+Huzhu.m */; };
+		0260B2E51933878D000F9846 /* HuzhuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0260B2E41933878D000F9846 /* HuzhuCell.m */; };
+		0260B2E71933879B000F9846 /* HuzhuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0260B2E61933879B000F9846 /* HuzhuCell.xib */; };
 		0265C123190016F100DE2441 /* HWSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 0265C122190016F100DE2441 /* HWSegment.m */; };
 		026708351903BCD8003D43F9 /* sex1.png in Resources */ = {isa = PBXBuildFile; fileRef = 026708331903BCD8003D43F9 /* sex1.png */; };
 		026708361903BCD8003D43F9 /* sex0.png in Resources */ = {isa = PBXBuildFile; fileRef = 026708341903BCD8003D43F9 /* sex0.png */; };
@@ -368,6 +371,11 @@
 		025946AD191FC07B00114BF4 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		025B50C0192B870900657405 /* pb_bottomBar_bkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pb_bottomBar_bkg@2x.png"; sourceTree = "<group>"; };
 		025B50C1192B870900657405 /* pb_bottomBar_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pb_bottomBar_btn@2x.png"; sourceTree = "<group>"; };
+		0260B2E019338248000F9846 /* NSDictionary+Huzhu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Huzhu.h"; sourceTree = "<group>"; };
+		0260B2E119338248000F9846 /* NSDictionary+Huzhu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Huzhu.m"; sourceTree = "<group>"; };
+		0260B2E31933878D000F9846 /* HuzhuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuzhuCell.h; sourceTree = "<group>"; };
+		0260B2E41933878D000F9846 /* HuzhuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuzhuCell.m; sourceTree = "<group>"; };
+		0260B2E61933879B000F9846 /* HuzhuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HuzhuCell.xib; sourceTree = "<group>"; };
 		0265C121190016F100DE2441 /* HWSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWSegment.h; sourceTree = "<group>"; };
 		0265C122190016F100DE2441 /* HWSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWSegment.m; sourceTree = "<group>"; };
 		026708331903BCD8003D43F9 /* sex1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sex1.png; sourceTree = "<group>"; };
@@ -931,6 +939,9 @@
 				026708451903FE7E003D43F9 /* RecordCell.h */,
 				026708461903FE7E003D43F9 /* RecordCell.m */,
 				0267084B1904003F003D43F9 /* RecordCell.xib */,
+				0260B2E31933878D000F9846 /* HuzhuCell.h */,
+				0260B2E41933878D000F9846 /* HuzhuCell.m */,
+				0260B2E61933879B000F9846 /* HuzhuCell.xib */,
 				02F63E22192CE0A6003DC423 /* DetailCell.h */,
 				02F63E23192CE0A6003DC423 /* DetailCell.m */,
 				02F63E25192CE0E0003DC423 /* DetailCell.xib */,
@@ -1205,6 +1216,8 @@
 				022AE076192E5162000ECBCE /* HPsfkViewController.h */,
 				022AE077192E5162000ECBCE /* HPsfkViewController.m */,
 				022AE078192E5162000ECBCE /* HPsfkViewController.xib */,
+				0260B2E019338248000F9846 /* NSDictionary+Huzhu.h */,
+				0260B2E119338248000F9846 /* NSDictionary+Huzhu.m */,
 			);
 			name = "互助";
 			sourceTree = "<group>";
@@ -1391,6 +1404,7 @@
 				025945B7191F8B9300114BF4 /* active_page_image@2x.png in Resources */,
 				025B50C3192B870900657405 /* pb_bottomBar_btn@2x.png in Resources */,
 				02F2E05A190288C4002902DD /* test_header_bkg@2x.png in Resources */,
+				0260B2E71933879B000F9846 /* HuzhuCell.xib in Resources */,
 				02CB41D518F6E8210030289C /* login_login_btn@2x.png in Resources */,
 				022AE070192E504C000ECBCE /* HPjbViewController.xib in Resources */,
 				02F4DB4A19270EF0004EFFBC /* mapapi.bundle in Resources */,
@@ -1533,6 +1547,7 @@
 				02042285192CE4330030385D /* PicRollView.m in Sources */,
 				02D3146919000E0B005CADB1 /* SVSegmentedThumb.m in Sources */,
 				0250CD82191BA9EF00E2E051 /* TQRichTextRun.m in Sources */,
+				0260B2E51933878D000F9846 /* HuzhuCell.m in Sources */,
 				0267084A1903FEAC003D43F9 /* HWCell.m in Sources */,
 				02500E501917BCC1000B7212 /* FLViewController.m in Sources */,
 				02504602190FD57000852325 /* MJRefreshConst.m in Sources */,
@@ -1541,6 +1556,7 @@
 				02BF655D190E92A600DCF2BD /* APIHelper.m in Sources */,
 				022AE074192E5116000ECBCE /* HPpcViewController.m in Sources */,
 				02594502191F8B9300114BF4 /* GrayPageControl.m in Sources */,
+				0260B2E219338248000F9846 /* NSDictionary+Huzhu.m in Sources */,
 				02BF654B190E8A9900DCF2BD /* UIImageView+AFNetworking.m in Sources */,
 				02BF654C190E8A9900DCF2BD /* UIProgressView+AFNetworking.m in Sources */,
 				02F4A29418FA4463006EDB25 /* IQKeyboardManager.m in Sources */,

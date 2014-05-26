@@ -7,7 +7,19 @@
 //
 
 #import "HWCell.h"
+#import "RecordActionButton.h"
+#import "RichLabelView.h"
+
 
 @interface HuzhuCell : HWCell
+
+@property (weak, nonatomic) IBOutlet UIImageView *userHeader;
+@property (weak, nonatomic) IBOutlet UILabel *userName;
+@property (weak, nonatomic) IBOutlet UILabel *time;
+@property (weak, nonatomic) IBOutlet UILabel *title;
+@property (weak, nonatomic) IBOutlet RichLabelView *content;
+@property (weak, nonatomic) IBOutlet RecordActionButton *btnTransmit;       //转发
+@property (weak, nonatomic) IBOutlet RecordActionButton *btnReply;          //回复
+
 
 @end

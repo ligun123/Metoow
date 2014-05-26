@@ -44,8 +44,7 @@
     NSString *parent_id = @"1";
     NSString *address = self.placeTo.text;
     NSString *method = [self tripMethods];
-//    NSString *Aggregation_date = [self.btnTimeSet titleForState:UIControlStateNormal];
-    NSString *Aggregation_date = @"2014-06-02 19:32:44";
+    NSString *Aggregation_date = [self.btnTimeSet titleForState:UIControlStateNormal];
     NSString *uid = [[NSUserDefaults standardUserDefaults] objectForKey:@"uid"];
     NSString *explain = self.detailText.text;
     NSString *lng = [NSString stringWithFormat:@"%f", self.addrInfo.geoPt.longitude];
@@ -54,7 +53,7 @@
     if (pos == nil) {
         pos = @"我在这个位置";
     }
-    NSDictionary *para = @{@"typeid" : self.type, @"title": title, @"parent_id" : parent_id, @"mudi_address" : address, @"fangshi" : method, @"Aggregation_date" : Aggregation_date, @"uid" : uid, @"explain" : explain, @"lng" : lng, @"lat" : lat, @"pos" : pos};
+    NSDictionary *para = @{@"typeid" : self.type, @"title": title, @"parent_id" : parent_id, @"mudi_address" : address, @"fangshi" : method, @"Aggregation_date" : Aggregation_date, @"uid" : uid, @"explain" : explain, @"lng" : lng, @"lat" : lat, @"pos" : pos, @"planning_cycle"  : @"0", @"costExplains" : @"0"};
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Huzhu act:Mod_Huzhu_add_hz Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {

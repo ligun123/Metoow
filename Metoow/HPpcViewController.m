@@ -45,8 +45,7 @@
     NSString *address = self.placeTo.text;
     NSString *method = [self tripMethods];
     NSString *planning_cycle = self.timeCost.text;
-//    NSString *Aggregation_date = [self.btnTimeSet titleForState:UIControlStateNormal];
-    NSString *Aggregation_date = @"2014-06-02 19:32:44";
+    NSString *Aggregation_date = [self.btnTimeSet titleForState:UIControlStateNormal];
     NSString *costExplains = self.moneyCost.text;
     NSString *uid = [[NSUserDefaults standardUserDefaults] objectForKey:@"uid"];
     NSString *explain = self.detailText.text;
