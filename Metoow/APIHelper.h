@@ -59,6 +59,10 @@
 #define Mod_Huzhu @"Huzhu"
 #define Mod_Huzhu_add_hz @"add_hz"                              //添加互助
 #define Mod_Huzhu_get_hzlist @"get_hzlist"
+#define Mod_Huzhu_get_one_hz @"get_one_hz"                      //获取一条互助
+#define Mod_System @"System"
+#define Mod_System_comment @"comment"                           //回复互助
+#define Mod_System_share @"share"                               //转发互助
 
 
 

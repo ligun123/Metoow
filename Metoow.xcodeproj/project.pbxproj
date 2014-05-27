@@ -22,6 +22,7 @@
 		022DDA001906B24B00C6003C /* pb_trans_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 022DD9FC1906B24B00C6003C /* pb_trans_btn@2x.png */; };
 		022DDA031906B3E100C6003C /* RecordActionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 022DDA021906B3E100C6003C /* RecordActionButton.m */; };
 		0233F51118F3ACB5004B1ED1 /* pb_mainColor_bkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0233F51018F3ACB5004B1ED1 /* pb_mainColor_bkg@2x.png */; };
+		02466A181934C12000DBCBB2 /* getarea in Resources */ = {isa = PBXBuildFile; fileRef = 02466A171934C12000DBCBB2 /* getarea */; };
 		024724E6190547B000CA00E4 /* PulldownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 024724E5190547B000CA00E4 /* PulldownButton.m */; };
 		024724E81905487A00CA00E4 /* pb_pulldown_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 024724E71905487A00CA00E4 /* pb_pulldown_btn@2x.png */; };
 		024CB39718F3B03200434AFA /* fj@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 024CB39218F3B03200434AFA /* fj@2x.png */; };
@@ -263,6 +264,7 @@
 		022DDA011906B3E100C6003C /* RecordActionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordActionButton.h; sourceTree = "<group>"; };
 		022DDA021906B3E100C6003C /* RecordActionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordActionButton.m; sourceTree = "<group>"; };
 		0233F51018F3ACB5004B1ED1 /* pb_mainColor_bkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pb_mainColor_bkg@2x.png"; sourceTree = "<group>"; };
+		02466A171934C12000DBCBB2 /* getarea */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = getarea; sourceTree = "<group>"; };
 		024724E4190547B000CA00E4 /* PulldownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PulldownButton.h; sourceTree = "<group>"; };
 		024724E5190547B000CA00E4 /* PulldownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PulldownButton.m; sourceTree = "<group>"; };
 		024724E71905487A00CA00E4 /* pb_pulldown_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pb_pulldown_btn@2x.png"; sourceTree = "<group>"; };
@@ -1076,6 +1078,7 @@
 				02E528AB18F0EEDC00EEAE7B /* Main.storyboard */,
 				02CB41C618F6E33A0030289C /* Controller */,
 				02E528A018F0EEDC00EEAE7B /* Supporting Files */,
+				02466A171934C12000DBCBB2 /* getarea */,
 			);
 			path = Metoow;
 			sourceTree = "<group>";
@@ -1440,6 +1443,7 @@
 				02500E541917BCC1000B7212 /* chat_bg_default.jpg in Resources */,
 				02500E591917BCC1000B7212 /* chat_bottom_textfield.png in Resources */,
 				026708351903BCD8003D43F9 /* sex1.png in Resources */,
+				02466A181934C12000DBCBB2 /* getarea in Resources */,
 				02F39F1A192475D100DA8B85 /* pb_fb_btn@2x.png in Resources */,
 				028ACD6E18FECBF000D36AE0 /* login_label_bkg8@2x.png in Resources */,
 				02F4A2A018FA45AF006EDB25 /* checkbox1_unchecked.png in Resources */,

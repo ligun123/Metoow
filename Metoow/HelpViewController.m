@@ -13,6 +13,7 @@
 #import "HPsfkViewController.h"
 #import "NSDictionary+Huzhu.h"
 #import "UIImageView+AFNetworking.h"
+#import "FootPubViewController.h"
 
 @interface HelpViewController ()
 
@@ -40,6 +41,7 @@
         [self refresh];
     }];
     [self refresh];
+    self.searchList = [NSMutableArray arrayWithCapacity:10];
 }
 
 - (void)didReceiveMemoryWarning
@@ -87,7 +89,6 @@
             } else {
                 [[responseObject error] showAlert];
             }
-            NSLog(@"%s -> %@", __FUNCTION__, operation.responseString);
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             [SVProgressHUD dismiss];
             [error showAlert];
@@ -105,8 +106,9 @@
         [tableView registerNib:[HuzhuCell nib] forCellReuseIdentifier:[HuzhuCell identifier]];
     }
     HuzhuCell *cell = [tableView dequeueReusableCellWithIdentifier:[HuzhuCell identifier]];
+    cell.delegate = self;
     
-    NSDictionary *dic = self.dataList[indexPath.row];
+    NSDictionary *dic = [self huzhuAtIndex:indexPath];
     
     [cell.title setText:[dic huzhuTitle]];
     [cell.content showStringMessage:dic[@"explain"]];
@@ -126,12 +128,34 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (isSearching) {
+        return self.searchList.count;
+    }
     return self.dataList.count;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSDictionary *dic = [self huzhuAtIndex:indexPath];
+    [self requestDetailForHuzhu:dic];
+}
+
+- (void)requestDetailForHuzhu:(NSDictionary *)huzhu
+{
+    NSDictionary *para = @{@"id": huzhu[@"id"]};
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Huzhu act:Mod_Huzhu_get_one_hz Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
+        if ([responseObject isOK]) {
+            NSLog(@"%s -> %@", __FUNCTION__, operation.responseString);
+        } else {
+            [[responseObject error] showAlert];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
+        [error showAlert];
+    }];
 }
 
 
@@ -171,5 +195,86 @@
 }
 
 
+- (void)cell:(HuzhuCell *)cell tapBtn:(RecordActionButton *)btn
+{
+    NSIndexPath *indexPath = [self.tableview indexPathForCell:cell];
+    NSDictionary *dic = [self huzhuAtIndex:indexPath];
+    
+    if (btn == cell.btnTransmit) {
+        //转发
+        FootPubViewController *publ = [AppDelegateInterface awakeViewController:@"FootPubViewController"];
+        publ.editCategary = FootPubEditCategaryTransmitHuzhu;
+        publ.dataDic = dic;
+        [self.navigationController pushViewController:publ animated:YES];
+    }
+    if (btn == cell.btnReply) {
+        //回复
+        FootPubViewController *publ = [AppDelegateInterface awakeViewController:@"FootPubViewController"];
+        publ.editCategary = FootPubEditCategaryReplyHuzhu;
+        publ.dataDic = dic;
+        [self.navigationController pushViewController:publ animated:YES];
+    }
+}
+
+#pragma mark - 搜索
+
+#pragma mark - UITextField
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    isSearching = YES;
+    if ([string isEqualToString:@" "]) {
+        return NO;
+    } else {
+        /*
+         if (textField.text.length == 0) {
+         [self searchForWord:textField.text];
+         }
+         */
+        return YES;
+    }
+}
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField
+{
+    isSearching = NO;
+    [self searchForWord:@""];
+    return YES;
+}
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    isSearching = textField.text.length > 0;
+    [self searchForWord:textField.text];
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (void)searchForWord:(NSString *)word
+{
+    [self.searchList removeAllObjects];
+    if (word.length > 0) {
+        for (int i = 0; i < self.dataList.count; i ++) {
+            NSDictionary *dic = self.dataList[i];
+            NSString *content = [dic huzhuTitle];
+            NSString *uname = dic[@"user_info"][@"uname"];
+            NSString *explain = dic[@"explain"];
+            if ([content rangeOfString:word].location != NSNotFound || [uname rangeOfString:word].location != NSNotFound || [explain rangeOfString:word].location != NSNotFound) {
+                [self.searchList addObject:dic];
+            }
+        }
+    }
+    [self.tableview reloadData];
+}
+
+- (NSDictionary *)huzhuAtIndex:(NSIndexPath *)indexPath
+{
+    if (isSearching) {
+        return self.searchList[indexPath.row];
+    } else {
+        return self.dataList[indexPath.row];
+    }
+}
 
 @end

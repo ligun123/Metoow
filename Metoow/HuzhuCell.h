@@ -10,9 +10,18 @@
 #import "RecordActionButton.h"
 #import "RichLabelView.h"
 
+@class HuzhuCell;
+
+@protocol HuzhuCellProtocol <NSObject>
+
+- (void)cell:(HuzhuCell *)cell tapBtn:(RecordActionButton *)btn;
+
+@end
 
 @interface HuzhuCell : HWCell
 
+
+@property (weak, nonatomic) id<HuzhuCellProtocol> delegate;
 @property (weak, nonatomic) IBOutlet UIImageView *userHeader;
 @property (weak, nonatomic) IBOutlet UILabel *userName;
 @property (weak, nonatomic) IBOutlet UILabel *time;
@@ -21,5 +30,8 @@
 @property (weak, nonatomic) IBOutlet RecordActionButton *btnTransmit;       //转发
 @property (weak, nonatomic) IBOutlet RecordActionButton *btnReply;          //回复
 
+
+- (IBAction)btnTransmitTap:(RecordActionButton *)sender;
+- (IBAction)btnReplyTap:(RecordActionButton *)sender;
 
 @end

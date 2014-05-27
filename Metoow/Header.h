@@ -32,7 +32,9 @@ typedef enum {
     FootPubEditCategaryPublish,
     FootPubEditCategaryReply,
     FootPubEditCategaryTransmit,
-    FootPubEditCategaryWeather                  //发布路况
+    FootPubEditCategaryWeather,                  //发布路况
+    FootPubEditCategaryReplyHuzhu,               //回复互助
+    FootPubEditCategaryTransmitHuzhu             //转发互助
 } FootPubEditCategary;
 
 

@@ -60,7 +60,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     NSArray *arr = self.areaDic.allValues;
     cell.textLabel.text = arr[indexPath.row][@"title"];
-    cell.detailTextLabel.text = arr[indexPath.row][@"id"];
+//    cell.detailTextLabel.text = arr[indexPath.row][@"id"];
     return cell;
 }
 

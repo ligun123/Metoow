@@ -420,7 +420,8 @@
 
 - (void)connectFootAt:(NSIndexPath *)indexPath
 {
-    NSDictionary *dic = self.dataList[indexPath.row];
+    NSDictionary *dic = [self footAtIndex:indexPath];
+    
     if (![dic[@"is_collect"] boolValue]) {
         [SVProgressHUD show];
         NSDictionary *para = @{@"id": dic[@"id"]};
@@ -460,18 +461,18 @@
 
 - (void)transmitFootAt:(NSIndexPath *)indexPath
 {
+    NSDictionary *dic = [self footAtIndex:indexPath];
     FootPubViewController *publ = [AppDelegateInterface awakeViewController:@"FootPubViewController"];
     publ.editCategary = FootPubEditCategaryTransmit;
-    NSDictionary *dic = self.dataList[indexPath.row];
     publ.dataDic = dic;
     [self.navigationController pushViewController:publ animated:YES];
 }
 
 - (void)replyFootAt:(NSIndexPath *)indexPath
 {
+    NSDictionary *dic = [self footAtIndex:indexPath];
     FootPubViewController *publ = [AppDelegateInterface awakeViewController:@"FootPubViewController"];
     publ.editCategary = FootPubEditCategaryReply;
-    NSDictionary *dic = self.dataList[indexPath.row];
     publ.dataDic = dic;
     [self.navigationController pushViewController:publ animated:YES];
 }
@@ -568,6 +569,15 @@
         }
     }
     [self.tableView reloadData];
+}
+
+- (NSDictionary *)footAtIndex:(NSIndexPath *)indexPath
+{
+    if (isSearching) {
+        return self.searchList[indexPath.row];
+    } else {
+        return self.dataList[indexPath.row];
+    }
 }
 
 @end

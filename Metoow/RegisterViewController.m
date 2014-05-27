@@ -11,6 +11,7 @@
 #import "NSError+Alert.h"
 #import "SelectLabelViewController.h"
 #import "IQKeyboardManager.h"
+#import "JSONKit.h"
 
 @interface RegisterViewController ()
 
@@ -32,13 +33,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    NSData *areaData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"getarea" ofType:nil]];
+    if (areaData) {
+        NSDictionary *dic = [areaData objectFromJSONData];
+        self.areaDic = dic[@"data"];
+    }
+    
+    /*
     [SVProgressHUD show];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Login act:Mod_Login_getArea Paras:nil] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
             self.areaDic = responseObject[@"data"];
-            [[NSUserDefaults standardUserDefaults] setObject:self.areaDic forKey:Mod_Login_getArea];
         } else {
             [[responseObject error] showAlert];
         }
@@ -46,6 +53,7 @@
         [SVProgressHUD dismiss];
         [error showAlert];
     }];
+     */
 }
 
 - (void)didReceiveMemoryWarning

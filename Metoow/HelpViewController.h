@@ -11,13 +11,18 @@
 #import "HuzhuCell.h"
 
 
-@interface HelpViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
+@interface HelpViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UITextFieldDelegate, HuzhuCellProtocol>
 {
     BOOL hasRegister;
     int selectIndex;
+    BOOL isSearching;
 }
 
+@property (strong, nonatomic) NSMutableArray *searchList;
+
 @property (weak, nonatomic) IBOutlet PulldownButton *pulldownBtn;
+
+@property (weak, nonatomic) IBOutlet UITextField *searchText;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 

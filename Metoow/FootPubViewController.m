@@ -105,17 +105,65 @@
     if (self.editCategary == FootPubEditCategaryWeather) {
         [self publishWeather:txt];
     }
+    if (self.editCategary == FootPubEditCategaryReplyHuzhu) {
+        [self replyHuzhu:txt];
+    }
+    if (self.editCategary == FootPubEditCategaryTransmitHuzhu) {
+        [self transmitHuzhu:txt];
+    }
 }
 
+
+//回复互助
+- (void)replyHuzhu:(NSString *)txt
+{
+    [SVProgressHUD show];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *dic = @{@"row_id" : self.dataDic[@"id"], @"app_name" : @"huzhu", @"table_name" : @"huzhu", @"content" : txt};
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_System act:Mod_System_comment Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
+        if ([responseObject isOK]) {
+            for (id vc in [self.navigationController viewControllers]) {
+                if ([vc isKindOfClass:[FootDetailViewController class]]) {
+                    [vc refresh];
+                }
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+        } else {
+            [[responseObject error] showAlert];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
+        [error showAlert];
+    }];
+}
+
+//转发互助
+- (void)transmitHuzhu:(NSString *)txt
+{
+    [SVProgressHUD show];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *dic = @{@"sid" : self.dataDic[@"id"], @"type" : @"huzhu", @"app_name" : @"huzhu", @"body" : txt};
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_System act:Mod_System_share Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
+        if ([responseObject isOK]) {
+            [self.navigationController popViewControllerAnimated:YES];
+        } else {
+            [[responseObject error] showAlert];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
+        [error showAlert];
+    }];
+}
 
 //足迹转发
 - (void)transmitTxtContent:(NSString *)txt
 {
-    NSLog(@"%s -> ", __FUNCTION__);
     [SVProgressHUD show];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *dic = @{@"sid" : self.dataDic[@"id"], @"type" : @"foot", @"app_name" : @"foot", @"body" : txt};
-    [manager GET:API_URL parameters:[APIHelper packageMod:@"System" act:@"share" Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_System act:@"share" Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
             [self.navigationController popViewControllerAnimated:YES];
@@ -134,7 +182,7 @@
     [SVProgressHUD show];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *dic = @{@"row_id" : self.dataDic[@"id"], @"app_name" : @"foot", @"table_name" : @"foot", @"content" : txt};
-    [manager GET:API_URL parameters:[APIHelper packageMod:@"System" act:@"comment" Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_System act:Mod_System_comment Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
             for (id vc in [self.navigationController viewControllers]) {
