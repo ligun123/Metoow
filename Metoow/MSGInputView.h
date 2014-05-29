@@ -31,7 +31,7 @@
 
 @end
 
-@interface MSGInputView : UIView <UITextFieldDelegate, UITextViewDelegate>
+@interface MSGInputView : UIView <UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate>
 {
     UIImageView *bgView;
     

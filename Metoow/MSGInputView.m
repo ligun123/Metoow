@@ -113,6 +113,10 @@
     }
     else {
         //外部的textView
+        if (![inputTextOutside isFirstResponder]) {
+            [inputTextOutside becomeFirstResponder];
+            return ;
+        }
         [btnEmoji setSelected:![btnEmoji isSelected]];
         if ([btnEmoji isSelected]) {
             isSystemBoard = NO;
@@ -146,6 +150,12 @@
 
 - (void)btnPictureTap
 {
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    picker.allowsEditing = YES;
+    [[AppDelegateInterface rootViewController] presentViewController:picker animated:YES completion:nil];
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
@@ -235,5 +245,25 @@
     return YES;
 }
 
+
+#pragma mark - UIImagePicker Delegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    UIImage *img = [info objectForKey:UIImagePickerControllerEditedImage];
+    if (_delegate && [_delegate respondsToSelector:@selector(inputView:didSendPicture:)]) {
+        [_delegate inputView:self didSendPicture:img];
+    }
+}
+
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    if (_delegate && [_delegate respondsToSelector:@selector(inputView:didSendPicture:)]) {
+        [_delegate inputView:self didSendPicture:nil];
+    }
+}
 
 @end

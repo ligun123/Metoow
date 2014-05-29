@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FileUploader.h"
 
 #pragma mark - 服务器预定义
 
@@ -64,6 +65,10 @@
 #define Mod_System_comment @"comment"                           //回复互助
 #define Mod_System_share @"share"                               //转发互助
 
+#define Mod_Attach @"Attach"                                    //附件
+#define Mod_Attach_upload @"upload"                             //上传附件
+#define Mod_Attach_down @"down"                                 //下载附件
+
 
 
 @interface APIHelper : NSObject
@@ -93,6 +98,9 @@
  *  @return 添加了mod和act的字典
  */
 + (NSDictionary *)packageMod:(NSString *)mod act:(NSString *)act Paras:(NSDictionary *)dic;
+
+
++ (NSString *)urlUploadForCategary:(UploadCategary)cate;
 
 
 @end

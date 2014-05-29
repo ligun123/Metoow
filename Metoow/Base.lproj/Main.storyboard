@@ -817,7 +817,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="dou-Ft-VC6">
-                                <rect key="frame" x="15" y="87" width="291" height="160"/>
+                                <rect key="frame" x="10" y="87" width="300" height="165"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-80"/>
@@ -828,12 +828,12 @@
                                 </connections>
                             </textView>
                             <view contentMode="scaleToFill" id="zRZ-7Y-nmc" customClass="MSGInputView">
-                                <rect key="frame" x="0.0" y="1000" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你想说点什么..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="B9G-A8-Pzx">
-                                <rect key="frame" x="15" y="68" width="291" height="16"/>
+                                <rect key="frame" x="12" y="68" width="291" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -841,7 +841,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您的位置" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zHO-3e-mAb">
-                                <rect key="frame" x="15" y="250" width="248" height="18"/>
+                                <rect key="frame" x="14" y="257" width="248" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="80" maxX="0.0" maxY="-80"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -849,7 +849,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="EOe-xv-mFr" customClass="LoginCheckBox">
-                                <rect key="frame" x="263" y="250" width="46" height="18"/>
+                                <rect key="frame" x="264" y="257" width="46" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="80" maxX="0.0" maxY="-80"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -858,6 +858,12 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="DBW-Fw-JVd" customClass="PicRollView">
+                                <rect key="frame" x="10" y="280" width="300" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="80" maxX="0.0" maxY="-80"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -867,6 +873,7 @@
                         <outlet property="addrLabel" destination="zHO-3e-mAb" id="cjw-TB-llT"/>
                         <outlet property="inputBar" destination="zRZ-7Y-nmc" id="eYt-vB-nSN"/>
                         <outlet property="isPublic" destination="EOe-xv-mFr" id="GWu-dG-Bow"/>
+                        <outlet property="picRoll" destination="DBW-Fw-JVd" id="Rlo-oO-z81"/>
                         <outlet property="textView" destination="dou-Ft-VC6" id="XAe-2y-TFh"/>
                         <outlet property="titleLabel" destination="j8I-Zb-Hhv" id="gLp-GL-1K5"/>
                     </connections>

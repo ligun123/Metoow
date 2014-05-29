@@ -14,6 +14,7 @@
 #import "NSDictionary+Huzhu.h"
 #import "UIImageView+AFNetworking.h"
 #import "FootPubViewController.h"
+#import "FileUploader.h"
 
 @interface HelpViewController ()
 
@@ -166,6 +167,7 @@
 
 
 - (IBAction)btnPublishTap:(id)sender {
+    
     UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"结伴", @"顺风车", @"拼车", @"沙发客", nil];
     [sheet showInView:self.view];
 }

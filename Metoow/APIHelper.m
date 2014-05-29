@@ -8,6 +8,7 @@
 
 #import "APIHelper.h"
 
+
 @implementation APIHelper
 
 + (NSString *)url
@@ -35,6 +36,39 @@
     
     return para;
 }
+
++ (NSString *)urlUploadFootImage
+{
+    NSString *upurl = [self urlUploadForType:@"foot"];
+    return upurl;
+}
+
++ (NSString *)urlUploadWeatherImage
+{
+    NSString *upurl = [self urlUploadForType:@"weather"];
+    return upurl;
+}
+
++ (NSString *)urlUploadForCategary:(UploadCategary)cate
+{
+    if (cate == UploadCategaryFoot) {
+        return [APIHelper urlUploadForType:@"foot"];
+    }
+    if (cate == UploadCategaryWeather) {
+        return [APIHelper urlUploadForType:@"weather"];
+    }
+    return nil;
+}
+
+
++ (NSString *)urlUploadForType:(NSString *)type
+{
+    NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:kOauth_Token];
+    NSString *secrect = [[NSUserDefaults standardUserDefaults] objectForKey:kOauth_Token_Secret];
+    NSString *upurl = [NSString stringWithFormat:@"%@&mod=%@&act=%@&upload_type=images&Thumb=0&width=1&Height=1&Cut=false&oauth_token=%@&oauth_token_secret=%@&attach_type=%@", API_URL, Mod_Attach,Mod_Attach_upload,token, secrect, type];
+    return upurl;
+}
+
 
 @end
 

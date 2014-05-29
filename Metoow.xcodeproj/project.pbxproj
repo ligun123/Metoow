@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		02042285192CE4330030385D /* PicRollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 02042284192CE4330030385D /* PicRollView.m */; };
+		0224FA861937770C001CBF1B /* test0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0224FA831937770C001CBF1B /* test0.jpg */; };
+		0224FA871937770C001CBF1B /* test1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0224FA841937770C001CBF1B /* test1.jpg */; };
+		0224FA881937770C001CBF1B /* test2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0224FA851937770C001CBF1B /* test2.jpg */; };
 		022AE069192E4C7A000ECBCE /* HPsfcViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 022AE068192E4C7A000ECBCE /* HPsfcViewController.m */; };
 		022AE06B192E4CD5000ECBCE /* HPsfcViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 022AE06A192E4CD5000ECBCE /* HPsfcViewController.xib */; };
 		022AE06F192E504C000ECBCE /* HPjbViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 022AE06D192E504C000ECBCE /* HPjbViewController.m */; };
@@ -134,6 +137,7 @@
 		028ACD6E18FECBF000D36AE0 /* login_label_bkg8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 028ACD6418FECBF000D36AE0 /* login_label_bkg8@2x.png */; };
 		028ACD6F18FECBF000D36AE0 /* login_label_bkg9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 028ACD6518FECBF000D36AE0 /* login_label_bkg9@2x.png */; };
 		028ACD7118FECEF500D36AE0 /* login_labelSelect_bkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 028ACD7018FECEF500D36AE0 /* login_labelSelect_bkg@2x.png */; };
+		029FAFD51936197E00FCD685 /* FileUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 029FAFD41936197E00FCD685 /* FileUploader.m */; };
 		02A2BBFC19273C350060A453 /* FootDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02A2BBFB19273C350060A453 /* FootDetailViewController.m */; };
 		02A300131914C73300149FFC /* PersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 02A300121914C73300149FFC /* PersonCell.m */; };
 		02A300151914C74200149FFC /* PersonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02A300141914C74200149FFC /* PersonCell.xib */; };
@@ -245,6 +249,9 @@
 /* Begin PBXFileReference section */
 		02042283192CE4330030385D /* PicRollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicRollView.h; sourceTree = "<group>"; };
 		02042284192CE4330030385D /* PicRollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicRollView.m; sourceTree = "<group>"; };
+		0224FA831937770C001CBF1B /* test0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test0.jpg; sourceTree = "<group>"; };
+		0224FA841937770C001CBF1B /* test1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test1.jpg; sourceTree = "<group>"; };
+		0224FA851937770C001CBF1B /* test2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test2.jpg; sourceTree = "<group>"; };
 		022AE067192E4C7A000ECBCE /* HPsfcViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPsfcViewController.h; sourceTree = "<group>"; };
 		022AE068192E4C7A000ECBCE /* HPsfcViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPsfcViewController.m; sourceTree = "<group>"; };
 		022AE06A192E4CD5000ECBCE /* HPsfcViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HPsfcViewController.xib; sourceTree = "<group>"; };
@@ -410,6 +417,8 @@
 		028ACD6418FECBF000D36AE0 /* login_label_bkg8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_label_bkg8@2x.png"; sourceTree = "<group>"; };
 		028ACD6518FECBF000D36AE0 /* login_label_bkg9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_label_bkg9@2x.png"; sourceTree = "<group>"; };
 		028ACD7018FECEF500D36AE0 /* login_labelSelect_bkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_labelSelect_bkg@2x.png"; sourceTree = "<group>"; };
+		029FAFD31936197E00FCD685 /* FileUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUploader.h; sourceTree = "<group>"; };
+		029FAFD41936197E00FCD685 /* FileUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUploader.m; sourceTree = "<group>"; };
 		02A2BBFA19273C350060A453 /* FootDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FootDetailViewController.h; sourceTree = "<group>"; };
 		02A2BBFB19273C350060A453 /* FootDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FootDetailViewController.m; sourceTree = "<group>"; };
 		02A300111914C73300149FFC /* PersonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonCell.h; sourceTree = "<group>"; };
@@ -633,6 +642,9 @@
 		0233F50418F3A9A9004B1ED1 /* Imgs */ = {
 			isa = PBXGroup;
 			children = (
+				0224FA831937770C001CBF1B /* test0.jpg */,
+				0224FA841937770C001CBF1B /* test1.jpg */,
+				0224FA851937770C001CBF1B /* test2.jpg */,
 				02F2E059190288C4002902DD /* test_header_bkg@2x.png */,
 				02F4A28918FA43F9006EDB25 /* Icon.png */,
 				02F4A28A18FA43F9006EDB25 /* Icon@2x.png */,
@@ -931,6 +943,8 @@
 			children = (
 				02BF655B190E92A600DCF2BD /* APIHelper.h */,
 				02BF655C190E92A600DCF2BD /* APIHelper.m */,
+				029FAFD31936197E00FCD685 /* FileUploader.h */,
+				029FAFD41936197E00FCD685 /* FileUploader.m */,
 				02F2E05B1902A5C5002902DD /* PersonalViewController.h */,
 				02F2E05C1902A5C5002902DD /* PersonalViewController.m */,
 				02F4A2B918FA6687006EDB25 /* 足迹 */,
@@ -1391,6 +1405,7 @@
 				028ACD6B18FECBF000D36AE0 /* login_label_bkg5@2x.png in Resources */,
 				02F39F1B192475D100DA8B85 /* pb_input_bkg@2x.png in Resources */,
 				028ACD6918FECBF000D36AE0 /* login_label_bkg3@2x.png in Resources */,
+				0224FA861937770C001CBF1B /* test0.jpg in Resources */,
 				025945B6191F8B9300114BF4 /* active_page_image.png in Resources */,
 				02F4A2AD18FA54BC006EDB25 /* pb_back_btn@2x.png in Resources */,
 				024CB3AB18F430CE00434AFA /* pb_downlistTop_bkg@2x.png in Resources */,
@@ -1409,6 +1424,7 @@
 				02F2E05A190288C4002902DD /* test_header_bkg@2x.png in Resources */,
 				0260B2E71933879B000F9846 /* HuzhuCell.xib in Resources */,
 				02CB41D518F6E8210030289C /* login_login_btn@2x.png in Resources */,
+				0224FA881937770C001CBF1B /* test2.jpg in Resources */,
 				022AE070192E504C000ECBCE /* HPjbViewController.xib in Resources */,
 				02F4DB4A19270EF0004EFFBC /* mapapi.bundle in Resources */,
 				02CB41D218F6E8210030289C /* login_inputID_bkg@2x.png in Resources */,
@@ -1459,6 +1475,7 @@
 				02500E661917BCC1000B7212 /* toolbar_bottom_bar.png in Resources */,
 				02F4DB4B19270EF0004EFFBC /* readme.txt in Resources */,
 				02CB41D418F6E8210030289C /* login_log_bkg@2x.png in Resources */,
+				0224FA871937770C001CBF1B /* test1.jpg in Resources */,
 				02500E651917BCC1000B7212 /* messages.plist in Resources */,
 				024CB3A918F430CE00434AFA /* pb_downlist_bkg@2x.png in Resources */,
 				024CB3A118F3FD7600434AFA /* pb_mainColor2_bkg@2x.png in Resources */,
@@ -1538,6 +1555,7 @@
 				02500E531917BCC1000B7212 /* MessageFrame.m in Sources */,
 				0267083C1903C30A003D43F9 /* HWTabBar.m in Sources */,
 				022AE06F192E504C000ECBCE /* HPjbViewController.m in Sources */,
+				029FAFD51936197E00FCD685 /* FileUploader.m in Sources */,
 				028ACD5718FEC80200D36AE0 /* SelectLabel.m in Sources */,
 				02F4A2A318FA45AF006EDB25 /* QCheckBox.m in Sources */,
 				022AE079192E5162000ECBCE /* HPsfkViewController.m in Sources */,

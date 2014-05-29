@@ -55,6 +55,7 @@
     }
 }
 
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -269,7 +270,22 @@
  *  @param img       发送的图片UIImage对象
  */
 - (void)inputView:(MSGInputView *)inputView didSendPicture:(UIImage *)img
-{}
+{
+    [self showInputBarOnBottom];
+    NSData *dat = UIImageJPEGRepresentation(img, 0.8);
+    NSLog(@"%s -> %d    size(%f, %f)", __FUNCTION__, dat.length, img.size.width, img.size.height);
+    [self.picRoll addImage:img];
+}
+
+
+- (void)showInputBarOnBottom
+{
+    UIView *sview = [[self inputBar] superview];
+    if (!sview) {
+        self.inputBar.frame = CGRectMake(0, self.view.frame.size.height - self.inputBar.frame.size.height, self.inputBar.frame.size.width, self.inputBar.frame.size.height);
+        [self.view addSubview:self.inputBar];
+    }
+}
 
 
 #pragma mark - Baidu Map
