@@ -61,9 +61,12 @@
 #define Mod_Huzhu_add_hz @"add_hz"                              //添加互助
 #define Mod_Huzhu_get_hzlist @"get_hzlist"
 #define Mod_Huzhu_get_one_hz @"get_one_hz"                      //获取一条互助
+
+
 #define Mod_System @"System"
 #define Mod_System_comment @"comment"                           //回复互助
 #define Mod_System_share @"share"                               //转发互助
+#define Mod_System_get_comments @"get_comments"                 //获取回复
 
 #define Mod_Attach @"Attach"                                    //附件
 #define Mod_Attach_upload @"upload"                             //上传附件
@@ -100,8 +103,15 @@
 + (NSDictionary *)packageMod:(NSString *)mod act:(NSString *)act Paras:(NSDictionary *)dic;
 
 
+/**
+ *  上传附件的url，根据上传表类型
+ *
+ *  @param cate 足迹、互助。。。
+ */
 + (NSString *)urlUploadForCategary:(UploadCategary)cate;
 
+
++ (NSString *)urlDownloadID:(NSString *)attach_id;
 
 @end
 

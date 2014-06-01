@@ -45,10 +45,13 @@ api接口文档第一版
 详情60%，足迹搜索、
 5.25
 互助发布（拼车、沙发客、结伴、顺风车）界面OK，接口有错误，等待修复
+6.1
+图片上传、下载、显示，足迹的图片文字cell高度混合高度完美解决
 
 API Bugs:  测试ID:376438624@qq.com  sec:5815057    uid:165
 1、Foot/get_myfoot，Foot/my_attention，Foot/foot_collect接口中返回的足迹需要包含 是否被收藏的bool
 2、收藏足迹后，足迹的被收藏次数并没有改变，还是0，转发、回复次数存在同样bug
-3、Huzhu/add_hz添加互助error，根据文档组织url如下：
-http://www.metoow.com/index.php?app=api&act=add_hz&Aggregation_date=2014-06-02%2019%3A32%3A44&costExplains=1111111&explain=%E8%AF%B7%E8%BE%93%E5%85%A5%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0...&fangshi=%E5%BE%92%E6%AD%A5%2C%E5%8D%95%E8%BD%A6%2C%E6%91%A9%E6%97%85&lat=0.000000&lng=0.000000&mod=Huzhu&mudi_address=%E9%98%BF%E5%8D%97%E9%83%A8&oauth_token=a1709fb7935d2184b131a81e8d689923&oauth_token_secret=7e5210cb760a8c863e72bcc13c238f75&parent_id=1&planning_cycle=111&pos=%E6%88%91%E5%9C%A8%E8%BF%99%E4%B8%AA%E4%BD%8D%E7%BD%AE&title=%E6%88%90%E9%83%BD&typeid=1&uid=165
-返回：Request failed: unacceptable content-type: text/html
+3、System/get_comments接口获取foot的回复内容返回错误:Request failed: unacceptable content-type: text/html
+以下是测试URL
+http://www.metoow.com/index.php?app=api&act=get_comments&id=87&mod=System&oauth_token=a1709fb7935d2184b131a81e8d689923&oauth_token_secret=7e5210cb760a8c863e72bcc13c238f75&page=1&table_name=foot
+http://www.metoow.com/index.php?app=api&act=get_comments&count=20&id=87&mod=System&oauth_token=a1709fb7935d2184b131a81e8d689923&oauth_token_secret=7e5210cb760a8c863e72bcc13c238f75&page=1&table_name=foot

@@ -17,6 +17,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "AFHTTPRequestOperationManager.h"
 
 typedef enum {
     UploadCategaryFoot,
@@ -34,6 +35,6 @@ typedef enum {
  *  @param aImgArr  UIImage数组
  *  @param block    所有的图片都上传通信完成后回调，errorList是NSDictionary数组，@{@“index” : NSNumber, @"error" : NSerror}
  */
-- (void)uploadTo:(UploadCategary)categary images:(NSArray *)aImgArr finished:(void(^)(NSArray *errorList))block;
++ (AFHTTPRequestOperationManager *)uploadTo:(UploadCategary)categary images:(NSArray *)aImgArr finished:(void(^)(NSArray *resultList))block;
 
 @end

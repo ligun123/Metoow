@@ -16,6 +16,7 @@
     if (self) {
         // Initialization code
         _hasImages = YES;
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
 }
@@ -43,7 +44,12 @@
 
 + (CGFloat)height
 {
-    return 180.f;
+    return 190.f;
+}
+
++ (CGFloat)defaultMSGViewHeight
+{
+    return 24.f;
 }
 
 @end

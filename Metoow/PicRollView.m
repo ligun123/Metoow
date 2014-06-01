@@ -7,12 +7,17 @@
 //
 
 #import "PicRollView.h"
+#import "UIImageView+AFNetworking.h"
+#import "APIHelper.h"
+#import "ScanImageViewController.h"
 
 @implementation PicRollView
 
 - (id)initWithFrame:(CGRect)frame andImages:(NSArray *)aImgArray {
     self = [super initWithFrame:frame];
     if (self) {
+        self.showsHorizontalScrollIndicator = NO;
+        self.showsVerticalScrollIndicator = NO;
         // Initialization code
         NSUInteger vCount = [aImgArray count];
         for (int vIndex = 0; vIndex < vCount; vIndex ++) {
@@ -69,6 +74,8 @@
         self.contentSize = CGSizeMake(PICROLLVIEW_WIDTH * vCount, PICROLLVIEW_HEIGHT);
         vImgView.layer.borderColor = [UIColor whiteColor].CGColor;
         vImgView.layer.borderWidth = 2.0f;
+        [vImgView setUserInteractionEnabled:YES];
+        [vImgView setMultipleTouchEnabled:YES];
     }
 }
 
@@ -81,6 +88,77 @@
     // Drawing code
 }
 */
+
+- (void)showMetoowPicIDs:(NSArray *)pic_ids
+{
+    int vCount = pic_ids.count;
+    for (int i = 0; i < pic_ids.count; i ++) {
+        NSString *picid = pic_ids[i];
+        NSString *url = [APIHelper urlDownloadID:picid];
+        UIImageView *vImgView = [[UIImageView alloc] initWithFrame:CGRectMake(i * PICROLLVIEW_WIDTH, 0, PICROLLVIEW_WIDTH, PICROLLVIEW_HEIGHT)];
+        [vImgView setImageWithURL:[NSURL URLWithString:url]];
+        [self addSubview:vImgView];
+        self.contentSize = CGSizeMake(PICROLLVIEW_WIDTH * vCount, PICROLLVIEW_HEIGHT);
+        vImgView.layer.borderColor = [UIColor whiteColor].CGColor;
+        vImgView.layer.borderWidth = 2.0f;
+        [vImgView setUserInteractionEnabled:YES];
+        [vImgView setMultipleTouchEnabled:YES];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scanTapOnImgView:)];
+        tap.numberOfTapsRequired = 1;
+        tap.numberOfTouchesRequired = 1;
+        [vImgView addGestureRecognizer:tap];
+    }
+}
+
+- (NSArray *)images
+{
+    if (self.mImageArray.count > 0) {
+        return self.mImageArray;
+    } else {
+        for (id subview in self.subviews) {
+            if ([subview isKindOfClass:[UIImageView class]]) {
+                CGSize s = [subview frame].size;
+                if (s.width < 99.999 || s.height < 99.999) {
+                    continue ;
+                }
+                UIImage *img = [subview image];
+                [self.mImageArray addObject:img];
+            }
+        }
+        return self.mImageArray;
+    }
+    return nil;
+}
+
+
+- (void)enableScan
+{
+    /*
+    for (id subview in self.subviews) {
+        if ([subview isKindOfClass:[UIImageView class]]) {
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scanTapOnImgView:)];
+            tap.numberOfTapsRequired = 1;
+            tap.numberOfTouchesRequired = 1;
+            [subview addGestureRecognizer:tap];
+            [(UIImageView *)subview setUserInteractionEnabled:YES];
+            [(UIImageView *)subview setMultipleTouchEnabled:YES];
+        }
+    }
+     */
+}
+
+- (void)scanTapOnImgView:(UITapGestureRecognizer *)tap
+{
+    UIImageView *imgv = (UIImageView *)tap.view;
+    NSInteger index = [[self images] indexOfObject:imgv.image];
+    ScanImageViewController *scan = [[ScanImageViewController alloc] init];
+    [scan setImageArray:[self images] currentIndex:index];
+    [[AppDelegateInterface rootViewController] presentViewController:scan animated:YES completion:nil];
+}
+
+
+- (void)enableDelete
+{}
 
 
 @end

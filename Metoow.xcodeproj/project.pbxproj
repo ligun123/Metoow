@@ -123,6 +123,10 @@
 		0267084C19040040003D43F9 /* RecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0267084B1904003F003D43F9 /* RecordCell.xib */; };
 		027C7EA1191A68AF00B2188C /* SelectAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 027C7EA0191A68AF00B2188C /* SelectAreaViewController.m */; };
 		027E18731920FF21002D6896 /* UIImage+Gif.m in Sources */ = {isa = PBXBuildFile; fileRef = 027E18721920FF21002D6896 /* UIImage+Gif.m */; };
+		02893FEB193B0EBA007A79AF /* ReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 02893FEA193B0EBA007A79AF /* ReplyCell.m */; };
+		02893FED193B0EE6007A79AF /* ReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02893FEC193B0EE6007A79AF /* ReplyCell.xib */; };
+		02893FF1193B2552007A79AF /* ScanImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02893FEF193B2552007A79AF /* ScanImageViewController.m */; };
+		02893FF2193B2552007A79AF /* ScanImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02893FF0193B2552007A79AF /* ScanImageViewController.xib */; };
 		028ACD5418FEC33D00D36AE0 /* start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 028ACD5318FEC33D00D36AE0 /* start@2x.png */; };
 		028ACD5718FEC80200D36AE0 /* SelectLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 028ACD5618FEC80200D36AE0 /* SelectLabel.m */; };
 		028ACD5B18FECA4000D36AE0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 028ACD5A18FECA4000D36AE0 /* QuartzCore.framework */; };
@@ -402,6 +406,12 @@
 		027C7EA0191A68AF00B2188C /* SelectAreaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectAreaViewController.m; sourceTree = "<group>"; };
 		027E18711920FF21002D6896 /* UIImage+Gif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Gif.h"; sourceTree = "<group>"; };
 		027E18721920FF21002D6896 /* UIImage+Gif.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Gif.m"; sourceTree = "<group>"; };
+		02893FE9193B0EBA007A79AF /* ReplyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyCell.h; sourceTree = "<group>"; };
+		02893FEA193B0EBA007A79AF /* ReplyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyCell.m; sourceTree = "<group>"; };
+		02893FEC193B0EE6007A79AF /* ReplyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplyCell.xib; sourceTree = "<group>"; };
+		02893FEE193B2552007A79AF /* ScanImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanImageViewController.h; sourceTree = "<group>"; };
+		02893FEF193B2552007A79AF /* ScanImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanImageViewController.m; sourceTree = "<group>"; };
+		02893FF0193B2552007A79AF /* ScanImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScanImageViewController.xib; sourceTree = "<group>"; };
 		028ACD5318FEC33D00D36AE0 /* start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start@2x.png"; sourceTree = "<group>"; };
 		028ACD5518FEC80200D36AE0 /* SelectLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectLabel.h; sourceTree = "<group>"; };
 		028ACD5618FEC80200D36AE0 /* SelectLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectLabel.m; sourceTree = "<group>"; };
@@ -961,6 +971,9 @@
 				02F63E22192CE0A6003DC423 /* DetailCell.h */,
 				02F63E23192CE0A6003DC423 /* DetailCell.m */,
 				02F63E25192CE0E0003DC423 /* DetailCell.xib */,
+				02893FE9193B0EBA007A79AF /* ReplyCell.h */,
+				02893FEA193B0EBA007A79AF /* ReplyCell.m */,
+				02893FEC193B0EE6007A79AF /* ReplyCell.xib */,
 				02A300111914C73300149FFC /* PersonCell.h */,
 				02A300121914C73300149FFC /* PersonCell.m */,
 				02A300141914C74200149FFC /* PersonCell.xib */,
@@ -974,6 +987,9 @@
 				02F4DB53192723C9004EFFBC /* RichLabelView.m */,
 				02042283192CE4330030385D /* PicRollView.h */,
 				02042284192CE4330030385D /* PicRollView.m */,
+				02893FEE193B2552007A79AF /* ScanImageViewController.h */,
+				02893FEF193B2552007A79AF /* ScanImageViewController.m */,
+				02893FF0193B2552007A79AF /* ScanImageViewController.xib */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1395,6 +1411,7 @@
 				02500E5A1917BCC1000B7212 /* chat_bottom_up_nor.png in Resources */,
 				02E5292218F0FBDF00EEAE7B /* Main.storyboard in Resources */,
 				025945BA191F8B9300114BF4 /* board_system.png in Resources */,
+				02893FED193B0EE6007A79AF /* ReplyCell.xib in Resources */,
 				02F39F1D192476A400DA8B85 /* pb_pic_btn@2x.png in Resources */,
 				02594509191F8B9300114BF4 /* chat_bg_own@2x.png in Resources */,
 				024CB39B18F3B03200434AFA /* zj@2x.png in Resources */,
@@ -1482,6 +1499,7 @@
 				02500E5B1917BCC1000B7212 /* chat_bottom_up_press.png in Resources */,
 				02500E5C1917BCC1000B7212 /* chat_bottom_voice_nor.png in Resources */,
 				025945BD191F8B9300114BF4 /* del_emoji_normal@2x.png in Resources */,
+				02893FF2193B2552007A79AF /* ScanImageViewController.xib in Resources */,
 				022AE07A192E5162000ECBCE /* HPsfkViewController.xib in Resources */,
 				028ACD6D18FECBF000D36AE0 /* login_label_bkg7@2x.png in Resources */,
 				02500E561917BCC1000B7212 /* chat_bottom_keyboard_press.png in Resources */,
@@ -1560,6 +1578,7 @@
 				02F4A2A318FA45AF006EDB25 /* QCheckBox.m in Sources */,
 				022AE079192E5162000ECBCE /* HPsfkViewController.m in Sources */,
 				02BF653E190E8A9900DCF2BD /* AFHTTPRequestOperation.m in Sources */,
+				02893FEB193B0EBA007A79AF /* ReplyCell.m in Sources */,
 				0250CD86191BA9EF00E2E051 /* TQRichTextView.m in Sources */,
 				02F2E05D1902A5C5002902DD /* PersonalViewController.m in Sources */,
 				02BF6543190E8A9900DCF2BD /* AFURLConnectionOperation.m in Sources */,
@@ -1592,6 +1611,7 @@
 				02CB41C518F6E1060030289C /* LoginViewController.m in Sources */,
 				02500E691917C5B9000B7212 /* MSGInputView.m in Sources */,
 				02BF6540190E8A9900DCF2BD /* AFHTTPSessionManager.m in Sources */,
+				02893FF1193B2552007A79AF /* ScanImageViewController.m in Sources */,
 				02504604190FD57000852325 /* MJRefreshHeaderView.m in Sources */,
 				024724E6190547B000CA00E4 /* PulldownButton.m in Sources */,
 				0250CD83191BA9EF00E2E051 /* TQRichTextRunDelegate.m in Sources */,
@@ -1771,7 +1791,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "46774668-5B02-4B29-B8B4-9BE19100E8A4";
+				PROVISIONING_PROFILE = "4145141E-A9D7-4FF6-A032-5A30B02DB27B";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

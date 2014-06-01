@@ -65,10 +65,18 @@
 {
     NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:kOauth_Token];
     NSString *secrect = [[NSUserDefaults standardUserDefaults] objectForKey:kOauth_Token_Secret];
-    NSString *upurl = [NSString stringWithFormat:@"%@&mod=%@&act=%@&upload_type=images&Thumb=0&width=1&Height=1&Cut=false&oauth_token=%@&oauth_token_secret=%@&attach_type=%@", API_URL, Mod_Attach,Mod_Attach_upload,token, secrect, type];
+    NSString *upurl = [NSString stringWithFormat:@"%@&mod=%@&act=%@&upload_type=image&Thumb=0&width=1&Height=1&Cut=false&oauth_token=%@&oauth_token_secret=%@&attach_type=%@", API_URL, Mod_Attach,Mod_Attach_upload,token, secrect, type];
     return upurl;
 }
 
+
++ (NSString *)urlDownloadID:(NSString *)attach_id
+{
+    NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:kOauth_Token];
+    NSString *secrect = [[NSUserDefaults standardUserDefaults] objectForKey:kOauth_Token_Secret];
+    NSString *durl = [NSString stringWithFormat:@"%@&oauth_token=%@&oauth_token_secret=%@&mod=%@&act=%@&attach_id=%@", API_URL, token, secrect, Mod_Attach, Mod_Attach_down,attach_id];
+    return durl;
+}
 
 @end
 

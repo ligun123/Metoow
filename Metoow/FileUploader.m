@@ -7,17 +7,17 @@
 //
 
 #import "FileUploader.h"
-#import "AFHTTPRequestOperationManager.h"
+
 #import "APIHelper.h"
 
 @implementation FileUploader
 
-- (void)uploadTo:(UploadCategary)categary images:(NSArray *)aImgArr finished:(void(^)(NSArray *errorList))block;
++ (AFHTTPRequestOperationManager *)uploadTo:(UploadCategary)categary images:(NSArray *)aImgArr finished:(void(^)(NSArray *resultList))block;
 {
     NSString *urlstring = [APIHelper urlUploadForCategary:categary];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     __block int count = aImgArr.count;
-    NSMutableArray *errors = [NSMutableArray arrayWithCapacity:10];
+    NSMutableArray *results = [NSMutableArray arrayWithCapacity:10];
     for (int i = 0; i < count; i ++) {
         AFHTTPRequestOperation *operation = [manager POST:urlstring parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
             UIImage *img = aImgArr[i];
@@ -25,32 +25,27 @@
         } success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"%s -> %@", __FUNCTION__, operation.responseString);
             count --;
-            if ([responseObject isOK]) {
-            } else {
-                NSError *err = [responseObject error];
-                NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:operation.userInfo];
-                [dic setObject:err forKey:@"error"];
-                [errors addObject:dic];
-            }
+            NSDictionary *dic =@{@"index": operation.userInfo[@"index"], @"response" : responseObject};
+            [results addObject:dic];
             if (count == 0) {
                 if (block) {
-                    block(errors);
+                    block(results);
                 }
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"%s -> %@", __FUNCTION__, error);
             count --;
-            NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:operation.userInfo];
-            [dic setObject:error forKey:@"error"];
-            [errors addObject:dic];
+            NSDictionary *dic =@{@"index": operation.userInfo[@"index"], @"response" : @{@"code": @"101", @"data" : @"server error", @"msg" : @"server error"}};
+            [results addObject:dic];
             if (count == 0) {
                 if (block) {
-                    block(errors);
+                    block(results);
                 }
             }
         }];
         operation.userInfo = @{@"index":  [NSNumber numberWithInt:i]};
     }
+    return manager;
 }
 
 @end

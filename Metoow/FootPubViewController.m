@@ -8,6 +8,7 @@
 
 #import "FootPubViewController.h"
 #import "FootDetailViewController.h"
+#import "FileUploader.h"
 
 @interface FootPubViewController ()
 
@@ -201,43 +202,89 @@
     }];
 }
 
-//发布一条足迹
+//发布一条足迹+图片
 - (void)publishTxtContent:(NSString *)txt
 {
-    if (self.addrString == nil) {
+    if (self.addrInfo == nil) {
         [[NSError errorWithDomain:@"正在解析位置信息，请稍后！" code:100 userInfo:nil] showAlert];
         return ;
     }
+    if (self.picRoll.mImageArray.count > 0) {
+        //图文并发
+        [self publishTxtAndImagesContent:txt];
+    } else {
+        //仅发布文字
+        [SVProgressHUD show];
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        BOOL isPub = [self.isPublic checked];
+        NSNumber *publ = [NSNumber numberWithBool:!isPub];
+        NSString *lat = [NSString stringWithFormat:@"%f", self.addrInfo.geoPt.latitude];
+        NSString *lng = [NSString stringWithFormat:@"%f", self.addrInfo.geoPt.longitude];
+        [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Foot act:Mod_Foot_add_foot Paras:@{@"pos": self.addrLabel.text, @"desc" : txt, @"open" : publ, @"lng" : lng, @"lat" : lat, @"pic_ids" : @""}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [SVProgressHUD dismiss];
+            if ([responseObject isOK]) {
+                [self.navigationController popViewControllerAnimated:YES];
+            } else {
+                [[responseObject error] showAlert];
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [SVProgressHUD dismiss];
+            [error showAlert];
+        }];
+    }
+}
+
+- (void)publishTxtAndImagesContent:(NSString *)txt
+{
     [SVProgressHUD show];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    BOOL isPub = [self.isPublic checked];
-    NSNumber *publ = [NSNumber numberWithBool:!isPub];
-    NSString *lat = [NSString stringWithFormat:@"%f", userLocation.coordinate.latitude];
-    NSString *lng = [NSString stringWithFormat:@"%f", userLocation.coordinate.longitude];
-    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Foot act:Mod_Foot_add_foot Paras:@{@"pos": self.addrLabel.text, @"desc" : txt, @"open" : publ, @"lng" : lng, @"lat" : lat}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSArray *imgArr = self.picRoll.mImageArray;
+    __block AFHTTPRequestOperationManager *manager = [FileUploader uploadTo:UploadCategaryFoot images:imgArr finished:^(NSArray *resultList) {
         [SVProgressHUD dismiss];
-        if ([responseObject isOK]) {
-            [self.navigationController popViewControllerAnimated:YES];
-        } else {
-            [[responseObject error] showAlert];
+        BOOL hasError = NO;
+        NSMutableArray *picids = [NSMutableArray arrayWithCapacity:10];
+        for (NSDictionary *result in resultList) {
+            NSDictionary *response = result[@"response"];
+            if (![response isOK]) {
+                hasError = YES;
+            } else {
+                [picids addObject:response[@"data"]];
+            }
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD dismiss];
-        [error showAlert];
+        if (!hasError) {
+            [SVProgressHUD show];
+            BOOL isPub = [self.isPublic checked];
+            NSNumber *publ = [NSNumber numberWithBool:!isPub];
+            NSString *lat = [NSString stringWithFormat:@"%f", self.addrInfo.geoPt.latitude];
+            NSString *lng = [NSString stringWithFormat:@"%f", self.addrInfo.geoPt.longitude];
+//            manager = [AFHTTPRequestOperationManager manager];
+            [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Foot act:Mod_Foot_add_foot Paras:@{@"pos": self.addrLabel.text, @"desc" : txt, @"open" : publ, @"lng" : lng, @"lat" : lat, @"pic_ids" : [picids componentsJoinedByString:@"|"]}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                [SVProgressHUD dismiss];
+                if ([responseObject isOK]) {
+                    [self.navigationController popViewControllerAnimated:YES];
+                } else {
+                    [[responseObject error] showAlert];
+                }
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [SVProgressHUD dismiss];
+                [error showAlert];
+            }];
+        } else {
+            [[NSError errorWithDomain:@"上传图片出错" code:101 userInfo:@{@"reason" : resultList}] showAlert];
+        }
     }];
 }
 
 - (void)publishWeather:(NSString *)txt
 {
-    if (self.addrString == nil) {
+    if (self.addrInfo == nil) {
         [[NSError errorWithDomain:@"正在解析位置信息，请稍后！" code:100 userInfo:nil] showAlert];
         return ;
     }
     [SVProgressHUD show];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSString *lat = [NSString stringWithFormat:@"%f", userLocation.coordinate.latitude];
-    NSString *lng = [NSString stringWithFormat:@"%f", userLocation.coordinate.longitude];
-    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Weather act:Mod_Weather_add_weather Paras:@{@"pos": self.addrLabel.text, @"desc" : txt, @"lng" : lng, @"lat" : lat}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSString *lat = [NSString stringWithFormat:@"%f", self.addrInfo.geoPt.latitude];
+    NSString *lng = [NSString stringWithFormat:@"%f", self.addrInfo.geoPt.longitude];
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Weather act:Mod_Weather_add_weather Paras:@{@"pos": self.addrInfo.strAddr, @"desc" : txt, @"lng" : lng, @"lat" : lat, @"pic_ids" : @""}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
             [self.navigationController popViewControllerAnimated:YES];
@@ -311,9 +358,8 @@
  */
 - (void)onGetAddrResult:(BMKSearch*)searcher result:(BMKAddrInfo*)result errorCode:(int)error
 {
-    NSString *addr = result.strAddr;
-    self.addrLabel.text = addr;
-    self.addrString = addr;
+    self.addrInfo = result;
+    self.addrLabel.text = self.addrInfo.strAddr;
 }
 
 - (void)viewDidGetLocatingUser:(CLLocationCoordinate2D)userLoc

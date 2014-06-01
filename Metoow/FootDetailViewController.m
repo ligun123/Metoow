@@ -9,6 +9,7 @@
 #import "FootDetailViewController.h"
 #import "FootPubViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "ReplyCell.h"
 
 @interface FootDetailViewController ()
 
@@ -28,14 +29,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    page = 1;
     // Do any additional setup after loading the view.
     if (self.detailCategary == FootDetailCategaryRoad) {
+        self.tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
         CGRect of = self.tableview.frame;
         self.tableview.frame = CGRectMake(of.origin.x, of.origin.y, of.size.width, of.size.height + self.bottomBar.frame.size.height);
         self.bottomBar.hidden = YES;
-        self.tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     } else {
         [self.btnCollect setSelected:[self.detailDic[@"is_colslect"] boolValue]];
+//        [self refresh];
     }
 }
 
@@ -43,7 +46,7 @@
 {
     if (_detailCell == nil) {
         _detailCell = [DetailCell loadFromNib];
-        NSLog(@"%s -> 加载了一次第一行cell", __FUNCTION__);
+        [_detailCell.picScroll enableScan];
     }
     return _detailCell;
 }
@@ -127,19 +130,23 @@
 
 - (void)refresh
 {
+    if (self.detailCategary != FootDetailCategaryFoot) {
+        return ;
+    }
     [SVProgressHUD show];
-    NSDictionary *dic = @{@"id": self.detailDic[@"id"]};
+    NSDictionary *dic = @{@"id": self.detailDic[@"id"], @"table_name" : @"foot", @"page" : [NSNumber numberWithInteger:page], @"count" : [NSNumber numberWithInteger:20]};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Foot act:Mod_Foot_show Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_System act:Mod_System_get_comments Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
-            self.detailDic = responseObject[@"data"];
+            self.commentsList = responseObject[@"data"];
             [self.tableview reloadData];
         } else {
             [SVProgressHUD dismiss];
             [[responseObject error] showAlert];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
         [error showAlert];
     }];
 }
@@ -152,22 +159,30 @@
         [self.detailCell.headerImg setImageWithURL:[NSURL URLWithString:self.detailDic[@"user_info"][@"avatar_original"]]];
         self.detailCell.name.text = self.detailDic[@"user_info"][@"uname"];
         self.detailCell.time.text = [self.detailDic[@"time"] apiDate];
+        //调整content的高度
+        if ([self.detailDic[@"pic_ids"] length] == 0) {
+            if ([self.detailCell.picScroll superview]) {
+                [self.detailCell.picScroll removeFromSuperview];
+            }
+            CGRect f = self.detailCell.content.frame;
+            f.size.height = f.size.height + 100;        //让content的size充满cell，cell绘制时会根据autoresiongMask属性将content的size调整到合适size
+            self.detailCell.content.frame = f;
+        } else {
+            NSArray *picids = [self.detailDic[@"pic_ids"] componentsSeparatedByString:@"|"];
+            [self.detailCell.picScroll showMetoowPicIDs:picids];
+        }
+        
         [self.detailCell.content showStringMessage:self.detailDic[@"desc"]];
         return self.detailCell;
     } else {
         if (!hasRegister) {
-            [tableView registerNib:[DetailCell nib] forCellReuseIdentifier:[DetailCell identifier]];
+            [tableView registerNib:[ReplyCell nib] forCellReuseIdentifier:[ReplyCell identifier]];
             hasRegister = YES;
         }
-        DetailCell *cell = [tableView dequeueReusableCellWithIdentifier:[DetailCell identifier]];
-        [cell setHasImages:NO];
-        NSDictionary *dic = self.detailDic[@"comment_list"];
-        if (dic) {
-            NSArray *arr = dic[@"data"];
-            NSDictionary *replyDic = arr[indexPath.row - 1];
-            [cell.content showStringMessage:replyDic[@"content"]];
-            cell.time.text = [replyDic[@"ctime"] apiDate];
-        }
+        ReplyCell *cell = [tableView dequeueReusableCellWithIdentifier:[ReplyCell identifier]];
+        NSDictionary *replyDic = self.commentsList[indexPath.row - 1];
+        [cell.content showStringMessage:replyDic[@"content"]];
+        cell.time.text = [replyDic[@"ctime"] apiDate];
         return cell;
     }
 }
@@ -179,8 +194,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    int replyCount = [self.detailDic[@"comment_list"][@"count"] integerValue];
-    return 1 + replyCount;
+    return 1 + self.commentsList.count;
 }
 
 
@@ -191,9 +205,19 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0 && indexPath.row == 0) {
-        return [DetailCell height];
+        NSString *content = self.detailDic[@"desc"];
+        CGSize s = [[self.detailCell content] sizeForContent:content];
+        CGFloat heightWithPics = [DetailCell height] + (s.height - [DetailCell defaultMSGViewHeight]);
+        if ([self.detailDic[@"pic_ids"] length] == 0) {
+            heightWithPics -= 100;
+        }
+        return heightWithPics;
     } else {
-        return [DetailCell height] - 80;
+#warning 修改commnt的KEY
+        NSString *content = self.commentsList[indexPath.row + 1][@"commnt"];
+        CGSize s = [[self.detailCell content] sizeForContent:content];
+        CGFloat height = [ReplyCell height] + s.height;
+        return height;
     }
 }
 

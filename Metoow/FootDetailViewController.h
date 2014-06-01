@@ -4,7 +4,7 @@
 //
 //  Created by HalloWorld on 14-5-17.
 //  Copyright (c) 2014年 HalloWorld. All rights reserved.
-//
+//  路况无回复和转发
 
 #import <UIKit/UIKit.h>
 #import "DetailCell.h"
@@ -12,10 +12,11 @@
 @interface FootDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     BOOL hasRegister;
+    NSInteger page;
 }
 
 @property (strong, nonatomic) NSDictionary *detailDic;
-
+@property (strong, nonatomic) NSArray *commentsList;
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIView *bottomBar;

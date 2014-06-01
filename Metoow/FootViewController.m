@@ -149,11 +149,15 @@
     } else {
         dic = self.dataList[indexPath.row];
     }
+    
+    FootDetailViewController *footDetailVC = [AppDelegateInterface awakeViewController:@"FootDetailViewController"];
+    footDetailVC.detailDic = dic;
     if (selectIndex < 3) {
-        [self requestFootDetail:dic];
+        footDetailVC.detailCategary = FootDetailCategaryFoot;
     } else {
-        [self requestRoadDetail:dic];
+        footDetailVC.detailCategary = FootDetailCategaryRoad;
     }
+    [self.navigationController pushViewController:footDetailVC animated:YES];
 }
 
 

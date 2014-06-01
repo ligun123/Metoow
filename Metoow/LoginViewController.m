@@ -120,6 +120,7 @@
                 [error showAlert];
             }];
         } else {
+            [SVProgressHUD dismiss];
             [[responseObject error] showAlert];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
