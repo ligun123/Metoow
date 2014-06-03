@@ -45,12 +45,12 @@
     self.headerView.delegate = self;
     self.searchList = [NSMutableArray arrayWithCapacity:10];
     
+    [self refreshData];
+    
 //    self.footerView = [MJRefreshFooterView footer];
 //    self.footerView.scrollView = self.tableView;
 //    self.footerView.delegate = self;
 }
-
-
 
 - (void)displayLogin
 {
@@ -64,7 +64,6 @@
 {
     [super viewWillAppear:animated];
     [AppDelegateInterface setTabBarHidden:NO];
-    [self refreshData];
 }
 
 - (void)didReceiveMemoryWarning

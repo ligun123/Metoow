@@ -15,6 +15,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "FootPubViewController.h"
 #import "FileUploader.h"
+#import "HelpDetailViewController.h"
 
 @interface HelpViewController ()
 
@@ -107,6 +108,7 @@
         [tableView registerNib:[HuzhuCell nib] forCellReuseIdentifier:[HuzhuCell identifier]];
     }
     HuzhuCell *cell = [tableView dequeueReusableCellWithIdentifier:[HuzhuCell identifier]];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.delegate = self;
     
     NSDictionary *dic = [self huzhuAtIndex:indexPath];
@@ -139,7 +141,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSDictionary *dic = [self huzhuAtIndex:indexPath];
-    [self requestDetailForHuzhu:dic];
+    HelpDetailViewController *detail = [AppDelegateInterface awakeViewController:@"HelpDetailViewController"];
+    detail.detailDic = dic;
+    [self.navigationController pushViewController:detail animated:YES];
+//    [self requestDetailForHuzhu:dic];
 }
 
 - (void)requestDetailForHuzhu:(NSDictionary *)huzhu

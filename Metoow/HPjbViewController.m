@@ -27,7 +27,8 @@
 {
     [super viewDidLoad];
     self.type = @"1";
-    
+    [self.myAccessaryView setOutsideInput:self.detailText];
+    self.detailText.inputAccessoryView = self.myAccessaryView;
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -49,7 +50,7 @@
 }
 
 
-- (void)done
+- (void)publishTxtWithPicIDs:(NSString *)pic_ids
 {
     [SVProgressHUD show];
     //super will pop
@@ -68,7 +69,7 @@
     if (pos == nil) {
         pos = @"我在这个位置";
     }
-    NSDictionary *para = @{@"typeid" : self.type, @"title": title, @"parent_id" : parent_id, @"mudi_address" : address, @"fangshi" : method, @"planning_cycle" : planning_cycle, @"Aggregation_date" : Aggregation_date, @"costExplains" : costExplains, @"uid" : uid, @"explain" : explain, @"lng" : lng, @"lat" : lat, @"pos" : pos};
+    NSDictionary *para = @{@"typeid" : self.type, @"title": title, @"parent_id" : parent_id, @"mudi_address" : address, @"fangshi" : method, @"planning_cycle" : planning_cycle, @"Aggregation_date" : Aggregation_date, @"costExplains" : costExplains, @"uid" : uid, @"explain" : explain, @"lng" : lng, @"lat" : lat, @"pos" : pos, @"pic_ids" : pic_ids};
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Huzhu act:Mod_Huzhu_add_hz Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -82,6 +83,38 @@
         [SVProgressHUD dismiss];
         [error showAlert];
     }];
+}
+
+- (void)publishTxtAndPic
+{
+    [SVProgressHUD show];
+    [FileUploader uploadTo:UploadCategaryHuzhu images:self.picRoll.images finished:^(NSArray *resultList) {
+        [SVProgressHUD dismiss];
+        BOOL hasError = NO;
+        NSMutableArray *picids = [NSMutableArray arrayWithCapacity:10];
+        for (NSDictionary *result in resultList) {
+            NSDictionary *response = result[@"response"];
+            if (![response isOK]) {
+                hasError = YES;
+            } else {
+                [picids addObject:response[@"data"]];
+            }
+        }
+        if (!hasError) {
+            [self publishTxtWithPicIDs:[picids componentsJoinedByString:@"|"]];
+        } else {
+            [[NSError errorWithDomain:@"上传图片出错" code:101 userInfo:@{@"reason" : resultList}] showAlert];
+        }
+    }];
+}
+
+- (void)done
+{
+    if (self.picRoll.images.count > 0) {
+        [self publishTxtAndPic];
+    } else {
+        [self publishTxtWithPicIDs:@""];
+    }
 }
 
 @end

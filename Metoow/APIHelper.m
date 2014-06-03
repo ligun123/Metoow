@@ -57,6 +57,9 @@
     if (cate == UploadCategaryWeather) {
         return [APIHelper urlUploadForType:@"weather"];
     }
+    if (cate == UploadCategaryHuzhu) {
+        return [APIHelper urlUploadForType:@"huzhu"];
+    }
     return nil;
 }
 

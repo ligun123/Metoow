@@ -1,21 +1,22 @@
 //
-//  FootDetailViewController.m
+//  HelpDetailViewController.m
 //  Metoow
 //
-//  Created by HalloWorld on 14-5-17.
+//  Created by HalloWorld on 14-6-3.
 //  Copyright (c) 2014年 HalloWorld. All rights reserved.
 //
 
-#import "FootDetailViewController.h"
-#import "FootPubViewController.h"
+#import "HelpDetailViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "ReplyCell.h"
+#import "FootPubViewController.h"
+#import "NSDictionary+Huzhu.h"
 
-@interface FootDetailViewController ()
+@interface HelpDetailViewController ()
 
 @end
 
-@implementation FootDetailViewController
+@implementation HelpDetailViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,30 +32,33 @@
     [super viewDidLoad];
     page = 1;
     // Do any additional setup after loading the view.
-    if (self.detailCategary == FootDetailCategaryRoad) {
-        self.tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
-        CGRect of = self.tableview.frame;
-        self.tableview.frame = CGRectMake(of.origin.x, of.origin.y, of.size.width, of.size.height + self.bottomBar.frame.size.height);
-        self.bottomBar.hidden = YES;
-    } else {
-        [self.btnCollect setSelected:[self.detailDic[@"is_colslect"] boolValue]];
-        [self refresh];
-    }
-}
-
-- (DetailCell *)detailCell
-{
-    if (_detailCell == nil) {
-        _detailCell = [DetailCell loadFromNib];
-        [_detailCell.picScroll enableScan];
-    }
-    return _detailCell;
+    [self refresh];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [AppDelegateInterface setTabBarHidden:YES];
+}
+
+- (void)refresh
+{
+    [SVProgressHUD show];
+    NSDictionary *dic = @{@"id": self.detailDic[@"id"], @"table_name" : @"huzhu", @"page" : [NSNumber numberWithInteger:page], @"count" : [NSNumber numberWithInteger:20]};
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Comment act:Mod_Comment_get_comments Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
+        if ([responseObject isOK]) {
+            self.commentsList = responseObject[@"data"];
+            [self.tableview reloadData];
+        } else {
+            [SVProgressHUD dismiss];
+            [[responseObject error] showAlert];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
+        [error showAlert];
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -74,82 +78,35 @@
 }
 */
 
-- (IBAction)btnBackTap:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+- (DetailCell *)detailCell
+{
+    if (_detailCell == nil) {
+        _detailCell = [DetailCell loadFromNib];
+        [_detailCell.picScroll enableScan];
+    }
+    return _detailCell;
 }
 
-- (IBAction)btnCollectTap:(id)sender {
-    
-    if (!self.btnCollect.selected) {
-        [SVProgressHUD show];
-        NSDictionary *para = @{@"id": self.detailDic[@"id"]};
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Foot act:Mod_Foot_collect Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            [SVProgressHUD dismiss];
-            if ([responseObject isOK]) {
-                [self.btnCollect setSelected:YES];
-            } else {
-                [[responseObject error] showAlert];
-            }
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [SVProgressHUD dismiss];
-            [error showAlert];
-        }];
-    } else {
-        [SVProgressHUD show];
-        NSDictionary *para = @{@"id": self.detailDic[@"id"]};
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Foot act:Mod_Foot_no_collect Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            [SVProgressHUD dismiss];
-            if ([responseObject isOK]) {
-                [self.btnCollect setSelected:NO];
-            } else {
-                [[responseObject error] showAlert];
-            }
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [SVProgressHUD dismiss];
-            [error showAlert];
-        }];
-    }
+
+- (IBAction)btnBackTap:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)btnTransmitTap:(id)sender {
     FootPubViewController *publ = [AppDelegateInterface awakeViewController:@"FootPubViewController"];
-    publ.editCategary = FootPubEditCategaryTransmit;
+    publ.editCategary = FootPubEditCategaryTransmitHuzhu;
     publ.dataDic = self.detailDic;
     [self.navigationController pushViewController:publ animated:YES];
 }
 
 - (IBAction)btnReplyTap:(id)sender {
     FootPubViewController *publ = [AppDelegateInterface awakeViewController:@"FootPubViewController"];
-    publ.editCategary = FootPubEditCategaryReply;
+    publ.editCategary = FootPubEditCategaryReplyHuzhu;
     publ.dataDic = self.detailDic;
     [self.navigationController pushViewController:publ animated:YES];
 }
 
-
-- (void)refresh
-{
-    if (self.detailCategary != FootDetailCategaryFoot) {
-        return ;
-    }
-    [SVProgressHUD show];
-    NSDictionary *dic = @{@"id": self.detailDic[@"id"], @"table_name" : @"foot", @"page" : [NSNumber numberWithInteger:page], @"count" : [NSNumber numberWithInteger:20]};
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Comment act:Mod_Comment_get_comments Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [SVProgressHUD dismiss];
-        if ([responseObject isOK]) {
-            self.commentsList = responseObject[@"data"];
-            [self.tableview reloadData];
-        } else {
-            [SVProgressHUD dismiss];
-            [[responseObject error] showAlert];
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD dismiss];
-        [error showAlert];
-    }];
-}
 
 #pragma mark - UITableView Delegate & Datasource
 
@@ -179,7 +136,7 @@
             [self.detailCell.picScroll showMetoowPicIDs:arr];
         }
         
-        [self.detailCell.content showStringMessage:self.detailDic[@"desc"]];
+        [self.detailCell.content showStringMessage:[self.detailDic huzhuTitle]];
         return self.detailCell;
     } else {
         if (!hasRegister) {
@@ -212,7 +169,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0 && indexPath.row == 0) {
-        NSString *content = self.detailDic[@"desc"];
+        NSString *content = [self.detailDic huzhuTitle];
         CGSize s = [[self.detailCell content] sizeForContent:content];
         CGFloat heightWithPics = [DetailCell height] + (s.height - [DetailCell defaultMSGViewHeight]);
         if ([self.detailDic[@"pic_ids"] length] == 0) {

@@ -66,7 +66,9 @@
 #define Mod_System @"System"
 #define Mod_System_comment @"comment"                           //回复互助
 #define Mod_System_share @"share"                               //转发互助
-#define Mod_System_get_comments @"get_comments"                 //获取回复
+
+#define Mod_Comment @"Comment"
+#define Mod_Comment_get_comments @"get_comments"                 //获取回复
 
 #define Mod_Attach @"Attach"                                    //附件
 #define Mod_Attach_upload @"upload"                             //上传附件

@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "MSGInputView.h"
+#import "PicRollView.h"
 
-
-@interface HelpPubViewController : UIViewController <BMKSearchDelegate, BMKUserLocationDelegate, UITextViewDelegate>
+@interface HelpPubViewController : UIViewController <BMKSearchDelegate, BMKUserLocationDelegate, UITextViewDelegate, InputViewProtocol>
 {
     BMKSearch *baiduSearch;
     BMKUserLocation *userLocation;
@@ -20,8 +20,8 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *contentView;
 @property (strong, nonatomic) BMKAddrInfo *addrInfo;
 @property (weak, nonatomic) IBOutlet UIButton *btnTimeSet;
-
 @property (copy, nonatomic) NSString *type;
+@property (weak, nonatomic) IBOutlet PicRollView *picRoll;
 
 - (void)done;           //子类重写
 

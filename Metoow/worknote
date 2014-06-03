@@ -50,8 +50,4 @@ api接口文档第一版
 
 API Bugs:  测试ID:376438624@qq.com  sec:5815057    uid:165
 1、Foot/get_myfoot，Foot/my_attention，Foot/foot_collect接口中返回的足迹需要包含 是否被收藏的bool
-2、收藏足迹后，足迹的被收藏次数并没有改变，还是0，转发、回复次数存在同样bug
-3、System/get_comments接口获取foot的回复内容返回错误:Request failed: unacceptable content-type: text/html
-以下是测试URL
-http://www.metoow.com/index.php?app=api&act=get_comments&id=87&mod=System&oauth_token=a1709fb7935d2184b131a81e8d689923&oauth_token_secret=7e5210cb760a8c863e72bcc13c238f75&page=1&table_name=foot
-http://www.metoow.com/index.php?app=api&act=get_comments&count=20&id=87&mod=System&oauth_token=a1709fb7935d2184b131a81e8d689923&oauth_token_secret=7e5210cb760a8c863e72bcc13c238f75&page=1&table_name=foot
+2、Huzhu/get_hzlist 获取的互助中预计费用和计划周期的值错误，和我上传的值不一样，请检查插入数据库的正确性

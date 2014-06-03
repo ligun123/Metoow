@@ -33,6 +33,7 @@
     self.view.backgroundColor = COLOR_RGB(244, 241, 246);
     [self fatchMapLocation];
     self.contentView.contentSize = CGSizeMake(320, 500);
+    [self.picRoll enableScan];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -61,8 +62,9 @@
 - (MSGInputView *)myAccessaryView
 {
     if (_myAccessaryView == nil) {
-        _myAccessaryView = [[MSGInputView alloc] initWithFrame:CGRectMake(0, 1000, 320, 44)];
-        [_myAccessaryView setJustEmojiStyle];
+        _myAccessaryView = [[MSGInputView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 44, 320, 44)];
+        _myAccessaryView.delegate = self;
+        _myAccessaryView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
     }
     return _myAccessaryView;
 }
@@ -190,5 +192,44 @@
     }
     return YES;
 }
+
+#pragma mark - MSG Input View
+
+/**
+ *  发文字
+ *
+ *  @param inputView MSGInputView
+ *  @param txt       文字内容包含表情的标示符字符串
+ */
+- (void)inputView:(MSGInputView *)inputView didSendCotent:(NSString *)txt
+{
+}
+
+/**
+ *  发图片
+ *
+ *  @param inputView MSGInputView
+ *  @param img       发送的图片UIImage对象
+ */
+- (void)inputView:(MSGInputView *)inputView didSendPicture:(UIImage *)img
+{
+    [self showInputBarOnBottom];
+    NSData *dat = UIImageJPEGRepresentation(img, 0.8);
+    NSLog(@"%s -> %d    size(%f, %f)", __FUNCTION__, dat.length, img.size.width, img.size.height);
+    [self.picRoll addImage:img];
+}
+
+
+- (void)showInputBarOnBottom
+{
+    UIView *sview = [[self myAccessaryView] superview];
+    if (!sview) {
+        self.myAccessaryView.frame = CGRectMake(0, self.view.frame.size.height - self.myAccessaryView.frame.size.height, self.myAccessaryView.frame.size.width, self.myAccessaryView.frame.size.height);
+        [self.view addSubview:self.myAccessaryView];
+    }
+}
+
+
+
 
 @end

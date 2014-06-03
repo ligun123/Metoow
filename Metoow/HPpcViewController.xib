@@ -11,6 +11,7 @@
                 <outlet property="contentView" destination="o4O-JU-OFH" id="B2c-5x-ftl"/>
                 <outlet property="detailText" destination="IJw-zd-51E" id="Gs9-te-4sj"/>
                 <outlet property="moneyCost" destination="L1q-Ae-R1e" id="mwO-Re-wDd"/>
+                <outlet property="picRoll" destination="bH1-8S-oyP" id="yHO-Da-7Ol"/>
                 <outlet property="placeFrom" destination="Uas-SH-hIp" id="8XJ-nZ-ydm"/>
                 <outlet property="placeTo" destination="ms4-dD-MP7" id="XHf-oG-bJN"/>
                 <outlet property="timeCost" destination="UbW-fs-jB5" id="RBA-kb-eBS"/>
@@ -61,7 +62,7 @@
                     </connections>
                 </button>
                 <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="o4O-JU-OFH">
-                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="456"/>
                     <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" id="DPZ-da-P6z">
@@ -204,9 +205,9 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
-                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="bH1-8S-oyP">
-                            <rect key="frame" x="0.0" y="385" width="320" height="80"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="bH1-8S-oyP" customClass="PicRollView">
+                            <rect key="frame" x="10" y="385" width="300" height="100"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </scrollView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
