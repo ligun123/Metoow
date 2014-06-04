@@ -32,7 +32,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     selectIndex = 0;
-    [self.pullDownBtn setTitles:@[@"我的足迹", @"我关注的", @"我收藏的", @"我的路况", @"所有路况"]];
+    [self.pullDownBtn setTitles:@[@"所有足迹", @"我的足迹", @"我关注的", @"我收藏的", @"我的路况", @"所有路况"]];
     [self.pullDownBtn setCallbackBlock:^(PulldownButton *btn, NSInteger sltIndex) {
         if (selectIndex != sltIndex) {
             selectIndex = sltIndex;
@@ -281,20 +281,50 @@
 - (void)refreshData
 {
     if (selectIndex == 0) {
+        //所有足迹
+        [self requestAllFoot];
+    } else if (selectIndex == 1) {
         //我的足迹
         [self requestMyFoot];
-    } else if (selectIndex == 1) {
+    } else if (selectIndex == 2) {
         //我关注的
         [self requestMyAttention];
-    } else if (selectIndex == 2) {
+    } else if (selectIndex == 3) {
         //我收藏的
         [self requestMyConnect];
-    } else if (selectIndex == 3){
+    } else if (selectIndex == 4){
         //我的路况
         [self requestMyRoad];
-    } else {
+    } else if (selectIndex == 5){
         [self requestAllRoad];
     }
+}
+
+- (void)requestAllFoot
+{
+    [SVProgressHUD show];
+    NSDictionary *para = @{@"page": [NSNumber numberWithInteger:1]};
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Foot act:Mod_Foot_foot_list Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([self.headerView isRefreshing]) {
+            [self.headerView endRefreshing];
+        }
+        [SVProgressHUD dismiss];
+        if ([responseObject isOK]) {
+            self.dataList = [NSMutableArray arrayWithArray:responseObject[@"data"]];
+            [self.tableView reloadData];
+        } else {
+            if ([responseObject[@"code"] integerValue] != 1) {
+                [[responseObject error] showAlert];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if ([self.headerView isRefreshing]) {
+            [self.headerView endRefreshing];
+        }
+        [SVProgressHUD dismiss];
+        [error showAlert];
+    }];
 }
 
 - (void)requestMyFoot

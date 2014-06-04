@@ -77,6 +77,21 @@
 {
     if (selectIndex == 5) {
         //SOS
+        [SVProgressHUD show];
+        NSDictionary *dic = @{@"page": [NSNumber numberWithInteger:1]};
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager GET:API_URL parameters:[APIHelper packageMod:Mod_SOS act:Mod_SOS_sos_list Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [SVProgressHUD dismiss];
+            if ([responseObject isOK]) {
+                self.dataList = [NSMutableArray arrayWithArray:responseObject[@"data"]];
+                [self.tableview reloadData];
+            } else {
+                [[responseObject error] showAlert];
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [SVProgressHUD dismiss];
+            [error showAlert];
+        }];
     } else {
         [SVProgressHUD show];
         NSDictionary *dic = nil;
@@ -112,16 +127,20 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.delegate = self;
     
-    NSDictionary *dic = [self huzhuAtIndex:indexPath];
-    
-    [cell.title setText:[dic huzhuTitle]];
-    [cell.content showStringMessage:dic[@"explain"]];
-    cell.time.text= [dic[@"ctime"] apiDate];
-    [cell.btnTransmit setTitle:dic[@"attentionCount"] forState:UIControlStateNormal];
-    [cell.btnReply setTitle:dic[@"commentCount"] forState:UIControlStateNormal];
-    NSDictionary *userInfo = dic[@"user_info"];
-    [cell.userHeader setImageWithURL:[NSURL URLWithString:userInfo[@"avatar_original"]]];
-    cell.userName.text = userInfo[@"uname"];
+    if (selectIndex != 5) {
+        NSDictionary *dic = [self huzhuAtIndex:indexPath];
+        [cell.title setText:[dic huzhuTitle]];
+        [cell.content showStringMessage:dic[@"explain"]];
+        cell.time.text= [dic[@"ctime"] apiDate];
+        [cell.btnTransmit setTitle:dic[@"attentionCount"] forState:UIControlStateNormal];
+        [cell.btnReply setTitle:dic[@"commentCount"] forState:UIControlStateNormal];
+        NSDictionary *userInfo = dic[@"user_info"];
+        [cell.userHeader setImageWithURL:[NSURL URLWithString:userInfo[@"avatar_original"]]];
+        cell.userName.text = userInfo[@"uname"];
+    } else {
+        //显示SOS的cell
+        NSLog(@"%s -> SOS Cell 未绘制", __FUNCTION__);
+    }
     
     return cell;
 }
@@ -173,7 +192,6 @@
 
 
 - (IBAction)btnPublishTap:(id)sender {
-    
     UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"结伴", @"顺风车", @"拼车", @"沙发客", nil];
     [sheet showInView:self.view];
 }
@@ -232,7 +250,6 @@
 
 #pragma mark - 搜索
 
-#pragma mark - UITextField
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {

@@ -75,6 +75,17 @@
 #define Mod_Attach_down @"down"                                 //下载附件
 
 
+#define Mod_SOS @"Sos"
+#define Mod_SOS_sos_list @"sos_list"
+#define Mod_SOS_add_sos @"add_sos"
+#define Mod_SOS_show @"show"
+
+#define Mod_Near @"Near"                                        //附近
+#define Mod_Near_near_road @"near_road"                         //附近路况
+#define Mod_Near_near_foot @"near_foot"                         //附近足迹
+#define Mod_Near_near_huzhu @"near_huzhu"                       //附近互助
+#define Mod_Near_neighbors @"neighbors"                         //附近小伙伴
+
 
 @interface APIHelper : NSObject
 

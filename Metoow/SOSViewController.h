@@ -7,7 +7,15 @@
 //  发布SOS
 
 #import <UIKit/UIKit.h>
+#import "QCheckBox.h"
 
-@interface SOSViewController : UIViewController
+@interface SOSViewController : UIViewController <UITextFieldDelegate>
+
+@property (weak, nonatomic) IBOutlet QCheckBox *dangerLevel1;
+@property (weak, nonatomic) IBOutlet QCheckBox *dangerLevel2;
+@property (weak, nonatomic) IBOutlet QCheckBox *dangerLevel3;
+@property (weak, nonatomic) IBOutlet UITextField *sosOther;
+
+-(IBAction)btnDangerTap:(id)sender;
 
 @end

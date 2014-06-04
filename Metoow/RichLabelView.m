@@ -26,6 +26,8 @@
 
 #define VIEW_WIDTH_MAX      166
 
+#define VIEW_WIDTH_FRAME (self.frame.size.width - 3.f)
+
 static NSString *emojiRegular = @"\\[{1}[a-zA-Z]+\\]{1}";
 
 @implementation RichLabelView
@@ -77,7 +79,7 @@ static NSString *emojiRegular = @"\\[{1}[a-zA-Z]+\\]{1}";
                 
                 if ( image ) {
                     
-                    if ( upX > ( self.frame.size.width ) ) {
+                    if ( upX > ( VIEW_WIDTH_FRAME ) ) {
                         
                         isLineReturn = YES;
                         
@@ -111,9 +113,9 @@ static NSString *emojiRegular = @"\\[{1}[a-zA-Z]+\\]{1}";
         NSString *character = [string substringWithRange:NSMakeRange( index, 1 )];
         
         CGSize size = [character sizeWithFont:font
-                            constrainedToSize:CGSizeMake(self.frame.size.width, VIEW_LINE_HEIGHT * 1.5)];
+                            constrainedToSize:CGSizeMake(VIEW_WIDTH_FRAME, VIEW_LINE_HEIGHT * 1.5)];
         
-        if ( upX > ( self.frame.size.width - KCharacterWidth ) ) {
+        if ( upX > ( VIEW_WIDTH_FRAME - KCharacterWidth ) ) {
             
             isLineReturn = YES;
             
@@ -243,7 +245,7 @@ static NSString *emojiRegular = @"\\[{1}[a-zA-Z]+\\]{1}";
             
             if ([[NSFileManager defaultManager] fileExistsAtPath:imagePath]) {
                 
-                if ( _upX > ( self.frame.size.width - KFacialSizeWidth ) ) {
+                if ( _upX > ( VIEW_WIDTH_FRAME - KFacialSizeWidth ) ) {
                     
                     bisLineReturn = YES;
                     
@@ -262,9 +264,9 @@ static NSString *emojiRegular = @"\\[{1}[a-zA-Z]+\\]{1}";
                     NSString *character = [str substringWithRange:NSMakeRange( index, 1 )];
                     
                     CGSize size = [character sizeWithFont:font
-                                        constrainedToSize:CGSizeMake(self.frame.size.width, VIEW_LINE_HEIGHT * 1.5)];
+                                        constrainedToSize:CGSizeMake(VIEW_WIDTH_FRAME, VIEW_LINE_HEIGHT * 1.5)];
                     
-                    if ( _upX > ( self.frame.size.width - KCharacterWidth ) ) {
+                    if ( _upX > ( VIEW_WIDTH_FRAME - KCharacterWidth ) ) {
                         
                         bisLineReturn = YES;
                         
@@ -285,9 +287,9 @@ static NSString *emojiRegular = @"\\[{1}[a-zA-Z]+\\]{1}";
                 NSString *character = [str substringWithRange:NSMakeRange( index, 1 )];
                 
                 CGSize size = [character sizeWithFont:font
-                                    constrainedToSize:CGSizeMake(self.frame.size.width, VIEW_LINE_HEIGHT * 1.5)];
+                                    constrainedToSize:CGSizeMake(VIEW_WIDTH_FRAME, VIEW_LINE_HEIGHT * 1.5)];
                 
-                if ( _upX > ( self.frame.size.width - KCharacterWidth ) ) {
+                if ( _upX > ( VIEW_WIDTH_FRAME - KCharacterWidth ) ) {
                     
                     bisLineReturn = YES;
                     
@@ -304,7 +306,7 @@ static NSString *emojiRegular = @"\\[{1}[a-zA-Z]+\\]{1}";
     
     if ( bisLineReturn ) {
         
-        _viewWidth = self.frame.size.width + VIEW_LEFT;
+        _viewWidth = VIEW_WIDTH_FRAME + VIEW_LEFT;
     }
     else {
         

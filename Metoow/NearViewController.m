@@ -9,6 +9,7 @@
 #import "NearViewController.h"
 #import "PersonCell.h"
 #import "RecordCell.h"
+#import "LocationManager.h"
 
 @interface NearViewController ()
 
@@ -40,8 +41,8 @@
     currentCategary = NearCategaryPerson;
     [self.pulldownBtn setCallbackBlock:^(PulldownButton *btn, NSInteger sltIndex) {
         currentCategary = (NearCategaryEnum)sltIndex;
+        page = 1;
         [self requestCategary:currentCategary];
-        NSLog(@"%s -> %d", __FUNCTION__, currentCategary);
     }];
 }
 
@@ -66,6 +67,22 @@
  */
 - (void)requestNearPerson
 {
+    [SVProgressHUD show];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    BMKAddrInfo *addrInfo = [LocationManager shareInterface].addrInfo;
+    NSDictionary *para = @{@"lng": [NSString stringWithFormat:@"%lf", addrInfo.geoPt.longitude], @"lat": [NSString stringWithFormat:@"%lf", addrInfo.geoPt.latitude], @"page" : [NSNumber numberWithInteger:page]};
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Near act:Mod_Near_neighbors Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
+        NSLog(@"%s -> %@", __FUNCTION__, operation.responseString);
+        if ([responseObject isOK]) {
+            
+        } else {
+            [[responseObject error] showAlert];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
+        [error showAlert];
+    }];
 }
 
 /**
@@ -73,6 +90,22 @@
  */
 - (void)requestNearFoot
 {
+    [SVProgressHUD show];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    BMKAddrInfo *addrInfo = [LocationManager shareInterface].addrInfo;
+    NSDictionary *para = @{@"lng": [NSString stringWithFormat:@"%lf", addrInfo.geoPt.longitude], @"lat": [NSString stringWithFormat:@"%lf", addrInfo.geoPt.latitude], @"page" : [NSNumber numberWithInteger:page]};
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Near act:Mod_Near_near_foot Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
+        NSLog(@"%s -> %@", __FUNCTION__, operation.responseString);
+        if ([responseObject isOK]) {
+            
+        } else {
+            [[responseObject error] showAlert];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
+        [error showAlert];
+    }];
 }
 
 /**
@@ -80,6 +113,22 @@
  */
 -(void)requestNearRoadDynamic
 {
+    [SVProgressHUD show];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    BMKAddrInfo *addrInfo = [LocationManager shareInterface].addrInfo;
+    NSDictionary *para = @{@"lng": [NSString stringWithFormat:@"%lf", addrInfo.geoPt.longitude], @"lat": [NSString stringWithFormat:@"%lf", addrInfo.geoPt.latitude], @"page" : [NSNumber numberWithInteger:page]};
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Near act:Mod_Near_near_road Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
+        NSLog(@"%s -> %@", __FUNCTION__, operation.responseString);
+        if ([responseObject isOK]) {
+            
+        } else {
+            [[responseObject error] showAlert];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
+        [error showAlert];
+    }];
 }
 
 /**
@@ -87,6 +136,22 @@
  */
 -(void)requestNearHelp
 {
+    [SVProgressHUD show];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    BMKAddrInfo *addrInfo = [LocationManager shareInterface].addrInfo;
+    NSDictionary *para = @{@"lng": [NSString stringWithFormat:@"%lf", addrInfo.geoPt.longitude], @"lat": [NSString stringWithFormat:@"%lf", addrInfo.geoPt.latitude], @"page" : [NSNumber numberWithInteger:page]};
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Near act:Mod_Near_near_huzhu Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
+        NSLog(@"%s -> %@", __FUNCTION__, operation.responseString);
+        if ([responseObject isOK]) {
+            
+        } else {
+            [[responseObject error] showAlert];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
+        [error showAlert];
+    }];
 }
 
 

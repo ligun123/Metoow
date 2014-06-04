@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "IQKeyboardManager.h"
 #import "PersonalViewController.h"
+#import "LocationManager.h"
 
 #define BaiduMapAppKey @"A5OMm1Qm4w1XIR6vfN0887BX"
 
@@ -47,6 +48,8 @@
     if (!ret) {
         NSLog(@"manager start failed!");
     }
+    
+    [LocationManager shareInterface];   //开启定位
     
     [self.window makeKeyAndVisible];
     [self customTabbar];

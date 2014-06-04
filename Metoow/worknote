@@ -49,5 +49,19 @@ api接口文档第一版
 图片上传、下载、显示，足迹的图片文字cell高度混合高度完美解决
 
 API Bugs:  测试ID:376438624@qq.com  sec:5815057    uid:165
-1、Foot/get_myfoot，Foot/my_attention，Foot/foot_collect接口中返回的足迹需要包含 是否被收藏的bool
+1、缺少回复SOS的接口和获取SOS回复的接口
 2、Huzhu/get_hzlist 获取的互助中预计费用和计划周期的值错误，和我上传的值不一样，请检查插入数据库的正确性
+3、Sos/add_sos 返回 “发布sos失败”
+http://www.metoow.com/index.php?app=api&act=add_sos&lat=30.636381&lng=104.061112&mod=Sos&oauth_token=a1709fb7935d2184b131a81e8d689923&oauth_token_secret=7e5210cb760a8c863e72bcc13c238f75&phone=18200509050&pos=%E5%9B%9B%E5%B7%9D%E7%9C%81%E6%88%90%E9%83%BD%E5%B8%82%E6%AD%A6%E4%BE%AF%E5%8C%BA%E6%B2%99%E5%AD%90%E5%A0%B0%E8%A5%BF%E5%B7%B73%E5%8F%B7&sos_info=%E4%B8%A5%E9%87%8D%E6%84%8F%E5%A4%96%EF%BC%8C%E6%97%A0%E6%B3%95%E8%A1%8C%E5%8A%A8%E3%80%82%E6%9C%89%E6%84%8F%E4%B9%89&uid=165
+
+4、附近/小伙伴接口错误，Near/neighbors，根据文档组织URL：
+http://www.metoow.com/index.php?app=api&act=neighbors&lat=30.636521&lng=104.060995&mod=Near&oauth_token=a1709fb7935d2184b131a81e8d689923&oauth_token_secret=7e5210cb760a8c863e72bcc13c238f75&page=1
+返回：Request faild: unacceptable content-type:text/html
+
+5、附近/互助接口错误，Near/near_huzhu,根据文档组织URL：
+http://www.metoow.com/index.php?app=api&act=near_huzhu&lat=30.636474&lng=104.060977&mod=Near&oauth_token=a1709fb7935d2184b131a81e8d689923&oauth_token_secret=7e5210cb760a8c863e72bcc13c238f75&page=1
+返回：{"data":null,"code":30003,"msg":"获取失败"}
+
+6、附近/路况接口错误，Near/near_road，根据文档组织URL：
+http://www.metoow.com/index.php?app=api&act=near_road&lat=30.636474&lng=104.060968&mod=Near&oauth_token=a1709fb7935d2184b131a81e8d689923&oauth_token_secret=7e5210cb760a8c863e72bcc13c238f75&page=1
+返回：{"data":null,"code":30001,"msg":"获取失败"}

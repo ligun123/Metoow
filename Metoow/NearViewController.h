@@ -20,9 +20,11 @@ typedef enum {
 {
     BOOL hasLoadCell;
     NearCategaryEnum currentCategary;
+    NSInteger page;
 }
 
 @property (weak, nonatomic) IBOutlet PulldownButton *pulldownBtn;
+@property (strong, nonatomic) NSArray *dataList;
 
 
 @end

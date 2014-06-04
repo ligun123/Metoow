@@ -32,7 +32,7 @@
     [super viewDidLoad];
     page = 1;
     // Do any additional setup after loading the view.
-    [self refresh];
+//    [self refresh];
 }
 
 - (void)viewWillAppear:(BOOL)animated

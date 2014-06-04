@@ -12,6 +12,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "FootPubViewController.h"
 #import "NSDictionary+Huzhu.h"
+#import "HelpDetailViewController.h"
 
 @interface MyHelpViewController ()
 
@@ -32,6 +33,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self refresh];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -50,7 +52,9 @@
 {
     [SVProgressHUD show];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Huzhu act:Mod_Huzhu_get_hzlist Paras:nil] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSString *uid = [[NSUserDefaults standardUserDefaults] objectForKey:@"uid"];
+    NSDictionary *dic = @{@"uid": uid, @"page" : [NSNumber numberWithInteger:1]};
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Huzhu act:Mod_Huzhu_get_hzlist Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
             self.dataList = [NSMutableArray arrayWithArray:responseObject[@"data"]];
@@ -116,6 +120,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSDictionary *dic = [self huzhuAtIndex:indexPath];
+    HelpDetailViewController *detail = [AppDelegateInterface awakeViewController:@"HelpDetailViewController"];
+    detail.detailDic = dic;
+    [self.navigationController pushViewController:detail animated:YES];
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [HuzhuCell height];
 }
 
 

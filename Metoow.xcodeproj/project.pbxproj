@@ -25,6 +25,7 @@
 		022DD9FF1906B24B00C6003C /* pb_star_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 022DD9FB1906B24B00C6003C /* pb_star_btn@2x.png */; };
 		022DDA001906B24B00C6003C /* pb_trans_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 022DD9FC1906B24B00C6003C /* pb_trans_btn@2x.png */; };
 		022DDA031906B3E100C6003C /* RecordActionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 022DDA021906B3E100C6003C /* RecordActionButton.m */; };
+		0231A38E193F50BC00ED435B /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0231A38D193F50BC00ED435B /* LocationManager.m */; };
 		0233F51118F3ACB5004B1ED1 /* pb_mainColor_bkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0233F51018F3ACB5004B1ED1 /* pb_mainColor_bkg@2x.png */; };
 		02466A181934C12000DBCBB2 /* getarea in Resources */ = {isa = PBXBuildFile; fileRef = 02466A171934C12000DBCBB2 /* getarea */; };
 		024724E6190547B000CA00E4 /* PulldownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 024724E5190547B000CA00E4 /* PulldownButton.m */; };
@@ -277,6 +278,8 @@
 		022DD9FC1906B24B00C6003C /* pb_trans_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pb_trans_btn@2x.png"; sourceTree = "<group>"; };
 		022DDA011906B3E100C6003C /* RecordActionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordActionButton.h; sourceTree = "<group>"; };
 		022DDA021906B3E100C6003C /* RecordActionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordActionButton.m; sourceTree = "<group>"; };
+		0231A38C193F50BC00ED435B /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
+		0231A38D193F50BC00ED435B /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		0233F51018F3ACB5004B1ED1 /* pb_mainColor_bkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pb_mainColor_bkg@2x.png"; sourceTree = "<group>"; };
 		02466A171934C12000DBCBB2 /* getarea */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = getarea; sourceTree = "<group>"; };
 		024724E4190547B000CA00E4 /* PulldownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PulldownButton.h; sourceTree = "<group>"; };
@@ -958,6 +961,8 @@
 				02BF655C190E92A600DCF2BD /* APIHelper.m */,
 				029FAFD31936197E00FCD685 /* FileUploader.h */,
 				029FAFD41936197E00FCD685 /* FileUploader.m */,
+				0231A38C193F50BC00ED435B /* LocationManager.h */,
+				0231A38D193F50BC00ED435B /* LocationManager.m */,
 				02F2E05B1902A5C5002902DD /* PersonalViewController.h */,
 				02F2E05C1902A5C5002902DD /* PersonalViewController.m */,
 				02F4A2B918FA6687006EDB25 /* 足迹 */,
@@ -1580,6 +1585,7 @@
 				022AE06F192E504C000ECBCE /* HPjbViewController.m in Sources */,
 				029FAFD51936197E00FCD685 /* FileUploader.m in Sources */,
 				028ACD5718FEC80200D36AE0 /* SelectLabel.m in Sources */,
+				0231A38E193F50BC00ED435B /* LocationManager.m in Sources */,
 				02F4A2A318FA45AF006EDB25 /* QCheckBox.m in Sources */,
 				022AE079192E5162000ECBCE /* HPsfkViewController.m in Sources */,
 				02BF653E190E8A9900DCF2BD /* AFHTTPRequestOperation.m in Sources */,
