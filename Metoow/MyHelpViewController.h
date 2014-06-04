@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyHelpViewController : UIViewController
+@interface MyHelpViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+{
+    BOOL hasRegister;
+}
+
+@property (weak, nonatomic) IBOutlet UITableView *tableview;
+@property (strong, nonatomic) NSMutableArray *dataList;
 
 @end

@@ -16,6 +16,7 @@
 #import "FootPubViewController.h"
 #import "FileUploader.h"
 #import "HelpDetailViewController.h"
+#import "MyHelpViewController.h"
 
 @interface HelpViewController ()
 
@@ -175,6 +176,12 @@
     
     UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"结伴", @"顺风车", @"拼车", @"沙发客", nil];
     [sheet showInView:self.view];
+}
+
+- (IBAction)btnMyHelpTap:(id)sender
+{
+    MyHelpViewController *myhelp = [AppDelegateInterface awakeViewController:@"MyHelpViewController"];
+    [self.navigationController pushViewController:myhelp animated:YES];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex

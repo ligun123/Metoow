@@ -30,6 +30,8 @@
 
 - (IBAction)btnPublishTap:(id)sender;
 
+- (IBAction)btnMyHelpTap:(id)sender;
+
 - (void)refresh;
 
 @end
