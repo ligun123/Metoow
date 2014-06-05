@@ -107,10 +107,10 @@
     if (self.editCategary == FootPubEditCategaryWeather) {
         [self publishWeather:txt];
     }
-    if (self.editCategary == FootPubEditCategaryReplyHuzhu) {
+    if (self.editCategary == FootPubEditCategaryReplyHuzhu || self.editCategary == FootPubEditCategaryReplySOS) {
         [self replyHuzhu:txt];
     }
-    if (self.editCategary == FootPubEditCategaryTransmitHuzhu) {
+    if (self.editCategary == FootPubEditCategaryTransmitHuzhu || self.editCategary == FootPubEditCategaryTransmitSOS) {
         [self transmitHuzhu:txt];
     }
 }
@@ -121,7 +121,10 @@
 {
     [SVProgressHUD show];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *dic = @{@"row_id" : self.dataDic[@"id"], @"app_name" : @"huzhu", @"table_name" : @"huzhu", @"content" : txt};
+    NSString *row_id = self.editCategary == FootPubEditCategaryReplySOS ? self.dataDic[@"sos_id"] : self.dataDic[@"id"];
+    NSString *table_name = self.editCategary == FootPubEditCategaryReplySOS ? @"sos" : @"huzhu";
+    NSString *app_name = self.editCategary == FootPubEditCategaryReplySOS ? @"sos" : @"huzhu";
+    NSDictionary *dic = @{@"row_id" : row_id, @"app_name" : app_name, @"table_name" : table_name, @"content" : txt};
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_System act:Mod_System_comment Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
@@ -144,8 +147,11 @@
 - (void)transmitHuzhu:(NSString *)txt
 {
     [SVProgressHUD show];
+    NSString *row_id = self.editCategary == FootPubEditCategaryTransmitSOS ? self.dataDic[@"sos_id"] : self.dataDic[@"id"];
+    NSString *table_name = self.editCategary == FootPubEditCategaryTransmitSOS ? @"sos" : @"huzhu";
+    NSString *app_name = self.editCategary == FootPubEditCategaryTransmitSOS ? @"sos" : @"huzhu";
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *dic = @{@"sid" : self.dataDic[@"id"], @"type" : @"huzhu", @"app_name" : @"huzhu", @"body" : txt};
+    NSDictionary *dic = @{@"sid" : row_id, @"type" : table_name, @"app_name" : app_name, @"body" : txt};
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_System act:Mod_System_share Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
@@ -319,6 +325,9 @@
 - (void)inputView:(MSGInputView *)inputView didSendPicture:(UIImage *)img
 {
     [self showInputBarOnBottom];
+    if (img == nil) {
+        return ;
+    }
     NSData *dat = UIImageJPEGRepresentation(img, 0.8);
     NSLog(@"%s -> %d    size(%f, %f)", __FUNCTION__, dat.length, img.size.width, img.size.height);
     [self.picRoll addImage:img];

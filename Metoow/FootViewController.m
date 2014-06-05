@@ -119,7 +119,7 @@
     [cell.btnConnect setTitle:dic[@"collect_count"] forState:UIControlStateNormal];
     [cell.btnTransmit setTitle:dic[@"share_count"] forState:UIControlStateNormal];
     [cell.btnReply setTitle:dic[@"comment_count"] forState:UIControlStateNormal];
-    BOOL isRoad = selectIndex >= 3;
+    BOOL isRoad = selectIndex >= 4;
     [cell.btnConnect setHidden:isRoad];
     [cell.btnReply setHidden:isRoad];
     [cell.btnTransmit setHidden:isRoad];
@@ -174,7 +174,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (selectIndex < 3) {
+    if (selectIndex < 4) {
         return [RecordCell height];
     } else {
         return [RecordCell height] - 25;

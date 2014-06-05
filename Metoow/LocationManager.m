@@ -24,6 +24,7 @@ static LocationManager *interface = nil;
 {
     self = [super init];
     if (self) {
+        self.addrInfo = nil;
         [self fatchMapLocation];
     }
     return self;
@@ -33,14 +34,14 @@ static LocationManager *interface = nil;
 
 - (void)fatchMapLocation
 {
-    if (baiduSearch == nil)
+    if (baiduSearch == nil || userLocation == nil)
     {
         userLocation = [[BMKUserLocation alloc] init];
         userLocation.delegate = self;
-        [userLocation startUserLocationService];
         baiduSearch = [[BMKSearch alloc] init];
         baiduSearch.delegate = self;
     }
+    [userLocation startUserLocationService];
 }
 
 
@@ -58,6 +59,12 @@ static LocationManager *interface = nil;
 - (void)viewDidGetLocatingUser:(CLLocationCoordinate2D)userLoc
 {
     [baiduSearch reverseGeocode:userLoc];
+}
+
+- (void)stopLocationService
+{
+    [userLocation stopUserLocationService];
+    self.addrInfo = nil;
 }
 
 

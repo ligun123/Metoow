@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LocationManager : NSObject
+@interface LocationManager : NSObject <BMKSearchDelegate, BMKUserLocationDelegate>
 {
     BMKSearch *baiduSearch;
     BMKUserLocation *userLocation;
@@ -17,5 +17,9 @@
 @property (strong, nonatomic) BMKAddrInfo *addrInfo;
 
 + (instancetype)shareInterface;
+
+- (void)fatchMapLocation;
+
+- (void)stopLocationService;
 
 @end

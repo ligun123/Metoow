@@ -20,6 +20,8 @@
 @property (readonly, nonatomic) HWTabBar *tabBar;
 @property BOOL hasLogin;
 
+@property (strong, nonatomic) NSTimer *checkinTimer;
+
 - (id)awakeViewController:(NSString *)identifier;
 
 - (void)setTabBarHidden:(BOOL)hid;

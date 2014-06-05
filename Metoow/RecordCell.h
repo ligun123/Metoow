@@ -12,6 +12,7 @@
 #import "RichLabelView.h"
 
 @class RecordCell;
+
 @protocol RecordCellProtocol <NSObject>
 
 - (void)recordCell:(RecordCell *)cell tapedBtn:(RecordActionButton *)btn;

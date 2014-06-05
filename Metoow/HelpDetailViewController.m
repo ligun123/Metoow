@@ -32,7 +32,7 @@
     [super viewDidLoad];
     page = 1;
     // Do any additional setup after loading the view.
-//    [self refresh];
+    [self refresh];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -44,7 +44,13 @@
 - (void)refresh
 {
     [SVProgressHUD show];
-    NSDictionary *dic = @{@"id": self.detailDic[@"id"], @"table_name" : @"huzhu", @"page" : [NSNumber numberWithInteger:page], @"count" : [NSNumber numberWithInteger:20]};
+    NSString *huzhuid = self.detailDic[@"id"];
+    NSString *table_name = @"huzhu";
+    if (huzhuid == nil) {
+        huzhuid = self.detailDic[@"sos_id"];
+        table_name = @"sos";
+    }
+    NSDictionary *dic = @{@"id": huzhuid, @"table_name" : table_name, @"page" : [NSNumber numberWithInteger:page], @"count" : [NSNumber numberWithInteger:20]};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Comment act:Mod_Comment_get_comments Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
@@ -95,14 +101,23 @@
 
 - (IBAction)btnTransmitTap:(id)sender {
     FootPubViewController *publ = [AppDelegateInterface awakeViewController:@"FootPubViewController"];
-    publ.editCategary = FootPubEditCategaryTransmitHuzhu;
+    if (self.detailDic[@"id"]) {
+        publ.editCategary = FootPubEditCategaryTransmitHuzhu;
+    } else {
+        publ.editCategary = FootPubEditCategaryTransmitSOS;
+    }
+    
     publ.dataDic = self.detailDic;
     [self.navigationController pushViewController:publ animated:YES];
 }
 
 - (IBAction)btnReplyTap:(id)sender {
     FootPubViewController *publ = [AppDelegateInterface awakeViewController:@"FootPubViewController"];
-    publ.editCategary = FootPubEditCategaryReplyHuzhu;
+    if (self.detailDic[@"id"]) {
+        publ.editCategary = FootPubEditCategaryReplyHuzhu;
+    } else {
+        publ.editCategary = FootPubEditCategaryReplySOS;
+    }
     publ.dataDic = self.detailDic;
     [self.navigationController pushViewController:publ animated:YES];
 }
@@ -117,6 +132,7 @@
         self.detailCell.name.text = self.detailDic[@"user_info"][@"uname"];
         self.detailCell.time.text = [self.detailDic[@"time"] apiDate];
         //调整content的高度
+#error 显示SOS的文字内容， 互助的详情内容显示还需修改
         if ([self.detailDic[@"pic_ids"] length] == 0) {
             if ([self.detailCell.picScroll superview]) {
                 [self.detailCell.picScroll removeFromSuperview];

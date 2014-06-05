@@ -1740,6 +1740,7 @@
                     <navigationItem key="navigationItem" id="YNd-jU-ieg"/>
                     <connections>
                         <outlet property="pulldownBtn" destination="YNa-cg-6vH" id="Bd5-Zq-gnX"/>
+                        <outlet property="tableview" destination="1Kd-37-dCF" id="eKK-WR-3HO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6L3-4O-mDB" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -10,6 +10,9 @@
 #import "PersonCell.h"
 #import "RecordCell.h"
 #import "LocationManager.h"
+#import "HuzhuCell.h"
+#import "NSDictionary+Huzhu.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface NearViewController ()
 
@@ -144,7 +147,8 @@
         [SVProgressHUD dismiss];
         NSLog(@"%s -> %@", __FUNCTION__, operation.responseString);
         if ([responseObject isOK]) {
-            
+            self.dataList = responseObject[@"data"];
+            [self.tableview reloadData];
         } else {
             [[responseObject error] showAlert];
         }
@@ -174,7 +178,23 @@
     if (!hasLoadCell) {
         hasLoadCell = YES;
         [tableView registerNib:[PersonCell nib] forCellReuseIdentifier:[PersonCell identifier]];
+        [tableView registerNib:[HuzhuCell nib] forCellReuseIdentifier:[HuzhuCell identifier]];
+        [tableView registerNib:[RecordCell nib] forCellReuseIdentifier:[RecordCell identifier]];
     }
+    if (currentCategary == NearCategaryPerson) {
+        return [self personCellForTable:tableView atIndexPath:indexPath];
+    }
+    else if (currentCategary == NearCategaryHelp) {
+        return [self huzhuCellForTable:tableView atIndexPath:indexPath];
+    }
+    else {
+        return [self footCellForTable:tableView atIndexPath:indexPath];
+    }
+}
+
+
+- (UITableViewCell *)personCellForTable:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath
+{
     PersonCell *cell = [tableView dequeueReusableCellWithIdentifier:[PersonCell identifier]];
     cell.headerView.image = [UIImage imageNamed:@"test_header_bkg"];
     cell.titleLabel.text = @"玛丽莲梦露";
@@ -182,13 +202,37 @@
     return cell;
 }
 
+- (UITableViewCell *)footCellForTable:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath
+{
+    return nil;
+}
+
+- (UITableViewCell *)huzhuCellForTable:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath
+{
+    HuzhuCell *cell = [tableView dequeueReusableCellWithIdentifier:[HuzhuCell identifier]];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.delegate = self;
+    
+    NSDictionary *dic = self.dataList[indexPath.row];
+    [cell.title setText:[dic huzhuTitle]];
+    [cell.content showStringMessage:dic[@"explain"]];
+    cell.time.text= [dic[@"cTime"] apiDateCn];
+    [cell.btnTransmit setTitle:dic[@"attentionCount"] forState:UIControlStateNormal];
+    [cell.btnReply setTitle:dic[@"commentCount"] forState:UIControlStateNormal];
+    NSDictionary *userInfo = dic[@"user_info"];
+    [cell.userHeader setImageWithURL:[NSURL URLWithString:userInfo[@"avatar_original"]]];
+    cell.userName.text = userInfo[@"uname"];
+    return cell;
+}
+
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.dataList.count;
 }
 
 
@@ -200,8 +244,21 @@
 {
     if (currentCategary == NearCategaryPerson) {
         return [PersonCell height];
-    } else return [RecordCell height];
+    } else if (currentCategary == NearCategaryHelp) {
+        return [HuzhuCell height];
+    } else {
+        return [RecordCell height];
+    }
 }
+
+#pragma mark - Cell Delegate
+
+- (void)recordCell:(RecordCell *)cell tapedBtn:(RecordActionButton *)btn
+{}
+
+
+- (void)huzhuCell:(HuzhuCell *)cell tapBtn:(RecordActionButton *)btn
+{}
 
 
 @end

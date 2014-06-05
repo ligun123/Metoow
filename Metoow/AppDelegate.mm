@@ -10,6 +10,7 @@
 #import "IQKeyboardManager.h"
 #import "PersonalViewController.h"
 #import "LocationManager.h"
+#import "AFHTTPRequestOperationManager.h"
 
 #define BaiduMapAppKey @"A5OMm1Qm4w1XIR6vfN0887BX"
 
@@ -57,6 +58,7 @@
     if (!self.hasLogin) {
         [self displayLogin];
     }
+    [self checkIn];
     return YES;
 }
 
@@ -150,12 +152,49 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [self.checkinTimer invalidate];
+    self.checkinTimer = nil;
+    [[LocationManager shareInterface] stopLocationService];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    NSLog(@"%s ->", __FUNCTION__);
+    [self checkIn];
 }
+
+- (void)checkIn
+{
+    [[LocationManager shareInterface] fatchMapLocation];
+    self.checkinTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(checkInTimer:) userInfo:nil repeats:YES];
+}
+
+
+- (void)checkInTimer:(NSTimer *)timer
+{
+    if ([LocationManager shareInterface].addrInfo != nil && self.hasLogin) {
+        [self.checkinTimer invalidate];
+        self.checkinTimer = nil;
+        //request数据
+        BMKAddrInfo *info = [LocationManager shareInterface].addrInfo;
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        NSDictionary *para = @{@"lng": [NSString stringWithFormat:@"%lf", info.geoPt.longitude], @"lat": [NSString stringWithFormat:@"%lf", info.geoPt.latitude]};
+        [manager GET:API_URL parameters:[APIHelper packageMod:Mod_User act:Mod_User_checkin Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            if ([responseObject isOK]) {
+                NSLog(@"%s -> check in OK", __FUNCTION__);
+            } else {
+                [[responseObject error] showAlert];
+                if ([responseObject code] == 1) {
+                    [self displayLogin];
+                }
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%s -> check in error", __FUNCTION__);
+        }];
+    }
+}
+
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {

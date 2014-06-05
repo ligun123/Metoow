@@ -14,7 +14,7 @@
 
 @protocol HuzhuCellProtocol <NSObject>
 
-- (void)cell:(HuzhuCell *)cell tapBtn:(RecordActionButton *)btn;
+- (void)huzhuCell:(HuzhuCell *)cell tapBtn:(RecordActionButton *)btn;
 
 @end
 

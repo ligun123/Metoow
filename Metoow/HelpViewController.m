@@ -131,7 +131,7 @@
         NSDictionary *dic = [self huzhuAtIndex:indexPath];
         [cell.title setText:[dic huzhuTitle]];
         [cell.content showStringMessage:dic[@"explain"]];
-        cell.time.text= [dic[@"ctime"] apiDate];
+        cell.time.text= [dic[@"cTime"] apiDate];
         [cell.btnTransmit setTitle:dic[@"attentionCount"] forState:UIControlStateNormal];
         [cell.btnReply setTitle:dic[@"commentCount"] forState:UIControlStateNormal];
         NSDictionary *userInfo = dic[@"user_info"];
@@ -139,7 +139,15 @@
         cell.userName.text = userInfo[@"uname"];
     } else {
         //显示SOS的cell
-        NSLog(@"%s -> SOS Cell 未绘制", __FUNCTION__);
+        NSDictionary *dic = [self huzhuAtIndex:indexPath];
+        [cell.title setText:dic[@"sos_info"]];
+        [cell.content showStringMessage:@"SOS求救"];
+        cell.time.text= [dic[@"time"] apiDate];
+        [cell.btnTransmit setTitle:dic[@"attentionCount"] forState:UIControlStateNormal];
+        [cell.btnReply setTitle:dic[@"commentCount"] forState:UIControlStateNormal];
+        NSDictionary *userInfo = dic[@"user_info"];
+        [cell.userHeader setImageWithURL:[NSURL URLWithString:userInfo[@"avatar_original"]]];
+        cell.userName.text = userInfo[@"uname"];
     }
     
     return cell;
@@ -227,7 +235,7 @@
 }
 
 
-- (void)cell:(HuzhuCell *)cell tapBtn:(RecordActionButton *)btn
+- (void)huzhuCell:(HuzhuCell *)cell tapBtn:(RecordActionButton *)btn
 {
     NSIndexPath *indexPath = [self.tableview indexPathForCell:cell];
     NSDictionary *dic = [self huzhuAtIndex:indexPath];
@@ -235,14 +243,14 @@
     if (btn == cell.btnTransmit) {
         //转发
         FootPubViewController *publ = [AppDelegateInterface awakeViewController:@"FootPubViewController"];
-        publ.editCategary = FootPubEditCategaryTransmitHuzhu;
+        publ.editCategary = (selectIndex == 5) ? FootPubEditCategaryTransmitSOS : FootPubEditCategaryTransmitHuzhu;
         publ.dataDic = dic;
         [self.navigationController pushViewController:publ animated:YES];
     }
     if (btn == cell.btnReply) {
         //回复
         FootPubViewController *publ = [AppDelegateInterface awakeViewController:@"FootPubViewController"];
-        publ.editCategary = FootPubEditCategaryReplyHuzhu;
+        publ.editCategary = (selectIndex == 5) ? FootPubEditCategaryReplySOS : FootPubEditCategaryReplyHuzhu;
         publ.dataDic = dic;
         [self.navigationController pushViewController:publ animated:YES];
     }

@@ -44,6 +44,7 @@
 #define Mod_User @"User"
 #define Mod_User_info @"info"
 #define Mod_User_myinfo @"myinfo"
+#define Mod_User_checkin @"checkin"                             //记录用户最后位置
 
 
 #define Mod_Message @"Message"
@@ -134,5 +135,7 @@
 - (BOOL)isOK;
 
 - (NSError *)error;
+
+- (int)code;
 
 @end

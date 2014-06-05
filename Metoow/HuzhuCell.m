@@ -35,16 +35,16 @@
 
 - (IBAction)btnTransmitTap:(RecordActionButton *)sender
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(cell:tapBtn:)]) {
-        [_delegate cell:self tapBtn:sender];
+    if (_delegate && [_delegate respondsToSelector:@selector(huzhuCell:tapBtn:)]) {
+        [_delegate huzhuCell:self tapBtn:sender];
     }
 }
 
 
 - (IBAction)btnReplyTap:(RecordActionButton *)sender
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(cell:tapBtn:)]) {
-        [_delegate cell:self tapBtn:sender];
+    if (_delegate && [_delegate respondsToSelector:@selector(huzhuCell:tapBtn:)]) {
+        [_delegate huzhuCell:self tapBtn:sender];
     }
 }
 

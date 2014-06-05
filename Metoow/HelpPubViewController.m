@@ -214,6 +214,9 @@
 - (void)inputView:(MSGInputView *)inputView didSendPicture:(UIImage *)img
 {
     [self showInputBarOnBottom];
+    if (img == nil) {
+        return ;
+    }
     NSData *dat = UIImageJPEGRepresentation(img, 0.8);
     NSLog(@"%s -> %d    size(%f, %f)", __FUNCTION__, dat.length, img.size.width, img.size.height);
     [self.picRoll addImage:img];

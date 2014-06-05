@@ -100,4 +100,9 @@
     }
 }
 
+- (int)code
+{
+    return [[self objectForKey:@"code"] intValue];
+}
+
 @end

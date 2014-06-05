@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "PulldownButton.h"
+#import "RecordCell.h"
+#import "HuzhuCell.h"
 
 typedef enum {
     NearCategaryPerson = 0,         //伙伴
@@ -16,7 +18,7 @@ typedef enum {
     NearCategaryHelp = 3            //互助
 } NearCategaryEnum;
 
-@interface NearViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface NearViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, RecordCellProtocol, HuzhuCellProtocol>
 {
     BOOL hasLoadCell;
     NearCategaryEnum currentCategary;
@@ -25,6 +27,7 @@ typedef enum {
 
 @property (weak, nonatomic) IBOutlet PulldownButton *pulldownBtn;
 @property (strong, nonatomic) NSArray *dataList;
+@property (weak, nonatomic) IBOutlet UITableView *tableview;
 
 
 @end
