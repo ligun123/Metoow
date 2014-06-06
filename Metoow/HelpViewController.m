@@ -172,24 +172,6 @@
     HelpDetailViewController *detail = [AppDelegateInterface awakeViewController:@"HelpDetailViewController"];
     detail.detailDic = dic;
     [self.navigationController pushViewController:detail animated:YES];
-//    [self requestDetailForHuzhu:dic];
-}
-
-- (void)requestDetailForHuzhu:(NSDictionary *)huzhu
-{
-    NSDictionary *para = @{@"id": huzhu[@"id"]};
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Huzhu act:Mod_Huzhu_get_one_hz Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [SVProgressHUD dismiss];
-        if ([responseObject isOK]) {
-            NSLog(@"%s -> %@", __FUNCTION__, operation.responseString);
-        } else {
-            [[responseObject error] showAlert];
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD dismiss];
-        [error showAlert];
-    }];
 }
 
 

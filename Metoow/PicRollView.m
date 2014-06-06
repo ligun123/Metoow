@@ -150,6 +150,9 @@
 - (void)scanTapOnImgView:(UITapGestureRecognizer *)tap
 {
     UIImageView *imgv = (UIImageView *)tap.view;
+    if (imgv.image == nil) {
+        return ;
+    }
     NSInteger index = [[self images] indexOfObject:imgv.image];
     ScanImageViewController *scan = [[ScanImageViewController alloc] init];
     [scan setImageArray:[self images] currentIndex:index];

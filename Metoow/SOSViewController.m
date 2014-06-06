@@ -74,7 +74,8 @@
 - (IBAction)btnDoneTap:(id)sender
 {
     QCheckBox *danger = [self selectCheckbox];
-    NSString *sos_info = [[danger titleForState:UIControlStateNormal] stringByAppendingFormat:@"。%@", self.sosOther.text];
+    NSString *otherTxt = self.sosOther.text.length == 0 ? @"" : self.sosOther.text;
+    NSString *sos_info = [[danger titleForState:UIControlStateNormal] stringByAppendingFormat:@"。%@", otherTxt];
     NSString *sos = [sos_info stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSString *phone = @"18200509050";
     NSString *uid = [[NSUserDefaults standardUserDefaults] objectForKey:@"uid"];

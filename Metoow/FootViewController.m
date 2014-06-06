@@ -185,7 +185,7 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ((selectIndex == 0 || selectIndex == 3) && !isSearching) {
+    if ((selectIndex == 1 || selectIndex == 4) && !isSearching) {
         return YES;
     }
     return NO;
@@ -194,10 +194,10 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        if (selectIndex == 0) {
+        if (selectIndex == 1) {
             [self deleteFootAtIndex:indexPath];
         }
-        if (selectIndex == 3) {
+        if (selectIndex == 4) {
             [self deleteRoadAtIndex:indexPath];
         }
     }

@@ -45,6 +45,7 @@
 #define Mod_User_info @"info"
 #define Mod_User_myinfo @"myinfo"
 #define Mod_User_checkin @"checkin"                             //记录用户最后位置
+#define Mod_User_neighbors @"neighbors"                         //附近小伙伴
 
 
 #define Mod_Message @"Message"
@@ -85,7 +86,7 @@
 #define Mod_Near_near_road @"near_road"                         //附近路况
 #define Mod_Near_near_foot @"near_foot"                         //附近足迹
 #define Mod_Near_near_huzhu @"near_huzhu"                       //附近互助
-#define Mod_Near_neighbors @"neighbors"                         //附近小伙伴
+
 
 
 @interface APIHelper : NSObject

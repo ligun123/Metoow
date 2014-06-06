@@ -53,8 +53,8 @@ api接口文档第一版
 API Bugs:  测试ID:376438624@qq.com  sec:5815057    uid:165
 1、缺少转发SOS的接口，接口Sos/sos_list返回的数据缺少被转发次数、被回复次数
 4、附近/小伙伴接口错误，Near/neighbors，根据文档组织URL：
-http://www.metoow.com/index.php?app=api&act=neighbors&lat=30.636521&lng=104.060995&mod=Near&oauth_token=a1709fb7935d2184b131a81e8d689923&oauth_token_secret=7e5210cb760a8c863e72bcc13c238f75&page=1
-返回：Request faild: unacceptable content-type:text/html
+http://www.metoow.com/index.php?app=api&act=neighbors&lat=30.636466&lng=104.061058&mod=Near&oauth_token=a1709fb7935d2184b131a81e8d689923&oauth_token_secret=7e5210cb760a8c863e72bcc13c238f75&page=1
+返回NULL，正常逻辑如果找不到周围的小伙伴，应该返回找不到伙伴的错误信息，参考找不到周围足迹时的返回数据
 
 5、附近/互助接口错误，Near/near_huzhu, Near/near_road, near_foot
 返回的数据缺少发布用户的user_info(至少包含用户昵称、头像和uid)

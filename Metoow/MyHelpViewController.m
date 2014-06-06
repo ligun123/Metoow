@@ -138,7 +138,7 @@
     return self.dataList[indexPath.row];
 }
 
-- (void)cell:(HuzhuCell *)cell tapBtn:(RecordActionButton *)btn
+- (void)huzhuCell:(HuzhuCell *)cell tapBtn:(RecordActionButton *)btn
 {
     NSIndexPath *indexPath = [self.tableview indexPathForCell:cell];
     NSDictionary *dic = [self huzhuAtIndex:indexPath];
