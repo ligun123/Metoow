@@ -8,6 +8,7 @@
 
 #import "PersonalViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "MyFootViewController.h"
 
 @interface PersonalViewController ()
 
@@ -35,6 +36,13 @@
     [self requestUserInfo];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [AppDelegateInterface setTabBarHidden:!_isMe];
+}
+
+
 - (void)requestUserInfo
 {
     [SVProgressHUD show];
@@ -56,7 +64,7 @@
         } else {
             [[responseObject error] showAlert];
         }
-        NSLog(@"%s -> %@", __FUNCTION__, responseObject);
+        NSLog(@"%s -> %@", __FUNCTION__, operation.responseString);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD dismiss];
         [error showAlert];
@@ -66,6 +74,7 @@
 //将返回的数据显示到界面上
 - (void)layoutWithResponse:(NSDictionary *)data
 {
+    self.user_id = data[@"uid"];
     NSString *uname = data[@"uname"];
     self.nameLabel.text = uname;
     
@@ -75,8 +84,13 @@
     NSInteger sex = [data[@"sex"] integerValue];
     [self.sexImgView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"sex%d", sex]]];
     
-    NSString *locate = data[@"location"];
+    NSString *locate = data[@"tag"];
     self.introLabel.text = locate;
+    
+    self.addrLabel.text = data[@"location"];
+    
+    self.fansNOLabel.text = [data[@"follower_count"] stringValue];
+    self.focusNOLabel.text = [data[@"following_count"] stringValue];
 }
 
 - (void)didReceiveMemoryWarning
@@ -101,5 +115,8 @@
 }
 
 - (IBAction)btnMyFootsTap:(id)sender {
+    MyFootViewController *myfoot = [AppDelegateInterface awakeViewController:@"MyFootViewController"];
+    myfoot.user_id = self.user_id;
+    [self.navigationController pushViewController:myfoot animated:YES];
 }
 @end

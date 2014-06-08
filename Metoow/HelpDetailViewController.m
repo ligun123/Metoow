@@ -128,11 +128,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        [self.detailCell.headerImg setImageWithURL:[NSURL URLWithString:self.detailDic[@"user_info"][@"avatar_original"]]];
-        self.detailCell.name.text = self.detailDic[@"user_info"][@"uname"];
-        self.detailCell.time.text = [self.detailDic[@"cTime"] apiDate];
+        if (self.detailDic[@"sos_id"]) {
+            self.detailCell.time.text = [self.detailDic[@"time"] apiDate];
+            [self.detailCell.content showStringMessage:self.detailDic[@"sos_info"]];
+        } else {
+            self.detailCell.time.text = [self.detailDic[@"cTime"] apiDate];
+            [self.detailCell.content showStringMessage:[self.detailDic huzhuTitle]];
+        }
+        
         //调整content的高度
-//#error 显示SOS的文字内容， 互助的详情内容显示还需修改
         if ([self.detailDic[@"pic_ids"] length] == 0) {
             if ([self.detailCell.picScroll superview]) {
                 [self.detailCell.picScroll removeFromSuperview];
@@ -151,8 +155,8 @@
             }
             [self.detailCell.picScroll showMetoowPicIDs:arr];
         }
-        
-        [self.detailCell.content showStringMessage:[self.detailDic huzhuTitle]];
+        [self.detailCell.headerImg setImageWithURL:[NSURL URLWithString:self.detailDic[@"user_info"][@"avatar_original"]]];
+        self.detailCell.name.text = self.detailDic[@"user_info"][@"uname"];
         return self.detailCell;
     } else {
         if (!hasRegister) {

@@ -21,9 +21,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *sexImgView;   //性别
 @property (weak, nonatomic) IBOutlet UIImageView *headerImgView;//头像
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *introLabel;       //简介
+@property (weak, nonatomic) IBOutlet UITextView *introLabel;       //简介
 @property (weak, nonatomic) IBOutlet UILabel *focusNOLabel;     //关注数量
 @property (weak, nonatomic) IBOutlet UILabel *fansNOLabel;      //粉丝数
+@property (weak, nonatomic) IBOutlet UILabel *addrLabel;
 
 
 @property (copy, nonatomic) NSString *user_id;

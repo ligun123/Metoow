@@ -143,8 +143,8 @@
         [cell.title setText:dic[@"sos_info"]];
         [cell.content showStringMessage:@"SOS求救"];
         cell.time.text= [dic[@"time"] apiDate];
-        [cell.btnTransmit setTitle:dic[@"attentionCount"] forState:UIControlStateNormal];
-        [cell.btnReply setTitle:dic[@"commentCount"] forState:UIControlStateNormal];
+        [cell.btnTransmit setTitle:[dic[@"repost_count"] stringValue] forState:UIControlStateNormal];
+        [cell.btnReply setTitle:[dic[@"comment_all_count"] stringValue] forState:UIControlStateNormal];
         NSDictionary *userInfo = dic[@"user_info"];
         [cell.userHeader setImageWithURL:[NSURL URLWithString:userInfo[@"avatar_original"]]];
         cell.userName.text = userInfo[@"uname"];

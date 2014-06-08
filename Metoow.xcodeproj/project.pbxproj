@@ -123,6 +123,7 @@
 		026708471903FE7E003D43F9 /* RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 026708461903FE7E003D43F9 /* RecordCell.m */; };
 		0267084A1903FEAC003D43F9 /* HWCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 026708491903FEAC003D43F9 /* HWCell.m */; };
 		0267084C19040040003D43F9 /* RecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0267084B1904003F003D43F9 /* RecordCell.xib */; };
+		027119C71944619C00CBC249 /* MyFootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 027119C61944619C00CBC249 /* MyFootViewController.m */; };
 		027C7EA1191A68AF00B2188C /* SelectAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 027C7EA0191A68AF00B2188C /* SelectAreaViewController.m */; };
 		027E18731920FF21002D6896 /* UIImage+Gif.m in Sources */ = {isa = PBXBuildFile; fileRef = 027E18721920FF21002D6896 /* UIImage+Gif.m */; };
 		02893FEB193B0EBA007A79AF /* ReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 02893FEA193B0EBA007A79AF /* ReplyCell.m */; };
@@ -408,6 +409,8 @@
 		026708481903FEAC003D43F9 /* HWCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWCell.h; sourceTree = "<group>"; };
 		026708491903FEAC003D43F9 /* HWCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWCell.m; sourceTree = "<group>"; };
 		0267084B1904003F003D43F9 /* RecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordCell.xib; sourceTree = "<group>"; };
+		027119C51944619C00CBC249 /* MyFootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFootViewController.h; sourceTree = "<group>"; };
+		027119C61944619C00CBC249 /* MyFootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFootViewController.m; sourceTree = "<group>"; };
 		027C7E9F191A68AF00B2188C /* SelectAreaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectAreaViewController.h; sourceTree = "<group>"; };
 		027C7EA0191A68AF00B2188C /* SelectAreaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectAreaViewController.m; sourceTree = "<group>"; };
 		027E18711920FF21002D6896 /* UIImage+Gif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Gif.h"; sourceTree = "<group>"; };
@@ -1215,6 +1218,8 @@
 				02F4A2B418FA6060006EDB25 /* SOSViewController.m */,
 				02A2BBFA19273C350060A453 /* FootDetailViewController.h */,
 				02A2BBFB19273C350060A453 /* FootDetailViewController.m */,
+				027119C51944619C00CBC249 /* MyFootViewController.h */,
+				027119C61944619C00CBC249 /* MyFootViewController.m */,
 			);
 			name = "足迹";
 			sourceTree = "<group>";
@@ -1612,6 +1617,7 @@
 				0260B2E219338248000F9846 /* NSDictionary+Huzhu.m in Sources */,
 				02BF654B190E8A9900DCF2BD /* UIImageView+AFNetworking.m in Sources */,
 				02BF654C190E8A9900DCF2BD /* UIProgressView+AFNetworking.m in Sources */,
+				027119C71944619C00CBC249 /* MyFootViewController.m in Sources */,
 				02F4A29418FA4463006EDB25 /* IQKeyboardManager.m in Sources */,
 				026708471903FE7E003D43F9 /* RecordCell.m in Sources */,
 				02F4DB54192723C9004EFFBC /* RichLabelView.m in Sources */,

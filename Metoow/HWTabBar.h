@@ -10,7 +10,7 @@
 
 #define kHeight_HWTabBar 49.f
 
-@class HWTabBar;
+@class HWTabBar, HWTabBarItem;
 
 @protocol HWTabBarProtocol <NSObject>
 
@@ -27,6 +27,8 @@
 @property (weak, nonatomic) id<HWTabBarProtocol> delegate;
 
 + (HWTabBar *)tabBarWithItems:(NSArray *)arr;
+
+- (void)tabBarItemTap:(HWTabBarItem *)item;
 
 @end
 

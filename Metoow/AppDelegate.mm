@@ -185,7 +185,7 @@
                 NSLog(@"%s -> check in OK", __FUNCTION__);
             } else {
                 [[responseObject error] showAlert];
-                if ([responseObject code] == 1) {
+                if ([(NSDictionary *)responseObject code] == 1) {
                     [self displayLogin];
                 }
             }

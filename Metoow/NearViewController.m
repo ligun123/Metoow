@@ -17,6 +17,7 @@
 #import "PersonalViewController.h"
 #import "FootDetailViewController.h"
 #import "HelpDetailViewController.h"
+#import "AppDelegate.h"
 
 @interface NearViewController ()
 
@@ -291,6 +292,18 @@
         HelpDetailViewController *detail = [AppDelegateInterface awakeViewController:@"HelpDetailViewController"];
         detail.detailDic = dic;
         [self.navigationController pushViewController:detail animated:YES];
+    }
+    if (currentCategary == NearCategaryPerson) {
+        NSString *uid = dic[@"uid"];
+        if ([uid isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"uid"]]) {
+            HWTabBar *tab = [AppDelegateInterface tabBar];
+            [tab tabBarItemTap:tab.tabItems[4]];
+        } else {
+            PersonalViewController *pers = [AppDelegateInterface awakeViewController:@"PersonalViewController"];
+            pers.user_id = uid;
+            pers.isMe = NO;
+            [self.navigationController pushViewController:pers animated:YES];
+        }
     }
 }
 
