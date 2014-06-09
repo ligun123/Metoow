@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSGSessionViewController.h"
 
 @interface PersonalViewController : UIViewController
+{
+    BOOL is_follow;
+}
 
 @property BOOL isMe;    //是我的资料还是别人的资料，我的资料==更多
 
@@ -31,5 +35,9 @@
 
 - (IBAction)btnBackTap:(id)sender;
 - (IBAction)btnMyFootsTap:(id)sender;       //发布的足迹
+
+- (IBAction)btnFocusTap:(id)sender;
+
+-(IBAction)btnMessageTap:(id)sender;
 
 @end

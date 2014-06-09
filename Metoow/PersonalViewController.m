@@ -84,13 +84,22 @@
     NSInteger sex = [data[@"sex"] integerValue];
     [self.sexImgView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"sex%d", sex]]];
     
-    NSString *locate = data[@"tag"];
-    self.introLabel.text = locate;
+    NSString *tag = data[@"tag"];
+    if (![tag isKindOfClass:[NSNull class]]) {
+        self.introLabel.text = tag;
+    } else self.introLabel.text = @"未设置个性标签";
+    
     
     self.addrLabel.text = data[@"location"];
     
     self.fansNOLabel.text = [data[@"follower_count"] stringValue];
     self.focusNOLabel.text = [data[@"following_count"] stringValue];
+    is_follow = [data[@"is_follow"] boolValue];
+    if (is_follow == FALSE) {
+        [self.btnFocus setTitle:@"关注" forState:UIControlStateNormal];
+    } else {
+        [self.btnFocus setTitle:@"取消关注" forState:UIControlStateNormal];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -119,4 +128,37 @@
     myfoot.user_id = self.user_id;
     [self.navigationController pushViewController:myfoot animated:YES];
 }
+
+- (IBAction)btnFocusTap:(id)sender
+{
+    [SVProgressHUD show];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *para = @{@"is_follow": [NSNumber numberWithBool:!is_follow], @"user_id" : self.user_id};
+    [manager GET:API_URL parameters:[APIHelper packageMod:@"Userfocus" act:@"follow_creat" Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
+        if ([responseObject isOK]) {
+            is_follow = !is_follow;
+            if (is_follow) {
+                [self.btnFocus setTitle:@"取消关注" forState:UIControlStateNormal];
+            } else {
+                [self.btnFocus setTitle:@"关注" forState:UIControlStateNormal];
+            }
+        } else {
+            [[responseObject error] showAlert];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
+        [error showAlert];
+    }];
+}
+
+
+- (IBAction)btnMessageTap:(id)sender
+{
+    MSGSessionViewController *session = [AppDelegateInterface awakeViewController:@"MSGSessionViewController"];
+    session.frdName = self.nameLabel.text;
+    session.frdUid = self.user_id;
+    [self.navigationController pushViewController:session animated:YES];
+}
+
 @end

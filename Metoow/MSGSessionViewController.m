@@ -45,6 +45,12 @@
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [AppDelegateInterface setTabBarHidden:YES];
+}
+
 
 - (void)didReceiveMemoryWarning
 {

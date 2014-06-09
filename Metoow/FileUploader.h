@@ -33,7 +33,7 @@ typedef enum {
  *
  *  @param categary 上传到目标模块
  *  @param aImgArr  UIImage数组
- *  @param block    所有的图片都上传通信完成后回调，errorList是NSDictionary数组，@{@“index” : NSNumber, @"error" : NSerror}
+ *  @param block    所有的图片都上传通信完成后回调，errorList是NSDictionary数组，@{@“index” : NSNumber, @"error" : NSError}
  */
 + (AFHTTPRequestOperationManager *)uploadTo:(UploadCategary)categary images:(NSArray *)aImgArr finished:(void(^)(NSArray *resultList))block;
 

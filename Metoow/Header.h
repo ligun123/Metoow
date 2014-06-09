@@ -17,6 +17,8 @@
 #import "AFNetworking.h"
 #import "APIHelper.h"
 #import "SVProgressHUD.h"
+#import <TencentOpenAPI/TencentOAuth.h>
+
 
 #define AppDelegateInterface	(AppDelegate*)([UIApplication sharedApplication].delegate)
 

@@ -116,14 +116,22 @@
 		0260B2E51933878D000F9846 /* HuzhuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0260B2E41933878D000F9846 /* HuzhuCell.m */; };
 		0260B2E71933879B000F9846 /* HuzhuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0260B2E61933879B000F9846 /* HuzhuCell.xib */; };
 		0265C123190016F100DE2441 /* HWSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 0265C122190016F100DE2441 /* HWSegment.m */; };
-		026708351903BCD8003D43F9 /* sex1.png in Resources */ = {isa = PBXBuildFile; fileRef = 026708331903BCD8003D43F9 /* sex1.png */; };
-		026708361903BCD8003D43F9 /* sex0.png in Resources */ = {isa = PBXBuildFile; fileRef = 026708341903BCD8003D43F9 /* sex0.png */; };
+		026708351903BCD8003D43F9 /* sex2.png in Resources */ = {isa = PBXBuildFile; fileRef = 026708331903BCD8003D43F9 /* sex2.png */; };
+		026708361903BCD8003D43F9 /* sex1.png in Resources */ = {isa = PBXBuildFile; fileRef = 026708341903BCD8003D43F9 /* sex1.png */; };
 		0267083C1903C30A003D43F9 /* HWTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0267083B1903C30A003D43F9 /* HWTabBar.m */; };
 		0267083F1903EB15003D43F9 /* NearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0267083E1903EB15003D43F9 /* NearViewController.m */; };
 		026708471903FE7E003D43F9 /* RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 026708461903FE7E003D43F9 /* RecordCell.m */; };
 		0267084A1903FEAC003D43F9 /* HWCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 026708491903FEAC003D43F9 /* HWCell.m */; };
 		0267084C19040040003D43F9 /* RecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0267084B1904003F003D43F9 /* RecordCell.xib */; };
 		027119C71944619C00CBC249 /* MyFootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 027119C61944619C00CBC249 /* MyFootViewController.m */; };
+		0276FA791946099000330AB9 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0276FA771946099000330AB9 /* TencentOpenAPI.framework */; };
+		0276FA7A1946099000330AB9 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0276FA781946099000330AB9 /* TencentOpenApi_IOS_Bundle.bundle */; };
+		0276FA7C194609ED00330AB9 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0276FA7B194609ED00330AB9 /* libiconv.dylib */; };
+		0276FA7E19460A0200330AB9 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0276FA7D19460A0200330AB9 /* libsqlite3.dylib */; };
+		0276FA8019460A0C00330AB9 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0276FA7F19460A0C00330AB9 /* CoreTelephony.framework */; };
+		0276FA8219460A1D00330AB9 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0276FA8119460A1D00330AB9 /* libstdc++.dylib */; };
+		0276FA8419460A2800330AB9 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0276FA8319460A2800330AB9 /* libz.1.2.5.dylib */; };
+		0276FA8519460A6000330AB9 /* TencentOpenApi_IOS_Bundle.bundle in Sources */ = {isa = PBXBuildFile; fileRef = 0276FA781946099000330AB9 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		027C7EA1191A68AF00B2188C /* SelectAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 027C7EA0191A68AF00B2188C /* SelectAreaViewController.m */; };
 		027E18731920FF21002D6896 /* UIImage+Gif.m in Sources */ = {isa = PBXBuildFile; fileRef = 027E18721920FF21002D6896 /* UIImage+Gif.m */; };
 		02893FEB193B0EBA007A79AF /* ReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 02893FEA193B0EBA007A79AF /* ReplyCell.m */; };
@@ -398,8 +406,8 @@
 		0260B2E61933879B000F9846 /* HuzhuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HuzhuCell.xib; sourceTree = "<group>"; };
 		0265C121190016F100DE2441 /* HWSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWSegment.h; sourceTree = "<group>"; };
 		0265C122190016F100DE2441 /* HWSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWSegment.m; sourceTree = "<group>"; };
-		026708331903BCD8003D43F9 /* sex1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sex1.png; sourceTree = "<group>"; };
-		026708341903BCD8003D43F9 /* sex0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sex0.png; sourceTree = "<group>"; };
+		026708331903BCD8003D43F9 /* sex2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sex2.png; sourceTree = "<group>"; };
+		026708341903BCD8003D43F9 /* sex1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sex1.png; sourceTree = "<group>"; };
 		0267083A1903C30A003D43F9 /* HWTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWTabBar.h; sourceTree = "<group>"; };
 		0267083B1903C30A003D43F9 /* HWTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWTabBar.m; sourceTree = "<group>"; };
 		0267083D1903EB15003D43F9 /* NearViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearViewController.h; sourceTree = "<group>"; };
@@ -411,6 +419,13 @@
 		0267084B1904003F003D43F9 /* RecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordCell.xib; sourceTree = "<group>"; };
 		027119C51944619C00CBC249 /* MyFootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFootViewController.h; sourceTree = "<group>"; };
 		027119C61944619C00CBC249 /* MyFootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFootViewController.m; sourceTree = "<group>"; };
+		0276FA771946099000330AB9 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
+		0276FA781946099000330AB9 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
+		0276FA7B194609ED00330AB9 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		0276FA7D19460A0200330AB9 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		0276FA7F19460A0C00330AB9 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		0276FA8119460A1D00330AB9 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
+		0276FA8319460A2800330AB9 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		027C7E9F191A68AF00B2188C /* SelectAreaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectAreaViewController.h; sourceTree = "<group>"; };
 		027C7EA0191A68AF00B2188C /* SelectAreaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectAreaViewController.m; sourceTree = "<group>"; };
 		027E18711920FF21002D6896 /* UIImage+Gif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Gif.h"; sourceTree = "<group>"; };
@@ -630,10 +645,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0276FA8419460A2800330AB9 /* libz.1.2.5.dylib in Frameworks */,
+				0276FA8219460A1D00330AB9 /* libstdc++.dylib in Frameworks */,
+				0276FA8019460A0C00330AB9 /* CoreTelephony.framework in Frameworks */,
+				0276FA7E19460A0200330AB9 /* libsqlite3.dylib in Frameworks */,
+				0276FA7C194609ED00330AB9 /* libiconv.dylib in Frameworks */,
 				02F4DB4D19271014004EFFBC /* OpenGLES.framework in Frameworks */,
 				02BF6557190E8ADC00DCF2BD /* CoreLocation.framework in Frameworks */,
 				025946AE191FC07B00114BF4 /* ImageIO.framework in Frameworks */,
 				02BF6555190E8AD300DCF2BD /* Security.framework in Frameworks */,
+				0276FA791946099000330AB9 /* TencentOpenAPI.framework in Frameworks */,
 				02BF6553190E8AB400DCF2BD /* CFNetwork.framework in Frameworks */,
 				02BF6551190E8AAF00DCF2BD /* MobileCoreServices.framework in Frameworks */,
 				02BF654F190E8AAA00DCF2BD /* SystemConfiguration.framework in Frameworks */,
@@ -693,8 +714,8 @@
 				022DD9FB1906B24B00C6003C /* pb_star_btn@2x.png */,
 				022DD9FC1906B24B00C6003C /* pb_trans_btn@2x.png */,
 				024724E71905487A00CA00E4 /* pb_pulldown_btn@2x.png */,
-				026708331903BCD8003D43F9 /* sex1.png */,
-				026708341903BCD8003D43F9 /* sex0.png */,
+				026708331903BCD8003D43F9 /* sex2.png */,
+				026708341903BCD8003D43F9 /* sex1.png */,
 				02F4A2AA18FA54BC006EDB25 /* pb_back_btn@2x.png */,
 				024CB3A718F430CE00434AFA /* pb_downlist_btn@2x.png */,
 				024CB3A618F430CE00434AFA /* pb_downlist_bkg@2x.png */,
@@ -899,6 +920,15 @@
 			name = "附近";
 			sourceTree = "<group>";
 		};
+		0276FA761946099000330AB9 /* TencentAuth */ = {
+			isa = PBXGroup;
+			children = (
+				0276FA771946099000330AB9 /* TencentOpenAPI.framework */,
+				0276FA781946099000330AB9 /* TencentOpenApi_IOS_Bundle.bundle */,
+			);
+			path = TencentAuth;
+			sourceTree = "<group>";
+		};
 		02BF651A190E8A9900DCF2BD /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -1079,6 +1109,11 @@
 		02E5289818F0EEDC00EEAE7B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0276FA8319460A2800330AB9 /* libz.1.2.5.dylib */,
+				0276FA8119460A1D00330AB9 /* libstdc++.dylib */,
+				0276FA7F19460A0C00330AB9 /* CoreTelephony.framework */,
+				0276FA7D19460A0200330AB9 /* libsqlite3.dylib */,
+				0276FA7B194609ED00330AB9 /* libiconv.dylib */,
 				02F4DB4C19271014004EFFBC /* OpenGLES.framework */,
 				025946AD191FC07B00114BF4 /* ImageIO.framework */,
 				02BF6556190E8ADC00DCF2BD /* CoreLocation.framework */,
@@ -1098,6 +1133,7 @@
 		02E5289F18F0EEDC00EEAE7B /* Metoow */ = {
 			isa = PBXGroup;
 			children = (
+				0276FA761946099000330AB9 /* TencentAuth */,
 				024CB3A218F4072000434AFA /* worknote */,
 				02F4DAC019270EF0004EFFBC /* BaiduMapiOS_SDK */,
 				02594432191F8B9300114BF4 /* FaceBoard */,
@@ -1424,6 +1460,7 @@
 				024CB39A18F3B03200434AFA /* xx@2x.png in Resources */,
 				024CB39818F3B03200434AFA /* gd@2x.png in Resources */,
 				02500E5A1917BCC1000B7212 /* chat_bottom_up_nor.png in Resources */,
+				0276FA7A1946099000330AB9 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				02E5292218F0FBDF00EEAE7B /* Main.storyboard in Resources */,
 				025945BA191F8B9300114BF4 /* board_system.png in Resources */,
 				02893FED193B0EE6007A79AF /* ReplyCell.xib in Resources */,
@@ -1432,7 +1469,7 @@
 				024CB39B18F3B03200434AFA /* zj@2x.png in Resources */,
 				02CB41D618F6E8210030289C /* login_QQlogin_btn@2x.png in Resources */,
 				02E528B518F0EEDC00EEAE7B /* Images.xcassets in Resources */,
-				026708361903BCD8003D43F9 /* sex0.png in Resources */,
+				026708361903BCD8003D43F9 /* sex1.png in Resources */,
 				024CB39D18F3B22100434AFA /* pb_sos_btn@2x.png in Resources */,
 				028ACD6B18FECBF000D36AE0 /* login_label_bkg5@2x.png in Resources */,
 				02F39F1B192475D100DA8B85 /* pb_input_bkg@2x.png in Resources */,
@@ -1490,7 +1527,7 @@
 				022AE06B192E4CD5000ECBCE /* HPsfcViewController.xib in Resources */,
 				02500E541917BCC1000B7212 /* chat_bg_default.jpg in Resources */,
 				02500E591917BCC1000B7212 /* chat_bottom_textfield.png in Resources */,
-				026708351903BCD8003D43F9 /* sex1.png in Resources */,
+				026708351903BCD8003D43F9 /* sex2.png in Resources */,
 				02466A181934C12000DBCBB2 /* getarea in Resources */,
 				02F39F1A192475D100DA8B85 /* pb_fb_btn@2x.png in Resources */,
 				028ACD6E18FECBF000D36AE0 /* login_label_bkg8@2x.png in Resources */,
@@ -1563,6 +1600,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0276FA8519460A6000330AB9 /* TencentOpenApi_IOS_Bundle.bundle in Sources */,
 				025945C2191F9D6100114BF4 /* FaceButton.m in Sources */,
 				025945C6191F9E9100114BF4 /* MSGDetailViewController.m in Sources */,
 				02F4A2B818FA64A3006EDB25 /* FootPubViewController.m in Sources */,
@@ -1776,6 +1814,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Gun Li (A665XQL5F4)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Metoow/TencentAuth",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Metoow/Metoow-Prefix.pch";
 				INFOPLIST_FILE = "Metoow/Metoow-Info.plist";
@@ -1785,7 +1827,10 @@
 					"$(PROJECT_DIR)/Metoow/BaiduMapiOS_SDK/libs/Release-iphoneos",
 					"$(PROJECT_DIR)/Metoow/BaiduMapiOS_SDK/libs/Release-iphonesimulator",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-fobjc-arc",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4145141E-A9D7-4FF6-A032-5A30B02DB27B";
 				WRAPPER_EXTENSION = app;
@@ -1798,6 +1843,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Gun Li (A665XQL5F4)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Metoow/TencentAuth",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Metoow/Metoow-Prefix.pch";
 				INFOPLIST_FILE = "Metoow/Metoow-Info.plist";
@@ -1807,7 +1856,10 @@
 					"$(PROJECT_DIR)/Metoow/BaiduMapiOS_SDK/libs/Release-iphoneos",
 					"$(PROJECT_DIR)/Metoow/BaiduMapiOS_SDK/libs/Release-iphonesimulator",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-fobjc-arc",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4145141E-A9D7-4FF6-A032-5A30B02DB27B";
 				WRAPPER_EXTENSION = app;

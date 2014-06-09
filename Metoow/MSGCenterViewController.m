@@ -183,6 +183,9 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if ([self.msgList isKindOfClass:[NSNull class]]) {
+        return 0;
+    }
     return self.msgList.count;
 }
 

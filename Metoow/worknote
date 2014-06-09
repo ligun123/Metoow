@@ -2,6 +2,9 @@ www.metoow.com:8080
 ID:     ligun123
 SEC:    5815057
 
+Weibo登陆参考：      https://github.com/sinaweibosdk
+QQ登陆参考：         http://wiki.open.qq.com/wiki/%E9%A6%96%E9%A1%B5
+
 工作日志:
 
 4.8
@@ -51,12 +54,11 @@ api接口文档第一版
 
 
 API Bugs:  测试ID:376438624@qq.com  sec:5815057    uid:165
-1、缺少转发SOS的接口，接口Sos/sos_list返回的数据缺少被转发次数、被回复次数
-4、附近/小伙伴接口错误，Near/neighbors，根据文档组织URL：
-http://www.metoow.com/index.php?app=api&act=neighbors&lat=30.636466&lng=104.061058&mod=Near&oauth_token=a1709fb7935d2184b131a81e8d689923&oauth_token_secret=7e5210cb760a8c863e72bcc13c238f75&page=1
-返回NULL，正常逻辑如果找不到周围的小伙伴，应该返回找不到伙伴的错误信息，参考找不到周围足迹时的返回数据
 
-5、附近/互助接口错误，Near/near_huzhu, Near/near_road, near_foot
-返回的数据缺少发布用户的user_info(至少包含用户昵称、头像和uid)
-最好参考正常的互助、足迹、和路况接口返回的数据，最好这些接口返回的数据结构保持一致
-near_foot也要包含被收藏的bool值
+6、关注接口错误
+http://www.metoow.com/index.php?app=api&act=follow_creat&is_follow=1&mod=Userfocus&oauth_token=b0543476e04e13798cdbdcc7c413a53a&oauth_token_secret=c64521db0926cfb5e4a456182a83d3dc&user_id=165
+啥都不返回
+
+7、Huzhu/get_hzlist  根据文档 参数uid为空获取默认，否则获取某人互助
+以下URL带入了uid，但是返回的值是所有的互助，应该返回此uid发布的互助
+http://www.metoow.com/index.php?app=api&act=get_hzlist&mod=Huzhu&oauth_token=b0543476e04e13798cdbdcc7c413a53a&oauth_token_secret=c64521db0926cfb5e4a456182a83d3dc&page=1&uid=233

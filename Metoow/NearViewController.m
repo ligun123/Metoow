@@ -216,7 +216,15 @@
     NSString *hurl = dic[@"avatar_original"];
     [cell.headerView setImageWithURL:[NSURL URLWithString:hurl]];
     cell.titleLabel.text = dic[@"uname"];
-    cell.contentLabel.text = dic[@"tag"];
+    NSString *tag = dic[@"tag"];
+    if (![tag isKindOfClass:[NSNull class]]) {
+        cell.contentLabel.text = dic[@"tag"];
+    } else cell.contentLabel.text = dic[@"未设置个性标签"];
+    NSInteger sex = [dic[@"sex"] integerValue];
+    NSString *sexImg = [NSString stringWithFormat:@"sex%d.png", sex];
+    UIImage *simg = [UIImage imageNamed:sexImg];
+    [cell.sexImgView setImage:simg];
+    
     return cell;
 }
 
