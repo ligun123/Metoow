@@ -19,6 +19,13 @@
 #import "SVProgressHUD.h"
 #import <TencentOpenAPI/TencentOAuth.h>
 
+#import "WeiboSDK.h"
+
+#define BaiduMapAppKey @"A5OMm1Qm4w1XIR6vfN0887BX"
+
+#define kWeiboAppKey         @"1588740131"
+#define kWeiboRedirectURI    @"https://api.weibo.com/oauth2/default.html"
+#define kTencentAppID @"101119364"
 
 #define AppDelegateInterface	(AppDelegate*)([UIApplication sharedApplication].delegate)
 

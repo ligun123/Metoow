@@ -134,7 +134,7 @@
     [SVProgressHUD show];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *para = @{@"is_follow": [NSNumber numberWithBool:!is_follow], @"user_id" : self.user_id};
-    [manager GET:API_URL parameters:[APIHelper packageMod:@"Userfocus" act:@"follow_creat" Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:API_URL parameters:[APIHelper packageMod:@"Userfocus" act:@"follow_create" Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
             is_follow = !is_follow;

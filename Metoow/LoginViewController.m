@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "FootViewController.h"
+#import "RegisterViewController.h"
 
 @interface LoginViewController ()
 
@@ -136,44 +137,138 @@
 }
 
 
+#pragma mark - QQ认证
+
 - (IBAction)btnQQAuthTap:(id)sender
 {
     NSArray *_permissions = [NSArray arrayWithObjects:
-                     kOPEN_PERMISSION_GET_USER_INFO,
-                     kOPEN_PERMISSION_GET_SIMPLE_USER_INFO,
-                     kOPEN_PERMISSION_ADD_ALBUM,
-                     kOPEN_PERMISSION_ADD_IDOL,
-                     kOPEN_PERMISSION_ADD_ONE_BLOG,
-                     kOPEN_PERMISSION_ADD_PIC_T,
-                     kOPEN_PERMISSION_ADD_SHARE,
-                     kOPEN_PERMISSION_ADD_TOPIC,
-                     kOPEN_PERMISSION_CHECK_PAGE_FANS,
-                     kOPEN_PERMISSION_DEL_IDOL,
-                     kOPEN_PERMISSION_DEL_T,
-                     kOPEN_PERMISSION_GET_FANSLIST,
-                     kOPEN_PERMISSION_GET_IDOLLIST,
-                     kOPEN_PERMISSION_GET_INFO,
-                     kOPEN_PERMISSION_GET_OTHER_INFO,
-                     kOPEN_PERMISSION_GET_REPOST_LIST,
-                     kOPEN_PERMISSION_LIST_ALBUM,
-                     kOPEN_PERMISSION_UPLOAD_PIC,
-                     kOPEN_PERMISSION_GET_VIP_INFO,
-                     kOPEN_PERMISSION_GET_VIP_RICH_INFO,
-                     kOPEN_PERMISSION_GET_INTIMATE_FRIENDS_WEIBO,
-                     kOPEN_PERMISSION_MATCH_NICK_TIPS_WEIBO,
-                     nil];
-	
-    NSString *appid = @"222222";
-    
-	_tencentOAuth = [[TencentOAuth alloc] initWithAppId:appid
-											andDelegate:self];
-    [_tencentOAuth authorize:_permissions inSafari:NO];
+                             kOPEN_PERMISSION_GET_USER_INFO,
+                             kOPEN_PERMISSION_GET_SIMPLE_USER_INFO,
+                             kOPEN_PERMISSION_ADD_ALBUM,
+                             kOPEN_PERMISSION_ADD_IDOL,
+                             kOPEN_PERMISSION_ADD_ONE_BLOG,
+                             kOPEN_PERMISSION_ADD_PIC_T,
+                             kOPEN_PERMISSION_ADD_SHARE,
+                             kOPEN_PERMISSION_ADD_TOPIC,
+                             kOPEN_PERMISSION_CHECK_PAGE_FANS,
+                             kOPEN_PERMISSION_DEL_IDOL,
+                             kOPEN_PERMISSION_DEL_T,
+                             kOPEN_PERMISSION_GET_FANSLIST,
+                             kOPEN_PERMISSION_GET_IDOLLIST,
+                             kOPEN_PERMISSION_GET_INFO,
+                             kOPEN_PERMISSION_GET_OTHER_INFO,
+                             kOPEN_PERMISSION_GET_REPOST_LIST,
+                             kOPEN_PERMISSION_LIST_ALBUM,
+                             kOPEN_PERMISSION_UPLOAD_PIC,
+                             kOPEN_PERMISSION_GET_VIP_INFO,
+                             kOPEN_PERMISSION_GET_VIP_RICH_INFO,
+                             kOPEN_PERMISSION_GET_INTIMATE_FRIENDS_WEIBO,
+                             kOPEN_PERMISSION_MATCH_NICK_TIPS_WEIBO,
+                             nil];
+    [self.tencentOAuth authorize:_permissions inSafari:NO];
 }
 
-- (void)tencentDidLogin {
+- (TencentOAuth *)tencentOAuth
+{
+    if (_tencentOAuth == nil) {
+        _tencentOAuth = [[TencentOAuth alloc] initWithAppId:kTencentAppID
+                                                andDelegate:self];
+        _tencentOAuth.redirectURI = @"www.qq.com";
+    }
+    return _tencentOAuth;
+}
+
+- (void)tencentDidLogin
+{
 	// 登录成功
     NSLog(@"%s -> accessToken : %@ ********** openid : %@", __FUNCTION__, _tencentOAuth.accessToken, _tencentOAuth.openId);
+    NSString *user_id = self.tencentOAuth.openId;
+    [SVProgressHUD show];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    //app_login_type: 1新浪，2腾讯
+    NSDictionary *para = @{@"app_token": user_id, @"app_login_type" : [NSNumber numberWithInteger:2]};
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Login act:Mod_Login_app_login Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
+        if ([responseObject isOK]) {
+            NSLog(@"%s -> %@", __FUNCTION__, operation.responseString);
+        } else {
+            if ([responseObject[@"code"] integerValue] == 20001) {
+                [[NSError errorWithDomain:@"第一次登陆请绑定迷途账号" code:100 userInfo:nil] showAlert];
+                RegisterViewController *reg = [AppDelegateInterface awakeViewController:@"RegisterViewController"];
+                reg.auth_user_id = user_id;
+                reg.auth_type = 2;
+                [self.navigationController pushViewController:reg animated:YES];
+            } else {
+                [[responseObject error] showAlert];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
+        [error showAlert];
+    }];
 }
 
+/**
+ * 登录失败后的回调
+ * \param cancelled 代表用户是否主动退出登录
+ */
+- (void)tencentDidNotLogin:(BOOL)cancelled
+{
+    [[NSError errorWithDomain:@"腾讯认证取消" code:100 userInfo:nil] showAlert];
+}
+
+/**
+ * 登录时网络有问题的回调
+ */
+- (void)tencentDidNotNetWork
+{
+    [[NSError errorWithDomain:@"无法连接到网络" code:100 userInfo:nil] showAlert];
+}
+
+
+#pragma mark - Weibo认证
+
+- (WBAuthorizeRequest *)weiboOAuth
+{
+    if (_weiboOAuth == nil) {
+        _weiboOAuth =  [WBAuthorizeRequest request];
+        _weiboOAuth.redirectURI = kWeiboRedirectURI;
+        _weiboOAuth.scope = @"all";
+    }
+    return _weiboOAuth;
+}
+
+- (IBAction)btnWeiboAuthTap:(id)sender
+{
+    [WeiboSDK sendRequest:self.weiboOAuth];
+}
+
+
+- (void)weiboAuthUserID:(NSString *)user_id
+{
+    [SVProgressHUD show];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    //app_login_type: 1新浪，2腾讯
+    NSDictionary *para = @{@"app_token": user_id, @"app_login_type" : [NSNumber numberWithInteger:1]};
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Login act:Mod_Login_app_login Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
+        if ([responseObject isOK]) {
+            NSLog(@"%s -> %@", __FUNCTION__, operation.responseString);
+        } else {
+            if ([responseObject[@"code"] integerValue] == 20001) {
+                [[NSError errorWithDomain:@"第一次登陆请绑定迷途账号" code:100 userInfo:nil] showAlert];
+                RegisterViewController *reg = [AppDelegateInterface awakeViewController:@"RegisterViewController"];
+                reg.auth_user_id = user_id;
+                reg.auth_type = 1;
+                [self.navigationController pushViewController:reg animated:YES];
+            } else {
+                [[responseObject error] showAlert];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
+        [error showAlert];
+    }];
+}
 
 @end

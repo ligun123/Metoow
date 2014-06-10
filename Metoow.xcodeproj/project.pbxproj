@@ -152,6 +152,8 @@
 		028ACD6E18FECBF000D36AE0 /* login_label_bkg8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 028ACD6418FECBF000D36AE0 /* login_label_bkg8@2x.png */; };
 		028ACD6F18FECBF000D36AE0 /* login_label_bkg9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 028ACD6518FECBF000D36AE0 /* login_label_bkg9@2x.png */; };
 		028ACD7118FECEF500D36AE0 /* login_labelSelect_bkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 028ACD7018FECEF500D36AE0 /* login_labelSelect_bkg@2x.png */; };
+		028ADBFA1947534B0075E6BD /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 028ADBF71947534B0075E6BD /* libWeiboSDK.a */; };
+		028ADBFB1947534C0075E6BD /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 028ADBF81947534B0075E6BD /* WeiboSDK.bundle */; };
 		029FAFD51936197E00FCD685 /* FileUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 029FAFD41936197E00FCD685 /* FileUploader.m */; };
 		02A2BBFC19273C350060A453 /* FootDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02A2BBFB19273C350060A453 /* FootDetailViewController.m */; };
 		02A300131914C73300149FFC /* PersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 02A300121914C73300149FFC /* PersonCell.m */; };
@@ -451,6 +453,9 @@
 		028ACD6418FECBF000D36AE0 /* login_label_bkg8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_label_bkg8@2x.png"; sourceTree = "<group>"; };
 		028ACD6518FECBF000D36AE0 /* login_label_bkg9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_label_bkg9@2x.png"; sourceTree = "<group>"; };
 		028ACD7018FECEF500D36AE0 /* login_labelSelect_bkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_labelSelect_bkg@2x.png"; sourceTree = "<group>"; };
+		028ADBF71947534B0075E6BD /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
+		028ADBF81947534B0075E6BD /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
+		028ADBF91947534B0075E6BD /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
 		029FAFD31936197E00FCD685 /* FileUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUploader.h; sourceTree = "<group>"; };
 		029FAFD41936197E00FCD685 /* FileUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUploader.m; sourceTree = "<group>"; };
 		02A2BBFA19273C350060A453 /* FootDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FootDetailViewController.h; sourceTree = "<group>"; };
@@ -655,6 +660,7 @@
 				025946AE191FC07B00114BF4 /* ImageIO.framework in Frameworks */,
 				02BF6555190E8AD300DCF2BD /* Security.framework in Frameworks */,
 				0276FA791946099000330AB9 /* TencentOpenAPI.framework in Frameworks */,
+				028ADBFA1947534B0075E6BD /* libWeiboSDK.a in Frameworks */,
 				02BF6553190E8AB400DCF2BD /* CFNetwork.framework in Frameworks */,
 				02BF6551190E8AAF00DCF2BD /* MobileCoreServices.framework in Frameworks */,
 				02BF654F190E8AAA00DCF2BD /* SystemConfiguration.framework in Frameworks */,
@@ -929,6 +935,16 @@
 			path = TencentAuth;
 			sourceTree = "<group>";
 		};
+		028ADBF61947534B0075E6BD /* libWeiboSDK */ = {
+			isa = PBXGroup;
+			children = (
+				028ADBF71947534B0075E6BD /* libWeiboSDK.a */,
+				028ADBF81947534B0075E6BD /* WeiboSDK.bundle */,
+				028ADBF91947534B0075E6BD /* WeiboSDK.h */,
+			);
+			path = libWeiboSDK;
+			sourceTree = "<group>";
+		};
 		02BF651A190E8A9900DCF2BD /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -1133,6 +1149,7 @@
 		02E5289F18F0EEDC00EEAE7B /* Metoow */ = {
 			isa = PBXGroup;
 			children = (
+				028ADBF61947534B0075E6BD /* libWeiboSDK */,
 				0276FA761946099000330AB9 /* TencentAuth */,
 				024CB3A218F4072000434AFA /* worknote */,
 				02F4DAC019270EF0004EFFBC /* BaiduMapiOS_SDK */,
@@ -1491,6 +1508,7 @@
 				025945B7191F8B9300114BF4 /* active_page_image@2x.png in Resources */,
 				025B50C3192B870900657405 /* pb_bottomBar_btn@2x.png in Resources */,
 				02F2E05A190288C4002902DD /* test_header_bkg@2x.png in Resources */,
+				028ADBFB1947534C0075E6BD /* WeiboSDK.bundle in Resources */,
 				0260B2E71933879B000F9846 /* HuzhuCell.xib in Resources */,
 				02CB41D518F6E8210030289C /* login_login_btn@2x.png in Resources */,
 				0224FA881937770C001CBF1B /* test2.jpg in Resources */,
@@ -1826,6 +1844,7 @@
 					"$(PROJECT_DIR)/Metoow/BaiduMapiOS_SDK/libs",
 					"$(PROJECT_DIR)/Metoow/BaiduMapiOS_SDK/libs/Release-iphoneos",
 					"$(PROJECT_DIR)/Metoow/BaiduMapiOS_SDK/libs/Release-iphonesimulator",
+					"$(PROJECT_DIR)/Metoow/libWeiboSDK",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1855,6 +1874,7 @@
 					"$(PROJECT_DIR)/Metoow/BaiduMapiOS_SDK/libs",
 					"$(PROJECT_DIR)/Metoow/BaiduMapiOS_SDK/libs/Release-iphoneos",
 					"$(PROJECT_DIR)/Metoow/BaiduMapiOS_SDK/libs/Release-iphonesimulator",
+					"$(PROJECT_DIR)/Metoow/libWeiboSDK",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",

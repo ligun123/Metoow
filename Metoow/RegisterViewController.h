@@ -18,6 +18,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *nickname;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *sex;
 
+@property (copy, nonatomic) NSString *auth_user_id;     //第三方登陆的user_id
+@property NSInteger auth_type;                          //第三方登陆类型1新浪，2腾讯
+
 - (void)setAreaTitle;
 
 @end

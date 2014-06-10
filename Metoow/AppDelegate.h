@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "HWTabBar.h"
+#import "WeiboSDK.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, HWTabBarProtocol>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, HWTabBarProtocol, WeiboSDKDelegate>
 {
     BMKMapManager *mapManager;
 }

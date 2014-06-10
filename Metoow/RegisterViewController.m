@@ -151,7 +151,12 @@
     }
     [SVProgressHUD show];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *para = @{@"email": self.email.text, @"password" : self.password.text, @"uname" : self.nickname.text, @"sex" : [self sexNumber], @"city_names" : [self cityNames], @"city_ids" : [self cityIds]};
+    NSMutableDictionary *para = [NSMutableDictionary dictionaryWithDictionary:@{@"email": self.email.text, @"password" : self.password.text, @"uname" : self.nickname.text, @"sex" : [self sexNumber], @"city_names" : [self cityNames], @"city_ids" : [self cityIds]}];
+    if (self.auth_user_id != nil && self.auth_type != 0) {
+        [para setObject:self.auth_user_id forKey:@"app_token"];
+        [para setObject:[NSNumber numberWithInteger:self.auth_type] forKey:@"register_type"];
+    }
+    
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Login act:Mod_Login_register Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {

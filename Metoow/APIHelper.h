@@ -21,6 +21,7 @@
 #define Mod_Login_register @"register"
 #define Mod_Login_getArea   @"getArea"  //注册时候
 #define Mod_Login_set_tags @"set_tags"
+#define Mod_Login_app_login @"app_login"    //第三方登陆
 
 #define Mod_Foot @"Foot"
 #define Mod_Foot_del @"del"

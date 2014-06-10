@@ -11,13 +11,20 @@
 
 @interface LoginViewController : UIViewController <UITextFieldDelegate, TencentSessionDelegate>
 {
-    TencentOAuth *_tencentOAuth;
+    
 }
 @property (weak, nonatomic) IBOutlet LoginCheckBox *autoLoginCheck;
 @property (weak, nonatomic) IBOutlet LoginCheckBox *rememberSecCheck;
 @property (weak, nonatomic) IBOutlet UITextField *userIDText;
 @property (weak, nonatomic) IBOutlet UITextField *pswdText;
 
+@property (strong, nonatomic) TencentOAuth *tencentOAuth;
+
+@property (strong, nonatomic) WBAuthorizeRequest *weiboOAuth;
+
 - (IBAction)btnQQAuthTap:(id)sender;
+
+//微博认证完成后会调用
+- (void)weiboAuthUserID:(NSString *)user_id;
 
 @end

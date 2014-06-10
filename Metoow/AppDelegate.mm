@@ -11,8 +11,7 @@
 #import "PersonalViewController.h"
 #import "LocationManager.h"
 #import "AFHTTPRequestOperationManager.h"
-
-#define BaiduMapAppKey @"A5OMm1Qm4w1XIR6vfN0887BX"
+#import "LoginViewController.h"
 
 @implementation AppDelegate
 
@@ -30,6 +29,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [WeiboSDK enableDebugMode:YES];
+    [WeiboSDK registerApp:kWeiboAppKey];
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = COLOR_RGB(0, 111, 0);
@@ -206,14 +207,37 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-#pragma mark - QQ
+#pragma mark - QQ && Weibo
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
-    return [TencentOAuth HandleOpenURL:url];
+    return [WeiboSDK handleOpenURL:url delegate:self] || [TencentOAuth HandleOpenURL:url];
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
-    return [TencentOAuth HandleOpenURL:url];
+    return [TencentOAuth HandleOpenURL:url] || [WeiboSDK handleOpenURL:url delegate:self];
 }
+
+- (void)didReceiveWeiboRequest:(WBBaseRequest *)request
+{
+}
+
+- (void)didReceiveWeiboResponse:(WBBaseResponse *)response
+{
+    if ([response isKindOfClass:WBAuthorizeResponse.class]) {
+        NSString *user_id = [(WBAuthorizeResponse *)response userID];
+        [[self currentLoginVC] weiboAuthUserID:user_id];
+    }
+}
+
+- (LoginViewController *)currentLoginVC
+{
+    for (id vc in self.rootViewController.viewControllers) {
+        if ([vc isKindOfClass:[LoginViewController class]]) {
+            return vc;
+        }
+    }
+    return nil;
+}
+
 
 @end
