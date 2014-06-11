@@ -9,14 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "PulldownButton.h"
 #import "HuzhuCell.h"
+#import "MJRefresh.h"
 
 
-@interface HelpViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UITextFieldDelegate, HuzhuCellProtocol>
+@interface HelpViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UITextFieldDelegate, HuzhuCellProtocol, MJRefreshBaseViewDelegate>
 {
     BOOL hasRegister;
     int selectIndex;
     BOOL isSearching;
+    NSInteger page;
 }
+
+@property (strong, nonatomic) MJRefreshHeaderView *headerView;
+@property (strong, nonatomic) MJRefreshFooterView *footerView;
 
 @property (strong, nonatomic) NSMutableArray *searchList;
 

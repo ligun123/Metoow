@@ -168,7 +168,7 @@
 - (void)checkIn
 {
     [[LocationManager shareInterface] fatchMapLocation];
-    self.checkinTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(checkInTimer:) userInfo:nil repeats:YES];
+//    self.checkinTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(checkInTimer:) userInfo:nil repeats:YES];
 }
 
 

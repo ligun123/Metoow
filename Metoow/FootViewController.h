@@ -16,6 +16,7 @@
     BOOL isCellRegesterd;
     int selectIndex;
     BOOL isSearching;
+    NSInteger page;
 }
 
 @property (weak, nonatomic) IBOutlet PulldownButton *pullDownBtn;

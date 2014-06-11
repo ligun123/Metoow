@@ -36,6 +36,8 @@
 
 #define kAreaLevel @"kAreaLevel"                //各级地区key值：kAreaLevel0,kAreaLevel1,kAreaLevel2
 
+#define kCountLoadDefaul (20)
+
 //发布足迹页面同时作为回复足迹、转发足迹的页面
 typedef enum {
     FootPubEditCategaryPublish,

@@ -31,25 +31,27 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    page = 1;
     selectIndex = 0;
     [self.pullDownBtn setTitles:@[@"所有足迹", @"我的足迹", @"我关注的", @"我收藏的", @"我的路况", @"所有路况"]];
     [self.pullDownBtn setCallbackBlock:^(PulldownButton *btn, NSInteger sltIndex) {
         if (selectIndex != sltIndex) {
+            page = 1;
+            [self.dataList removeAllObjects];
             selectIndex = sltIndex;
             [self refreshData];
         }
     }];
+    [self refreshData];
     
     self.headerView = [MJRefreshHeaderView header];
     self.headerView.scrollView = self.tableView;
     self.headerView.delegate = self;
     self.searchList = [NSMutableArray arrayWithCapacity:10];
     
-    [self refreshData];
-    
-//    self.footerView = [MJRefreshFooterView footer];
-//    self.footerView.scrollView = self.tableView;
-//    self.footerView.delegate = self;
+    self.footerView = [MJRefreshFooterView footer];
+    self.footerView.scrollView = self.tableView;
+    self.footerView.delegate = self;
 }
 
 - (void)displayLogin
@@ -268,13 +270,39 @@
     }
 }
 
+- (void)endRefresh
+{
+    if ([self.headerView isRefreshing]) {
+        [self.headerView endRefreshing];
+    }
+    if ([self.footerView isRefreshing]) {
+        [self.footerView endRefreshing];
+    }
+}
+
 - (void)refreshHeader
 {
+    [self.dataList removeAllObjects];
+    page = 1;
     [self refreshData];
 }
 
 - (void)refreshFooter
 {
+    if (self.dataList.count < kCountLoadDefaul * page) {
+        [self.footerView endRefreshing];
+        return ;
+    }
+    page ++;
+    [self refreshData];
+}
+
+- (NSMutableArray *)dataList
+{
+    if (_dataList == nil) {
+        _dataList = [[NSMutableArray alloc] initWithCapacity:100];
+    }
+    return _dataList;
 }
 
 
@@ -303,15 +331,13 @@
 - (void)requestAllFoot
 {
     [SVProgressHUD show];
-    NSDictionary *para = @{@"page": [NSNumber numberWithInteger:1]};
+    NSDictionary *para = @{@"page": [NSNumber numberWithInteger:page]};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Foot act:Mod_Foot_foot_list Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if ([self.headerView isRefreshing]) {
-            [self.headerView endRefreshing];
-        }
+        [self endRefresh];
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
-            self.dataList = [NSMutableArray arrayWithArray:responseObject[@"data"]];
+            [self.dataList addObjectsFromArray:responseObject[@"data"]];
             [self.tableView reloadData];
         } else {
             if ([responseObject[@"code"] integerValue] != 1) {
@@ -319,9 +345,7 @@
             }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if ([self.headerView isRefreshing]) {
-            [self.headerView endRefreshing];
-        }
+        [self endRefresh];
         [SVProgressHUD dismiss];
         [error showAlert];
     }];
@@ -330,14 +354,13 @@
 - (void)requestMyFoot
 {
     [SVProgressHUD show];
+    NSDictionary *para = @{@"page": [NSNumber numberWithInteger:page]};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Foot act:Mod_Foot_get_myfoot Paras:nil] success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if ([self.headerView isRefreshing]) {
-            [self.headerView endRefreshing];
-        }
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Foot act:Mod_Foot_get_myfoot Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self endRefresh];
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
-            self.dataList = [NSMutableArray arrayWithArray:responseObject[@"data"]];
+            [self.dataList addObjectsFromArray:responseObject[@"data"]];
             [self.tableView reloadData];
         } else {
             if ([responseObject[@"code"] integerValue] != 1) {
@@ -345,9 +368,7 @@
             }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if ([self.headerView isRefreshing]) {
-            [self.headerView endRefreshing];
-        }
+        [self endRefresh];
         [SVProgressHUD dismiss];
         [error showAlert];
     }];
@@ -356,22 +377,19 @@
 - (void)requestMyAttention
 {
     [SVProgressHUD show];
+    NSDictionary *para = @{@"page": [NSNumber numberWithInteger:page]};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Foot act:Mod_Foot_my_attention Paras:nil] success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if ([self.headerView isRefreshing]) {
-            [self.headerView endRefreshing];
-        }
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Foot act:Mod_Foot_my_attention Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self endRefresh];
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
-            self.dataList = [NSMutableArray arrayWithArray:responseObject[@"data"]];
+            [self.dataList addObjectsFromArray:responseObject[@"data"]];
             [self.tableView reloadData];
         } else {
             [[responseObject error] showAlert];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if ([self.headerView isRefreshing]) {
-            [self.headerView endRefreshing];
-        }
+        [self endRefresh];
         [SVProgressHUD dismiss];
         [error showAlert];
     }];
@@ -381,21 +399,17 @@
 {
     [SVProgressHUD show];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Foot act:Mod_Foot_foot_collect Paras:nil] success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if ([self.headerView isRefreshing]) {
-            [self.headerView endRefreshing];
-        }
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Foot act:Mod_Foot_foot_collect Paras:@{@"page": [NSNumber numberWithInteger:page]}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self endRefresh];
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
-            self.dataList = [NSMutableArray arrayWithArray:responseObject[@"data"]];
+            [self.dataList addObjectsFromArray:responseObject[@"data"]];
             [self.tableView reloadData];
         } else {
             [[responseObject error] showAlert];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if ([self.headerView isRefreshing]) {
-            [self.headerView endRefreshing];
-        }
+        [self endRefresh];
         [SVProgressHUD dismiss];
         [error showAlert];
     }];
@@ -405,10 +419,12 @@
 {
     [SVProgressHUD show];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Weather act:Mod_Weather_get_myweather Paras:nil] success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if ([self.headerView isRefreshing]) {
-            [self.headerView endRefreshing];
-        }
+    [manager GET:API_URL
+      parameters:[APIHelper packageMod:Mod_Weather
+                                   act:Mod_Weather_get_myweather
+                                 Paras:@{@"page": [NSNumber numberWithInteger:page]}]
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self endRefresh];
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
             self.dataList = [NSMutableArray arrayWithArray:responseObject[@"data"]];
@@ -416,10 +432,9 @@
         } else {
             [[responseObject error] showAlert];
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if ([self.headerView isRefreshing]) {
-            [self.headerView endRefreshing];
-        }
+    }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self endRefresh];
         [SVProgressHUD dismiss];
         [error showAlert];
     }];
@@ -429,21 +444,22 @@
 {
     [SVProgressHUD show];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Weather act:Mod_Weather_weather_list Paras:nil] success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if ([self.headerView isRefreshing]) {
-            [self.headerView endRefreshing];
-        }
+    [manager GET:API_URL
+      parameters:[APIHelper packageMod:Mod_Weather
+                                   act:Mod_Weather_weather_list
+                                 Paras:@{@"page": [NSNumber numberWithInteger:page]}]
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self endRefresh];
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
-            self.dataList = [NSMutableArray arrayWithArray:responseObject[@"data"]];
+            [self.dataList addObjectsFromArray:responseObject[@"data"]];
             [self.tableView reloadData];
         } else {
             [[responseObject error] showAlert];
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if ([self.headerView isRefreshing]) {
-            [self.headerView endRefreshing];
-        }
+    }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self endRefresh];
         [SVProgressHUD dismiss];
         [error showAlert];
     }];

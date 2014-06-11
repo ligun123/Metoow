@@ -9,6 +9,7 @@
 #import "FootPubViewController.h"
 #import "FootDetailViewController.h"
 #import "FileUploader.h"
+#import "LocationManager.h"
 
 @interface FootPubViewController ()
 
@@ -29,7 +30,6 @@
 {
     [super viewDidLoad];
     if (self.editCategary == FootPubEditCategaryPublish) {
-        [self fatchMapLocation];
         [self.isPublic setChecked:YES];
         [self.inputBar setOutsideInput:self.textView];
         self.textView.inputAccessoryView = self.inputBar;
@@ -37,7 +37,6 @@
         [self.textView becomeFirstResponder];
     }
     else if (self.editCategary == FootPubEditCategaryWeather) {
-        [self fatchMapLocation];
         [self.isPublic setChecked:YES];
         self.isPublic.hidden = YES;
         [self.inputBar setOutsideInput:self.textView];
@@ -54,6 +53,13 @@
         self.inputBar.delegate = self;
         [self.textView becomeFirstResponder];
     }
+    
+    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(updateAddrInfo:) userInfo:nil repeats:YES];
+}
+
+- (void)updateAddrInfo:(NSTimer *)timer
+{
+    self.addrLabel.text = ([[LocationManager shareInterface] addrInfo].strAddr == nil) ? (@"您的位置") : ([[LocationManager shareInterface] addrInfo].strAddr);
 }
 
 
@@ -211,7 +217,8 @@
 //发布一条足迹+图片
 - (void)publishTxtContent:(NSString *)txt
 {
-    if (self.addrInfo == nil) {
+    BMKAddrInfo *myaddrInfo = [LocationManager shareInterface].addrInfo;
+    if (myaddrInfo == nil) {
         [[NSError errorWithDomain:@"正在解析位置信息，请稍后！" code:100 userInfo:nil] showAlert];
         return ;
     }
@@ -224,8 +231,8 @@
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         BOOL isPub = [self.isPublic checked];
         NSNumber *publ = [NSNumber numberWithBool:!isPub];
-        NSString *lat = [NSString stringWithFormat:@"%f", self.addrInfo.geoPt.latitude];
-        NSString *lng = [NSString stringWithFormat:@"%f", self.addrInfo.geoPt.longitude];
+        NSString *lat = [NSString stringWithFormat:@"%lf", myaddrInfo.geoPt.latitude];
+        NSString *lng = [NSString stringWithFormat:@"%lf", myaddrInfo.geoPt.longitude];
         [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Foot act:Mod_Foot_add_foot Paras:@{@"pos": self.addrLabel.text, @"desc" : txt, @"open" : publ, @"lng" : lng, @"lat" : lat, @"pic_ids" : @""}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
             [SVProgressHUD dismiss];
             if ([responseObject isOK]) {
@@ -242,6 +249,10 @@
 
 - (void)publishTxtAndImagesContent:(NSString *)txt
 {
+    if ([LocationManager shareInterface].addrInfo == nil) {
+        [[NSError errorWithDomain:@"正在解析位置信息，请稍后！" code:100 userInfo:nil] showAlert];
+        return ;
+    }
     [SVProgressHUD show];
     NSArray *imgArr = self.picRoll.mImageArray;
     __block AFHTTPRequestOperationManager *manager = [FileUploader uploadTo:UploadCategaryFoot images:imgArr finished:^(NSArray *resultList) {
@@ -260,9 +271,9 @@
             [SVProgressHUD show];
             BOOL isPub = [self.isPublic checked];
             NSNumber *publ = [NSNumber numberWithBool:!isPub];
-            NSString *lat = [NSString stringWithFormat:@"%f", self.addrInfo.geoPt.latitude];
-            NSString *lng = [NSString stringWithFormat:@"%f", self.addrInfo.geoPt.longitude];
-//            manager = [AFHTTPRequestOperationManager manager];
+            BMKAddrInfo *myaddrInfo = [LocationManager shareInterface].addrInfo;
+            NSString *lat = [NSString stringWithFormat:@"%lf", myaddrInfo.geoPt.latitude];
+            NSString *lng = [NSString stringWithFormat:@"%lf", myaddrInfo.geoPt.longitude];
             [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Foot act:Mod_Foot_add_foot Paras:@{@"pos": self.addrLabel.text, @"desc" : txt, @"open" : publ, @"lng" : lng, @"lat" : lat, @"pic_ids" : [picids componentsJoinedByString:@"|"]}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 [SVProgressHUD dismiss];
                 if ([responseObject isOK]) {
@@ -282,15 +293,16 @@
 
 - (void)publishWeather:(NSString *)txt
 {
-    if (self.addrInfo == nil) {
+    if ([[LocationManager shareInterface] addrInfo] == nil) {
         [[NSError errorWithDomain:@"正在解析位置信息，请稍后！" code:100 userInfo:nil] showAlert];
         return ;
     }
     [SVProgressHUD show];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSString *lat = [NSString stringWithFormat:@"%f", self.addrInfo.geoPt.latitude];
-    NSString *lng = [NSString stringWithFormat:@"%f", self.addrInfo.geoPt.longitude];
-    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Weather act:Mod_Weather_add_weather Paras:@{@"pos": self.addrInfo.strAddr, @"desc" : txt, @"lng" : lng, @"lat" : lat, @"pic_ids" : @""}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    BMKAddrInfo *myaddrinfo = [[LocationManager shareInterface] addrInfo];
+    NSString *lat = [NSString stringWithFormat:@"%lf", myaddrinfo.geoPt.latitude];
+    NSString *lng = [NSString stringWithFormat:@"%lf", myaddrinfo.geoPt.longitude];
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Weather act:Mod_Weather_add_weather Paras:@{@"pos": [[LocationManager shareInterface] addrInfo].strAddr, @"desc" : txt, @"lng" : lng, @"lat" : lat, @"pic_ids" : @""}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
             [self.navigationController popViewControllerAnimated:YES];
@@ -343,37 +355,5 @@
     }
 }
 
-
-#pragma mark - Baidu Map
-
--(void)fatchMapLocation
-{
-    if (baiduSearch == nil)
-    {
-        userLocation = [[BMKUserLocation alloc] init];
-        userLocation.delegate = self;
-        [userLocation startUserLocationService];
-        baiduSearch = [[BMKSearch alloc] init];
-        baiduSearch.delegate = self;
-    }
-}
-
-
-/**
- *返回地址信息搜索结果
- *@param searcher 搜索对象
- *@param result 搜索结果
- *@param error 错误号，@see BMKErrorCode
- */
-- (void)onGetAddrResult:(BMKSearch*)searcher result:(BMKAddrInfo*)result errorCode:(int)error
-{
-    self.addrInfo = result;
-    self.addrLabel.text = self.addrInfo.strAddr;
-}
-
-- (void)viewDidGetLocatingUser:(CLLocationCoordinate2D)userLoc
-{
-    [baiduSearch reverseGeocode:userLoc];
-}
 
 @end

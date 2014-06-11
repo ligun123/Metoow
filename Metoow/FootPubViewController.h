@@ -12,12 +12,7 @@
 #import "PicRollView.h"
 
 @interface FootPubViewController : UIViewController <UITextViewDelegate, InputViewProtocol, BMKSearchDelegate, BMKUserLocationDelegate>
-{
-    BMKSearch *baiduSearch;
-    BMKUserLocation *userLocation;
-}
 
-@property (strong, nonatomic) BMKAddrInfo *addrInfo;
 @property (weak, nonatomic) IBOutlet MSGInputView *inputBar;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UILabel *addrLabel;

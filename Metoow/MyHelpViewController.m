@@ -32,8 +32,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    page = 1;
     // Do any additional setup after loading the view.
     [self refresh];
+    
+    self.headerView = [MJRefreshHeaderView header];
+    self.headerView.scrollView = self.tableview;
+    self.headerView.delegate = self;
+    
+    self.footerView = [MJRefreshFooterView footer];
+    self.footerView.scrollView = self.tableview;
+    self.footerView.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -53,16 +62,18 @@
     [SVProgressHUD show];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSString *uid = [[NSUserDefaults standardUserDefaults] objectForKey:@"uid"];
-    NSDictionary *dic = @{@"uid": uid, @"page" : [NSNumber numberWithInteger:1]};
+    NSDictionary *dic = @{@"uid": uid, @"page" : [NSNumber numberWithInteger:page]};
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Huzhu act:Mod_Huzhu_get_hzlist Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self endRefresh];
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
-            self.dataList = [NSMutableArray arrayWithArray:responseObject[@"data"]];
+            [self.dataList addObjectsFromArray:responseObject[@"data"]];
             [self.tableview reloadData];
         } else {
             [[responseObject error] showAlert];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self endRefresh];
         [SVProgressHUD dismiss];
         [error showAlert];
     }];
@@ -159,6 +170,58 @@
     }
 
 }
+
+
+#pragma mark - 上下拉刷新
+
+- (NSMutableArray *)dataList
+{
+    if (_dataList == nil) {
+        _dataList = [[NSMutableArray alloc] initWithCapacity:100];
+    }
+    return _dataList;
+}
+
+// 开始进入刷新状态就会调用
+- (void)refreshViewBeginRefreshing:(MJRefreshBaseView *)refreshView
+{
+    if (refreshView == self.headerView) {
+        //加载最新的
+        [self refreshHeader];
+    }
+    if (refreshView == self.footerView) {
+        //加载更多旧的
+        [self refreshFooter];
+    }
+}
+
+- (void)endRefresh
+{
+    if ([self.headerView isRefreshing]) {
+        [self.headerView endRefreshing];
+    }
+    if ([self.footerView isRefreshing]) {
+        [self.footerView endRefreshing];
+    }
+}
+
+- (void)refreshHeader
+{
+    [self.dataList removeAllObjects];
+    page = 1;
+    [self refresh];
+}
+
+- (void)refreshFooter
+{
+    if (self.dataList.count < kCountLoadDefaul * page) {
+        [self.footerView endRefreshing];
+        return ;
+    }
+    page ++;
+    [self refresh];
+}
+
 
 
 @end

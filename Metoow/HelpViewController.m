@@ -38,13 +38,25 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.pulldownBtn setTitles:@[@"全部互助", @"结伴", @"顺风车", @"拼车", @"沙发客",  @"SOS"]];
+    page = 1;
     selectIndex = 0;
     [self.pulldownBtn setCallbackBlock:^(PulldownButton *btn, NSInteger sltIndex) {
+        [self.dataList removeAllObjects];
+        page = 1;
         selectIndex = sltIndex;
         [self refresh];
     }];
+    
     [self refresh];
+    
+    self.headerView = [MJRefreshHeaderView header];
+    self.headerView.scrollView = self.tableview;
+    self.headerView.delegate = self;
     self.searchList = [NSMutableArray arrayWithCapacity:10];
+    
+    self.footerView = [MJRefreshFooterView footer];
+    self.footerView.scrollView = self.tableview;
+    self.footerView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -78,36 +90,41 @@
     if (selectIndex == 5) {
         //SOS
         [SVProgressHUD show];
-        NSDictionary *dic = @{@"page": [NSNumber numberWithInteger:1]};
+        NSDictionary *dic = @{@"page": [NSNumber numberWithInteger:page]};
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager GET:API_URL parameters:[APIHelper packageMod:Mod_SOS act:Mod_SOS_sos_list Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [self endRefresh];
             [SVProgressHUD dismiss];
             if ([responseObject isOK]) {
-                self.dataList = [NSMutableArray arrayWithArray:responseObject[@"data"]];
+                [self.dataList addObjectsFromArray:responseObject[@"data"]];
                 [self.tableview reloadData];
             } else {
                 [[responseObject error] showAlert];
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [self endRefresh];
             [SVProgressHUD dismiss];
             [error showAlert];
         }];
     } else {
         [SVProgressHUD show];
-        NSDictionary *dic = nil;
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
         if (selectIndex != 0) {
-            dic = @{@"type": [NSNumber numberWithInt:selectIndex]};
+            [dic setObject:[NSNumber numberWithInt:selectIndex] forKey:@"type"];
         }
+        [dic setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Huzhu act:Mod_Huzhu_get_hzlist Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [self endRefresh];
             [SVProgressHUD dismiss];
             if ([responseObject isOK]) {
-                self.dataList = [NSMutableArray arrayWithArray:responseObject[@"data"]];
+                [self.dataList addObjectsFromArray:responseObject[@"data"]];
                 [self.tableview reloadData];
             } else {
                 [[responseObject error] showAlert];
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [self endRefresh];
             [SVProgressHUD dismiss];
             [error showAlert];
         }];
@@ -297,5 +314,57 @@
         return self.dataList[indexPath.row];
     }
 }
+
+
+#pragma mark - 上下拉刷新
+
+- (NSMutableArray *)dataList
+{
+    if (_dataList == nil) {
+        _dataList = [[NSMutableArray alloc] initWithCapacity:100];
+    }
+    return _dataList;
+}
+
+// 开始进入刷新状态就会调用
+- (void)refreshViewBeginRefreshing:(MJRefreshBaseView *)refreshView
+{
+    if (refreshView == self.headerView) {
+        //加载最新的
+        [self refreshHeader];
+    }
+    if (refreshView == self.footerView) {
+        //加载更多旧的
+        [self refreshFooter];
+    }
+}
+
+- (void)endRefresh
+{
+    if ([self.headerView isRefreshing]) {
+        [self.headerView endRefreshing];
+    }
+    if ([self.footerView isRefreshing]) {
+        [self.footerView endRefreshing];
+    }
+}
+
+- (void)refreshHeader
+{
+    [self.dataList removeAllObjects];
+    page = 1;
+    [self refresh];
+}
+
+- (void)refreshFooter
+{
+    if (self.dataList.count < kCountLoadDefaul * page) {
+        [self.footerView endRefreshing];
+        return ;
+    }
+    page ++;
+    [self refresh];
+}
+
 
 @end

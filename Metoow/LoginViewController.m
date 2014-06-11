@@ -58,6 +58,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc
+{
+    self.tencentOAuth = nil;
+    self.weiboOAuth = nil;
+}
+
 /*
 #pragma mark - Navigation
 
@@ -107,12 +113,7 @@
             [manager GET:[APIHelper url] parameters:[APIHelper packageMod:@"Login" act:@"login" Paras:@{@"uname": self.userIDText.text, @"upwd" : self.pswdText.text}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 [SVProgressHUD dismiss];
                 if ([responseObject isOK]) {
-                    [AppDelegateInterface setHasLogin:YES];
-                    for (id foot in self.navigationController.viewControllers) {
-                        if ([foot isKindOfClass:[FootViewController class]]) {
-                            [self.navigationController popToViewController:foot animated:YES];
-                        }
-                    }
+                    [self didLoginSeccuss];
                 } else {
                     [[responseObject error] showAlert];
                 }
@@ -128,6 +129,17 @@
         [SVProgressHUD dismiss];
         [error showAlert];
     }];
+}
+
+
+- (void)didLoginSeccuss
+{
+    [AppDelegateInterface setHasLogin:YES];
+    for (id foot in self.navigationController.viewControllers) {
+        if ([foot isKindOfClass:[FootViewController class]]) {
+            [self.navigationController popToViewController:foot animated:YES];
+        }
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -190,7 +202,12 @@
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Login act:Mod_Login_app_login Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
-            NSLog(@"%s -> %@", __FUNCTION__, operation.responseString);
+            NSLog(@"%s -> %@", __FUNCTION__, responseObject);
+            [[NSUserDefaults standardUserDefaults] registerDefaults:responseObject[@"data"]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self performSelector:@selector(didLoginSeccuss) withObject:nil afterDelay:10.f];
+            });
+            
         } else {
             if ([responseObject[@"code"] integerValue] == 20001) {
                 [[NSError errorWithDomain:@"第一次登陆请绑定迷途账号" code:100 userInfo:nil] showAlert];
@@ -253,7 +270,7 @@
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Login act:Mod_Login_app_login Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
-            NSLog(@"%s -> %@", __FUNCTION__, operation.responseString);
+            [self didLoginSeccuss];
         } else {
             if ([responseObject[@"code"] integerValue] == 20001) {
                 [[NSError errorWithDomain:@"第一次登陆请绑定迷途账号" code:100 userInfo:nil] showAlert];
