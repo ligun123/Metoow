@@ -205,7 +205,7 @@
             NSLog(@"%s -> %@", __FUNCTION__, responseObject);
             [[NSUserDefaults standardUserDefaults] registerDefaults:responseObject[@"data"]];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self performSelector:@selector(didLoginSeccuss) withObject:nil afterDelay:10.f];
+                [self performSelector:@selector(didLoginSeccuss) withObject:nil afterDelay:2.f];
             });
             
         } else {
