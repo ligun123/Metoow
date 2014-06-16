@@ -199,11 +199,11 @@
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_System act:Mod_System_comment Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
-            for (id vc in [self.navigationController viewControllers]) {
-                if ([vc isKindOfClass:[FootDetailViewController class]]) {
-                    [vc refresh];
-                }
-            }
+//            for (id vc in [self.navigationController viewControllers]) {
+//                if ([vc isKindOfClass:[FootDetailViewController class]]) {
+//                    [vc refresh];
+//                }
+//            }
             [self.navigationController popViewControllerAnimated:YES];
         } else {
             [[responseObject error] showAlert];

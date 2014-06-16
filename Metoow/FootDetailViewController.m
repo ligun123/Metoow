@@ -38,6 +38,15 @@
         self.bottomBar.hidden = YES;
     } else {
         [self.btnCollect setSelected:[self.detailDic[@"is_colslect"] boolValue]];
+        
+        self.headerView = [MJRefreshHeaderView header];
+        self.headerView.scrollView = self.tableview;
+        self.headerView.delegate = self;
+        
+        self.footerView = [MJRefreshFooterView footer];
+        self.footerView.scrollView = self.tableview;
+        self.footerView.delegate = self;
+        
         [self refresh];
     }
 }
@@ -137,19 +146,74 @@
     NSDictionary *dic = @{@"id": self.detailDic[@"id"], @"table_name" : @"foot", @"page" : [NSNumber numberWithInteger:page], @"count" : [NSNumber numberWithInteger:20]};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Comment act:Mod_Comment_get_comments Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self endRefresh];
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
-            self.commentsList = responseObject[@"data"];
+            if (page == 1) {
+                [self.commentsList removeAllObjects];
+            }
+            [self.commentsList addObjectsFromArray:responseObject[@"data"]];
             [self.tableview reloadData];
         } else {
-            [SVProgressHUD dismiss];
             [[responseObject error] showAlert];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self endRefresh];
         [SVProgressHUD dismiss];
         [error showAlert];
     }];
 }
+
+#pragma mark - 上下拉刷新Delegate
+
+// 开始进入刷新状态就会调用
+- (void)refreshViewBeginRefreshing:(MJRefreshBaseView *)refreshView
+{
+    if (refreshView == self.headerView) {
+        //加载更多旧的
+        [self refreshHeader];
+    }
+    if (refreshView == self.footerView) {
+        //加载更多旧的
+        [self refreshFooter];
+    }
+}
+
+- (void)endRefresh
+{
+    if ([self.headerView isRefreshing]) {
+        [self.headerView endRefreshing];
+    }
+    if ([self.footerView isRefreshing]) {
+        [self.footerView endRefreshing];
+    }
+}
+
+- (void)refreshHeader
+{
+    page = 1;
+    [self refresh];
+}
+
+- (void)refreshFooter
+{
+    if (self.commentsList.count < kCountLoadDefaul * page) {
+        [self.footerView endRefreshing];
+        return ;
+    }
+    page ++;
+    [self refresh];
+}
+
+- (NSMutableArray *)commentsList
+{
+    if (_commentsList == nil) {
+        _commentsList = [[NSMutableArray alloc] initWithCapacity:100];
+    }
+    return _commentsList;
+}
+
+
 
 #pragma mark - UITableView Delegate & Datasource
 

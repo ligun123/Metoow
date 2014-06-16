@@ -282,7 +282,6 @@
 
 - (void)refreshHeader
 {
-    [self.dataList removeAllObjects];
     page = 1;
     [self refreshData];
 }
@@ -328,6 +327,7 @@
     }
 }
 
+
 - (void)requestAllFoot
 {
     [SVProgressHUD show];
@@ -337,6 +337,9 @@
         [self endRefresh];
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
+            if (page == 1) {
+                [self.dataList removeAllObjects];
+            }
             [self.dataList addObjectsFromArray:responseObject[@"data"]];
             [self.tableView reloadData];
         } else {
@@ -360,6 +363,9 @@
         [self endRefresh];
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
+            if (page == 1) {
+                [self.dataList removeAllObjects];
+            }
             [self.dataList addObjectsFromArray:responseObject[@"data"]];
             [self.tableView reloadData];
         } else {
@@ -383,6 +389,9 @@
         [self endRefresh];
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
+            if (page == 1) {
+                [self.dataList removeAllObjects];
+            }
             [self.dataList addObjectsFromArray:responseObject[@"data"]];
             [self.tableView reloadData];
         } else {
@@ -403,6 +412,9 @@
         [self endRefresh];
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
+            if (page == 1) {
+                [self.dataList removeAllObjects];
+            }
             [self.dataList addObjectsFromArray:responseObject[@"data"]];
             [self.tableView reloadData];
         } else {
@@ -427,7 +439,10 @@
         [self endRefresh];
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
-            self.dataList = [NSMutableArray arrayWithArray:responseObject[@"data"]];
+            if (page == 1) {
+                [self.dataList removeAllObjects];
+            }
+            [self.dataList addObjectsFromArray:responseObject[@"data"]];
             [self.tableView reloadData];
         } else {
             [[responseObject error] showAlert];
@@ -452,6 +467,9 @@
         [self endRefresh];
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
+            if (page == 1) {
+                [self.dataList removeAllObjects];
+            }
             [self.dataList addObjectsFromArray:responseObject[@"data"]];
             [self.tableView reloadData];
         } else {

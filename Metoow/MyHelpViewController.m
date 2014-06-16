@@ -67,6 +67,9 @@
         [self endRefresh];
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
+            if (page == 1) {
+                [self.dataList removeAllObjects];
+            }
             [self.dataList addObjectsFromArray:responseObject[@"data"]];
             [self.tableview reloadData];
         } else {
@@ -207,7 +210,6 @@
 
 - (void)refreshHeader
 {
-    [self.dataList removeAllObjects];
     page = 1;
     [self refresh];
 }

@@ -10,6 +10,7 @@
 #import "PulldownButton.h"
 #import "RecordCell.h"
 #import "HuzhuCell.h"
+#import "MJRefresh.h"
 
 typedef enum {
     NearCategaryPerson = 0,         //伙伴
@@ -18,7 +19,7 @@ typedef enum {
     NearCategaryHelp = 3            //互助
 } NearCategaryEnum;
 
-@interface NearViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, RecordCellProtocol, HuzhuCellProtocol>
+@interface NearViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, RecordCellProtocol, HuzhuCellProtocol, MJRefreshBaseViewDelegate>
 {
     BOOL hasLoadCell;
     NearCategaryEnum currentCategary;
@@ -26,8 +27,11 @@ typedef enum {
 }
 
 @property (weak, nonatomic) IBOutlet PulldownButton *pulldownBtn;
-@property (strong, nonatomic) NSArray *dataList;
+@property (strong, nonatomic) NSMutableArray *dataList;
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
+
+@property (strong, nonatomic) MJRefreshHeaderView *headerView;
+@property (strong, nonatomic) MJRefreshFooterView *footerView;
 
 
 @end

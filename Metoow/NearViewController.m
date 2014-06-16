@@ -47,11 +47,22 @@
     // Do any additional setup after loading the view.
     [self.pulldownBtn setTitles:@[@"伙伴", @"足迹", @"路况", @"互助"]];
     currentCategary = NearCategaryPerson;
+    page = 1;
     [self.pulldownBtn setCallbackBlock:^(PulldownButton *btn, NSInteger sltIndex) {
-        currentCategary = (NearCategaryEnum)sltIndex;
         page = 1;
+        [self.dataList removeAllObjects];
+        currentCategary = (NearCategaryEnum)sltIndex;
         [self requestCategary:currentCategary];
     }];
+    
+    self.headerView = [MJRefreshHeaderView header];
+    self.headerView.scrollView = self.tableview;
+    self.headerView.delegate = self;
+    
+    self.footerView = [MJRefreshFooterView footer];
+    self.footerView.scrollView = self.tableview;
+    self.footerView.delegate = self;
+    
     [self requestCategary:currentCategary];
 }
 
@@ -87,15 +98,20 @@
     BMKAddrInfo *addrInfo = [LocationManager shareInterface].addrInfo;
     NSDictionary *para = @{@"lng": [NSString stringWithFormat:@"%lf", addrInfo.geoPt.longitude], @"lat": [NSString stringWithFormat:@"%lf", addrInfo.geoPt.latitude], @"page" : [NSNumber numberWithInteger:page]};
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_User act:Mod_User_neighbors Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self endRefresh];
         [SVProgressHUD dismiss];
         NSLog(@"%s -> %@", __FUNCTION__, operation.responseString);
         if ([responseObject isOK]) {
-            self.dataList = responseObject[@"data"][@"data"];
+            if (page == 1) {
+                [self.dataList removeAllObjects];
+            }
+            [self.dataList addObjectsFromArray:responseObject[@"data"][@"data"]];
             [self.tableview reloadData];
         } else {
             [[responseObject error] showAlert];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self endRefresh];
         [SVProgressHUD dismiss];
         [error showAlert];
     }];
@@ -111,15 +127,20 @@
     BMKAddrInfo *addrInfo = [LocationManager shareInterface].addrInfo;
     NSDictionary *para = @{@"lng": [NSString stringWithFormat:@"%lf", addrInfo.geoPt.longitude], @"lat": [NSString stringWithFormat:@"%lf", addrInfo.geoPt.latitude], @"page" : [NSNumber numberWithInteger:page]};
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Near act:Mod_Near_near_foot Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self endRefresh];
         [SVProgressHUD dismiss];
         NSLog(@"%s -> %@", __FUNCTION__, operation.responseString);
         if ([responseObject isOK]) {
-            self.dataList = responseObject[@"data"];
+            if (page == 1) {
+                [self.dataList removeAllObjects];
+            }
+            [self.dataList addObjectsFromArray:responseObject[@"data"]];
             [self.tableview reloadData];
         } else {
             [[responseObject error] showAlert];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self endRefresh];
         [SVProgressHUD dismiss];
         [error showAlert];
     }];
@@ -135,15 +156,20 @@
     BMKAddrInfo *addrInfo = [LocationManager shareInterface].addrInfo;
     NSDictionary *para = @{@"lng": [NSString stringWithFormat:@"%lf", addrInfo.geoPt.longitude], @"lat": [NSString stringWithFormat:@"%lf", addrInfo.geoPt.latitude], @"page" : [NSNumber numberWithInteger:page]};
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Near act:Mod_Near_near_road Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self endRefresh];
         [SVProgressHUD dismiss];
         NSLog(@"%s -> %@", __FUNCTION__, operation.responseString);
         if ([responseObject isOK]) {
-            self.dataList = responseObject[@"data"];
+            if (page == 1) {
+                [self.dataList removeAllObjects];
+            }
+            [self.dataList addObjectsFromArray:responseObject[@"data"]];
             [self.tableview reloadData];
         } else {
             [[responseObject error] showAlert];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self endRefresh];
         [SVProgressHUD dismiss];
         [error showAlert];
     }];
@@ -159,15 +185,19 @@
     BMKAddrInfo *addrInfo = [LocationManager shareInterface].addrInfo;
     NSDictionary *para = @{@"lng": [NSString stringWithFormat:@"%lf", addrInfo.geoPt.longitude], @"lat": [NSString stringWithFormat:@"%lf", addrInfo.geoPt.latitude], @"page" : [NSNumber numberWithInteger:page]};
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Near act:Mod_Near_near_huzhu Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self endRefresh];
         [SVProgressHUD dismiss];
-//        NSLog(@"%s -> %@", __FUNCTION__, operation.responseString);
         if ([responseObject isOK]) {
-            self.dataList = responseObject[@"data"];
+            if (page == 1) {
+                [self.dataList removeAllObjects];
+            }
+            [self.dataList addObjectsFromArray:responseObject[@"data"]];
             [self.tableview reloadData];
         } else {
             [[responseObject error] showAlert];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self endRefresh];
         [SVProgressHUD dismiss];
         [error showAlert];
     }];
@@ -426,6 +456,57 @@
     publ.dataDic = dic;
     [self.navigationController pushViewController:publ animated:YES];
 }
+
+
+#pragma mark - 上下拉刷新Delegate
+
+// 开始进入刷新状态就会调用
+- (void)refreshViewBeginRefreshing:(MJRefreshBaseView *)refreshView
+{
+    if (refreshView == self.headerView) {
+        //加载最新的
+        [self refreshHeader];
+    }
+    if (refreshView == self.footerView) {
+        //加载更多旧的
+        [self refreshFooter];
+    }
+}
+
+- (void)endRefresh
+{
+    if ([self.headerView isRefreshing]) {
+        [self.headerView endRefreshing];
+    }
+    if ([self.footerView isRefreshing]) {
+        [self.footerView endRefreshing];
+    }
+}
+
+- (void)refreshHeader
+{
+    page = 1;
+    [self requestCategary:currentCategary];
+}
+
+- (void)refreshFooter
+{
+    if (self.dataList.count < kCountLoadDefaul * page) {
+        [self.footerView endRefreshing];
+        return ;
+    }
+    page ++;
+    [self requestCategary:currentCategary];
+}
+
+- (NSMutableArray *)dataList
+{
+    if (_dataList == nil) {
+        _dataList = [[NSMutableArray alloc] initWithCapacity:100];
+    }
+    return _dataList;
+}
+
 
 
 @end
