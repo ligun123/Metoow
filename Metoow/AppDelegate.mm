@@ -37,8 +37,9 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     NSLog(@"%s -> %@", __FUNCTION__, userInfo);
-    [application cancelAllLocalNotifications];
-    [application setApplicationIconBadgeNumber:0];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    [[UIApplication sharedApplication] setScheduledLocalNotifications:nil];
     NSString *alert = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
     if (application.applicationState == UIApplicationStateActive) {
         // Nothing to do if applicationState is Inactive, the iOS already displayed an alert view.
@@ -75,8 +76,9 @@
 {
     [WeiboSDK enableDebugMode:YES];
     [WeiboSDK registerApp:kWeiboAppKey];
-    [application cancelAllLocalNotifications];
-    [application setApplicationIconBadgeNumber:0];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    [[UIApplication sharedApplication] setScheduledLocalNotifications:nil];
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = COLOR_RGB(0, 111, 0);
@@ -214,14 +216,13 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    NSLog(@"%s ->", __FUNCTION__);
     [self checkIn];
 }
 
 - (void)checkIn
 {
     [[LocationManager shareInterface] fatchMapLocation];
-//    self.checkinTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(checkInTimer:) userInfo:nil repeats:YES];
+    self.checkinTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(checkInTimer:) userInfo:nil repeats:YES];
 }
 
 
