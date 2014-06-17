@@ -154,6 +154,12 @@
 		028ACD7118FECEF500D36AE0 /* login_labelSelect_bkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 028ACD7018FECEF500D36AE0 /* login_labelSelect_bkg@2x.png */; };
 		028ADBFA1947534B0075E6BD /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 028ADBF71947534B0075E6BD /* libWeiboSDK.a */; };
 		028ADBFB1947534C0075E6BD /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 028ADBF81947534B0075E6BD /* WeiboSDK.bundle */; };
+		028C61BF195079C9009344C6 /* libBPush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 028C61B2195079C9009344C6 /* libBPush.a */; };
+		028C61C0195079C9009344C6 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 028C61B5195079C9009344C6 /* Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		028C61C1195079C9009344C6 /* GzipCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 028C61B8195079C9009344C6 /* GzipCompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		028C61C3195079C9009344C6 /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 028C61BC195079C9009344C6 /* OpenUDID.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		028C61C4195079C9009344C6 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 028C61BE195079C9009344C6 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		028C61C6195079E7009344C6 /* BPushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 028C61C5195079E7009344C6 /* BPushConfig.plist */; };
 		029FAFD51936197E00FCD685 /* FileUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 029FAFD41936197E00FCD685 /* FileUploader.m */; };
 		02A2BBFC19273C350060A453 /* FootDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02A2BBFB19273C350060A453 /* FootDetailViewController.m */; };
 		02A300131914C73300149FFC /* PersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 02A300121914C73300149FFC /* PersonCell.m */; };
@@ -456,6 +462,18 @@
 		028ADBF71947534B0075E6BD /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
 		028ADBF81947534B0075E6BD /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
 		028ADBF91947534B0075E6BD /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
+		028C61B1195079C9009344C6 /* BPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPush.h; sourceTree = "<group>"; };
+		028C61B2195079C9009344C6 /* libBPush.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBPush.a; sourceTree = "<group>"; };
+		028C61B4195079C9009344C6 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		028C61B5195079C9009344C6 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
+		028C61B6195079C9009344C6 /* Base64Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Defines.h; sourceTree = "<group>"; };
+		028C61B7195079C9009344C6 /* GzipCompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GzipCompressor.h; sourceTree = "<group>"; };
+		028C61B8195079C9009344C6 /* GzipCompressor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GzipCompressor.m; sourceTree = "<group>"; };
+		028C61BB195079C9009344C6 /* OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDID.h; sourceTree = "<group>"; };
+		028C61BC195079C9009344C6 /* OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDID.m; sourceTree = "<group>"; };
+		028C61BD195079C9009344C6 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		028C61BE195079C9009344C6 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		028C61C5195079E7009344C6 /* BPushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BPushConfig.plist; sourceTree = "<group>"; };
 		029FAFD31936197E00FCD685 /* FileUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUploader.h; sourceTree = "<group>"; };
 		029FAFD41936197E00FCD685 /* FileUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUploader.m; sourceTree = "<group>"; };
 		02A2BBFA19273C350060A453 /* FootDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FootDetailViewController.h; sourceTree = "<group>"; };
@@ -656,6 +674,7 @@
 				0276FA7E19460A0200330AB9 /* libsqlite3.dylib in Frameworks */,
 				0276FA7C194609ED00330AB9 /* libiconv.dylib in Frameworks */,
 				02F4DB4D19271014004EFFBC /* OpenGLES.framework in Frameworks */,
+				028C61BF195079C9009344C6 /* libBPush.a in Frameworks */,
 				02BF6557190E8ADC00DCF2BD /* CoreLocation.framework in Frameworks */,
 				025946AE191FC07B00114BF4 /* ImageIO.framework in Frameworks */,
 				02BF6555190E8AD300DCF2BD /* Security.framework in Frameworks */,
@@ -945,6 +964,33 @@
 			path = libWeiboSDK;
 			sourceTree = "<group>";
 		};
+		028C61B0195079C9009344C6 /* libBPush */ = {
+			isa = PBXGroup;
+			children = (
+				028C61C5195079E7009344C6 /* BPushConfig.plist */,
+				028C61B1195079C9009344C6 /* BPush.h */,
+				028C61B2195079C9009344C6 /* libBPush.a */,
+				028C61B3195079C9009344C6 /* opensource */,
+			);
+			path = libBPush;
+			sourceTree = "<group>";
+		};
+		028C61B3195079C9009344C6 /* opensource */ = {
+			isa = PBXGroup;
+			children = (
+				028C61B4195079C9009344C6 /* Base64.h */,
+				028C61B5195079C9009344C6 /* Base64.m */,
+				028C61B6195079C9009344C6 /* Base64Defines.h */,
+				028C61B7195079C9009344C6 /* GzipCompressor.h */,
+				028C61B8195079C9009344C6 /* GzipCompressor.m */,
+				028C61BB195079C9009344C6 /* OpenUDID.h */,
+				028C61BC195079C9009344C6 /* OpenUDID.m */,
+				028C61BD195079C9009344C6 /* Reachability.h */,
+				028C61BE195079C9009344C6 /* Reachability.m */,
+			);
+			path = opensource;
+			sourceTree = "<group>";
+		};
 		02BF651A190E8A9900DCF2BD /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -1149,9 +1195,10 @@
 		02E5289F18F0EEDC00EEAE7B /* Metoow */ = {
 			isa = PBXGroup;
 			children = (
+				024CB3A218F4072000434AFA /* worknote */,
+				028C61B0195079C9009344C6 /* libBPush */,
 				028ADBF61947534B0075E6BD /* libWeiboSDK */,
 				0276FA761946099000330AB9 /* TencentAuth */,
-				024CB3A218F4072000434AFA /* worknote */,
 				02F4DAC019270EF0004EFFBC /* BaiduMapiOS_SDK */,
 				02594432191F8B9300114BF4 /* FaceBoard */,
 				0250CD6E191BA9EE00E2E051 /* TQRichTextView */,
@@ -1480,6 +1527,7 @@
 				0276FA7A1946099000330AB9 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				02E5292218F0FBDF00EEAE7B /* Main.storyboard in Resources */,
 				025945BA191F8B9300114BF4 /* board_system.png in Resources */,
+				028C61C6195079E7009344C6 /* BPushConfig.plist in Resources */,
 				02893FED193B0EE6007A79AF /* ReplyCell.xib in Resources */,
 				02F39F1D192476A400DA8B85 /* pb_pic_btn@2x.png in Resources */,
 				02594509191F8B9300114BF4 /* chat_bg_own@2x.png in Resources */,
@@ -1634,6 +1682,7 @@
 				02E528A618F0EEDC00EEAE7B /* main.m in Sources */,
 				02F4A2A618FA46BD006EDB25 /* LoginCheckBox.m in Sources */,
 				02BF6548190E8A9900DCF2BD /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				028C61C0195079C9009344C6 /* Base64.m in Sources */,
 				02BF6549190E8A9900DCF2BD /* UIAlertView+AFNetworking.m in Sources */,
 				022DDA031906B3E100C6003C /* RecordActionButton.m in Sources */,
 				02E38B2D18F10CC600F2E31B /* FootViewController.m in Sources */,
@@ -1672,6 +1721,7 @@
 				02594502191F8B9300114BF4 /* GrayPageControl.m in Sources */,
 				0260B2E219338248000F9846 /* NSDictionary+Huzhu.m in Sources */,
 				02BF654B190E8A9900DCF2BD /* UIImageView+AFNetworking.m in Sources */,
+				028C61C4195079C9009344C6 /* Reachability.m in Sources */,
 				02BF654C190E8A9900DCF2BD /* UIProgressView+AFNetworking.m in Sources */,
 				027119C71944619C00CBC249 /* MyFootViewController.m in Sources */,
 				02F4A29418FA4463006EDB25 /* IQKeyboardManager.m in Sources */,
@@ -1697,8 +1747,10 @@
 				02F4A2B518FA6060006EDB25 /* SOSViewController.m in Sources */,
 				02D3146C19000F61005CADB1 /* MSGCenterViewController.m in Sources */,
 				0267083F1903EB15003D43F9 /* NearViewController.m in Sources */,
+				028C61C3195079C9009344C6 /* OpenUDID.m in Sources */,
 				02500E301917B13A000B7212 /* MSGSessionViewController.m in Sources */,
 				02504601190FD57000852325 /* MJRefreshBaseView.m in Sources */,
+				028C61C1195079C9009344C6 /* GzipCompressor.m in Sources */,
 				02E528DA18F0F1EF00EEAE7B /* HWDevice.m in Sources */,
 				02BF6547190E8A9900DCF2BD /* AFNetworkActivityIndicatorManager.m in Sources */,
 				02D3146819000E0B005CADB1 /* SVSegmentedControl.m in Sources */,
@@ -1845,13 +1897,14 @@
 					"$(PROJECT_DIR)/Metoow/BaiduMapiOS_SDK/libs/Release-iphoneos",
 					"$(PROJECT_DIR)/Metoow/BaiduMapiOS_SDK/libs/Release-iphonesimulator",
 					"$(PROJECT_DIR)/Metoow/libWeiboSDK",
+					"$(PROJECT_DIR)/Metoow/libBPush",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-fobjc-arc",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4145141E-A9D7-4FF6-A032-5A30B02DB27B";
+				PROVISIONING_PROFILE = "E6FEADA8-6A66-4941-BA30-B8789545495A";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1861,7 +1914,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Gun Li (A665XQL5F4)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Gun Li (7N48XR35J8)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Metoow/TencentAuth",
@@ -1875,13 +1928,14 @@
 					"$(PROJECT_DIR)/Metoow/BaiduMapiOS_SDK/libs/Release-iphoneos",
 					"$(PROJECT_DIR)/Metoow/BaiduMapiOS_SDK/libs/Release-iphonesimulator",
 					"$(PROJECT_DIR)/Metoow/libWeiboSDK",
+					"$(PROJECT_DIR)/Metoow/libBPush",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-fobjc-arc",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4145141E-A9D7-4FF6-A032-5A30B02DB27B";
+				PROVISIONING_PROFILE = "BB6ECCBE-6A02-4500-A8B4-2317EC670530";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

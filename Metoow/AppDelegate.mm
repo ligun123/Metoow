@@ -12,6 +12,7 @@
 #import "LocationManager.h"
 #import "AFHTTPRequestOperationManager.h"
 #import "LoginViewController.h"
+#import "BPush.h"
 
 @implementation AppDelegate
 
@@ -27,10 +28,55 @@
     [[NSUserDefaults standardUserDefaults] setObject:facemap forKey:@"FaceMap"];
 }
 
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    [BPush registerDeviceToken:deviceToken];
+    [BPush bindChannel];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    NSLog(@"%s -> %@", __FUNCTION__, userInfo);
+    [application cancelAllLocalNotifications];
+    [application setApplicationIconBadgeNumber:0];
+    NSString *alert = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+    if (application.applicationState == UIApplicationStateActive) {
+        // Nothing to do if applicationState is Inactive, the iOS already displayed an alert view.
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"迷途网"
+                                                            message:alert
+                                                           delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    }
+    
+    [BPush handleNotification:userInfo];
+}
+
+- (void)onMethod:(NSString*)method response:(NSDictionary*)data {
+    /*
+    NSLog(@"On method:%@", method);
+    NSLog(@"data:%@", [data description]);
+    NSDictionary* res = [[NSDictionary alloc] initWithDictionary:data];
+    if ([BPushRequestMethod_Bind isEqualToString:method]) {
+        NSString *appid = [res valueForKey:BPushRequestAppIdKey];
+        NSString *userid = [res valueForKey:BPushRequestUserIdKey];
+        NSString *channelid = [res valueForKey:BPushRequestChannelIdKey];
+        NSString *requestid = [res valueForKey:BPushRequestRequestIdKey];
+        int returnCode = [[res valueForKey:BPushRequestErrorCodeKey] intValue];
+    } else if ([BPushRequestMethod_Unbind isEqualToString:method]) {
+        int returnCode = [[res valueForKey:BPushRequestErrorCodeKey] intValue];
+    }
+     */
+}
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [WeiboSDK enableDebugMode:YES];
     [WeiboSDK registerApp:kWeiboAppKey];
+    [application cancelAllLocalNotifications];
+    [application setApplicationIconBadgeNumber:0];
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = COLOR_RGB(0, 111, 0);
@@ -41,7 +87,6 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     [[IQKeyboardManager sharedManager] setEnable:YES];
-//    [[IQKeyboardManager sharedManager] setKeyboardDistanceFromTextField:15];
     [[IQKeyboardManager sharedManager] setShouldResignOnTouchOutside:YES];
     
     mapManager = [[BMKMapManager alloc]init];
@@ -52,6 +97,14 @@
     }
     
     [LocationManager shareInterface];   //开启定位
+    
+    //开发通知
+    [BPush setupChannel:launchOptions];
+    [BPush setDelegate:self];
+    [application registerForRemoteNotificationTypes:
+     UIRemoteNotificationTypeAlert
+     | UIRemoteNotificationTypeBadge
+     | UIRemoteNotificationTypeSound];
     
     [self.window makeKeyAndVisible];
     [self customTabbar];
