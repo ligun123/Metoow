@@ -131,7 +131,7 @@
         contentLabel.text = msgdic[@"content"];
         timeLabel.text = [msgdic[@"ctime"] apiDate];
         
-        NSDictionary *toUser = [msgdic[@"to_user_info"] allValues][0];
+        NSDictionary *toUser = msgdic[@"to_user_info"];
         nameLabel.text = toUser[@"uname"];
         NSString *headerString = toUser[@"avatar_original"];
         [header setImageWithURL:[NSURL URLWithString:headerString]];
@@ -197,7 +197,7 @@
         [AppDelegateInterface setTabBarHidden:YES];
         NSDictionary *dic = self.msgList[indexPath.row];
         NSString *msgid = dic[@"list_id"];
-        NSString *toName = [dic[@"to_user_info"] allValues][0][@"uname"];
+        NSString *toName = dic[@"to_user_info"][@"uname"];
         MSGSessionViewController *msgSession = [[AppDelegateInterface mainStoryBoard] instantiateViewControllerWithIdentifier:@"MSGSessionViewController"];
         msgSession.msgID = msgid;
         msgSession.frdName = toName;

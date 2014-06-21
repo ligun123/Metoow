@@ -18,6 +18,7 @@
 #import "FootDetailViewController.h"
 #import "HelpDetailViewController.h"
 #import "AppDelegate.h"
+#import "RoadCell.h"
 
 @interface NearViewController ()
 
@@ -44,6 +45,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.heightCount = [[RichLabelView alloc] initWithFrame:CGRectMake(0, 0, 300, 24)];
     // Do any additional setup after loading the view.
     [self.pulldownBtn setTitles:@[@"伙伴", @"足迹", @"路况", @"互助"]];
     currentCategary = NearCategaryPerson;
@@ -225,6 +227,7 @@
         [tableView registerNib:[PersonCell nib] forCellReuseIdentifier:[PersonCell identifier]];
         [tableView registerNib:[HuzhuCell nib] forCellReuseIdentifier:[HuzhuCell identifier]];
         [tableView registerNib:[RecordCell nib] forCellReuseIdentifier:[RecordCell identifier]];
+        [tableView registerNib:[RoadCell nib] forCellReuseIdentifier:[RoadCell identifier]];
     }
     if (currentCategary == NearCategaryPerson) {
         return [self personCellForTable:tableView atIndexPath:indexPath];
@@ -232,8 +235,11 @@
     else if (currentCategary == NearCategaryHelp) {
         return [self huzhuCellForTable:tableView atIndexPath:indexPath];
     }
-    else {
+    else if (currentCategary == NearCategaryFoot) {
         return [self footCellForTable:tableView atIndexPath:indexPath];
+    }
+    else {
+        return [self roadCellForTable:tableView atIndexPath:indexPath];
     }
 }
 
@@ -270,15 +276,22 @@
     cell.time.text = [dic[@"time"] apiDate];
     [cell.content showStringMessage:dic[@"desc"]];
     [cell.btnConnect setSelected:[dic[@"is_colslect"] boolValue]];
-    
     [cell.btnConnect setTitle:dic[@"collect_count"] forState:UIControlStateNormal];
     [cell.btnTransmit setTitle:dic[@"share_count"] forState:UIControlStateNormal];
     [cell.btnReply setTitle:dic[@"comment_count"] forState:UIControlStateNormal];
-    BOOL isRoad = currentCategary == NearCategaryRoadDynamic;
-    [cell.btnConnect setHidden:isRoad];
-    [cell.btnReply setHidden:isRoad];
-    [cell.btnTransmit setHidden:isRoad];
-    
+    return cell;
+}
+
+- (UITableViewCell *)roadCellForTable:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath
+{
+    RoadCell *cell = [tableView dequeueReusableCellWithIdentifier:[RoadCell identifier]];
+    NSDictionary *dic = nil;
+    dic = self.dataList[indexPath.row];
+    NSDictionary *userInfo = dic[@"user_info"];
+    [cell.userHeader setImageWithURL:[NSURL URLWithString:userInfo[@"avatar_original"]]];
+    [cell.userName setText:userInfo[@"uname"]];
+    cell.time.text = [dic[@"time"] apiDate];
+    [cell.content showStringMessage:dic[@"desc"]];
     return cell;
 }
 
@@ -351,20 +364,17 @@
         return [PersonCell height];
     } else if (currentCategary == NearCategaryHelp) {
         return [HuzhuCell height];
-    } else {
-        if (currentCategary == NearCategaryFoot) {
-            return [RecordCell height];
-        }
-        if (currentCategary == NearCategaryRoadDynamic){
-            return [RecordCell height] - 25;
-        }
-        return 44.f;
+    } else if (currentCategary == NearCategaryFoot) {
+        NSDictionary *dic = self.dataList[indexPath.row];
+        return [RecordCell height] + [self.heightCount sizeForContent:dic[@"desc"]].height;
+    } else if (currentCategary == NearCategaryRoadDynamic){
+        NSDictionary *dic = self.dataList[indexPath.row];
+        return [RoadCell height] + [self.heightCount sizeForContent:dic[@"desc"]].height;
     }
+    return 44.f;
 }
 
 #pragma mark - Cell Delegate
-
-
 
 - (void)huzhuCell:(HuzhuCell *)cell tapBtn:(RecordActionButton *)btn
 {

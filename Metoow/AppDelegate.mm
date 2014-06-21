@@ -278,8 +278,12 @@
 - (void)didReceiveWeiboResponse:(WBBaseResponse *)response
 {
     if ([response isKindOfClass:WBAuthorizeResponse.class]) {
-        NSString *user_id = [(WBAuthorizeResponse *)response userID];
-        [[self currentLoginVC] weiboAuthUserID:user_id];
+        if (response.statusCode == WeiboSDKResponseStatusCodeSuccess) {
+            NSString *user_id = [(WBAuthorizeResponse *)response userID];
+            [[self currentLoginVC] weiboAuthUserID:user_id];
+        } else {
+            [[NSError errorWithDomain:@"微博登陆授权失败" code:100 userInfo:nil] showAlert];
+        }
     }
 }
 

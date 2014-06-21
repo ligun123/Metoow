@@ -11,6 +11,7 @@
 #import "RecordCell.h"
 #import "HuzhuCell.h"
 #import "MJRefresh.h"
+#import "RichLabelView.h"
 
 typedef enum {
     NearCategaryPerson = 0,         //伙伴
@@ -29,6 +30,7 @@ typedef enum {
 @property (weak, nonatomic) IBOutlet PulldownButton *pulldownBtn;
 @property (strong, nonatomic) NSMutableArray *dataList;
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
+@property (strong, nonatomic) RichLabelView *heightCount;
 
 @property (strong, nonatomic) MJRefreshHeaderView *headerView;
 @property (strong, nonatomic) MJRefreshFooterView *footerView;

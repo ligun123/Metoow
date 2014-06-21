@@ -33,6 +33,7 @@
     // Do any additional setup after loading the view.
     page = 1;
     selectIndex = 0;
+    self.heightCounter = [[RichLabelView alloc] initWithFrame:CGRectMake(0, 0, 300, 24)];
     [self.pullDownBtn setTitles:@[@"所有足迹", @"我的足迹", @"我关注的", @"我收藏的", @"我的路况", @"所有路况"]];
     [self.pullDownBtn setCallbackBlock:^(PulldownButton *btn, NSInteger sltIndex) {
         if (selectIndex != sltIndex) {
@@ -101,33 +102,46 @@
     if (!isCellRegesterd) {
         isCellRegesterd = YES;
         [tableView registerNib:[RecordCell nib] forCellReuseIdentifier:[RecordCell identifier]];
+        [tableView registerNib:[RoadCell nib] forCellReuseIdentifier:[RoadCell identifier]];
     }
-    RecordCell *cell = [tableView dequeueReusableCellWithIdentifier:[RecordCell identifier]];
-    cell.delegate = self;
-    NSDictionary *dic = nil;
-    if (isSearching) {
-        dic = self.searchList[indexPath.row];
+    if (selectIndex < 4) {
+        RecordCell *cell = [tableView dequeueReusableCellWithIdentifier:[RecordCell identifier]];
+        cell.delegate = self;
+        NSDictionary *dic = nil;
+        if (isSearching) {
+            dic = self.searchList[indexPath.row];
+        } else {
+            dic = self.dataList[indexPath.row];
+        }
+        
+        NSDictionary *userInfo = dic[@"user_info"];
+        [cell.userHeader setImageWithURL:[NSURL URLWithString:userInfo[@"avatar_original"]]];
+        [cell.userName setText:userInfo[@"uname"]];
+        cell.time.text = [dic[@"time"] apiDate];
+        [cell.btnConnect setSelected:[dic[@"is_colslect"] boolValue]];
+        [cell.btnConnect setTitle:dic[@"collect_count"] forState:UIControlStateNormal];
+        [cell.btnTransmit setTitle:dic[@"share_count"] forState:UIControlStateNormal];
+        [cell.btnReply setTitle:dic[@"comment_count"] forState:UIControlStateNormal];
+        [cell.content showStringMessage:dic[@"desc"]];
+        return cell;
     } else {
-        dic = self.dataList[indexPath.row];
+        RoadCell *cell = [tableView dequeueReusableCellWithIdentifier:[RoadCell identifier]];
+        NSDictionary *dic = nil;
+        if (isSearching) {
+            dic = self.searchList[indexPath.row];
+        } else {
+            dic = self.dataList[indexPath.row];
+        }
+        
+        NSDictionary *userInfo = dic[@"user_info"];
+        [cell.userHeader setImageWithURL:[NSURL URLWithString:userInfo[@"avatar_original"]]];
+        [cell.userName setText:userInfo[@"uname"]];
+        cell.time.text = [dic[@"time"] apiDate];
+        [cell.content showStringMessage:dic[@"desc"]];
+        return cell;
     }
-    
-    NSDictionary *userInfo = dic[@"user_info"];
-    [cell.userHeader setImageWithURL:[NSURL URLWithString:userInfo[@"avatar_original"]]];
-    [cell.userName setText:userInfo[@"uname"]];
-    cell.time.text = [dic[@"time"] apiDate];
-    [cell.content showStringMessage:dic[@"desc"]];
-    [cell.btnConnect setSelected:[dic[@"is_colslect"] boolValue]];
-    
-    [cell.btnConnect setTitle:dic[@"collect_count"] forState:UIControlStateNormal];
-    [cell.btnTransmit setTitle:dic[@"share_count"] forState:UIControlStateNormal];
-    [cell.btnReply setTitle:dic[@"comment_count"] forState:UIControlStateNormal];
-    BOOL isRoad = selectIndex >= 4;
-    [cell.btnConnect setHidden:isRoad];
-    [cell.btnReply setHidden:isRoad];
-    [cell.btnTransmit setHidden:isRoad];
-    
-    return cell;
 }
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -176,12 +190,18 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (selectIndex < 4) {
-        return [RecordCell height];
+    NSDictionary *dic = nil;
+    if (isSearching) {
+        dic = self.searchList[indexPath.row];
     } else {
-        return [RecordCell height] - 25;
+        dic = self.dataList[indexPath.row];
     }
     
+    if (selectIndex < 4) {
+        return [RecordCell height] + [self.heightCounter sizeForContent:dic[@"desc"]].height;
+    } else {
+        return [RoadCell height] + [self.heightCounter sizeForContent:dic[@"desc"]].height;
+    }
 }
 
 

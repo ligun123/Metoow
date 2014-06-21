@@ -5,6 +5,11 @@ SEC:    5815057
 Weibo登陆参考：      https://github.com/sinaweibosdk
 QQ登陆参考：         http://wiki.open.qq.com/wiki/%E9%A6%96%E9%A1%B5
 
+新浪微博KEY：1075766090
+新浪微博密匙：03374e998670d290da285ff547fb4a6e
+QQ互联KEY：100565099
+QQ互联密匙：830dcbe20735c4ea3835e8eb33f137e5
+
 百度云推送：
 API Key：
 A5OMm1Qm4w1XIR6vfN0887BX
@@ -61,10 +66,13 @@ api接口文档第一版
 
 API Bugs:  测试ID:376438624@qq.com  sec:5815057    uid:165
 
-6、关注接口错误
-http://www.metoow.com/index.php?app=api&act=follow_creat&is_follow=1&mod=Userfocus&oauth_token=b0543476e04e13798cdbdcc7c413a53a&oauth_token_secret=c64521db0926cfb5e4a456182a83d3dc&user_id=165
-啥都不返回
+1、Message/get_list_to_uid这个接口返回的数据完全错误，服务器端把需求理解错误了，这个接口的需求是 根据传入的to_uid，返回我与对方私信详情
+参考Message/get_message_detail的返回，不同的是get_message_detail是根据私信list_id返回我和某人的私信详情，get_list_to_uid是根据to_uid返回我和某人的私信详情
 
-7、Huzhu/get_hzlist  根据文档 参数uid为空获取默认，否则获取某人互助
-以下URL带入了uid，但是返回的值是所有的互助，应该返回此uid发布的互助
-http://www.metoow.com/index.php?app=api&act=get_hzlist&mod=Huzhu&oauth_token=b0543476e04e13798cdbdcc7c413a53a&oauth_token_secret=c64521db0926cfb5e4a456182a83d3dc&page=1&uid=233
+URL如下：
+http://www.metoow.com/index.php?app=api&act=get_list_to_uid&mod=Message&oauth_token=a1709fb7935d2184b131a81e8d689923&oauth_token_secret=7e5210cb760a8c863e72bcc13c238f75&to_uid=233
+
+
+2、Near/near_foot（返回附近足迹）接口中返回的 每条足迹中还差一个表示该足迹是否已被用户收藏的bool值，请命名为“is_colslect”，可以参考Foot/foot_list的返回中bool值
+以下是near_foot的接口URL
+http://www.metoow.com/index.php?app=api&act=near_foot&lat=30.636521&lng=104.060968&mod=Near&oauth_token=a1709fb7935d2184b131a81e8d689923&oauth_token_secret=7e5210cb760a8c863e72bcc13c238f75&page=1

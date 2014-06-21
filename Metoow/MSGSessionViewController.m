@@ -42,6 +42,10 @@
     }
     if (self.msgID) {
         [self requestMessageDetail];
+    } else {
+        if (self.frdUid) {
+            [self requestMessageByFrd];
+        }
     }
 }
 
@@ -190,7 +194,34 @@
                 } else return NSOrderedAscending;
             }]];
             [self.tableView reloadData];
-            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.messageArray.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.messageArray.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+        } else {
+            [[responseObject error] showAlert];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
+        [error showAlert];
+    }];
+}
+
+
+- (void)requestMessageByFrd
+{
+    [SVProgressHUD show];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *dic = @{@"to_uid": self.frdUid};
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Message act:Mod_Message_get_list_to_uid Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
+        if ([responseObject isOK]) {
+            NSArray *tempArray = responseObject[@"data"];
+            //以时间先后排序
+            self.messageArray = [NSMutableArray arrayWithArray:[tempArray sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+                if ([obj1[@"ctime"] integerValue] > [obj2[@"ctime"] integerValue]) {
+                    return NSOrderedDescending;
+                } else return NSOrderedAscending;
+            }]];
+            [self.tableView reloadData];
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.messageArray.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
         } else {
             [[responseObject error] showAlert];
         }

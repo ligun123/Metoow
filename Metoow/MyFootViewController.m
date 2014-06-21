@@ -32,7 +32,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     page = 1;
-    
+    self.heightCount = [[RichLabelView alloc] initWithFrame:CGRectMake(0, 0, 300, 24)];
     self.headerView = [MJRefreshHeaderView header];
     self.headerView.scrollView = self.tableview;
     self.headerView.delegate = self;
@@ -158,7 +158,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [RecordCell height];
+    NSDictionary *dic = self.dataList[indexPath.row];
+    return [RecordCell height] + [self.heightCount sizeForContent:dic[@"desc"]].height;
 }
 
 

@@ -19,8 +19,9 @@
 @property (weak, nonatomic) IBOutlet MSGInputView *inputView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
-@property (copy, nonatomic) NSString *msgID;
+
+@property (copy, nonatomic) NSString *msgID;        //设置此值则根据此msgID取私信
 @property (copy, nonatomic) NSString *frdName;
-@property (copy, nonatomic) NSString *frdUid;
+@property (copy, nonatomic) NSString *frdUid;       //设置此值则取和此好友的私信
 
 @end

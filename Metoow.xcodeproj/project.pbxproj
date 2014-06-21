@@ -25,6 +25,8 @@
 		022DD9FF1906B24B00C6003C /* pb_star_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 022DD9FB1906B24B00C6003C /* pb_star_btn@2x.png */; };
 		022DDA001906B24B00C6003C /* pb_trans_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 022DD9FC1906B24B00C6003C /* pb_trans_btn@2x.png */; };
 		022DDA031906B3E100C6003C /* RecordActionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 022DDA021906B3E100C6003C /* RecordActionButton.m */; };
+		0230AAD11953258A0064A8F2 /* RoadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0230AACF1953258A0064A8F2 /* RoadCell.m */; };
+		0230AAD21953258A0064A8F2 /* RoadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0230AAD01953258A0064A8F2 /* RoadCell.xib */; };
 		0231A38E193F50BC00ED435B /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0231A38D193F50BC00ED435B /* LocationManager.m */; };
 		0233F51118F3ACB5004B1ED1 /* pb_mainColor_bkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0233F51018F3ACB5004B1ED1 /* pb_mainColor_bkg@2x.png */; };
 		02466A181934C12000DBCBB2 /* getarea in Resources */ = {isa = PBXBuildFile; fileRef = 02466A171934C12000DBCBB2 /* getarea */; };
@@ -295,6 +297,9 @@
 		022DD9FC1906B24B00C6003C /* pb_trans_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pb_trans_btn@2x.png"; sourceTree = "<group>"; };
 		022DDA011906B3E100C6003C /* RecordActionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordActionButton.h; sourceTree = "<group>"; };
 		022DDA021906B3E100C6003C /* RecordActionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordActionButton.m; sourceTree = "<group>"; };
+		0230AACE1953258A0064A8F2 /* RoadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoadCell.h; sourceTree = "<group>"; };
+		0230AACF1953258A0064A8F2 /* RoadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoadCell.m; sourceTree = "<group>"; };
+		0230AAD01953258A0064A8F2 /* RoadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoadCell.xib; sourceTree = "<group>"; };
 		0231A38C193F50BC00ED435B /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		0231A38D193F50BC00ED435B /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		0233F51018F3ACB5004B1ED1 /* pb_mainColor_bkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pb_mainColor_bkg@2x.png"; sourceTree = "<group>"; };
@@ -1068,6 +1073,9 @@
 				026708451903FE7E003D43F9 /* RecordCell.h */,
 				026708461903FE7E003D43F9 /* RecordCell.m */,
 				0267084B1904003F003D43F9 /* RecordCell.xib */,
+				0230AACE1953258A0064A8F2 /* RoadCell.h */,
+				0230AACF1953258A0064A8F2 /* RoadCell.m */,
+				0230AAD01953258A0064A8F2 /* RoadCell.xib */,
 				0260B2E31933878D000F9846 /* HuzhuCell.h */,
 				0260B2E41933878D000F9846 /* HuzhuCell.m */,
 				0260B2E61933879B000F9846 /* HuzhuCell.xib */,
@@ -1569,6 +1577,7 @@
 				02F4A29318FA4463006EDB25 /* IQButtonBarArrowRight@2x.png in Resources */,
 				024CB3AD18F4329300434AFA /* pb_mainColor3_bkg@2x.png in Resources */,
 				02594504191F8B9300114BF4 /* MessageListCell.xib in Resources */,
+				0230AAD21953258A0064A8F2 /* RoadCell.xib in Resources */,
 				02F4A28B18FA43F9006EDB25 /* Icon.png in Resources */,
 				025945B9191F8B9300114BF4 /* board_emoji@2x.png in Resources */,
 				0250CD81191BA9EF00E2E051 /* [smile].png in Resources */,
@@ -1681,6 +1690,7 @@
 				02E528AA18F0EEDC00EEAE7B /* AppDelegate.mm in Sources */,
 				02E528A618F0EEDC00EEAE7B /* main.m in Sources */,
 				02F4A2A618FA46BD006EDB25 /* LoginCheckBox.m in Sources */,
+				0230AAD11953258A0064A8F2 /* RoadCell.m in Sources */,
 				02BF6548190E8A9900DCF2BD /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				028C61C0195079C9009344C6 /* Base64.m in Sources */,
 				02BF6549190E8A9900DCF2BD /* UIAlertView+AFNetworking.m in Sources */,

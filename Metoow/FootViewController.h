@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RecordCell.h"
+#import "RoadCell.h"
 #import "PulldownButton.h"
 #import "MJRefresh.h"
 
@@ -30,6 +31,7 @@
 @property (strong, nonatomic) NSMutableArray *dataList;     //table数据源
 
 @property (strong, nonatomic) NSMutableArray *searchList;
+@property (strong, nonatomic) RichLabelView *heightCounter;
 
 - (IBAction)btnPublishTap:(id)sender;
 

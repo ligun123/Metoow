@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RecordCell.h"
 #import "MJRefresh.h"
+#import "RichLabelView.h"
 
 @interface MyFootViewController : UIViewController <RecordCellProtocol, MJRefreshBaseViewDelegate>
 {
@@ -21,6 +22,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+@property (strong, nonatomic) RichLabelView *heightCount;
 
 @property (strong, nonatomic) NSMutableArray *dataList;
 
