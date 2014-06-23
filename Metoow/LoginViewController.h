@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LoginCheckBox.h"
 
-@interface LoginViewController : UIViewController <UITextFieldDelegate, TencentSessionDelegate>
+@interface LoginViewController : UIViewController <UITextFieldDelegate, TencentSessionDelegate, UIAlertViewDelegate>
 {
     
 }

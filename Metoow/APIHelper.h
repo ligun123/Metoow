@@ -22,6 +22,7 @@
 #define Mod_Login_getArea   @"getArea"  //注册时候
 #define Mod_Login_set_tags @"set_tags"
 #define Mod_Login_app_login @"app_login"    //第三方登陆
+#define Mod_Login_mett_binding_app @"mett_binding_app"  //绑定存在的账号
 
 #define Mod_Foot @"Foot"
 #define Mod_Foot_del @"del"

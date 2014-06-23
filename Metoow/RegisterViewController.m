@@ -154,7 +154,9 @@
     NSMutableDictionary *para = [NSMutableDictionary dictionaryWithDictionary:@{@"email": self.email.text, @"password" : self.password.text, @"uname" : self.nickname.text, @"sex" : [self sexNumber], @"city_names" : [self cityNames], @"city_ids" : [self cityIds]}];
     if (self.auth_user_id != nil && self.auth_type != 0) {
         [para setObject:self.auth_user_id forKey:@"user_id"];
-        [para setObject:[NSNumber numberWithInteger:self.auth_type] forKey:@"register_type"];
+        NSString *type = self.auth_type == 1 ? @"sina" : @"qzone";
+        [para setObject:type forKey:@"register_type"];
+        [para setObject:@"1" forKey:@"is_sync"];
     }
     
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Login act:Mod_Login_register Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {

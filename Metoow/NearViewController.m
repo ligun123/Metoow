@@ -102,7 +102,6 @@
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_User act:Mod_User_neighbors Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self endRefresh];
         [SVProgressHUD dismiss];
-        NSLog(@"%s -> %@", __FUNCTION__, operation.responseString);
         if ([responseObject isOK]) {
             if (page == 1) {
                 [self.dataList removeAllObjects];
@@ -131,7 +130,6 @@
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Near act:Mod_Near_near_foot Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self endRefresh];
         [SVProgressHUD dismiss];
-        NSLog(@"%s -> %@", __FUNCTION__, operation.responseString);
         if ([responseObject isOK]) {
             if (page == 1) {
                 [self.dataList removeAllObjects];
@@ -160,7 +158,6 @@
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Near act:Mod_Near_near_road Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self endRefresh];
         [SVProgressHUD dismiss];
-        NSLog(@"%s -> %@", __FUNCTION__, operation.responseString);
         if ([responseObject isOK]) {
             if (page == 1) {
                 [self.dataList removeAllObjects];

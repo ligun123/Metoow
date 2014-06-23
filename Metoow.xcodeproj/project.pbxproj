@@ -222,6 +222,7 @@
 		02E528DB18F0F1EF00EEAE7B /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E528D718F0F1EF00EEAE7B /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		02E528DC18F0F1EF00EEAE7B /* NSError+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E528D918F0F1EF00EEAE7B /* NSError+Alert.m */; };
 		02E5292218F0FBDF00EEAE7B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02E528AB18F0EEDC00EEAE7B /* Main.storyboard */; };
+		02ED9198195866B0000E915E /* BindingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02ED9197195866B0000E915E /* BindingViewController.m */; };
 		02F2E05A190288C4002902DD /* test_header_bkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02F2E059190288C4002902DD /* test_header_bkg@2x.png */; };
 		02F2E05D1902A5C5002902DD /* PersonalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F2E05C1902A5C5002902DD /* PersonalViewController.m */; };
 		02F2E0601902BCFC002902DD /* more_big_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02F2E05E1902BCFC002902DD /* more_big_btn@2x.png */; };
@@ -575,6 +576,8 @@
 		02E528D718F0F1EF00EEAE7B /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		02E528D818F0F1EF00EEAE7B /* NSError+Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Alert.h"; sourceTree = "<group>"; };
 		02E528D918F0F1EF00EEAE7B /* NSError+Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Alert.m"; sourceTree = "<group>"; };
+		02ED9196195866B0000E915E /* BindingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindingViewController.h; sourceTree = "<group>"; };
+		02ED9197195866B0000E915E /* BindingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindingViewController.m; sourceTree = "<group>"; };
 		02F2E059190288C4002902DD /* test_header_bkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test_header_bkg@2x.png"; sourceTree = "<group>"; };
 		02F2E05B1902A5C5002902DD /* PersonalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalViewController.h; sourceTree = "<group>"; };
 		02F2E05C1902A5C5002902DD /* PersonalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalViewController.m; sourceTree = "<group>"; };
@@ -1345,6 +1348,8 @@
 				02F4A2B118FA57CA006EDB25 /* SelectLabelViewController.m */,
 				028ACD5518FEC80200D36AE0 /* SelectLabel.h */,
 				028ACD5618FEC80200D36AE0 /* SelectLabel.m */,
+				02ED9196195866B0000E915E /* BindingViewController.h */,
+				02ED9197195866B0000E915E /* BindingViewController.m */,
 			);
 			name = "登录注册";
 			sourceTree = "<group>";
@@ -1675,6 +1680,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02ED9198195866B0000E915E /* BindingViewController.m in Sources */,
 				0276FA8519460A6000330AB9 /* TencentOpenApi_IOS_Bundle.bundle in Sources */,
 				025945C2191F9D6100114BF4 /* FaceButton.m in Sources */,
 				025945C6191F9E9100114BF4 /* MSGDetailViewController.m in Sources */,

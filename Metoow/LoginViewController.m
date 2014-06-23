@@ -9,10 +9,20 @@
 #import "LoginViewController.h"
 #import "FootViewController.h"
 #import "RegisterViewController.h"
+#import <objc/runtime.h>
+#import "BindingViewController.h"
 
 @interface LoginViewController ()
 
 @end
+
+@interface UIAlertView (ThirdLogin)
+
+@property (copy, nonatomic) NSString *user_id;
+@property NSInteger auth_type;
+
+@end
+
 
 @implementation LoginViewController
 
@@ -198,23 +208,29 @@
     [SVProgressHUD show];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     //app_login_type: 1新浪，2腾讯
-    NSDictionary *para = @{@"app_token": user_id, @"app_login_type" : [NSNumber numberWithInteger:2]};
+    NSDictionary *para = @{@"app_token": user_id, @"app_login_type" : @"qzone"};
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Login act:Mod_Login_app_login Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
             NSLog(@"%s -> %@", __FUNCTION__, responseObject);
             [[NSUserDefaults standardUserDefaults] registerDefaults:responseObject[@"data"]];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self performSelector:@selector(didLoginSeccuss) withObject:nil afterDelay:2.f];
+                [self performSelector:@selector(didLoginSeccuss) withObject:nil afterDelay:1.f];
             });
             
         } else {
             if ([responseObject[@"code"] integerValue] == 20001) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:nil delegate:self cancelButtonTitle:@"绑定迷途账号" otherButtonTitles:@"注册迷途账号", nil];
+                [alert setUser_id:user_id];
+                [alert setAuth_type:2];
+                [alert show];
+                /*
                 [[NSError errorWithDomain:@"第一次登陆请绑定迷途账号" code:100 userInfo:nil] showAlert];
                 RegisterViewController *reg = [AppDelegateInterface awakeViewController:@"RegisterViewController"];
                 reg.auth_user_id = user_id;
                 reg.auth_type = 2;
                 [self.navigationController pushViewController:reg animated:YES];
+                 */
             } else {
                 [[responseObject error] showAlert];
             }
@@ -266,18 +282,24 @@
     [SVProgressHUD show];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     //app_login_type: 1新浪，2腾讯
-    NSDictionary *para = @{@"app_token": user_id, @"app_login_type" : [NSNumber numberWithInteger:1]};
+    NSDictionary *para = @{@"app_token": user_id, @"app_login_type" : @"sina"};
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Login act:Mod_Login_app_login Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
             [self didLoginSeccuss];
         } else {
             if ([responseObject[@"code"] integerValue] == 20001) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:nil delegate:self cancelButtonTitle:@"绑定迷途账号" otherButtonTitles:@"注册迷途账号", nil];
+                [alert setUser_id:user_id];
+                [alert setAuth_type:1];
+                [alert show];
+                /*
                 [[NSError errorWithDomain:@"第一次登陆请绑定迷途账号" code:100 userInfo:nil] showAlert];
                 RegisterViewController *reg = [AppDelegateInterface awakeViewController:@"RegisterViewController"];
                 reg.auth_user_id = user_id;
                 reg.auth_type = 1;
                 [self.navigationController pushViewController:reg animated:YES];
+                 */
             } else {
                 [[responseObject error] showAlert];
             }
@@ -287,5 +309,56 @@
         [error showAlert];
     }];
 }
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        //绑定迷途账号
+        BindingViewController *bind = [AppDelegateInterface awakeViewController:@"BindingViewController"];
+        bind.user_id = alertView.user_id;
+        bind.auth_type = alertView.auth_type;
+        [self.navigationController pushViewController:bind animated:YES];
+    }
+    if (buttonIndex == 1) {
+        //注册迷途账号
+        RegisterViewController *reg = [AppDelegateInterface awakeViewController:@"RegisterViewController"];
+        reg.auth_user_id = alertView.user_id;
+        reg.auth_type = alertView.auth_type;
+        [self.navigationController pushViewController:reg animated:YES];
+    }
+}
+
+
+@end
+
+
+
+@implementation UIAlertView (ThirdLogin)
+
+static void *kUserID;
+static void *kAuthType;
+
+- (NSString *)user_id
+{
+    return objc_getAssociatedObject(self, &kUserID);
+}
+
+- (void)setUser_id:(NSString *)user_id
+{
+    objc_setAssociatedObject(self, &kUserID, user_id, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+
+- (NSInteger)auth_type
+{
+    return [objc_getAssociatedObject(self, &kAuthType) integerValue];
+}
+
+- (void)setAuth_type:(NSInteger)auth_type
+{
+    objc_setAssociatedObject(self, &kAuthType, [NSNumber numberWithInteger:auth_type], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
 
 @end
