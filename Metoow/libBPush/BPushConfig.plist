@@ -7,7 +7,7 @@
 	<key>PRODUCTION_MODE</key>
 	<false/>
 	<key>DEBUG</key>
-	<true/>
+	<false/>
 	<key>API_KEY</key>
 	<string>A5OMm1Qm4w1XIR6vfN0887BX</string>
 </dict>

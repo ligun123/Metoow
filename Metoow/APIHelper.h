@@ -44,6 +44,7 @@
 
 
 #define Mod_User @"User"
+#define Mod_User_baidu_binding_uid @"baidu_binding_uid"         //百度云推送uid映射
 #define Mod_User_info @"info"
 #define Mod_User_myinfo @"myinfo"
 #define Mod_User_checkin @"checkin"                             //记录用户最后位置

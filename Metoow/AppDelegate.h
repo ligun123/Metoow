@@ -27,4 +27,6 @@
 
 - (void)setTabBarHidden:(BOOL)hid;
 
+- (void)bindBPush;
+
 @end

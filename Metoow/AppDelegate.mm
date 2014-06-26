@@ -227,6 +227,12 @@
 }
 
 
+- (void)bindBPush
+{
+    NSString *buid = [BPush getUserId];
+}
+
+
 - (void)checkInTimer:(NSTimer *)timer
 {
     if ([LocationManager shareInterface].addrInfo != nil && self.hasLogin) {
