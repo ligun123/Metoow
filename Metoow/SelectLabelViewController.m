@@ -101,6 +101,8 @@
             [manager GET:[APIHelper url] parameters:[APIHelper packageMod:@"Login" act:@"login" Paras:@{@"uname": self.userRegister[@"login"], @"upwd" : self.password}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 [SVProgressHUD dismiss];
                 if ([responseObject isOK]) {
+                    [[NSUserDefaults standardUserDefaults] setObject:self.self.userRegister[@"login"] forKey:kLoginUserID];
+                    [[NSUserDefaults standardUserDefaults] setObject:self.password forKey:kLoginPswd];
                     for (id foot in self.navigationController.viewControllers) {
                         if ([foot isKindOfClass:[FootViewController class]]) {
                             [self.navigationController popToViewController:foot animated:YES];
