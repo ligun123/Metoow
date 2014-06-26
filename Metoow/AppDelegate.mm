@@ -55,6 +55,7 @@
 }
 
 - (void)onMethod:(NSString*)method response:(NSDictionary*)data {
+    NSLog(@"%s -> UserId : %@", __FUNCTION__, [BPush getUserId]);
     /*
     NSLog(@"On method:%@", method);
     NSLog(@"data:%@", [data description]);

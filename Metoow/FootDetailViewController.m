@@ -254,6 +254,8 @@
         NSDictionary *replyDic = self.commentsList[indexPath.row - 1];
         [cell.content showStringMessage:replyDic[@"content"]];
         cell.time.text = [replyDic[@"ctime"] apiDate];
+        cell.name.text = replyDic[@"user_info"][@"uname"];
+        [cell.headerImg setImageWithURL:[NSURL URLWithString:replyDic[@"user_info"][@"avatar_original"]]];
         return cell;
     }
 }
