@@ -22,6 +22,7 @@
 
 @property (weak, nonatomic) IBOutlet PulldownButton *pullDownBtn;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIButton *btnSOS;
 
 @property (strong, nonatomic) MJRefreshHeaderView *headerView;
 @property (strong, nonatomic) MJRefreshFooterView *footerView;

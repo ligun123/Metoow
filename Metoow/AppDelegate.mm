@@ -230,6 +230,18 @@
 - (void)bindBPush
 {
     NSString *buid = [BPush getUserId];
+    if (buid.length == 0) {
+        NSLog(@"%s -> [BPush getUserId]为空，请开启IOS推送服务", __FUNCTION__);
+        return ;
+    }
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_User act:Mod_User_baidu_binding_uid Paras:@{@"b_uid": buid}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (![responseObject isOK]) {
+            NSLog(@"%s -> %@", __FUNCTION__, operation.responseString);
+        } else NSLog(@"绑定BPush-》UserId成功!");
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%s -> %@", __FUNCTION__, error);
+    }];
 }
 
 

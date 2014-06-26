@@ -145,6 +145,7 @@
 - (void)didLoginSeccuss
 {
     [AppDelegateInterface setHasLogin:YES];
+    [AppDelegateInterface bindBPush];
     for (id foot in self.navigationController.viewControllers) {
         if ([foot isKindOfClass:[FootViewController class]]) {
             [self.navigationController popToViewController:foot animated:YES];

@@ -182,7 +182,7 @@
 {
     [SVProgressHUD show];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *dic = @{@"id": self.msgID};
+    NSDictionary *dic = @{@"id": self.msgID, @"page" : @"1"};
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Message act:Mod_Message_get_message_detail Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {

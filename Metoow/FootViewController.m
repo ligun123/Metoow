@@ -31,6 +31,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.btnSOS.layer.borderWidth = 2.0f;
+    self.btnSOS.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.btnSOS.layer.cornerRadius = 3.f;
     page = 1;
     selectIndex = 0;
     self.heightCounter = [[RichLabelView alloc] initWithFrame:CGRectMake(0, 0, 300, 24)];

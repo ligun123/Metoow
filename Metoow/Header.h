@@ -23,7 +23,7 @@
 
 #define BaiduMapAppKey @"A5OMm1Qm4w1XIR6vfN0887BX"
 
-#define kWeiboAppKey         @"1075766090"      //1588740131
+#define kWeiboAppKey         @"4194657020"      //1588740131
 #define kWeiboRedirectURI    @"https://api.weibo.com/oauth2/default.html"
 #define kTencentAppID @"100565099"              //101119364
 

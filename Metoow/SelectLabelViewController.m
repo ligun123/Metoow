@@ -97,6 +97,7 @@
             NSDictionary *dic = responseObject[@"data"];
             //kOauth_Token 将token信息注册到userDefaults
             [[NSUserDefaults standardUserDefaults] registerDefaults:dic];
+            [AppDelegateInterface bindBPush];
             [manager GET:[APIHelper url] parameters:[APIHelper packageMod:@"Login" act:@"login" Paras:@{@"uname": self.userRegister[@"login"], @"upwd" : self.password}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 [SVProgressHUD dismiss];
                 if ([responseObject isOK]) {
