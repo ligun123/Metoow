@@ -8,7 +8,7 @@
 
 #import "MSGInputView.h"
 
-#define kTextHeight 30.f
+#define kTextHeight 28.5f
 
 @implementation MSGInputView
 
