@@ -129,7 +129,7 @@
         
         NSDictionary *msgdic = self.msgList[indexPath.row];
         contentLabel.text = msgdic[@"content"];
-        timeLabel.text = [msgdic[@"ctime"] apiDate];
+        timeLabel.text = [msgdic[@"list_ctime"] apiDate];
         
         NSDictionary *toUser = msgdic[@"to_user_info"];
         nameLabel.text = toUser[@"uname"];
