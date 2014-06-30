@@ -155,7 +155,7 @@
         [cell.title setText:[dic huzhuTitle]];
         [cell.content showStringMessage:dic[@"explain"]];
         cell.time.text= [dic[@"cTime"] apiDate];
-        [cell.btnTransmit setTitle:dic[@"attentionCount"] forState:UIControlStateNormal];
+        [cell.btnTransmit setTitle:dic[@"repost_count"] forState:UIControlStateNormal];
         [cell.btnReply setTitle:dic[@"commentCount"] forState:UIControlStateNormal];
         NSDictionary *userInfo = dic[@"user_info"];
         [cell.userHeader setImageWithURL:[NSURL URLWithString:userInfo[@"avatar_original"]]];

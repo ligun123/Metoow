@@ -80,6 +80,10 @@
     NSString *phone = @"18200509050";
     NSString *uid = [[NSUserDefaults standardUserDefaults] objectForKey:@"uid"];
     BMKAddrInfo *addrInfo = [LocationManager shareInterface].addrInfo;
+    if (addrInfo == nil) {
+        [[NSError errorWithDomain:@"正在获取位置信息" code:100 userInfo:nil] showAlert];
+        return ;
+    }
     NSDictionary *dic = @{@"uid": uid, @"lng" : [NSString stringWithFormat:@"%f", addrInfo.geoPt.longitude], @"lat" : [NSString stringWithFormat:@"%f", addrInfo.geoPt.latitude], @"pos" : addrInfo.strAddr, @"phone" : phone, @"sos_info" : sos};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_SOS act:Mod_SOS_add_sos Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
