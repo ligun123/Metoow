@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class HWCell;
+
+typedef void(^HWCellHeaderTapBlock)(HWCell *aCell);
+
 @interface HWCell : UITableViewCell
 
 + (CGFloat)height;

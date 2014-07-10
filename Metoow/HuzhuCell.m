@@ -30,7 +30,7 @@
 
 + (CGFloat)height
 {
-    return 150.f;
+    return 126.f;
 }
 
 - (IBAction)btnTransmitTap:(RecordActionButton *)sender

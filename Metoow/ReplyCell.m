@@ -31,6 +31,17 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    UITapGestureRecognizer *tapHeader = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headerTap:)];
+    tapHeader.numberOfTapsRequired = 1;
+    tapHeader.numberOfTouchesRequired = 1;
+    [self.headerImg addGestureRecognizer:tapHeader];
+}
+
+- (void)headerTap:(id)sender
+{
+    if (self.headerTapBlock) {
+        self.headerTapBlock(self);
+    }
 }
 
 + (CGFloat)height

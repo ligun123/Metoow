@@ -11,6 +11,7 @@
 #import "ReplyCell.h"
 #import "FootPubViewController.h"
 #import "NSDictionary+Huzhu.h"
+#import "PersonalViewController.h"
 
 @interface HelpDetailViewController ()
 
@@ -145,7 +146,12 @@
             [self.detailCell.content showStringMessage:self.detailDic[@"sos_info"]];
         } else {
             self.detailCell.time.text = [self.detailDic[@"cTime"] apiDate];
-            [self.detailCell.content showStringMessage:[self.detailDic huzhuTitle]];
+            NSString *huzhu = [self.detailDic huzhuTitle];
+            self.detailCell.content.textColor = [UIColor colorWithRed:0 green:99/255.f blue:0 alpha:1];
+            [self.detailCell.content showStringMessage:huzhu];
+            
+            NSString *explain = self.detailDic[@"explain"];
+            [self.detailCell.huzhuExplain showStringMessage:explain];
         }
         
         //调整content的高度
@@ -153,9 +159,6 @@
             if ([self.detailCell.picScroll superview]) {
                 [self.detailCell.picScroll removeFromSuperview];
             }
-            CGRect f = self.detailCell.content.frame;
-            f.size.height = f.size.height + 100;        //让content的size充满cell，cell绘制时会根据autoresiongMask属性将content的size调整到合适size
-            self.detailCell.content.frame = f;
         } else {
             NSArray *picids = [self.detailDic[@"pic_ids"] componentsSeparatedByString:@"|"];
             NSMutableArray *arr = [NSMutableArray arrayWithCapacity:10];
@@ -167,8 +170,23 @@
             }
             [self.detailCell.picScroll showMetoowPicIDs:arr];
         }
+        CGRect f = self.detailCell.content.frame;
+        f.size = [self.detailCell.content contentSize];
+        self.detailCell.content.frame = f;
+        f.origin = CGPointMake(f.origin.x, f.origin.y + f.size.height);
+        f.size = [self.detailCell.huzhuExplain contentSize];
+        self.detailCell.huzhuExplain.frame = f;
         [self.detailCell.headerImg setImageWithURL:[NSURL URLWithString:self.detailDic[@"user_info"][@"avatar_original"]]];
         self.detailCell.name.text = self.detailDic[@"user_info"][@"uname"];
+        
+        [_detailCell setHeaderTapBlock:^(HWCell *aCell){
+            NSString *headerUid = _detailDic[@"user_info"][@"uid"];
+            PersonalViewController *pers = [AppDelegateInterface awakeViewController:@"PersonalViewController"];
+            pers.user_id = headerUid;
+            pers.isMe = NO;
+            [self.navigationController pushViewController:pers animated:YES];
+        }];
+        
         return self.detailCell;
     } else {
         if (!hasRegister) {
@@ -181,6 +199,16 @@
         cell.time.text = [replyDic[@"ctime"] apiDate];
         cell.name.text = replyDic[@"user_info"][@"uname"];
         [cell.headerImg setImageWithURL:[NSURL URLWithString:replyDic[@"user_info"][@"avatar_original"]]];
+        
+        [cell setHeaderTapBlock:^(HWCell *aCell){
+            NSIndexPath *aIndexPath = [tableView indexPathForCell:aCell];
+            NSDictionary *areplyDic = self.commentsList[aIndexPath.row - 1];
+            NSString *headerUid = areplyDic[@"user_info"][@"uid"];
+            PersonalViewController *pers = [AppDelegateInterface awakeViewController:@"PersonalViewController"];
+            pers.user_id = headerUid;
+            pers.isMe = NO;
+            [self.navigationController pushViewController:pers animated:YES];
+        }];
         return cell;
     }
 }
@@ -204,8 +232,11 @@
 {
     if (indexPath.section == 0 && indexPath.row == 0) {
         NSString *content = [self.detailDic huzhuTitle];
+        NSString *explain = self.detailDic[@"explain"];
+        CGSize es = [[self.detailCell huzhuExplain] sizeForContent:explain];
         CGSize s = [[self.detailCell content] sizeForContent:content];
-        CGFloat heightWithPics = [DetailCell height] + (s.height - [DetailCell defaultMSGViewHeight]);
+        
+        CGFloat heightWithPics = [DetailCell height] + (s.height + es.height - [DetailCell defaultMSGViewHeight]);
         if ([self.detailDic[@"pic_ids"] length] == 0) {
             heightWithPics -= 100;
         }

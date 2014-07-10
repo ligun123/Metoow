@@ -54,6 +54,9 @@ static NSString *emojiRegular = @"\\[{1}[a-zA-Z]+\\]{1}";
 }
 
 - (void)drawRect:(CGRect)rect {
+    if (self.textColor) {
+        [self.textColor setFill];
+    }
     if (!CGRectEqualToRect(rect, self.bounds)) {
         //画省略号
     }
@@ -122,7 +125,6 @@ static NSString *emojiRegular = @"\\[{1}[a-zA-Z]+\\]{1}";
             upX = VIEW_LEFT;
             upY += VIEW_LINE_HEIGHT;
         }
-        
         [character drawInRect:CGRectMake(upX, upY, size.width, self.bounds.size.height) withFont:font];
         
         upX += size.width;

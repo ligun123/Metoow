@@ -153,7 +153,7 @@
     if (selectIndex != 5) {
         NSDictionary *dic = [self huzhuAtIndex:indexPath];
         [cell.title setText:[dic huzhuTitle]];
-        [cell.content showStringMessage:dic[@"explain"]];
+//        [cell.content showStringMessage:dic[@"explain"]];
         cell.time.text= [dic[@"cTime"] apiDate];
         [cell.btnTransmit setTitle:dic[@"repost_count"] forState:UIControlStateNormal];
         [cell.btnReply setTitle:dic[@"commentCount"] forState:UIControlStateNormal];

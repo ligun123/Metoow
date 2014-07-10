@@ -111,7 +111,7 @@
     NSDictionary *dic = [self huzhuAtIndex:indexPath];
     
     [cell.title setText:[dic huzhuTitle]];
-    [cell.content showStringMessage:dic[@"explain"]];
+//    [cell.content showStringMessage:dic[@"explain"]];
     cell.time.text= [dic[@"cTime"] apiDate];
     [cell.btnTransmit setTitle:dic[@"attentionCount"] forState:UIControlStateNormal];
     [cell.btnReply setTitle:dic[@"commentCount"] forState:UIControlStateNormal];

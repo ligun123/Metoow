@@ -16,7 +16,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *time;
 @property (weak, nonatomic) IBOutlet RichLabelView *content;
+@property (weak, nonatomic) IBOutlet RichLabelView *huzhuExplain;
 @property (weak, nonatomic) IBOutlet PicRollView *picScroll;
+
+@property (copy, nonatomic) HWCellHeaderTapBlock headerTapBlock;
 
 @property BOOL hasImages;
 

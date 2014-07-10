@@ -16,4 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *time;
 @property (weak, nonatomic) IBOutlet RichLabelView *content;
 
+@property (copy, nonatomic) HWCellHeaderTapBlock headerTapBlock;
+
 @end

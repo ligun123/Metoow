@@ -75,7 +75,7 @@
 {
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self integerValue]];
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-    [fmt setDateFormat:@"MM-dd HH:mm"];
+    [fmt setDateFormat:@"yyyy-MM-dd HH:mm"];
     return [fmt stringFromDate:date];
 }
 
@@ -96,7 +96,7 @@
 {
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self integerValue]];
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-    [fmt setDateFormat:@"MM-dd HH:mm"];
+    [fmt setDateFormat:@"yyyy-MM-dd HH:mm"];
     return [fmt stringFromDate:date];
 }
 

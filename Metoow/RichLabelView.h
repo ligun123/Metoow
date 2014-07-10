@@ -23,7 +23,8 @@
     BOOL isLineReturn;
 }
 
-@property (nonatomic, retain) NSMutableArray *data;
+@property (nonatomic, strong) NSMutableArray *data;
+@property (strong, nonatomic) UIColor *textColor;
 
 - (void)showStringMessage:(NSString *)strMsg;
 - (CGSize)contentSize;
