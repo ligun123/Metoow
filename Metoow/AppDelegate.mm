@@ -92,7 +92,7 @@
     [[IQKeyboardManager sharedManager] setEnable:YES];
     [[IQKeyboardManager sharedManager] setShouldResignOnTouchOutside:YES];
     
-    mapManager = [[BMKMapManager alloc]init];
+    mapManager = [[BMKMapManager alloc] init];
     // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
     BOOL ret = [mapManager start:BaiduMapAppKey  generalDelegate:nil];
     if (!ret) {

@@ -17,8 +17,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *customTagText;
 @property (strong, nonatomic) NSMutableArray *selectLabels;
 
+@property (nonatomic) BOOL isEditing;   //是否是个人资料-编辑-个人标签
+
 @property (copy, nonatomic) NSString *password;
 
-- (IBAction)btnLabelTap:(id)sender;
 
 @end

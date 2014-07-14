@@ -29,4 +29,6 @@
 
 - (void)bindBPush;
 
+- (void)displayLogin;
+
 @end

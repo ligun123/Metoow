@@ -30,6 +30,8 @@
 
 - (void)tabBarItemTap:(HWTabBarItem *)item;
 
+- (void)setSelectIndex:(NSUInteger)index;
+
 @end
 
 

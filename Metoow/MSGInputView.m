@@ -151,11 +151,8 @@
 - (void)btnPictureTap
 {
     [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    picker.allowsEditing = YES;
-    [[AppDelegateInterface rootViewController] presentViewController:picker animated:YES completion:nil];
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"相册", @"拍照", nil];
+    [sheet showInView:[AppDelegateInterface window]];
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
@@ -265,5 +262,28 @@
         [_delegate inputView:self didSendPicture:nil];
     }
 }
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        //相册
+        [AppDelegateInterface setTabBarHidden:YES];
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        picker.allowsEditing = YES;
+        [[AppDelegateInterface rootViewController] presentViewController:picker animated:YES completion:nil];
+    }
+    if (buttonIndex == 1) {
+        //拍照
+        [AppDelegateInterface setTabBarHidden:YES];
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        picker.allowsEditing = YES;
+        [[AppDelegateInterface rootViewController] presentViewController:picker animated:YES completion:nil];
+    }
+}
+
 
 @end

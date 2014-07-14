@@ -70,13 +70,22 @@ api接口文档第一版
 
 API Bugs:  测试ID:376438624@qq.com  sec:5815057    uid:165
 
-1、Message/get_list_to_uid这个接口返回的数据完全错误，服务器端把需求理解错误了，这个接口的需求是 根据传入的to_uid，返回我与对方私信详情
-参考Message/get_message_detail的返回，不同的是get_message_detail是根据私信list_id返回我和某人的私信详情，get_list_to_uid是根据to_uid返回我和某人的私信详情
+1、单独设置用户个人标签
+http://www.metoow.com/index.php?app=api&act=set_tags&id=276&mod=Login&oauth_token=33540b0e4503ab76637e280b804eecbe&oauth_token_secret=68a397800884b5930555540716ba62e6&user_tags=%E5%BE%92%E6%AD%A5%2F%E6%90%AD%E8%BD%A6
+返回 设置成功
+{
+    code = 0;
+    data = 1;
+    msg = ok;
+}
 
-URL如下：
-http://www.metoow.com/index.php?app=api&act=get_list_to_uid&mod=Message&oauth_token=a1709fb7935d2184b131a81e8d689923&oauth_token_secret=7e5210cb760a8c863e72bcc13c238f75&to_uid=233
+然后获取用户个人资料
+http://www.metoow.com/index.php?app=api&act=myinfo&mod=User&oauth_token=33540b0e4503ab76637e280b804eecbe&oauth_token_secret=68a397800884b5930555540716ba62e6
 
+中返回
+{
+。。。
+tag = "汽车自驾|徒步/搭车|单车骑游";            //设置不成功
+}
 
-2、Near/near_foot（返回附近足迹）接口中返回的 每条足迹中还差一个表示该足迹是否已被用户收藏的bool值，请命名为“is_colslect”，可以参考Foot/foot_list的返回中bool值
-以下是near_foot的接口URL
-http://www.metoow.com/index.php?app=api&act=near_foot&lat=30.636521&lng=104.060968&mod=Near&oauth_token=a1709fb7935d2184b131a81e8d689923&oauth_token_secret=7e5210cb760a8c863e72bcc13c238f75&page=1
+mod/act请在url中找

@@ -49,6 +49,7 @@
 #define Mod_User_myinfo @"myinfo"
 #define Mod_User_checkin @"checkin"                             //记录用户最后位置
 #define Mod_User_neighbors @"neighbors"                         //附近小伙伴
+#define Mod_User_upload_face @"upload_face"
 
 
 #define Mod_Message @"Message"

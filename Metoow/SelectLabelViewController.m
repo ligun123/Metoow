@@ -70,23 +70,25 @@
         return ;
     } else {
         [SVProgressHUD show];
-        NSString *uid = self.userRegister[@"uid"];
+        NSString *uid = _isEditing ? [[NSUserDefaults standardUserDefaults] objectForKey:@"uid"] : self.userRegister[@"uid"];
         NSDictionary *para = @{@"id": uid, @"user_tags" : [tags componentsJoinedByString:@","]};
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Login act:Mod_Login_set_tags Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
             [SVProgressHUD dismiss];
             if ([responseObject isOK]) {
-                [self authAndLogin];
+                if (_isEditing) {
+                    [self.navigationController popViewControllerAnimated:YES];
+                } else {
+                    [self authAndLogin];
+                }
             } else {
                 [[responseObject error] showAlert];
             }
-            
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             [SVProgressHUD dismiss];
             [error showAlert];
         }];
     }
-//    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)authAndLogin

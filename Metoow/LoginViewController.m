@@ -149,8 +149,14 @@
     for (id foot in self.navigationController.viewControllers) {
         if ([foot isKindOfClass:[FootViewController class]]) {
             [self.navigationController popToViewController:foot animated:YES];
+            return ;
         }
     }
+    /*
+    UIViewController *zj = [AppDelegateInterface awakeViewController:@"FootViewController"];
+    [self.navigationController popViewControllerAnimated:NO];
+    [self.navigationController pushViewController:zj animated:NO];
+     */
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

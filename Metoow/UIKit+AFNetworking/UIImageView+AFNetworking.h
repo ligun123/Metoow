@@ -140,6 +140,9 @@
  */
 - (void)cacheImage:(UIImage *)image
         forRequest:(NSURLRequest *)request;
+
+- (void)removeCacheForKey:(NSString *)key;
+
 @end
 
 #endif

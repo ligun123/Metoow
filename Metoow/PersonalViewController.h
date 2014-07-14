@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "MSGSessionViewController.h"
+#import "HeaderUpdater.h"
 
-@interface PersonalViewController : UIViewController
+@interface PersonalViewController : UIViewController <UIActionSheetDelegate, HeaderUpdaterProtocol>
 {
     BOOL is_follow;
 }
@@ -20,6 +21,8 @@
 //如果是我的资料则隐藏下面私信和关注
 @property (weak, nonatomic) IBOutlet UIButton *btnMessage;
 @property (weak, nonatomic) IBOutlet UIButton *btnFocus;
+@property (weak, nonatomic) IBOutlet UIButton *btnLogout;
+@property (weak, nonatomic) IBOutlet UIButton *btnEdit;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property (weak, nonatomic) IBOutlet UIImageView *sexImgView;   //性别
@@ -30,6 +33,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *fansNOLabel;      //粉丝数
 @property (weak, nonatomic) IBOutlet UILabel *addrLabel;
 
+@property (strong, nonatomic) HeaderUpdater *headerUpdate;
+
 
 @property (copy, nonatomic) NSString *user_id;
 
@@ -38,6 +43,10 @@
 
 - (IBAction)btnFocusTap:(id)sender;
 
--(IBAction)btnMessageTap:(id)sender;
+- (IBAction)btnMessageTap:(id)sender;
+
+- (IBAction)btnLogoutTap:(id)sender;
+
+- (IBAction)btnEditTap:(id)sender;
 
 @end

@@ -9,6 +9,7 @@
 #import "PersonalViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "MyFootViewController.h"
+#import "SelectLabelViewController.h"
 
 @interface PersonalViewController ()
 
@@ -32,8 +33,11 @@
     self.btnBack.hidden = _isMe;
     self.btnMessage.hidden = _isMe;
     self.btnFocus.hidden = _isMe;
-    self.titleLabel.text = _isMe ? @"我的资料" : @"个人资料";
+    self.btnLogout.hidden = !_isMe;
+    self.btnEdit.hidden = !_isMe;
+    self.titleLabel.text = _isMe ? @"我的迷途" : @"个人资料";
     [self requestUserInfo];
+    self.headerUpdate = [[HeaderUpdater alloc] initWithDelegate:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -79,6 +83,7 @@
     self.nameLabel.text = uname;
     
     NSString *headerURL = data[@"avatar_original"];
+    [[[UIImageView class] sharedImageCache] removeCacheForKey:headerURL];
     [self.headerImgView setImageWithURL:[NSURL URLWithString:headerURL]];
     
     NSInteger sex = [data[@"sex"] integerValue];
@@ -92,8 +97,8 @@
     
     self.addrLabel.text = data[@"location"];
     
-    self.fansNOLabel.text = [data[@"follower_count"] stringValue];
-    self.focusNOLabel.text = [data[@"following_count"] stringValue];
+    self.focusNOLabel.text = [data[@"feed_count"] stringValue];
+    self.fansNOLabel.text = [data[@"following_count"] stringValue];
     is_follow = [data[@"is_follow"] boolValue];
     if (is_follow == FALSE) {
         [self.btnFocus setTitle:@"关注" forState:UIControlStateNormal];
@@ -152,6 +157,14 @@
     }];
 }
 
+- (IBAction)btnLogoutTap:(id)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    HWTabBarItem *zjItem = [[AppDelegateInterface tabBar] tabItems][0];
+    [[AppDelegateInterface tabBar] tabBarItemTap:zjItem];
+    [AppDelegateInterface displayLogin];
+}
+
 
 - (IBAction)btnMessageTap:(id)sender
 {
@@ -161,4 +174,33 @@
     [self.navigationController pushViewController:session animated:YES];
 }
 
+- (IBAction)btnEditTap:(id)sender
+{
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"编辑" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"头像", @"昵称", @"个人标签", nil];
+    [sheet showInView:self.view];
+}
+
+// Called when a button is clicked. The view will be automatically dismissed after this call returns
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        //编辑头像
+        [self.headerUpdate chooseHeader];
+    }
+    if (buttonIndex == 1) {
+        //编辑昵称
+    }
+    if (buttonIndex == 2) {
+        //个人标签
+        SelectLabelViewController *slectLabel = [AppDelegateInterface awakeViewController:@"SelectLabelViewController"];
+        slectLabel.isEditing = YES;
+        [self.navigationController pushViewController:slectLabel animated:YES];
+    }
+}
+
+
+- (void)updateHeaderSuccess:(UIImage *)header
+{
+    [self.headerImgView setImage:header];
+}
 @end

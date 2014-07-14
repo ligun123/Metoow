@@ -202,6 +202,11 @@ static inline NSString * AFImageCacheKeyFromURLRequest(NSURLRequest *request) {
     }
 }
 
+- (void)removeCacheForKey:(NSString *)key
+{
+    [self removeObjectForKey:key];
+}
+
 @end
 
 #endif
