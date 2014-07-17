@@ -11,7 +11,7 @@
 #import "MJRefresh.h"
 #import "RichLabelView.h"
 
-@interface MyFootViewController : UIViewController <RecordCellProtocol, MJRefreshBaseViewDelegate>
+@interface MyFootViewController : UIViewController <RecordCellProtocol, MJRefreshBaseViewDelegate, UITableViewDataSource>
 {
     BOOL isCellRegesterd;
     NSInteger page;

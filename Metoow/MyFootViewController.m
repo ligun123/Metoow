@@ -84,6 +84,7 @@
             if (page == 1) {
                 [self.dataList removeAllObjects];
             }
+//            NSArray *cateByDay = [self categaryByDay:responseObject[@"data"]];
             [self.dataList addObjectsFromArray:responseObject[@"data"]];
             [self.tableview reloadData];
         } else {
@@ -97,6 +98,29 @@
         [error showAlert];
     }];
 }
+
+
+- (NSArray *)categaryByDay:(NSArray *)origList
+{
+    NSMutableArray *rootArr = [NSMutableArray arrayWithCapacity:10];
+    NSMutableArray *tempArr = nil;
+    NSInteger tempDay = 0;
+    for (int i = 0; i < origList.count; i ++) {
+        NSDictionary *dic = origList[i];
+        NSInteger day = [dic[@"time"] integerValue] / (24 * 60 * 60);
+        if (tempDay != day) {
+            if (tempArr != nil) {
+                [rootArr addObject:tempArr];
+            }
+            tempArr = [NSMutableArray arrayWithCapacity:10];
+            [tempArr addObject:dic];
+        } else {
+            [tempArr addObject:dic];
+        }
+    }
+    return rootArr;
+}
+
 
 
 #pragma mark - UITableView Delegate & Datasource
@@ -132,6 +156,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataList.count;
 }
+
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
