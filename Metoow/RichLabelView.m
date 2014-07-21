@@ -26,7 +26,7 @@
 
 #define VIEW_WIDTH_MAX      166
 
-#define VIEW_WIDTH_FRAME (self.frame.size.width - 3.f)
+#define VIEW_WIDTH_FRAME (300 - 3.f)
 
 static NSString *emojiRegular = @"\\[{1}[a-zA-Z]+\\]{1}";
 

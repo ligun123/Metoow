@@ -69,6 +69,11 @@
                 [self.commentsList removeAllObjects];
             }
             [self.commentsList addObjectsFromArray:responseObject[@"data"]];
+            NSMutableArray *ips = [NSMutableArray arrayWithCapacity:10];
+            for (int i = 0; i < self.commentsList.count; i ++) {
+                NSIndexPath *ind = [NSIndexPath indexPathForRow:i+1 inSection:0];
+                [ips addObject:ind];
+            }
             [self.tableview reloadData];
         } else {
             [SVProgressHUD dismiss];
