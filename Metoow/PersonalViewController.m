@@ -68,7 +68,6 @@
         } else {
             [[responseObject error] showAlert];
         }
-        NSLog(@"%s -> %@", __FUNCTION__, operation.responseString);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD dismiss];
         [error showAlert];
@@ -162,6 +161,7 @@
     [self.navigationController popToRootViewControllerAnimated:NO];
     HWTabBarItem *zjItem = [[AppDelegateInterface tabBar] tabItems][0];
     [[AppDelegateInterface tabBar] tabBarItemTap:zjItem];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kBoolAutoLogin];
     [AppDelegateInterface displayLogin];
 }
 

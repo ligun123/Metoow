@@ -84,7 +84,7 @@
             if (page == 1) {
                 [self.dataList removeAllObjects];
             }
-//            NSArray *cateByDay = [self categaryByDay:responseObject[@"data"]];
+            NSArray *cateByDay = [self categaryByDay:responseObject[@"data"]];
             [self.dataList addObjectsFromArray:responseObject[@"data"]];
             [self.tableview reloadData];
         } else {
@@ -109,6 +109,8 @@
         NSDictionary *dic = origList[i];
         NSInteger day = [dic[@"time"] integerValue] / (24 * 60 * 60);
         if (tempDay != day) {
+            NSLog(@"%s -> %@", __FUNCTION__, [dic[@"time"] apiDate]);
+            tempDay = day;
             if (tempArr != nil) {
                 [rootArr addObject:tempArr];
             }

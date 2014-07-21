@@ -42,6 +42,7 @@
     self.view.backgroundColor = COLOR_RGB(188, 255, 201);
     [self.autoLoginCheck setChecked:[[NSUserDefaults standardUserDefaults] boolForKey:kBoolAutoLogin]];
     [self.rememberSecCheck setChecked:[[NSUserDefaults standardUserDefaults] boolForKey:kBoolRmbSec]];
+    
     if (self.autoLoginCheck.checked || self.rememberSecCheck.checked) {
         self.userIDText.text = [[NSUserDefaults standardUserDefaults] objectForKey:kLoginUserID];
         self.pswdText.text = [[NSUserDefaults standardUserDefaults] objectForKey:kLoginPswd];
