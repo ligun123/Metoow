@@ -40,6 +40,7 @@
     self.footerView = [MJRefreshFooterView footer];
     self.footerView.scrollView = self.tableview;
     self.footerView.delegate = self;
+    
     [self refresh];
 }
 
@@ -233,6 +234,9 @@
     if (indexPath.section == 0 && indexPath.row == 0) {
         NSString *content = [self.detailDic huzhuTitle];
         NSString *explain = self.detailDic[@"explain"];
+        if (explain == nil) {
+            explain = self.detailDic[@"sos_info"];
+        }
         CGSize es = [[self.detailCell huzhuExplain] sizeForContent:explain];
         CGSize s = [[self.detailCell content] sizeForContent:content];
         
