@@ -31,6 +31,13 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    NSString *userid = [[NSUserDefaults standardUserDefaults] objectForKey:@"uid"];
+    if ([self.user_id isEqualToString:userid]) {
+        [self.titleLabel setText:@"我的足迹"];
+    } else {
+        [self.titleLabel setText:@"足迹"];
+    }
+    
     page = 1;
     self.heightCount = [[RichLabelView alloc] initWithFrame:CGRectMake(0, 0, 300, 24)];
     self.headerView = [MJRefreshHeaderView header];
@@ -82,10 +89,13 @@
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
             if (page == 1) {
-                [self.dataList removeAllObjects];
+                [self.originalList removeAllObjects];
             }
-            NSArray *cateByDay = [self categaryByDay:responseObject[@"data"]];
-            [self.dataList addObjectsFromArray:responseObject[@"data"]];
+            [self.dataList removeAllObjects];
+            [self.originalList addObjectsFromArray:responseObject[@"data"]];
+            NSArray *cateByDay = [self categaryByDay:self.originalList];
+            
+            [self.dataList addObjectsFromArray:cateByDay];
             [self.tableview reloadData];
         } else {
             if ([responseObject[@"code"] integerValue] != 1) {
@@ -134,7 +144,7 @@
     }
     RecordCell *cell = [tableView dequeueReusableCellWithIdentifier:[RecordCell identifier]];
     cell.delegate = self;
-    NSDictionary *dic = self.dataList[indexPath.row];
+    NSDictionary *dic = self.dataList[indexPath.section][indexPath.row];
     
     NSDictionary *userInfo = dic[@"user_info"];
     [cell.userHeader setImageWithURL:[NSURL URLWithString:userInfo[@"avatar_original"]]];
@@ -151,19 +161,42 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return self.dataList.count;
+}
+
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSDictionary *dic = self.dataList[section][0];
+    NSInteger time = [dic[@"time"] integerValue];
+    NSDate *today = [NSDate date];
+    NSInteger todayTime = [today timeIntervalSince1970];
+    
+    NSInteger dayDate = time / (24 * 60 * 60);
+    NSInteger dayToday = todayTime / (24 * 60 * 60);
+    if (dayDate == dayToday) {
+        return @"今天";
+    }
+    if (dayToday - 1 == dayDate) {
+        return @"昨天";
+    }
+    
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:time];
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"yyyy-MM-dd"];
+    return [format stringFromDate:date];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataList.count;
+    return [self.dataList[section] count];
 }
 
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSDictionary *dic = self.dataList[indexPath.row];
+    NSDictionary *dic = self.dataList[indexPath.section][indexPath.row];
     FootDetailViewController *footDetailVC = [AppDelegateInterface awakeViewController:@"FootDetailViewController"];
     footDetailVC.detailDic = dic;
     footDetailVC.detailCategary = FootDetailCategaryFoot;
@@ -185,7 +218,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *dic = self.dataList[indexPath.row];
+    NSDictionary *dic = self.dataList[indexPath.section][indexPath.row];
     return [RecordCell height] + [self.heightCount sizeForContent:dic[@"desc"]].height;
 }
 
@@ -193,7 +226,7 @@
 
 - (void)connectFootAt:(NSIndexPath *)indexPath
 {
-    NSDictionary *dic = [self.dataList objectAtIndex:indexPath.row];
+    NSDictionary *dic = self.dataList[indexPath.section][indexPath.row];
     
     if (![dic[@"is_collect"] boolValue]) {
         [SVProgressHUD show];
@@ -234,7 +267,7 @@
 
 - (void)transmitFootAt:(NSIndexPath *)indexPath
 {
-    NSDictionary *dic = [self.dataList objectAtIndex:indexPath.row];
+    NSDictionary *dic = self.dataList[indexPath.section][indexPath.row];
     FootPubViewController *publ = [AppDelegateInterface awakeViewController:@"FootPubViewController"];
     publ.editCategary = FootPubEditCategaryTransmit;
     publ.dataDic = dic;
@@ -243,7 +276,7 @@
 
 - (void)replyFootAt:(NSIndexPath *)indexPath
 {
-    NSDictionary *dic = [self.dataList objectAtIndex:indexPath.row];
+    NSDictionary *dic = self.dataList[indexPath.section][indexPath.row];
     FootPubViewController *publ = [AppDelegateInterface awakeViewController:@"FootPubViewController"];
     publ.editCategary = FootPubEditCategaryReply;
     publ.dataDic = dic;
@@ -322,6 +355,14 @@
     return _dataList;
 }
 
+
+- (NSMutableArray *)originalList
+{
+    if (_originalList == nil) {
+        _originalList = [[NSMutableArray alloc] initWithCapacity:100];
+    }
+    return _originalList;
+}
 
 
 @end

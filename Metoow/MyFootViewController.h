@@ -26,9 +26,11 @@
 @property (strong, nonatomic) RichLabelView *heightCount;
 
 @property (strong, nonatomic) NSMutableArray *dataList;
+@property (strong, nonatomic) NSMutableArray *originalList;
 
 @property (copy, nonatomic) NSString *user_id;
 
 - (IBAction)btnBackTap:(id)sender;
+
 
 @end

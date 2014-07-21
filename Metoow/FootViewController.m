@@ -10,6 +10,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "FootPubViewController.h"
 #import "FootDetailViewController.h"
+#import "MyFootViewController.h"
 
 
 @interface FootViewController ()
@@ -39,11 +40,18 @@
     self.heightCounter = [[RichLabelView alloc] initWithFrame:CGRectMake(0, 0, 300, 24)];
     [self.pullDownBtn setTitles:@[@"所有足迹", @"我的足迹", @"我关注的", @"我收藏的", @"我的路况", @"所有路况"]];
     [self.pullDownBtn setCallbackBlock:^(PulldownButton *btn, NSInteger sltIndex) {
-        if (selectIndex != sltIndex) {
-            page = 1;
-            [self.dataList removeAllObjects];
-            selectIndex = sltIndex;
-            [self refreshData];
+        if (sltIndex == 1) {
+            [btn setTitle:btn.pullList[selectIndex] forState:UIControlStateNormal];
+            MyFootViewController *myfoot = [AppDelegateInterface awakeViewController:@"MyFootViewController"];
+            myfoot.user_id = [[NSUserDefaults standardUserDefaults] objectForKey:@"uid"];
+            [self.navigationController pushViewController:myfoot animated:YES];
+        } else {
+            if (selectIndex != sltIndex) {
+                page = 1;
+                [self.dataList removeAllObjects];
+                selectIndex = sltIndex;
+                [self refreshData];
+            }
         }
     }];
     [self refreshData];
