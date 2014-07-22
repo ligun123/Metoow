@@ -30,6 +30,7 @@
     self.type = @"3";
     [self.myAccessaryView setOutsideInput:self.detailText];
     self.detailText.inputAccessoryView = self.myAccessaryView;
+    self.detailText.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -116,6 +117,18 @@
         }
     }
     return [methods componentsJoinedByString:@","];
+}
+
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    self.contentView.scrollEnabled = NO;
+}
+
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    self.contentView.scrollEnabled = YES;
 }
 
 

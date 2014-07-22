@@ -33,6 +33,11 @@
     [super viewDidLoad];
     page = 1;
     // Do any additional setup after loading the view.
+    
+    if (self.detailDic[@"sos_id"]) {
+        self.titleLabel.text = @"SOS";
+    }
+    
     self.headerView = [MJRefreshHeaderView header];
     self.headerView.scrollView = self.tableview;
     self.headerView.delegate = self;

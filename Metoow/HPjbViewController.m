@@ -30,6 +30,8 @@
     [self.myAccessaryView setOutsideInput:self.detailText];
     self.detailText.inputAccessoryView = self.myAccessaryView;
     // Do any additional setup after loading the view from its nib.
+    self.contentView.contentSize = CGSizeMake(320, 555);
+    self.detailText.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -116,5 +118,19 @@
         [self publishTxtWithPicIDs:@""];
     }
 }
+
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    self.contentView.scrollEnabled = NO;
+}
+
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    self.contentView.scrollEnabled = YES;
+}
+
+
 
 @end
