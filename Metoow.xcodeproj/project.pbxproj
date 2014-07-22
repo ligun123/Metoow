@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		02042285192CE4330030385D /* PicRollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 02042284192CE4330030385D /* PicRollView.m */; };
-		021A428B19740DB7000858FE /* pep@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 021A428719740DB7000858FE /* pep@2x.png */; };
+		021A428B19740DB7000858FE /* pep.png in Resources */ = {isa = PBXBuildFile; fileRef = 021A428719740DB7000858FE /* pep.png */; };
 		021A428C19740DB7000858FE /* pic_fail.png in Resources */ = {isa = PBXBuildFile; fileRef = 021A428819740DB7000858FE /* pic_fail.png */; };
 		021A428D19740DB7000858FE /* pic_norm.png in Resources */ = {isa = PBXBuildFile; fileRef = 021A428919740DB7000858FE /* pic_norm.png */; };
 		021A428E19740DB7000858FE /* sos@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 021A428A19740DB7000858FE /* sos@2x.png */; };
@@ -172,6 +172,7 @@
 		02A2BBFC19273C350060A453 /* FootDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02A2BBFB19273C350060A453 /* FootDetailViewController.m */; };
 		02A300131914C73300149FFC /* PersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 02A300121914C73300149FFC /* PersonCell.m */; };
 		02A300151914C74200149FFC /* PersonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02A300141914C74200149FFC /* PersonCell.xib */; };
+		02A6BFBA197E919000C81054 /* SOSDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02A6BFB9197E919000C81054 /* SOSDetailViewController.m */; };
 		02BF653E190E8A9900DCF2BD /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 02BF651C190E8A9900DCF2BD /* AFHTTPRequestOperation.m */; };
 		02BF653F190E8A9900DCF2BD /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 02BF651E190E8A9900DCF2BD /* AFHTTPRequestOperationManager.m */; };
 		02BF6540190E8A9900DCF2BD /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 02BF6520190E8A9900DCF2BD /* AFHTTPSessionManager.m */; };
@@ -281,7 +282,7 @@
 /* Begin PBXFileReference section */
 		02042283192CE4330030385D /* PicRollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicRollView.h; sourceTree = "<group>"; };
 		02042284192CE4330030385D /* PicRollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicRollView.m; sourceTree = "<group>"; };
-		021A428719740DB7000858FE /* pep@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pep@2x.png"; sourceTree = "<group>"; };
+		021A428719740DB7000858FE /* pep.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pep.png; sourceTree = "<group>"; };
 		021A428819740DB7000858FE /* pic_fail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic_fail.png; sourceTree = "<group>"; };
 		021A428919740DB7000858FE /* pic_norm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic_norm.png; sourceTree = "<group>"; };
 		021A428A19740DB7000858FE /* sos@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sos@2x.png"; sourceTree = "<group>"; };
@@ -500,6 +501,8 @@
 		02A300111914C73300149FFC /* PersonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonCell.h; sourceTree = "<group>"; };
 		02A300121914C73300149FFC /* PersonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonCell.m; sourceTree = "<group>"; };
 		02A300141914C74200149FFC /* PersonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonCell.xib; sourceTree = "<group>"; };
+		02A6BFB8197E919000C81054 /* SOSDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSDetailViewController.h; sourceTree = "<group>"; };
+		02A6BFB9197E919000C81054 /* SOSDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSDetailViewController.m; sourceTree = "<group>"; };
 		02BF651B190E8A9900DCF2BD /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		02BF651C190E8A9900DCF2BD /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		02BF651D190E8A9900DCF2BD /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -729,7 +732,7 @@
 			isa = PBXGroup;
 			children = (
 				021A428F1974160F000858FE /* me_logout_norm@2x.png */,
-				021A428719740DB7000858FE /* pep@2x.png */,
+				021A428719740DB7000858FE /* pep.png */,
 				021A428819740DB7000858FE /* pic_fail.png */,
 				021A428919740DB7000858FE /* pic_norm.png */,
 				021A428A19740DB7000858FE /* sos@2x.png */,
@@ -1399,6 +1402,8 @@
 				0260B2E119338248000F9846 /* NSDictionary+Huzhu.m */,
 				02242BE2193E13E1001FB901 /* HelpDetailViewController.h */,
 				02242BE3193E13E1001FB901 /* HelpDetailViewController.m */,
+				02A6BFB8197E919000C81054 /* SOSDetailViewController.h */,
+				02A6BFB9197E919000C81054 /* SOSDetailViewController.m */,
 			);
 			name = "互助";
 			sourceTree = "<group>";
@@ -1557,7 +1562,7 @@
 				024CB39A18F3B03200434AFA /* xx@2x.png in Resources */,
 				024CB39818F3B03200434AFA /* gd@2x.png in Resources */,
 				02500E5A1917BCC1000B7212 /* chat_bottom_up_nor.png in Resources */,
-				021A428B19740DB7000858FE /* pep@2x.png in Resources */,
+				021A428B19740DB7000858FE /* pep.png in Resources */,
 				0276FA7A1946099000330AB9 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				02E5292218F0FBDF00EEAE7B /* Main.storyboard in Resources */,
 				025945BA191F8B9300114BF4 /* board_system.png in Resources */,
@@ -1794,6 +1799,7 @@
 				02504601190FD57000852325 /* MJRefreshBaseView.m in Sources */,
 				028C61C1195079C9009344C6 /* GzipCompressor.m in Sources */,
 				02E528DA18F0F1EF00EEAE7B /* HWDevice.m in Sources */,
+				02A6BFBA197E919000C81054 /* SOSDetailViewController.m in Sources */,
 				02BF6547190E8A9900DCF2BD /* AFNetworkActivityIndicatorManager.m in Sources */,
 				02D3146819000E0B005CADB1 /* SVSegmentedControl.m in Sources */,
 				0250CD87191BA9EF00E2E051 /* TQViewController.m in Sources */,
@@ -1946,7 +1952,7 @@
 					"-fobjc-arc",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "259B08C8-E1E1-43BE-A671-17A1E627B467";
+				PROVISIONING_PROFILE = "E6FEADA8-6A66-4941-BA30-B8789545495A";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1979,7 +1985,7 @@
 					"-fobjc-arc",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "259B08C8-E1E1-43BE-A671-17A1E627B467";
+				PROVISIONING_PROFILE = "E6FEADA8-6A66-4941-BA30-B8789545495A";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};

@@ -17,6 +17,7 @@
 #import "FileUploader.h"
 #import "HelpDetailViewController.h"
 #import "MyHelpViewController.h"
+#import "SOSDetailViewController.h"
 
 @interface HelpViewController ()
 
@@ -192,9 +193,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSDictionary *dic = [self huzhuAtIndex:indexPath];
-    HelpDetailViewController *detail = [AppDelegateInterface awakeViewController:@"HelpDetailViewController"];
-    detail.detailDic = dic;
-    [self.navigationController pushViewController:detail animated:YES];
+    if (selectIndex == 5) {
+        SOSDetailViewController *sosDetail = [AppDelegateInterface awakeViewController:@"SOSDetailViewController"];
+        sosDetail.detailDic = dic;
+        [self.navigationController pushViewController:sosDetail animated:YES];
+    } else {
+        HelpDetailViewController *detail = [AppDelegateInterface awakeViewController:@"HelpDetailViewController"];
+        detail.detailDic = dic;
+        [self.navigationController pushViewController:detail animated:YES];
+    }
 }
 
 
