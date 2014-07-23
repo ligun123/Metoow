@@ -30,5 +30,7 @@
 - (IBAction)btnBackTap:(id)sender;
 - (IBAction)btnTransmitTap:(id)sender;
 - (IBAction)btnReplyTap:(id)sender;
+- (IBAction)btnStarTap:(id)sender;
+- (IBAction)btnPeoPleTap:(id)sender;
 
 @end

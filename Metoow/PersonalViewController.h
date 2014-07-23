@@ -35,6 +35,8 @@
 
 @property (strong, nonatomic) HeaderUpdater *headerUpdate;
 
+@property BOOL hideTabBar;
+
 
 @property (copy, nonatomic) NSString *user_id;
 

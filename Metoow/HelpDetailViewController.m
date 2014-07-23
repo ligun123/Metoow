@@ -60,10 +60,7 @@
     [SVProgressHUD show];
     NSString *huzhuid = self.detailDic[@"id"];
     NSString *table_name = @"huzhu";
-    if (huzhuid == nil) {
-        huzhuid = self.detailDic[@"sos_id"];
-        table_name = @"sos";
-    }
+    
     NSDictionary *dic = @{@"id": huzhuid, @"table_name" : table_name, @"page" : [NSNumber numberWithInteger:page], @"count" : [NSNumber numberWithInteger:20]};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Comment act:Mod_Comment_get_comments Paras:dic] success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -147,6 +144,16 @@
 }
 
 
+- (void)pushPersonalUid:(NSString *)uid
+{
+    PersonalViewController *pers = [AppDelegateInterface awakeViewController:@"PersonalViewController"];
+    pers.user_id = uid;
+    pers.isMe = [uid isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"uid"]];
+    pers.hideTabBar = YES;
+    [self.navigationController pushViewController:pers animated:YES];
+}
+
+
 #pragma mark - UITableView Delegate & Datasource
 
 
@@ -192,10 +199,7 @@
         
         [_detailCell setHeaderTapBlock:^(HWCell *aCell){
             NSString *headerUid = _detailDic[@"user_info"][@"uid"];
-            PersonalViewController *pers = [AppDelegateInterface awakeViewController:@"PersonalViewController"];
-            pers.user_id = headerUid;
-            pers.isMe = NO;
-            [self.navigationController pushViewController:pers animated:YES];
+            [self pushPersonalUid:headerUid];
         }];
         
         return self.detailCell;
@@ -215,10 +219,7 @@
             NSIndexPath *aIndexPath = [tableView indexPathForCell:aCell];
             NSDictionary *areplyDic = self.commentsList[aIndexPath.row - 1];
             NSString *headerUid = areplyDic[@"user_info"][@"uid"];
-            PersonalViewController *pers = [AppDelegateInterface awakeViewController:@"PersonalViewController"];
-            pers.user_id = headerUid;
-            pers.isMe = NO;
-            [self.navigationController pushViewController:pers animated:YES];
+            [self pushPersonalUid:headerUid];
         }];
         return cell;
     }

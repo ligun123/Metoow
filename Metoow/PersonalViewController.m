@@ -30,7 +30,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.btnBack.hidden = _isMe;
+    self.btnBack.hidden = !_hideTabBar;
     self.btnMessage.hidden = _isMe;
     self.btnFocus.hidden = _isMe;
     self.btnLogout.hidden = !_isMe;
@@ -43,7 +43,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [AppDelegateInterface setTabBarHidden:!_isMe];
+    [AppDelegateInterface setTabBarHidden:_hideTabBar];
 }
 
 

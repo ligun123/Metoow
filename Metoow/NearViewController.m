@@ -350,6 +350,7 @@
             PersonalViewController *pers = [AppDelegateInterface awakeViewController:@"PersonalViewController"];
             pers.user_id = uid;
             pers.isMe = NO;
+            pers.hideTabBar = YES;
             [self.navigationController pushViewController:pers animated:YES];
         }
     }

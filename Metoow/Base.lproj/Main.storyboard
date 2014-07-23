@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="O7C-1o-Fkq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="O7C-1o-Fkq">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -1514,6 +1514,9 @@
                                 <state key="normal" image="pb_back_btn.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnBackTap:" destination="poN-JP-hXU" eventType="touchUpInside" id="EPY-wj-gRp"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SOS正文" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UlN-qc-QnQ">
                                 <rect key="frame" x="88" y="29" width="144" height="22"/>
@@ -1537,7 +1540,7 @@
                                         </state>
                                         <state key="selected" title="  取消" image="pb_star_btn_sel.png" backgroundImage="pb_bottomBar_btn.png"/>
                                         <connections>
-                                            <action selector="btnCollectTap:" destination="cfc-Ah-QR7" eventType="touchUpInside" id="by7-5C-G8B"/>
+                                            <action selector="btnStarTap:" destination="poN-JP-hXU" eventType="touchUpInside" id="xoQ-5n-8yP"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LYe-iu-xGF">
@@ -1549,7 +1552,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="btnTransmitTap:" destination="cfc-Ah-QR7" eventType="touchUpInside" id="jyW-Kw-e31"/>
+                                            <action selector="btnTransmitTap:" destination="poN-JP-hXU" eventType="touchUpInside" id="diU-Cg-ZIo"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vIs-JA-b3i">
@@ -1561,7 +1564,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="btnReplyTap:" destination="cfc-Ah-QR7" eventType="touchUpInside" id="THg-nj-OS8"/>
+                                            <action selector="btnReplyTap:" destination="poN-JP-hXU" eventType="touchUpInside" id="pzQ-RN-bRV"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1572,6 +1575,10 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="poN-JP-hXU" id="Tji-Uf-nMW"/>
+                                    <outlet property="delegate" destination="poN-JP-hXU" id="YgA-5h-i7S"/>
+                                </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rKM-TK-0BC">
                                 <rect key="frame" x="277" y="25" width="35" height="30"/>
@@ -1580,10 +1587,19 @@
                                 <state key="normal" image="pep.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnPeoPleTap:" destination="poN-JP-hXU" eventType="touchUpInside" id="Ikj-DF-wZB"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="bottomBar" destination="MgT-Ts-hgr" id="GQj-vc-v78"/>
+                        <outlet property="btnCollect" destination="f62-hN-ksj" id="k2v-Mz-iR7"/>
+                        <outlet property="tableview" destination="PoV-VN-jz4" id="9lE-2M-60C"/>
+                        <outlet property="titleLabel" destination="UlN-qc-QnQ" id="C4c-ix-6fi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NSm-H9-K21" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1716,7 +1732,7 @@
                                         <color key="textColor" red="0.039215686270000001" green="0.54901960780000003" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="C4C86222-A366-4491-871B-44AC022AE12B" id="cjO-0I-yyh">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="70CF2EAB-25CD-4FFD-9070-BEB709A2C84D" id="cjO-0I-yyh">
                                         <rect key="frame" x="0.0" y="90" width="320" height="1"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -1863,6 +1879,7 @@
                     <connections>
                         <outlet property="addrLabel" destination="h5q-0x-yZt" id="aWv-1V-ug0"/>
                         <outlet property="btnBack" destination="5Q1-RI-zbe" id="SVW-vT-leF"/>
+                        <outlet property="btnEdit" destination="MYh-OH-mkf" id="ZCs-kG-O8G"/>
                         <outlet property="btnFocus" destination="OHI-TL-ciz" id="ev4-DR-4zl"/>
                         <outlet property="btnLogout" destination="df5-U8-MRI" id="OaB-4D-Ap9"/>
                         <outlet property="btnMessage" destination="Bn9-Q9-gsT" id="V0Z-VF-vNe"/>
@@ -2074,7 +2091,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="C4C86222-A366-4491-871B-44AC022AE12B" width="1" height="1">
+        <image name="70CF2EAB-25CD-4FFD-9070-BEB709A2C84D" width="1" height="1">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGISJYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKYHCBES
 GB5VJG51bGzUCQoLDA0ODxBWTlNTaXplViRjbGFzc1xOU0ltYWdlRmxhZ3NXTlNDb2xvcoACgAUSIMAA
