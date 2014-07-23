@@ -119,11 +119,11 @@
     [SVProgressHUD show];
     NSString *is_pation = nil;
     if (self.btnCollect.selected) {
-        is_pation = @"2";
+        is_pation = @"0";
     } else {
         is_pation = @"1";
     }
-    NSDictionary *para = @{@"type": is_pation, @"sosid" : self.detailDic[@"sos_id"]};
+    NSDictionary *para = @{@"type": is_pation, @"sos_id" : self.detailDic[@"sos_id"]};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_SOS act:Mod_SOS_is_pation Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
