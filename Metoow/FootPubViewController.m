@@ -145,7 +145,7 @@
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD dismiss];
-        [error showAlert];
+        [error showTimeoutAlert];
     }];
 }
 
@@ -167,7 +167,7 @@
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD dismiss];
-        [error showAlert];
+        [error showTimeoutAlert];
     }];
 }
 
@@ -186,7 +186,7 @@
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD dismiss];
-        [error showAlert];
+        [error showTimeoutAlert];
     }];
 }
 
@@ -210,7 +210,7 @@
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD dismiss];
-        [error showAlert];
+        [error showTimeoutAlert];
     }];
 }
 
@@ -242,7 +242,7 @@
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             [SVProgressHUD dismiss];
-            [error showAlert];
+            [error showTimeoutAlert];
         }];
     }
 }
@@ -283,7 +283,7 @@
                 }
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 [SVProgressHUD dismiss];
-                [error showAlert];
+                [error showTimeoutAlert];
             }];
         } else {
             [[NSError errorWithDomain:@"上传图片出错" code:101 userInfo:@{@"reason" : resultList}] showAlert];
@@ -311,7 +311,7 @@
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD dismiss];
-        [error showAlert];
+        [error showTimeoutAlert];
     }];
 }
 

@@ -140,7 +140,14 @@
 
 
 - (IBAction)btnPeoPleTap:(id)sender
-{}
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_SOS act:Mod_SOS_sos_pation Paras:@{@"sos_id": self.detailDic[@"sos_id"]}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%s -> %@", __FUNCTION__, operation.responseString);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [error showTimeoutAlert];
+    }];
+}
 
 - (IBAction)btnCloseSOSTap:(id)sender
 {
@@ -188,7 +195,7 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self endRefresh];
         [SVProgressHUD dismiss];
-        [error showAlert];
+        [error showTimeoutAlert];
     }];
 }
 

@@ -114,7 +114,7 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self endRefresh];
         [SVProgressHUD dismiss];
-        [error showAlert];
+        [error showTimeoutAlert];
     }];
 }
 
@@ -142,7 +142,7 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self endRefresh];
         [SVProgressHUD dismiss];
-        [error showAlert];
+        [error showTimeoutAlert];
     }];
 }
 
@@ -170,7 +170,7 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self endRefresh];
         [SVProgressHUD dismiss];
-        [error showAlert];
+        [error showTimeoutAlert];
     }];
 }
 
@@ -198,7 +198,7 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self endRefresh];
         [SVProgressHUD dismiss];
-        [error showAlert];
+        [error showTimeoutAlert];
     }];
 }
 
@@ -425,7 +425,7 @@
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             [SVProgressHUD dismiss];
-            [error showAlert];
+            [error showTimeoutAlert];
         }];
     } else {
         [SVProgressHUD show];
@@ -442,7 +442,7 @@
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             [SVProgressHUD dismiss];
-            [error showAlert];
+            [error showTimeoutAlert];
         }];
     }
 }

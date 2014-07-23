@@ -73,7 +73,7 @@
                      }
                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                      [SVProgressHUD dismiss];
-                     [error showAlert];
+                     [error showTimeoutAlert];
                  }];
              } else {
                  [SVProgressHUD dismiss];
@@ -82,7 +82,7 @@
     }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              [SVProgressHUD dismiss];
-             [error showAlert];
+             [error showTimeoutAlert];
     }];
     
 }

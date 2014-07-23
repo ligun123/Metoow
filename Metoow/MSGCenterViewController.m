@@ -72,7 +72,7 @@
         NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSLog(@"%s -> %@", __FUNCTION__, str);
         [SVProgressHUD dismiss];
-        [error showAlert];
+        [error showTimeoutAlert];
     }];
 }
 
@@ -86,7 +86,7 @@
         [self.msgTableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD dismiss];
-        [error showAlert];
+        [error showTimeoutAlert];
     }];
 }
 
