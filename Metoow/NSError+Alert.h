@@ -12,4 +12,6 @@
 
 - (void)showAlert;
 
+- (void)showTimeoutAlert;
+
 @end

@@ -50,6 +50,7 @@
 #define Mod_User_checkin @"checkin"                             //记录用户最后位置
 #define Mod_User_neighbors @"neighbors"                         //附近小伙伴
 #define Mod_User_upload_face @"upload_face"
+#define Mod_User_update_uname @"update_uname"                   //修改昵称
 
 
 #define Mod_Message @"Message"
@@ -85,6 +86,9 @@
 #define Mod_SOS_sos_list @"sos_list"
 #define Mod_SOS_add_sos @"add_sos"
 #define Mod_SOS_show @"show"
+#define Mod_SOS_is_pation @"is_pation"                          //参与或者取消参与
+#define Mod_SOS_sos_pation @"sos_pation"                        //根据sos的id获取参与的用户列表
+#define Mod_SOS_close_sos @"close_sos"                          //关闭SOS
 
 #define Mod_Near @"Near"                                        //附近
 #define Mod_Near_near_road @"near_road"                         //附近路况

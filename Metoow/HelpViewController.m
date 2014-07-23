@@ -38,7 +38,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.pulldownBtn setTitles:@[@"全部互助", @"结伴", @"顺风车", @"拼车", @"沙发客",  @"SOS"]];
+    [self.pulldownBtn setTitles:@[@"全部互助", @"结伴", @"顺风车", @"拼车", @"沙发客",  @"S O S"]];
     page = 1;
     selectIndex = 0;
     [self.pulldownBtn setCallbackBlock:^(PulldownButton *btn, NSInteger sltIndex) {

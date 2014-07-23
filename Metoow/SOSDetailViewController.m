@@ -35,8 +35,22 @@
     page = 1;
     // Do any additional setup after loading the view.
     
-    if (self.detailDic[@"sos_id"]) {
-        self.titleLabel.text = @"SOS";
+    self.titleLabel.text = @"SOS正文";
+    if ([self.detailDic[@"uid"] isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"uid"]]) {
+        self.btnCollect.hidden = YES;
+        self.btnCloseSOS.hidden = NO;
+        if ([self.detailDic[@"is_end"] boolValue]) {
+            [self.btnCloseSOS setTitle:@"已关闭" forState:UIControlStateNormal];
+            [self.btnCloseSOS setEnabled:NO];
+        } else {
+            [self.btnCloseSOS setTitle:@"关闭SOS" forState:UIControlStateNormal];
+            [self.btnCloseSOS setEnabled:YES];
+        }
+    } else {
+        self.btnCollect.hidden = NO;
+        self.btnCloseSOS.hidden = YES;
+        
+        [self.btnCollect setSelected:[self.detailDic[@"is_pation"] boolValue]];
     }
     
     self.headerView = [MJRefreshHeaderView header];
@@ -101,11 +115,50 @@
 
 
 - (IBAction)btnStarTap:(id)sender
-{}
+{
+    [SVProgressHUD show];
+    NSString *is_pation = nil;
+    if (self.btnCollect.selected) {
+        is_pation = @"2";
+    } else {
+        is_pation = @"1";
+    }
+    NSDictionary *para = @{@"type": is_pation, @"sosid" : self.detailDic[@"sos_id"]};
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_SOS act:Mod_SOS_is_pation Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
+        if ([responseObject isOK]) {
+            [self.btnCollect setSelected:!self.btnCollect.selected];
+        } else {
+            [[responseObject error] showAlert];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
+        [error showTimeoutAlert];
+    }];
+}
 
 
 - (IBAction)btnPeoPleTap:(id)sender
 {}
+
+- (IBAction)btnCloseSOSTap:(id)sender
+{
+    [SVProgressHUD show];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_SOS act:Mod_SOS_close_sos Paras:@{@"sos_id": self.detailDic[@"sos_id"]}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
+        if ([responseObject isOK]) {
+            [self.btnCloseSOS setTitle:@"已关闭" forState:UIControlStateNormal];
+            [self.btnCloseSOS setEnabled:NO];
+        } else {
+            [[responseObject error] showAlert];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
+        [error showTimeoutAlert];
+    }];
+}
 
 - (void)refresh
 {

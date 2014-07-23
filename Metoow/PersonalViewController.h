@@ -10,7 +10,7 @@
 #import "MSGSessionViewController.h"
 #import "HeaderUpdater.h"
 
-@interface PersonalViewController : UIViewController <UIActionSheetDelegate, HeaderUpdaterProtocol>
+@interface PersonalViewController : UIViewController <UIActionSheetDelegate, HeaderUpdaterProtocol, UIAlertViewDelegate>
 {
     BOOL is_follow;
 }

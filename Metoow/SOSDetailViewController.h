@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIView *bottomBar;
 @property (strong, nonatomic) DetailCell *detailCell;
 @property (weak, nonatomic) IBOutlet UIButton *btnCollect;
+@property (weak, nonatomic) IBOutlet UIButton *btnCloseSOS;
 
 @property (strong, nonatomic) MJRefreshFooterView *footerView;
 @property (strong, nonatomic) MJRefreshHeaderView *headerView;
@@ -32,5 +33,6 @@
 - (IBAction)btnReplyTap:(id)sender;
 - (IBAction)btnStarTap:(id)sender;
 - (IBAction)btnPeoPleTap:(id)sender;
+- (IBAction)btnCloseSOSTap:(id)sender;
 
 @end

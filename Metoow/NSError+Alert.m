@@ -17,4 +17,10 @@
     [alert show];
 }
 
+- (void)showTimeoutAlert
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"网络连接超时，请重新尝试！" message:nil delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil];
+    [alert show];
+}
+
 @end

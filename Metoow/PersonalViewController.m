@@ -189,6 +189,9 @@
     }
     if (buttonIndex == 1) {
         //编辑昵称
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"请输入新昵称" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+        [alert show];
     }
     if (buttonIndex == 2) {
         //个人标签
@@ -199,8 +202,30 @@
 }
 
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [self changeNickName:[[alertView textFieldAtIndex:0] text]];
+    }
+}
+
 - (void)updateHeaderSuccess:(UIImage *)header
 {
     [self.headerImgView setImage:header];
 }
+
+- (void)changeNickName:(NSString *)nickname
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_User act:Mod_User_update_uname Paras:@{@"uname": nickname}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ([responseObject isOK]) {
+            self.nameLabel.text = nickname;
+        } else {
+            [[responseObject error] showAlert];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [[NSError errorWithDomain:@"网络超时" code:100 userInfo:nil] showAlert];
+    }];
+}
+
 @end
