@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet QCheckBox *dangerLevel1;
 @property (weak, nonatomic) IBOutlet QCheckBox *dangerLevel2;
 @property (weak, nonatomic) IBOutlet QCheckBox *dangerLevel3;
+@property (weak, nonatomic) IBOutlet QCheckBox *dangerLevel4;
 @property (weak, nonatomic) IBOutlet UITextField *sosOther;
 
 -(IBAction)btnDangerTap:(id)sender;

@@ -107,11 +107,18 @@
     if (sender == self.dangerLevel1) {
         [self.dangerLevel2 setChecked:NO];
         [self.dangerLevel3 setChecked:NO];
+        [self.dangerLevel4 setChecked:NO];
     } else if (sender == self.dangerLevel2) {
         [self.dangerLevel1 setChecked:NO];
         [self.dangerLevel3 setChecked:NO];
+        [self.dangerLevel4 setChecked:NO];
     } else if (sender == self.dangerLevel3) {
         [self.dangerLevel2 setChecked:NO];
+        [self.dangerLevel1 setChecked:NO];
+        [self.dangerLevel4 setChecked:NO];
+    } else if (sender == self.dangerLevel4) {
+        [self.dangerLevel2 setChecked:NO];
+        [self.dangerLevel3 setChecked:NO];
         [self.dangerLevel1 setChecked:NO];
     }
 }
