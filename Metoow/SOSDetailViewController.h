@@ -14,6 +14,7 @@
 {
     BOOL hasRegister;
     NSInteger page;
+    BOOL mustRefreshHelpList;
 }
 
 @property (strong, nonatomic) NSDictionary *detailDic;

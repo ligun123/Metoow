@@ -39,4 +39,6 @@
 
 - (void)refresh;
 
+- (void)refreshHeader;
+
 @end

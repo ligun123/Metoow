@@ -267,6 +267,7 @@
 		02F4DB54192723C9004EFFBC /* RichLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F4DB53192723C9004EFFBC /* RichLabelView.m */; };
 		02F63E24192CE0A6003DC423 /* DetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F63E23192CE0A6003DC423 /* DetailCell.m */; };
 		02F63E26192CE0E0003DC423 /* DetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02F63E25192CE0E0003DC423 /* DetailCell.xib */; };
+		6AA3904D1980D39E0091E142 /* SOSPeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA3904C1980D39E0091E142 /* SOSPeopleViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -685,6 +686,8 @@
 		02F63E22192CE0A6003DC423 /* DetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCell.h; sourceTree = "<group>"; };
 		02F63E23192CE0A6003DC423 /* DetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCell.m; sourceTree = "<group>"; };
 		02F63E25192CE0E0003DC423 /* DetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailCell.xib; sourceTree = "<group>"; };
+		6AA3904B1980D39E0091E142 /* SOSPeopleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSPeopleViewController.h; sourceTree = "<group>"; };
+		6AA3904C1980D39E0091E142 /* SOSPeopleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSPeopleViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1404,6 +1407,8 @@
 				02242BE3193E13E1001FB901 /* HelpDetailViewController.m */,
 				02A6BFB8197E919000C81054 /* SOSDetailViewController.h */,
 				02A6BFB9197E919000C81054 /* SOSDetailViewController.m */,
+				6AA3904B1980D39E0091E142 /* SOSPeopleViewController.h */,
+				6AA3904C1980D39E0091E142 /* SOSPeopleViewController.m */,
 			);
 			name = "互助";
 			sourceTree = "<group>";
@@ -1795,6 +1800,7 @@
 				02D3146C19000F61005CADB1 /* MSGCenterViewController.m in Sources */,
 				0267083F1903EB15003D43F9 /* NearViewController.m in Sources */,
 				028C61C3195079C9009344C6 /* OpenUDID.m in Sources */,
+				6AA3904D1980D39E0091E142 /* SOSPeopleViewController.m in Sources */,
 				02500E301917B13A000B7212 /* MSGSessionViewController.m in Sources */,
 				02504601190FD57000852325 /* MJRefreshBaseView.m in Sources */,
 				028C61C1195079C9009344C6 /* GzipCompressor.m in Sources */,

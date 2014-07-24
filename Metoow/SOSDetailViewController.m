@@ -12,6 +12,8 @@
 #import "FootPubViewController.h"
 #import "NSDictionary+Huzhu.h"
 #import "PersonalViewController.h"
+#import "SOSPeopleViewController.h"
+#import "HelpViewController.h"
 
 @interface SOSDetailViewController ()
 
@@ -92,6 +94,13 @@
 
 - (IBAction)btnBackTap:(id)sender
 {
+    if (mustRefreshHelpList) {
+        for (UIViewController *help in [self.navigationController viewControllers]) {
+            if ([help isKindOfClass:[HelpViewController class]]) {
+                [(HelpViewController *)help refreshHeader];
+            }
+        }
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -128,6 +137,7 @@
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_SOS act:Mod_SOS_is_pation Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
+            mustRefreshHelpList = YES;
             [self.btnCollect setSelected:!self.btnCollect.selected];
         } else {
             [[responseObject error] showAlert];
@@ -141,12 +151,9 @@
 
 - (IBAction)btnPeoPleTap:(id)sender
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_SOS act:Mod_SOS_sos_pation Paras:@{@"sos_id": self.detailDic[@"sos_id"]}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%s -> %@", __FUNCTION__, operation.responseString);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [error showTimeoutAlert];
-    }];
+    SOSPeopleViewController *people = [AppDelegateInterface awakeViewController:@"SOSPeopleViewController"];
+    people.sos_id = self.detailDic[@"sos_id"];
+    [self.navigationController pushViewController:people animated:YES];
 }
 
 - (IBAction)btnCloseSOSTap:(id)sender
@@ -158,6 +165,7 @@
         if ([responseObject isOK]) {
             [self.btnCloseSOS setTitle:@"已关闭" forState:UIControlStateNormal];
             [self.btnCloseSOS setEnabled:NO];
+            mustRefreshHelpList = YES;
         } else {
             [[responseObject error] showAlert];
         }
