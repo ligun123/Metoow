@@ -63,7 +63,7 @@
                  
                  NSString *uid = [[NSUserDefaults standardUserDefaults] objectForKey:@"uid"];
                  NSString *type = _auth_type == 1 ? @"sina" : @"qzone";
-                 NSDictionary *para = @{@"type": type, @"is_sync" : [NSNumber numberWithInteger:1], @"user_id" : self.user_id, @"uid" : uid};
+                 NSDictionary *para = @{@"type": type, @"is_sync" : [NSNumber numberWithInteger:1], @"user_id" : self.user_id, @"uid" : uid, @"password" : self.pswdText.text};
                  [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Login act:Mod_Login_mett_binding_app Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
                      [SVProgressHUD dismiss];
                      if ([responseObject isOK]) {
