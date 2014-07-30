@@ -29,6 +29,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.dangerLevel1 removeTarget:self.dangerLevel1 action:@selector(checkboxBtnChecked) forControlEvents:UIControlEventTouchUpInside];
+    [self.dangerLevel2 removeTarget:self.dangerLevel2 action:@selector(checkboxBtnChecked) forControlEvents:UIControlEventTouchUpInside];
+    [self.dangerLevel3 removeTarget:self.dangerLevel3 action:@selector(checkboxBtnChecked) forControlEvents:UIControlEventTouchUpInside];
+    [self.dangerLevel4 removeTarget:self.dangerLevel4 action:@selector(checkboxBtnChecked) forControlEvents:UIControlEventTouchUpInside];
     [self.dangerLevel1 setChecked:YES];
 }
 
@@ -67,7 +71,10 @@
     if (self.dangerLevel3.checked) {
         return self.dangerLevel3;
     }
-    NSLog(@"%s -> 为选择危险等级", __FUNCTION__);
+    if (self.dangerLevel4.checked) {
+        return self.dangerLevel4;
+    }
+    NSLog(@"%s -> 未选择危险等级", __FUNCTION__);
     return nil;
 }
 
@@ -75,7 +82,12 @@
 {
     QCheckBox *danger = [self selectCheckbox];
     NSString *otherTxt = self.sosOther.text.length == 0 ? @"" : self.sosOther.text;
-    NSString *sos_info = [[danger titleForState:UIControlStateNormal] stringByAppendingFormat:@"。%@", otherTxt];
+    NSString *sos_info = nil;
+    if (danger == self.dangerLevel4) {
+        sos_info = otherTxt;
+    } else {
+        sos_info = [danger titleForState:UIControlStateNormal];
+    }
     NSString *sos = [sos_info stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSString *phone = @"18200509050";
     NSString *uid = [[NSUserDefaults standardUserDefaults] objectForKey:@"uid"];
@@ -102,6 +114,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
 -(IBAction)btnDangerTap:(id)sender
 {
     if (sender == self.dangerLevel1) {
@@ -121,6 +134,8 @@
         [self.dangerLevel3 setChecked:NO];
         [self.dangerLevel1 setChecked:NO];
     }
+    [sender setChecked:YES];
 }
+
 
 @end

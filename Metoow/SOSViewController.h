@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "QCheckBox.h"
 
-@interface SOSViewController : UIViewController <UITextFieldDelegate>
+@interface SOSViewController : UIViewController <UITextFieldDelegate, QCheckBoxDelegate>
 
 @property (weak, nonatomic) IBOutlet QCheckBox *dangerLevel1;
 @property (weak, nonatomic) IBOutlet QCheckBox *dangerLevel2;
