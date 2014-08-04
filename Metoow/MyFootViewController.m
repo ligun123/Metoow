@@ -147,12 +147,17 @@
     NSDictionary *dic = self.dataList[indexPath.section][indexPath.row];
     
     NSDictionary *userInfo = dic[@"user_info"];
+    if ([dic[@"pic_ids"] length] > 0) {
+        cell.hasPic.image = [UIImage imageNamed:@"pic_norm"];
+    } else {
+        cell.hasPic.image = nil;
+    }
     [cell.userHeader setImageWithURL:[NSURL URLWithString:userInfo[@"avatar_original"]]];
     [cell.userName setText:userInfo[@"uname"]];
     cell.time.text = [dic[@"time"] apiDate];
     [cell.content showStringMessage:dic[@"desc"]];
     [cell.btnConnect setSelected:[dic[@"is_colslect"] boolValue]];
-    
+    cell.locate.text = [NSString stringWithFormat:@"我在：%@", dic[@"pos"]];;
     [cell.btnConnect setTitle:dic[@"collect_count"] forState:UIControlStateNormal];
     [cell.btnTransmit setTitle:dic[@"share_count"] forState:UIControlStateNormal];
     [cell.btnReply setTitle:dic[@"comment_count"] forState:UIControlStateNormal];

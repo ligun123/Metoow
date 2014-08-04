@@ -39,7 +39,7 @@
 
 + (CGFloat)height
 {
-    return 90.f;
+    return 110.f;
 }
 
 - (IBAction)btnConnectTap:(RecordActionButton *)sender

@@ -126,6 +126,12 @@
         }
         
         NSDictionary *userInfo = dic[@"user_info"];
+        if ([dic[@"pic_ids"] length] > 0) {
+            cell.hasPic.image = [UIImage imageNamed:@"pic_norm"];
+        } else {
+            cell.hasPic.image = nil;
+        }
+        cell.locate.text = [NSString stringWithFormat:@"我在：%@", dic[@"pos"]];
         [cell.userHeader setImageWithURL:[NSURL URLWithString:userInfo[@"avatar_original"]]];
         [cell.userName setText:userInfo[@"uname"]];
         cell.time.text = [dic[@"time"] apiDate];

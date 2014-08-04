@@ -46,20 +46,19 @@
     }
     else {
         self.isPublic.hidden = YES;
-        self.addrLabel.hidden = YES;
+        self.addrText.hidden = YES;
         self.textView.inputAccessoryView = self.inputBar;
         [self.inputBar setOutsideInput:self.textView];
         [self.inputBar setSendStyle];
         self.inputBar.delegate = self;
         [self.textView becomeFirstResponder];
     }
-    
-    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(updateAddrInfo:) userInfo:nil repeats:YES];
+    [self btnLocateTap:nil];
 }
 
 - (void)updateAddrInfo:(NSTimer *)timer
 {
-    self.addrLabel.text = ([[LocationManager shareInterface] addrInfo].strAddr == nil) ? (@"您的位置") : ([[LocationManager shareInterface] addrInfo].strAddr);
+    self.addrText.text = ([[LocationManager shareInterface] addrInfo].strAddr == nil) ? (@"") : ([[LocationManager shareInterface] addrInfo].strAddr);
 }
 
 
@@ -96,6 +95,12 @@
     } else {
         [[NSError errorWithDomain:@"输入内容不能为空" code:100 userInfo:nil] showAlert];
     }
+}
+
+
+- (IBAction)btnLocateTap:(id)sender
+{
+    self.locateTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(updateAddrInfo:) userInfo:nil repeats:YES];
 }
 
 //发信息的总入口，判断发布、转发、回复
@@ -233,7 +238,7 @@
         NSNumber *publ = [NSNumber numberWithBool:!isPub];
         NSString *lat = [NSString stringWithFormat:@"%lf", myaddrInfo.geoPt.latitude];
         NSString *lng = [NSString stringWithFormat:@"%lf", myaddrInfo.geoPt.longitude];
-        [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Foot act:Mod_Foot_add_foot Paras:@{@"pos": self.addrLabel.text, @"desc" : txt, @"open" : publ, @"lng" : lng, @"lat" : lat, @"pic_ids" : @""}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Foot act:Mod_Foot_add_foot Paras:@{@"pos": self.addrText.text, @"desc" : txt, @"open" : publ, @"lng" : lng, @"lat" : lat, @"pic_ids" : @""}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
             [SVProgressHUD dismiss];
             if ([responseObject isOK]) {
                 [self.navigationController popViewControllerAnimated:YES];
@@ -274,7 +279,7 @@
             BMKAddrInfo *myaddrInfo = [LocationManager shareInterface].addrInfo;
             NSString *lat = [NSString stringWithFormat:@"%lf", myaddrInfo.geoPt.latitude];
             NSString *lng = [NSString stringWithFormat:@"%lf", myaddrInfo.geoPt.longitude];
-            [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Foot act:Mod_Foot_add_foot Paras:@{@"pos": self.addrLabel.text, @"desc" : txt, @"open" : publ, @"lng" : lng, @"lat" : lat, @"pic_ids" : [picids componentsJoinedByString:@"|"]}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Foot act:Mod_Foot_add_foot Paras:@{@"pos": self.addrText.text, @"desc" : txt, @"open" : publ, @"lng" : lng, @"lat" : lat, @"pic_ids" : [picids componentsJoinedByString:@"|"]}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 [SVProgressHUD dismiss];
                 if ([responseObject isOK]) {
                     [self.navigationController popViewControllerAnimated:YES];
@@ -316,6 +321,16 @@
 }
 
 #pragma mark - MSGInput View
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if (self.locateTimer) {
+        [self.locateTimer invalidate];
+        self.locateTimer = nil;
+    }
+    return YES;
+}
+
 
 /**
  *  发文字

@@ -81,7 +81,7 @@
 - (IBAction)btnDoneTap:(id)sender
 {
     QCheckBox *danger = [self selectCheckbox];
-    NSString *otherTxt = self.sosOther.text.length == 0 ? @"" : self.sosOther.text;
+    NSString *otherTxt = self.sosOther.text.length == 0 ? @"其他..." : self.sosOther.text;
     NSString *sos_info = nil;
     if (danger == self.dangerLevel4) {
         sos_info = otherTxt;
