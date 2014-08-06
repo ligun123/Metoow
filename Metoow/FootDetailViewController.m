@@ -220,17 +220,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
+        self.detailCell.content.textColor = [UIColor colorWithRed:0 green:99/255.f blue:0 alpha:1];
         [self.detailCell.headerImg setImageWithURL:[NSURL URLWithString:self.detailDic[@"user_info"][@"avatar_original"]]];
         self.detailCell.name.text = self.detailDic[@"user_info"][@"uname"];
         self.detailCell.time.text = [self.detailDic[@"time"] apiDate];
+        [self.detailCell.content showStringMessage:[@"我在：" stringByAppendingString:self.detailDic[@"pos"]]];
+        [self.detailCell.huzhuExplain showStringMessage:self.detailDic[@"desc"]];
         //调整content的高度
         if ([self.detailDic[@"pic_ids"] length] == 0) {
             if ([self.detailCell.picScroll superview]) {
                 [self.detailCell.picScroll removeFromSuperview];
             }
-            CGRect f = self.detailCell.content.frame;
-            f.size.height = f.size.height + 100;        //让content的size充满cell，cell绘制时会根据autoresiongMask属性将content的size调整到合适size
-            self.detailCell.content.frame = f;
         } else {
             NSArray *picids = [self.detailDic[@"pic_ids"] componentsSeparatedByString:@"|"];
             NSMutableArray *arr = [NSMutableArray arrayWithCapacity:10];
@@ -243,7 +243,12 @@
             [self.detailCell.picScroll showMetoowPicIDs:arr];
         }
         
-        [self.detailCell.content showStringMessage:self.detailDic[@"desc"]];
+        CGRect f = self.detailCell.content.frame;
+        f.size = [self.detailCell.content contentSize];
+        self.detailCell.content.frame = f;
+        f.origin = CGPointMake(f.origin.x, f.origin.y + f.size.height);
+        f.size = [self.detailCell.huzhuExplain contentSize];
+        self.detailCell.huzhuExplain.frame = f;
         return self.detailCell;
     } else {
         if (!hasRegister) {
@@ -279,8 +284,10 @@
 {
     if (indexPath.section == 0 && indexPath.row == 0) {
         NSString *content = self.detailDic[@"desc"];
-        CGSize s = [[self.detailCell content] sizeForContent:content];
-        CGFloat heightWithPics = [DetailCell height] + (s.height - [DetailCell defaultMSGViewHeight]);
+        NSString *pos = [@"我在：" stringByAppendingString:self.detailDic[@"pos"]];
+        CGSize s = [[self.detailCell content] sizeForContent:pos];
+        CGSize sp = [[self.detailCell huzhuExplain] sizeForContent:content];
+        CGFloat heightWithPics = [DetailCell height] + (s.height - [DetailCell defaultMSGViewHeight]) + sp.height;
         if ([self.detailDic[@"pic_ids"] length] == 0) {
             heightWithPics -= 100;
         }

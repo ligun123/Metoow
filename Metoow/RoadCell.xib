@@ -38,16 +38,21 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我在..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uRG-Rn-bS1">
-                        <rect key="frame" x="9" y="58" width="268" height="13"/>
+                        <rect key="frame" x="10" y="58" width="268" height="13"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="yet-Zx-dNf">
+                        <rect key="frame" x="286" y="54" width="22" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
                 </subviews>
             </tableViewCellContentView>
             <connections>
                 <outlet property="content" destination="eug-0f-ZcX" id="X9o-hA-SO0"/>
+                <outlet property="hasPic" destination="yet-Zx-dNf" id="Rvc-GQ-VRy"/>
                 <outlet property="locate" destination="uRG-Rn-bS1" id="OFM-na-zru"/>
                 <outlet property="time" destination="cih-fa-abi" id="5xc-P1-pqb"/>
                 <outlet property="userHeader" destination="ksd-Ll-dk5" id="pMO-HM-hgL"/>
