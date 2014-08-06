@@ -292,6 +292,7 @@
     dic = self.dataList[indexPath.row];
     NSDictionary *userInfo = dic[@"user_info"];
     [cell.userHeader setImageWithURL:[NSURL URLWithString:userInfo[@"avatar_original"]]];
+    cell.locate.text = dic[@"pos"];
     [cell.userName setText:userInfo[@"uname"]];
     cell.time.text = [dic[@"time"] apiDate];
     [cell.content showStringMessage:dic[@"desc"]];
