@@ -307,7 +307,7 @@
     BMKAddrInfo *myaddrinfo = [[LocationManager shareInterface] addrInfo];
     NSString *lat = [NSString stringWithFormat:@"%lf", myaddrinfo.geoPt.latitude];
     NSString *lng = [NSString stringWithFormat:@"%lf", myaddrinfo.geoPt.longitude];
-    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Weather act:Mod_Weather_add_weather Paras:@{@"pos": [[LocationManager shareInterface] addrInfo].strAddr, @"desc" : txt, @"lng" : lng, @"lat" : lat, @"pic_ids" : @""}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Weather act:Mod_Weather_add_weather Paras:@{@"pos": self.addrText.text, @"desc" : txt, @"lng" : lng, @"lat" : lat, @"pic_ids" : @""}] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
         if ([responseObject isOK]) {
             [self.navigationController popViewControllerAnimated:YES];
