@@ -47,6 +47,8 @@
     else {
         self.isPublic.hidden = YES;
         self.addrText.hidden = YES;
+        self.addrTitleLabel.hidden = YES;
+        self.addrButton.hidden = YES;
         self.textView.inputAccessoryView = self.inputBar;
         [self.inputBar setOutsideInput:self.textView];
         [self.inputBar setSendStyle];
@@ -100,6 +102,8 @@
 
 - (IBAction)btnLocateTap:(id)sender
 {
+    [self.locateTimer invalidate];
+    self.locateTimer = nil;
     self.locateTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(updateAddrInfo:) userInfo:nil repeats:YES];
 }
 

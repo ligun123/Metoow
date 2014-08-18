@@ -966,7 +966,7 @@
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="80" maxX="0.0" maxY="-80"/>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fcv-wy-zJl">
-                                <rect key="frame" x="232" y="63" width="25" height="25"/>
+                                <rect key="frame" x="225" y="63" width="36" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                                 <state key="normal" image="pin_green.png">
@@ -976,8 +976,8 @@
                                     <action selector="btnLocateTap:" destination="jXI-HV-9HW" eventType="touchUpInside" id="up3-ia-Mc3"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="可手动输入或自动定位..." minimumFontSize="17" id="4gM-2U-ELQ">
-                                <rect key="frame" x="35" y="69" width="189" height="18"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="可手动输入或自动定位..." minimumFontSize="17" id="4gM-2U-ELQ">
+                                <rect key="frame" x="35" y="66" width="189" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
@@ -1001,7 +1001,9 @@
                     <navigationItem key="navigationItem" id="pMX-Oo-G3h"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="addrButton" destination="fcv-wy-zJl" id="thk-Tu-RQk"/>
                         <outlet property="addrText" destination="4gM-2U-ELQ" id="xU2-F2-0Q4"/>
+                        <outlet property="addrTitleLabel" destination="c3A-RS-i3H" id="PcR-HM-lyg"/>
                         <outlet property="inputBar" destination="zRZ-7Y-nmc" id="eYt-vB-nSN"/>
                         <outlet property="isPublic" destination="EOe-xv-mFr" id="GWu-dG-Bow"/>
                         <outlet property="picRoll" destination="DBW-Fw-JVd" id="Rlo-oO-z81"/>
@@ -1821,7 +1823,7 @@
                                         <color key="textColor" red="0.039215686270000001" green="0.54901960780000003" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0E39FD94-FAA0-42F8-AC69-C27428E8EB8F" id="cjO-0I-yyh">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="39E37C3C-04FE-4D90-B522-973DA962F46A" id="cjO-0I-yyh">
                                         <rect key="frame" x="0.0" y="90" width="320" height="1"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -2180,7 +2182,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="0E39FD94-FAA0-42F8-AC69-C27428E8EB8F" width="1" height="1">
+        <image name="39E37C3C-04FE-4D90-B522-973DA962F46A" width="1" height="1">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGISJYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKYHCBES
 GB5VJG51bGzUCQoLDA0ODxBWTlNTaXplViRjbGFzc1xOU0ltYWdlRmxhZ3NXTlNDb2xvcoACgAUSIMAA

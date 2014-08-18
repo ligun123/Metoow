@@ -15,7 +15,8 @@
 
 @property (weak, nonatomic) IBOutlet MSGInputView *inputBar;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
-@property (weak, nonatomic) IBOutlet UILabel *addrLabel;
+@property (weak, nonatomic) IBOutlet UILabel *addrTitleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *addrButton;
 @property (weak, nonatomic) IBOutlet UITextField *addrText;
 @property (weak, nonatomic) IBOutlet LoginCheckBox *isPublic;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
