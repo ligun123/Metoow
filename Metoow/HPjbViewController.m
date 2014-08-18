@@ -7,6 +7,7 @@
 //
 
 #import "HPjbViewController.h"
+#import "IQKeyBoardManager/IQKeyboardManager.h"
 
 @interface HPjbViewController ()
 
@@ -120,6 +121,12 @@
 }
 
 
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];
+    return YES;
+}
+
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
     self.contentView.scrollEnabled = NO;
@@ -130,7 +137,6 @@
 {
     self.contentView.scrollEnabled = YES;
 }
-
 
 
 @end

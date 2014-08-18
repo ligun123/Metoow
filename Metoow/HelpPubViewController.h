@@ -10,7 +10,7 @@
 #import "MSGInputView.h"
 #import "PicRollView.h"
 
-@interface HelpPubViewController : UIViewController <BMKSearchDelegate, BMKUserLocationDelegate, InputViewProtocol, UITextViewDelegate>
+@interface HelpPubViewController : UIViewController <BMKSearchDelegate, BMKUserLocationDelegate, InputViewProtocol, UITextViewDelegate, UITextFieldDelegate>
 {
     BMKSearch *baiduSearch;
     BMKUserLocation *userLocation;

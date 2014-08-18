@@ -55,6 +55,11 @@
         self.inputBar.delegate = self;
         [self.textView becomeFirstResponder];
     }
+    if ([HWDevice systemVersion] > 6.99 && [[UIScreen mainScreen] applicationFrame].size.height < 961) {
+        CGRect of = self.textView.frame;
+        of.size.height -= 60.f;
+        self.textView.frame = of;
+    }
     [self btnLocateTap:nil];
 }
 

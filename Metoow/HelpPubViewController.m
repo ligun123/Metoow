@@ -7,6 +7,7 @@
 //
 
 #import "HelpPubViewController.h"
+#import "IQKeyBoardManager/IQKeyboardManager.h"
 
 @interface HelpPubViewController ()
 
@@ -40,6 +41,13 @@
 {
     [super viewWillAppear:animated];
     [AppDelegateInterface setTabBarHidden:YES];
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -130,7 +138,7 @@
         UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
         UIBarButtonItem *pickerDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(btnPickerDoneTap:)];
         [_toolbar setItems:@[space, pickerDone]];
-        _toolbar.frame = CGRectOffset(_toolbar.frame, 0, self.view.frame.size.height - self.datePicker.frame.size.height - _toolbar.frame.size.height);
+        _toolbar.frame = CGRectOffset(_toolbar.frame, 0, self.view.frame.size.height - self.datePicker.frame.size.height - _toolbar.frame.size.height + 3);
     }
     return _toolbar;
 }
@@ -233,6 +241,12 @@
 }
 
 
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:YES];
+    return YES;
+}
 
 
 @end

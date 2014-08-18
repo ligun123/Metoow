@@ -91,7 +91,12 @@
     
     [[IQKeyboardManager sharedManager] setEnable:YES];
     [[IQKeyboardManager sharedManager] setShouldResignOnTouchOutside:YES];
-    
+    /*
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] > 6.99) {
+        [[IQKeyboardManager sharedManager] setKeyboardDistanceFromTextField:35.f];
+    }
+    */
+     
     mapManager = [[BMKMapManager alloc] init];
     // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
     BOOL ret = [mapManager start:BaiduMapAppKey  generalDelegate:nil];

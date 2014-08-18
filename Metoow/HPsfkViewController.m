@@ -7,6 +7,7 @@
 //
 
 #import "HPsfkViewController.h"
+#import "IQKeyBoardManager/IQKeyboardManager.h"
 
 @interface HPsfkViewController ()
 
@@ -127,5 +128,13 @@
 {
     self.contentView.scrollEnabled = YES;
 }
+
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];
+    return YES;
+}
+
 
 @end
