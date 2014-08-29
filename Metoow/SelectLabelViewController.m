@@ -8,6 +8,7 @@
 
 #import "SelectLabelViewController.h"
 #import "FootViewController.h"
+#import "PersonalViewController.h"
 
 @interface SelectLabelViewController ()
 
@@ -71,12 +72,17 @@
     } else {
         [SVProgressHUD show];
         NSString *uid = _isEditing ? [[NSUserDefaults standardUserDefaults] objectForKey:@"uid"] : self.userRegister[@"uid"];
-        NSDictionary *para = @{@"id": uid, @"user_tags" : [tags componentsJoinedByString:@","]};
+        NSDictionary *para = @{@"id": uid, @"user_tags" : [tags componentsJoinedByString:@"|"]};
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Login act:Mod_Login_set_tags Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
             [SVProgressHUD dismiss];
             if ([responseObject isOK]) {
                 if (_isEditing) {
+                    for (id obj in [self.navigationController viewControllers]) {
+                        if ([obj isKindOfClass:[PersonalViewController class]]) {
+                            [[obj introLabel] setText:[tags componentsJoinedByString:@"|"]];
+                        }
+                    }
                     [self.navigationController popViewControllerAnimated:YES];
                 } else {
                     [self authAndLogin];
