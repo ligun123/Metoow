@@ -56,9 +56,10 @@
 
 - (void)onMethod:(NSString*)method response:(NSDictionary*)data {
     NSLog(@"%s -> UserId : %@", __FUNCTION__, [BPush getUserId]);
+    NSLog(@"data:%@", [data description]);
     /*
     NSLog(@"On method:%@", method);
-    NSLog(@"data:%@", [data description]);
+    
     NSDictionary* res = [[NSDictionary alloc] initWithDictionary:data];
     if ([BPushRequestMethod_Bind isEqualToString:method]) {
         NSString *appid = [res valueForKey:BPushRequestAppIdKey];

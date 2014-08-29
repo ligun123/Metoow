@@ -79,6 +79,14 @@
     return [fmt stringFromDate:date];
 }
 
+- (NSString *)apiDateShort
+{
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self integerValue]];
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    [fmt setDateFormat:@"HH:mm"];
+    return [fmt stringFromDate:date];
+}
+
 - (NSString *)apiDateCn
 {
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self integerValue]];
@@ -97,6 +105,14 @@
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self integerValue]];
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
     [fmt setDateFormat:@"yyyy-MM-dd HH:mm"];
+    return [fmt stringFromDate:date];
+}
+
+- (NSString *)apiDateShort
+{
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self integerValue]];
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    [fmt setDateFormat:@"HH:mm"];
     return [fmt stringFromDate:date];
 }
 

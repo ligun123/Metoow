@@ -198,6 +198,7 @@
         SelectLabelViewController *slectLabel = [AppDelegateInterface awakeViewController:@"SelectLabelViewController"];
         slectLabel.isEditing = YES;
         [self.navigationController pushViewController:slectLabel animated:YES];
+        [AppDelegateInterface setTabBarHidden:YES];
     }
 }
 

@@ -121,20 +121,30 @@
         [self.dangerLevel2 setChecked:NO];
         [self.dangerLevel3 setChecked:NO];
         [self.dangerLevel4 setChecked:NO];
+        [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
     } else if (sender == self.dangerLevel2) {
         [self.dangerLevel1 setChecked:NO];
         [self.dangerLevel3 setChecked:NO];
         [self.dangerLevel4 setChecked:NO];
+        [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
     } else if (sender == self.dangerLevel3) {
         [self.dangerLevel2 setChecked:NO];
         [self.dangerLevel1 setChecked:NO];
         [self.dangerLevel4 setChecked:NO];
+        [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
     } else if (sender == self.dangerLevel4) {
         [self.dangerLevel2 setChecked:NO];
         [self.dangerLevel3 setChecked:NO];
         [self.dangerLevel1 setChecked:NO];
+        [self.sosOther becomeFirstResponder];
     }
     [sender setChecked:YES];
+}
+
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self btnDangerTap:self.dangerLevel4];
 }
 
 

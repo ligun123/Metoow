@@ -152,7 +152,6 @@
         
         NSDictionary *userInfo = dic[@"user_info"];
         [cell.userHeader setImageWithURL:[NSURL URLWithString:userInfo[@"avatar_original"]]];
-        cell.locate.text = [NSString stringWithFormat:@"我在：%@", dic[@"pos"]];
         if ([dic[@"pic_ids"] length] > 0) {
             cell.hasPic.image = [UIImage imageNamed:@"pic_norm"];
         } else {
@@ -160,7 +159,7 @@
         }
         [cell.userName setText:userInfo[@"uname"]];
         cell.time.text = [dic[@"time"] apiDate];
-        [cell.content showStringMessage:dic[@"desc"]];
+        [cell.content showStringMessage:[dic[@"pos"] stringByAppendingString:dic[@"desc"]]];
         return cell;
     }
 }
@@ -223,7 +222,7 @@
     if (selectIndex < 4) {
         return [RecordCell height] + [self.heightCounter sizeForContent:dic[@"desc"]].height;
     } else {
-        return [RoadCell height] + [self.heightCounter sizeForContent:dic[@"desc"]].height;
+        return [RoadCell height] + [self.heightCounter sizeForContent:[dic[@"pos"] stringByAppendingString:dic[@"desc"]]].height;
     }
 }
 

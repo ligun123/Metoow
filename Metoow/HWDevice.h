@@ -49,6 +49,8 @@
 
 - (NSString *)apiDate;
 
+- (NSString *)apiDateShort;
+
 - (NSString *)apiDateCn;
 
 @end
@@ -57,5 +59,7 @@
 @interface NSNumber (Metoow)
 
 - (NSString *)apiDate;
+
+- (NSString *)apiDateShort;
 
 @end

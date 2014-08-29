@@ -292,7 +292,6 @@
     dic = self.dataList[indexPath.row];
     NSDictionary *userInfo = dic[@"user_info"];
     [cell.userHeader setImageWithURL:[NSURL URLWithString:userInfo[@"avatar_original"]]];
-    cell.locate.text = [NSString stringWithFormat:@"我在：%@", dic[@"pos"]];
     if ([dic[@"pic_ids"] length] > 0) {
         cell.hasPic.image = [UIImage imageNamed:@"pic_norm"];
     } else {
@@ -300,7 +299,7 @@
     }
     [cell.userName setText:userInfo[@"uname"]];
     cell.time.text = [dic[@"time"] apiDate];
-    [cell.content showStringMessage:dic[@"desc"]];
+    [cell.content showStringMessage:[dic[@"pos"] stringByAppendingString:dic[@"desc"]]];
     return cell;
 }
 
@@ -379,7 +378,7 @@
         return [RecordCell height] + [self.heightCount sizeForContent:dic[@"desc"]].height;
     } else if (currentCategary == NearCategaryRoadDynamic){
         NSDictionary *dic = self.dataList[indexPath.row];
-        return [RoadCell height] + [self.heightCount sizeForContent:dic[@"desc"]].height;
+        return [RoadCell height] + [self.heightCount sizeForContent:[dic[@"pos"] stringByAppendingString:dic[@"desc"]]].height;
     }
     return 44.f;
 }
