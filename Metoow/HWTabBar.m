@@ -37,17 +37,26 @@
 - (void)tabBarItemTap:(HWTabBarItem *)item
 {
     if (selectIndex == [self.tabItems indexOfObject:item]) {
-        return ;
+        //Do Nothing
+    } else {
+        selectIndex = [self.tabItems indexOfObject:item];
+        if (_delegate && [_delegate respondsToSelector:@selector(hwtabbar:selectIndex:)]) {
+            [_delegate hwtabbar:self selectIndex:selectIndex];
+        }
     }
-    selectIndex = [self.tabItems indexOfObject:item];
-    if (_delegate && [_delegate respondsToSelector:@selector(hwtabbar:selectIndex:)]) {
-        [_delegate hwtabbar:self selectIndex:selectIndex];
+    if (selectIndex == 2) {
+        [item setBrigdeEnable:NO];
     }
 }
 
 - (void)setSelectIndex:(NSUInteger)index
 {
     selectIndex = index;
+}
+
+- (NSUInteger)selectedIndex
+{
+    return selectIndex;
 }
 
 /*
@@ -85,6 +94,21 @@
 - (CGRect)imageRectForContentRect:(CGRect)contentRect
 {
     return CGRectMake((contentRect.size.width - 30.f) / 2, 1.f, 30.f, 30.f);
+}
+
+- (void)setBrigdeEnable:(BOOL)enb
+{
+    if (enb) {
+        UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"msg_new_bkg"]];
+        img.tag = 1001;
+        img.frame = CGRectOffset(img.frame, self.frame.size.width - 10, 5);
+        [self addSubview:img];
+    } else {
+        UIView *v = [self viewWithTag:1001];
+        if (v) {
+            [v removeFromSuperview];
+        }
+    }
 }
 
 @end

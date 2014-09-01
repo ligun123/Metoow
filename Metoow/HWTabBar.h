@@ -32,11 +32,15 @@
 
 - (void)setSelectIndex:(NSUInteger)index;
 
+- (NSUInteger)selectedIndex;
+
 @end
 
 
 @interface HWTabBarItem : UIButton
 
 + (HWTabBarItem *)itemWithTitle:(NSString *)title normalImage:(UIImage *)nImg selectImage:(UIImage *)sImg;
+
+- (void)setBrigdeEnable:(BOOL)enb;
 
 @end

@@ -25,7 +25,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-#warning 必须先设置为clearColor，否则tableView的背景会被遮住
+        //必须先设置为clearColor，否则tableView的背景会被遮住
         self.backgroundColor = [UIColor clearColor];
         
         // 1、创建时间按钮

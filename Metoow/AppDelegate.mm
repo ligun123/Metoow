@@ -40,6 +40,12 @@
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     [[UIApplication sharedApplication] setScheduledLocalNotifications:nil];
+    NSString *type = [userInfo objectForKey:@"type"];
+    if ([type isEqualToString:@"msg"]) {
+        HWTabBarItem *item = [self.tabBar tabItems][2];
+        [item setBrigdeEnable:YES];
+        //消息页面未被选中时
+    }
     NSString *alert = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
     if (application.applicationState == UIApplicationStateActive) {
         // Nothing to do if applicationState is Inactive, the iOS already displayed an alert view.
