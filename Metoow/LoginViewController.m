@@ -215,7 +215,7 @@
     NSString *user_id = self.tencentOAuth.openId;
     [SVProgressHUD show];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    //app_login_type: 1新浪，2腾讯
+    //app_login_type: sina=新浪，qzone=腾讯
     NSDictionary *para = @{@"app_token": user_id, @"app_login_type" : @"qzone"};
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Login act:Mod_Login_app_login Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
@@ -232,13 +232,6 @@
                 [alert setUser_id:user_id];
                 [alert setAuth_type:2];
                 [alert show];
-                /*
-                [[NSError errorWithDomain:@"第一次登陆请绑定迷途账号" code:100 userInfo:nil] showAlert];
-                RegisterViewController *reg = [AppDelegateInterface awakeViewController:@"RegisterViewController"];
-                reg.auth_user_id = user_id;
-                reg.auth_type = 2;
-                [self.navigationController pushViewController:reg animated:YES];
-                 */
             } else {
                 [[responseObject error] showAlert];
             }
@@ -289,7 +282,7 @@
 {
     [SVProgressHUD show];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    //app_login_type: 1新浪，2腾讯
+    //app_login_type: sina新浪，qzone腾讯
     NSDictionary *para = @{@"app_token": user_id, @"app_login_type" : @"sina"};
     [manager GET:API_URL parameters:[APIHelper packageMod:Mod_Login act:Mod_Login_app_login Paras:para] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
