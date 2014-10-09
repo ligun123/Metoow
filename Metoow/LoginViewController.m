@@ -195,6 +195,7 @@
                              kOPEN_PERMISSION_GET_INTIMATE_FRIENDS_WEIBO,
                              kOPEN_PERMISSION_MATCH_NICK_TIPS_WEIBO,
                              nil];
+    
     [self.tencentOAuth authorize:_permissions inSafari:NO];
 }
 
@@ -203,7 +204,7 @@
     if (_tencentOAuth == nil) {
         _tencentOAuth = [[TencentOAuth alloc] initWithAppId:kTencentAppID
                                                 andDelegate:self];
-        _tencentOAuth.redirectURI = @"www.qq.com";
+//        _tencentOAuth.redirectURI = @"www.qq.com";
     }
     return _tencentOAuth;
 }

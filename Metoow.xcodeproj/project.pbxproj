@@ -1969,6 +1969,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Metoow/Metoow-Prefix.pch";
 				INFOPLIST_FILE = "Metoow/Metoow-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Metoow/BaiduMapiOS_SDK/libs",
@@ -2001,6 +2002,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Metoow/Metoow-Prefix.pch";
 				INFOPLIST_FILE = "Metoow/Metoow-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Metoow/BaiduMapiOS_SDK/libs",

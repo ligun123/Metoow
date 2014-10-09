@@ -25,7 +25,7 @@
 
 #define kWeiboAppKey         @"4194657020"      //1588740131
 #define kWeiboRedirectURI    @"https://api.weibo.com/oauth2/default.html"
-#define kTencentAppID @"100565099"              //101119364
+#define kTencentAppID @"100565099"              //100565099
 
 #define AppDelegateInterface	(AppDelegate*)([UIApplication sharedApplication].delegate)
 
