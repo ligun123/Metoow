@@ -82,7 +82,7 @@
     self.nameLabel.text = uname;
     
     NSString *headerURL = data[@"avatar_original"];
-    [[[UIImageView class] sharedImageCache] removeCacheForKey:headerURL];
+    [[[UIImageView class] sharedImageCache] cacheImage:nil forRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:headerURL]]];
     [self.headerImgView setImageWithURL:[NSURL URLWithString:headerURL]];
     
     NSInteger sex = [data[@"sex"] integerValue];

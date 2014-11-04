@@ -273,6 +273,7 @@
 		6A04E8D719B8151300B09FD5 /* Icon-29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A04E8D519B8151300B09FD5 /* Icon-29@2x.png */; };
 		6A04E8D819B8151300B09FD5 /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A04E8D619B8151300B09FD5 /* Icon-40@2x.png */; };
 		6A13D9C419B46D4B0075DC81 /* msg_new_bkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A13D9C319B46D4B0075DC81 /* msg_new_bkg@2x.png */; };
+		6A22C2391A08ADC400F70D4E /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A22C2381A08ADC400F70D4E /* UIRefreshControl+AFNetworking.m */; };
 		6AA3904D1980D39E0091E142 /* SOSPeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA3904C1980D39E0091E142 /* SOSPeopleViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -698,6 +699,8 @@
 		6A04E8D519B8151300B09FD5 /* Icon-29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29@2x.png"; sourceTree = "<group>"; };
 		6A04E8D619B8151300B09FD5 /* Icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@2x.png"; sourceTree = "<group>"; };
 		6A13D9C319B46D4B0075DC81 /* msg_new_bkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "msg_new_bkg@2x.png"; sourceTree = "<group>"; };
+		6A22C2371A08ADC400F70D4E /* UIRefreshControl+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIRefreshControl+AFNetworking.h"; sourceTree = "<group>"; };
+		6A22C2381A08ADC400F70D4E /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
 		6AA3904B1980D39E0091E142 /* SOSPeopleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOSPeopleViewController.h; sourceTree = "<group>"; };
 		6AA3904C1980D39E0091E142 /* SOSPeopleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOSPeopleViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1070,6 +1073,8 @@
 		02BF652E190E8A9900DCF2BD /* UIKit+AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
+				6A22C2371A08ADC400F70D4E /* UIRefreshControl+AFNetworking.h */,
+				6A22C2381A08ADC400F70D4E /* UIRefreshControl+AFNetworking.m */,
 				02BF652F190E8A9900DCF2BD /* AFNetworkActivityIndicatorManager.h */,
 				02BF6530190E8A9900DCF2BD /* AFNetworkActivityIndicatorManager.m */,
 				02BF6531190E8A9900DCF2BD /* UIActivityIndicatorView+AFNetworking.h */,
@@ -1834,6 +1839,7 @@
 				02D3146819000E0B005CADB1 /* SVSegmentedControl.m in Sources */,
 				0250CD87191BA9EF00E2E051 /* TQViewController.m in Sources */,
 				02F63E24192CE0A6003DC423 /* DetailCell.m in Sources */,
+				6A22C2391A08ADC400F70D4E /* UIRefreshControl+AFNetworking.m in Sources */,
 				02BF6541190E8A9900DCF2BD /* AFNetworkReachabilityManager.m in Sources */,
 				0250CD84191BA9EF00E2E051 /* TQRichTextRunEmoji.m in Sources */,
 				02F4A2C118FA6706006EDB25 /* MyHelpViewController.m in Sources */,
