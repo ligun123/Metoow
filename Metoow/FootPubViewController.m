@@ -10,8 +10,34 @@
 #import "FootDetailViewController.h"
 #import "FileUploader.h"
 #import "LocationManager.h"
+#import "IQKeyboardManager.h"
 
 @interface FootPubViewController ()
+
+@end
+
+
+@implementation UIView (AnimationOptionsForCurve)
+
++ (UIViewAnimationOptions)animationOptionsForCurve:(UIViewAnimationCurve)curve
+{
+    switch (curve) {
+        case UIViewAnimationCurveEaseInOut:
+            return UIViewAnimationOptionCurveEaseInOut;
+            break;
+        case UIViewAnimationCurveEaseIn:
+            return UIViewAnimationOptionCurveEaseIn;
+            break;
+        case UIViewAnimationCurveEaseOut:
+            return UIViewAnimationOptionCurveEaseOut;
+            break;
+        case UIViewAnimationCurveLinear:
+            return UIViewAnimationOptionCurveLinear;
+            break;
+    }
+    
+    return kNilOptions;
+}
 
 @end
 
@@ -29,6 +55,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self resetInput];
+    
+    if ([HWDevice systemVersion] > 6.99 && [[UIScreen mainScreen] applicationFrame].size.height < 961) {
+        CGRect of = self.textView.frame;
+        of.size.height -= 60.f;
+        self.textView.frame = of;
+    }
+    [self btnLocateTap:nil];
+}
+
+- (void)resetInput
+{
+    [self.inputBar removeFromSuperview];
     if (self.editCategary == FootPubEditCategaryPublish) {
         [self.isPublic setChecked:YES];
         [self.inputBar setOutsideInput:self.textView];
@@ -55,12 +94,6 @@
         self.inputBar.delegate = self;
         [self.textView becomeFirstResponder];
     }
-    if ([HWDevice systemVersion] > 6.99 && [[UIScreen mainScreen] applicationFrame].size.height < 961) {
-        CGRect of = self.textView.frame;
-        of.size.height -= 60.f;
-        self.textView.frame = of;
-    }
-    [self btnLocateTap:nil];
 }
 
 - (void)updateAddrInfo:(NSTimer *)timer
@@ -73,6 +106,11 @@
 {
     [super viewWillAppear:animated];
     [AppDelegateInterface setTabBarHidden:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -333,6 +371,7 @@
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
+    [self resetInput];
     if (self.locateTimer) {
         [self.locateTimer invalidate];
         self.locateTimer = nil;
@@ -349,6 +388,7 @@
  */
 - (void)inputView:(MSGInputView *)inputView didSendCotent:(NSString *)txt
 {
+    [self showInputBarOnBottom];
     [self sendContent:[txt copy]];
 }
 
@@ -372,11 +412,15 @@
 
 - (void)showInputBarOnBottom
 {
+    self.inputBar.frame = CGRectMake(0, self.view.frame.size.height - self.inputBar.frame.size.height, self.inputBar.frame.size.width, self.inputBar.frame.size.height);
+    [self.view addSubview:self.inputBar];
+    /*
     UIView *sview = [[self inputBar] superview];
     if (!sview) {
         self.inputBar.frame = CGRectMake(0, self.view.frame.size.height - self.inputBar.frame.size.height, self.inputBar.frame.size.width, self.inputBar.frame.size.height);
         [self.view addSubview:self.inputBar];
     }
+     */
 }
 
 

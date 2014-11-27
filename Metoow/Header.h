@@ -17,7 +17,7 @@
 #import "AFNetworking.h"
 #import "APIHelper.h"
 #import "SVProgressHUD.h"
-#import <TencentOpenAPI/TencentOAuth.h>
+#import "TencentOpenAPI/TencentOAuth.h"
 
 #import "WeiboSDK.h"
 

@@ -220,11 +220,6 @@
 		02E528A618F0EEDC00EEAE7B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E528A518F0EEDC00EEAE7B /* main.m */; };
 		02E528AA18F0EEDC00EEAE7B /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 02E528A918F0EEDC00EEAE7B /* AppDelegate.mm */; };
 		02E528B518F0EEDC00EEAE7B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02E528B418F0EEDC00EEAE7B /* Images.xcassets */; };
-		02E528BC18F0EEDC00EEAE7B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02E528BB18F0EEDC00EEAE7B /* XCTest.framework */; };
-		02E528BD18F0EEDC00EEAE7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02E5289918F0EEDC00EEAE7B /* Foundation.framework */; };
-		02E528BE18F0EEDC00EEAE7B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02E5289D18F0EEDC00EEAE7B /* UIKit.framework */; };
-		02E528C618F0EEDC00EEAE7B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 02E528C418F0EEDC00EEAE7B /* InfoPlist.strings */; };
-		02E528C818F0EEDC00EEAE7B /* MetoowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E528C718F0EEDC00EEAE7B /* MetoowTests.m */; };
 		02E528DA18F0F1EF00EEAE7B /* HWDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E528D518F0F1EF00EEAE7B /* HWDevice.m */; };
 		02E528DB18F0F1EF00EEAE7B /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E528D718F0F1EF00EEAE7B /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		02E528DC18F0F1EF00EEAE7B /* NSError+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E528D918F0F1EF00EEAE7B /* NSError+Alert.m */; };
@@ -276,16 +271,6 @@
 		6A22C2391A08ADC400F70D4E /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A22C2381A08ADC400F70D4E /* UIRefreshControl+AFNetworking.m */; };
 		6AA3904D1980D39E0091E142 /* SOSPeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA3904C1980D39E0091E142 /* SOSPeopleViewController.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		02E528BF18F0EEDC00EEAE7B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 02E5288E18F0EEDC00EEAE7B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 02E5289518F0EEDC00EEAE7B;
-			remoteInfo = Metoow;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		02042283192CE4330030385D /* PicRollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicRollView.h; sourceTree = "<group>"; };
@@ -588,7 +573,6 @@
 		02E528A918F0EEDC00EEAE7B /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		02E528AC18F0EEDC00EEAE7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		02E528B418F0EEDC00EEAE7B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		02E528BA18F0EEDC00EEAE7B /* MetoowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MetoowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		02E528BB18F0EEDC00EEAE7B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		02E528C318F0EEDC00EEAE7B /* MetoowTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MetoowTests-Info.plist"; sourceTree = "<group>"; };
 		02E528C518F0EEDC00EEAE7B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -730,16 +714,6 @@
 				02E5289C18F0EEDC00EEAE7B /* CoreGraphics.framework in Frameworks */,
 				02E5289E18F0EEDC00EEAE7B /* UIKit.framework in Frameworks */,
 				02E5289A18F0EEDC00EEAE7B /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		02E528B718F0EEDC00EEAE7B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				02E528BC18F0EEDC00EEAE7B /* XCTest.framework in Frameworks */,
-				02E528BE18F0EEDC00EEAE7B /* UIKit.framework in Frameworks */,
-				02E528BD18F0EEDC00EEAE7B /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1223,7 +1197,6 @@
 			isa = PBXGroup;
 			children = (
 				02E5289618F0EEDC00EEAE7B /* Metoow.app */,
-				02E528BA18F0EEDC00EEAE7B /* MetoowTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1523,24 +1496,6 @@
 			productReference = 02E5289618F0EEDC00EEAE7B /* Metoow.app */;
 			productType = "com.apple.product-type.application";
 		};
-		02E528B918F0EEDC00EEAE7B /* MetoowTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 02E528CE18F0EEDC00EEAE7B /* Build configuration list for PBXNativeTarget "MetoowTests" */;
-			buildPhases = (
-				02E528B618F0EEDC00EEAE7B /* Sources */,
-				02E528B718F0EEDC00EEAE7B /* Frameworks */,
-				02E528B818F0EEDC00EEAE7B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				02E528C018F0EEDC00EEAE7B /* PBXTargetDependency */,
-			);
-			name = MetoowTests;
-			productName = MetoowTests;
-			productReference = 02E528BA18F0EEDC00EEAE7B /* MetoowTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1552,9 +1507,6 @@
 				TargetAttributes = {
 					02E5289518F0EEDC00EEAE7B = {
 						DevelopmentTeam = 7N48XR35J8;
-					};
-					02E528B918F0EEDC00EEAE7B = {
-						TestTargetID = 02E5289518F0EEDC00EEAE7B;
 					};
 				};
 			};
@@ -1572,7 +1524,6 @@
 			projectRoot = "";
 			targets = (
 				02E5289518F0EEDC00EEAE7B /* Metoow */,
-				02E528B918F0EEDC00EEAE7B /* MetoowTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1729,14 +1680,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		02E528B818F0EEDC00EEAE7B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				02E528C618F0EEDC00EEAE7B /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1846,23 +1789,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		02E528B618F0EEDC00EEAE7B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				02E528C818F0EEDC00EEAE7B /* MetoowTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		02E528C018F0EEDC00EEAE7B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 02E5289518F0EEDC00EEAE7B /* Metoow */;
-			targetProxy = 02E528BF18F0EEDC00EEAE7B /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		02E528A218F0EEDC00EEAE7B /* InfoPlist.strings */ = {
@@ -2030,46 +1957,6 @@
 			};
 			name = Release;
 		};
-		02E528CF18F0EEDC00EEAE7B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Metoow.app/Metoow";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Metoow/Metoow-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "MetoowTests/MetoowTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		02E528D018F0EEDC00EEAE7B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Metoow.app/Metoow";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Metoow/Metoow-Prefix.pch";
-				INFOPLIST_FILE = "MetoowTests/MetoowTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2087,15 +1974,6 @@
 			buildConfigurations = (
 				02E528CC18F0EEDC00EEAE7B /* Debug */,
 				02E528CD18F0EEDC00EEAE7B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		02E528CE18F0EEDC00EEAE7B /* Build configuration list for PBXNativeTarget "MetoowTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				02E528CF18F0EEDC00EEAE7B /* Debug */,
-				02E528D018F0EEDC00EEAE7B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
