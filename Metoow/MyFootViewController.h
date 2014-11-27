@@ -11,14 +11,11 @@
 #import "MJRefresh.h"
 #import "RichLabelView.h"
 
-@interface MyFootViewController : UIViewController <RecordCellProtocol, MJRefreshBaseViewDelegate, UITableViewDataSource>
+@interface MyFootViewController : UIViewController <RecordCellProtocol, UITableViewDataSource>
 {
     BOOL isCellRegesterd;
     NSInteger page;
 }
-
-@property (strong, nonatomic) MJRefreshHeaderView *headerView;
-@property (strong, nonatomic) MJRefreshFooterView *footerView;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;

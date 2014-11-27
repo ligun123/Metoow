@@ -20,7 +20,7 @@ typedef enum {
     NearCategaryHelp = 3            //互助
 } NearCategaryEnum;
 
-@interface NearViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, RecordCellProtocol, HuzhuCellProtocol, MJRefreshBaseViewDelegate>
+@interface NearViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, RecordCellProtocol, HuzhuCellProtocol>
 {
     BOOL hasLoadCell;
     NearCategaryEnum currentCategary;
@@ -32,8 +32,6 @@ typedef enum {
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (strong, nonatomic) RichLabelView *heightCount;
 
-@property (strong, nonatomic) MJRefreshHeaderView *headerView;
-@property (strong, nonatomic) MJRefreshFooterView *footerView;
 
 
 @end

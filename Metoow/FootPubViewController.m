@@ -68,6 +68,7 @@
 - (void)resetInput
 {
     [self.inputBar removeFromSuperview];
+    self.textView.delegate = self;
     if (self.editCategary == FootPubEditCategaryPublish) {
         [self.isPublic setChecked:YES];
         [self.inputBar setOutsideInput:self.textView];
@@ -371,7 +372,6 @@
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-    [self resetInput];
     if (self.locateTimer) {
         [self.locateTimer invalidate];
         self.locateTimer = nil;
@@ -388,7 +388,6 @@
  */
 - (void)inputView:(MSGInputView *)inputView didSendCotent:(NSString *)txt
 {
-    [self showInputBarOnBottom];
     [self sendContent:[txt copy]];
 }
 

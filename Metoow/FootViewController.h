@@ -12,7 +12,7 @@
 #import "PulldownButton.h"
 #import "MJRefresh.h"
 
-@interface FootViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MJRefreshBaseViewDelegate, RecordCellProtocol, UIActionSheetDelegate, UITextFieldDelegate>
+@interface FootViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, RecordCellProtocol, UIActionSheetDelegate, UITextFieldDelegate>
 {
     BOOL isCellRegesterd;
     int selectIndex;
@@ -24,8 +24,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *btnSOS;
 
-@property (strong, nonatomic) MJRefreshHeaderView *headerView;
-@property (strong, nonatomic) MJRefreshFooterView *footerView;
 
 @property (weak, nonatomic) IBOutlet UITextField *searchText;
 

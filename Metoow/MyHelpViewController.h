@@ -10,14 +10,11 @@
 #import "MJRefresh.h"
 
 
-@interface MyHelpViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MJRefreshBaseViewDelegate>
+@interface MyHelpViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     BOOL hasRegister;
     NSInteger page;
 }
-
-@property (strong, nonatomic) MJRefreshHeaderView *headerView;
-@property (strong, nonatomic) MJRefreshFooterView *footerView;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (strong, nonatomic) NSMutableArray *dataList;

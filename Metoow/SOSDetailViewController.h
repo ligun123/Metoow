@@ -10,7 +10,7 @@
 #import "DetailCell.h"
 #import "MJRefresh.h"
 
-@interface SOSDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MJRefreshBaseViewDelegate>
+@interface SOSDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     BOOL hasRegister;
     NSInteger page;
@@ -25,9 +25,6 @@
 @property (strong, nonatomic) DetailCell *detailCell;
 @property (weak, nonatomic) IBOutlet UIButton *btnCollect;
 @property (weak, nonatomic) IBOutlet UIButton *btnCloseSOS;
-
-@property (strong, nonatomic) MJRefreshFooterView *footerView;
-@property (strong, nonatomic) MJRefreshHeaderView *headerView;
 
 - (IBAction)btnBackTap:(id)sender;
 - (IBAction)btnTransmitTap:(id)sender;

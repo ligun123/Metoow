@@ -10,7 +10,7 @@
 #import "MJRefresh.h"
 #import "PersonCell.h"
 
-@interface SOSPeopleViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MJRefreshBaseViewDelegate>
+@interface SOSPeopleViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     BOOL hasLoadCell;
     NSInteger page;
@@ -20,9 +20,6 @@
 
 @property (strong, nonatomic) NSMutableArray *dataList;
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
-
-@property (strong, nonatomic) MJRefreshHeaderView *headerView;
-@property (strong, nonatomic) MJRefreshFooterView *footerView;
 
 - (IBAction)btnBackTap:(id)sender;
 

@@ -12,16 +12,13 @@
 #import "MJRefresh.h"
 
 
-@interface HelpViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UITextFieldDelegate, HuzhuCellProtocol, MJRefreshBaseViewDelegate>
+@interface HelpViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UITextFieldDelegate, HuzhuCellProtocol>
 {
     BOOL hasRegister;
     int selectIndex;
     BOOL isSearching;
     NSInteger page;
 }
-
-@property (strong, nonatomic) MJRefreshHeaderView *headerView;
-@property (strong, nonatomic) MJRefreshFooterView *footerView;
 
 @property (strong, nonatomic) NSMutableArray *searchList;
 

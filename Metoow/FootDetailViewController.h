@@ -10,7 +10,7 @@
 #import "DetailCell.h"
 #import "MJRefresh.h"
 
-@interface FootDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MJRefreshBaseViewDelegate>
+@interface FootDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     BOOL hasRegister;
     NSInteger page;
@@ -23,8 +23,6 @@
 @property (weak, nonatomic) IBOutlet UIView *bottomBar;
 @property (strong, nonatomic) DetailCell *detailCell;         //第一行显示的主题cell，同时帮助计算高度
 @property (weak, nonatomic) IBOutlet UIButton *btnCollect;
-@property (strong, nonatomic) MJRefreshFooterView *footerView;
-@property (strong, nonatomic) MJRefreshHeaderView *headerView;
 
 @property FootDetailCategary detailCategary;
 

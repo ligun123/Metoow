@@ -50,14 +50,10 @@
     
     [self refresh];
     
-    self.headerView = [MJRefreshHeaderView header];
-    self.headerView.scrollView = self.tableview;
-    self.headerView.delegate = self;
-    self.searchList = [NSMutableArray arrayWithCapacity:10];
+    [self.tableview addHeaderWithTarget:self action:@selector(headerRereshing)];
+    [self.tableview addFooterWithTarget:self action:@selector(footerRereshing)];
     
-    self.footerView = [MJRefreshFooterView footer];
-    self.footerView.scrollView = self.tableview;
-    self.footerView.delegate = self;
+    self.searchList = [NSMutableArray arrayWithCapacity:10];
 }
 
 - (void)didReceiveMemoryWarning
@@ -340,28 +336,27 @@
 }
 
 // 开始进入刷新状态就会调用
-- (void)refreshViewBeginRefreshing:(MJRefreshBaseView *)refreshView
+- (void)headerRereshing
 {
-    if (refreshView == self.headerView) {
-        //加载最新的
-        [self refreshHeader];
-    }
-    if (refreshView == self.footerView) {
-        //加载更多旧的
-        [self refreshFooter];
-    }
+    [self refreshHeader];
+}
+
+
+- (void)footerRereshing
+{
+    [self refreshFooter];
 }
 
 - (void)endRefresh
 {
-    if ([self.headerView isRefreshing]) {
-        [self.headerView endRefreshing];
+    if ([self.tableview isHeaderRefreshing]) {
+        [self.tableview headerEndRefreshing];
     }
-    if ([self.footerView isRefreshing]) {
-        [self.footerView endRefreshing];
+    
+    if ([self.tableview isFooterRefreshing]) {
+        [self.tableview footerEndRefreshing];
     }
 }
-
 - (void)refreshHeader
 {
     page = 1;
@@ -371,7 +366,7 @@
 - (void)refreshFooter
 {
     if (self.dataList.count < kCountLoadDefaul * page) {
-        [self.footerView endRefreshing];
+        [self.tableview footerEndRefreshing];
         return ;
     }
     page ++;
