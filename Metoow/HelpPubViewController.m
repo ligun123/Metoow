@@ -42,12 +42,27 @@
     [super viewWillAppear:animated];
     [AppDelegateInterface setTabBarHidden:YES];
     [[IQKeyboardManager sharedManager] setEnableAutoToolbar:YES];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)keyDidShow:(id)sender
+{
+    self.contentView.scrollEnabled = NO;
+}
+
+- (void)keyWillHide:(id)sender
+{
+    self.contentView.scrollEnabled = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning

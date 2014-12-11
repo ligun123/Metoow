@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet PicRollView *picRoll;
 @property (strong, nonatomic) NSTimer *locateTimer;
 
+
 @property (strong, nonatomic) NSDictionary *dataDic;        //当转发和回复时需要此字典
 
 @property FootPubEditCategary editCategary;

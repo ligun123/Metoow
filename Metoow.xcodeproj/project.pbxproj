@@ -113,6 +113,7 @@
 		025945C7191F9E9100114BF4 /* MSGDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 025945C5191F9E9100114BF4 /* MSGDetailViewController.xib */; };
 		025946AC191FBD4000114BF4 /* miniblog in Resources */ = {isa = PBXBuildFile; fileRef = 025946AB191FBD4000114BF4 /* miniblog */; };
 		025946AE191FC07B00114BF4 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 025946AD191FC07B00114BF4 /* ImageIO.framework */; };
+		025AF0061A39BF6900378563 /* mingan.plist in Resources */ = {isa = PBXBuildFile; fileRef = 025AF0051A39BF6900378563 /* mingan.plist */; };
 		025B50C2192B870900657405 /* pb_bottomBar_bkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 025B50C0192B870900657405 /* pb_bottomBar_bkg@2x.png */; };
 		025B50C3192B870900657405 /* pb_bottomBar_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 025B50C1192B870900657405 /* pb_bottomBar_btn@2x.png */; };
 		0260B2E219338248000F9846 /* NSDictionary+Huzhu.m in Sources */ = {isa = PBXBuildFile; fileRef = 0260B2E119338248000F9846 /* NSDictionary+Huzhu.m */; };
@@ -411,6 +412,7 @@
 		025945C5191F9E9100114BF4 /* MSGDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSGDetailViewController.xib; sourceTree = "<group>"; };
 		025946AB191FBD4000114BF4 /* miniblog */ = {isa = PBXFileReference; lastKnownFileType = folder; path = miniblog; sourceTree = "<group>"; };
 		025946AD191FC07B00114BF4 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		025AF0051A39BF6900378563 /* mingan.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = mingan.plist; sourceTree = "<group>"; };
 		025B50C0192B870900657405 /* pb_bottomBar_bkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pb_bottomBar_bkg@2x.png"; sourceTree = "<group>"; };
 		025B50C1192B870900657405 /* pb_bottomBar_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pb_bottomBar_btn@2x.png"; sourceTree = "<group>"; };
 		0260B2E019338248000F9846 /* NSDictionary+Huzhu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Huzhu.h"; sourceTree = "<group>"; };
@@ -1245,6 +1247,7 @@
 				02CB41C618F6E33A0030289C /* Controller */,
 				02E528A018F0EEDC00EEAE7B /* Supporting Files */,
 				02466A171934C12000DBCBB2 /* getarea */,
+				025AF0051A39BF6900378563 /* mingan.plist */,
 			);
 			path = Metoow;
 			sourceTree = "<group>";
@@ -1556,6 +1559,7 @@
 				024CB39A18F3B03200434AFA /* xx@2x.png in Resources */,
 				024CB39818F3B03200434AFA /* gd@2x.png in Resources */,
 				02500E5A1917BCC1000B7212 /* chat_bottom_up_nor.png in Resources */,
+				025AF0061A39BF6900378563 /* mingan.plist in Resources */,
 				021A428B19740DB7000858FE /* pep.png in Resources */,
 				0276FA7A1946099000330AB9 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				02E5292218F0FBDF00EEAE7B /* Main.storyboard in Resources */,

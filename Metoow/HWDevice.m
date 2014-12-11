@@ -95,6 +95,21 @@
     return [fmt stringFromDate:date];
 }
 
+- (BOOL)hasMingan
+{
+    NSString *fp = [[NSBundle mainBundle] pathForResource:@"mingan" ofType:@"plist"];
+    NSArray *mingans = [NSArray arrayWithContentsOfFile:fp];
+    for (NSString *mg in mingans) {
+        NSRange rg = [self rangeOfString:mg options:NSCaseInsensitiveSearch];
+        if (rg.location != NSNotFound) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"发布的内容包含敏感词汇！" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+            [alert show ];
+            return YES;
+        }
+    }
+    return NO;
+}
+
 @end
 
 

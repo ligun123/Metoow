@@ -56,7 +56,6 @@
 {
     [super viewDidLoad];
     [self resetInput];
-    
     if ([HWDevice systemVersion] > 6.99 && [[UIScreen mainScreen] applicationFrame].size.height < 961) {
         CGRect of = self.textView.frame;
         of.size.height -= 60.f;
@@ -154,6 +153,9 @@
 //发信息的总入口，判断发布、转发、回复
 - (void)sendContent:(NSString *)txt
 {
+    if ([txt hasMingan]) {
+        return ;
+    }
     if (self.editCategary == FootPubEditCategaryPublish) {
         [self publishTxtContent:txt];
     }

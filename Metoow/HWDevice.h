@@ -53,6 +53,8 @@
 
 - (NSString *)apiDateCn;
 
+- (BOOL)hasMingan;
+
 @end
 
 

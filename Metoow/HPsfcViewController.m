@@ -132,13 +132,11 @@
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
-    self.contentView.scrollEnabled = NO;
 }
 
 
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
-    self.contentView.scrollEnabled = YES;
 }
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
